@@ -1,0 +1,111 @@
+#OS junk files
+[Tt]humbs.db
+*.DS_Store
+
+#Visual Studio files
+*.[Oo]bj
+*.user
+*.aps
+*.pch
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.[Cc]ache
+*.ilk
+*.log
+*.lib
+*.sbr
+*.sdf
+*.opensdf
+*.unsuccessfulbuild
+ipch/
+obj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+Ankh.NoLoad
+.vs/
+.vscode/
+
+#MonoDevelop
+*.pidb
+*.userprefs
+
+#Tooling
+_ReSharper*/
+*.resharper
+[Tt]est[Rr]esult*
+*.orig
+
+#Project files
+[Bb]uild/
+
+#Subversion files
+.svn
+
+# Office Temp Files
+~$*
+
+#NuGet
+packages/
+
+#ncrunch
+*ncrunch*
+*crunch*.local.xml
+
+# visual studio database projects
+*.dbmdl
+
+# upgrade files
+UpgradeLog.*
+_UpgradeReport_Files
+
+# User-specific files
+user.config
+UserRestore.config
+*.docstates
+/local.config
+/local-global.config
+runpl.cmd
+LookUp.csv
+/AutomatedBuilds/PowerShellDeveloperScripts/UpdatedDB.cmd
+/AutomatedBuilds/PowerShellDeveloperScripts/UpdatedDB_SingleTenant.cmd
+/AutomatedBuilds/PowerShellDeveloperScripts/LocalUpdatesBatch.sql
+/AutomatedBuilds/PowerShellDeveloperScripts/LocalUpdatesBatch_PL_Client.sql
+/AutomatedBuilds/PowerShellDeveloperScripts/LocalUpdatesBatch_After.sql
+local.config.*.json
+local.config.json
+/Resources/RelationshipAwareness/Endpoint/Run*Integration.cmd
+local.*.api.config
+local.*.api.config.sample.*
+*/local.config
+TestConfigs.json
+
+#  Other
+/*.pdb
+
+# node.js
+npm-debug.log
+node_modules/
+
+# karma test results
+karma-test-results.xml
+
+#Generated SQL Files
+DatabaseSchema.Processed.sql
+
+# jmeter LoadTests
+/LoadTests/*dataset.csv
+
+# SpecFlow Code-Behind Files
+# https://specflow.org/2019/generating-code-behind-files-using-msbuild/
+*.feature.cs
+
+# SonarQube
+.sonarqube

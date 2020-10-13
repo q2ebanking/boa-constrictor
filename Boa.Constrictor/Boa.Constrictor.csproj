@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.1.2</Version>
+    <Authors>Pandy Knight,Andrew Williams,Steve Hernandez</Authors>
+    <Company>PrecisionLender, a Q2 Company</Company>
+    <Product>Boa Constrictor</Product>
+    <Description>Boa Constrictor is a standalone .NET implementation of the Screenplay Pattern for modeling interactions. It includes out-of-the-box interactions for Web UI (Selenium WebDriver) and REST API (RestSharp) behaviors.</Description>
+    <Copyright />
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="RestSharp" Version="106.11.4" />
+    <PackageReference Include="Selenium.Support" Version="3.141.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+  </ItemGroup>
+
+</Project>
