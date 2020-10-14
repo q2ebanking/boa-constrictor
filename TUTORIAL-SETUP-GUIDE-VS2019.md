@@ -1,6 +1,6 @@
 # Boa Constrictor Tutorial Setup Guide Using Visual Studio 2019
 
-This guide is an in-depth walkthrough of setting up your environment for the Boa Constrictor [quickstart tutorial](TUTORIAL.md) using Visual Studio 2019.
+This guide is an in-depth walkthrough of setting up your environment for the Boa Constrictor [quickstart tutorial](TUTORIAL.md) using Microsoft Visual Studio 2019.
 
 ### 1. Create the project
 Open *Visual Studio 2019* and select **Create a new project**.
