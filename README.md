@@ -79,9 +79,12 @@ Follow the instructions on the
 [Selenium WebDriver Driver Requirements](https://www.selenium.dev/documentation/en/webdriver/driver_requirements/)
 page to set them up.
 (Alternatively, you can install certain WebDrivers as [NuGet packages](https://www.nuget.org/packages?q=webdriver).)
+If you try to run tests using Boa Constrictor but get a `DriverServiceNotFoundException`,
+then double-check your WebDriver installation.
 
 Once your project is set up, follow the [quickstart tutorial](TUTORIAL.md)
 to learn about the Screenplay Pattern and how to write Boa Constrictor code.
+Example code is located under the `Boa.Constrictor.Example` project.
 
 
 ### Brief Example Code
@@ -274,6 +277,12 @@ They are written using [NUnit](https://nunit.org/).
 They can be executed from Visual Studio using *Test Explorer*
 or from the command line using the [NUnit Console](https://docs.nunit.org/articles/nunit/running-tests/Console-Runner.html).
 Unit tests must pass for every pull request.
+They do *not* require WebDriver executables.
+
+*Warning:* Tests under `Boa.Constrictor.Example` are *not* unit tests.
+They are example tests for the [tutorial](TUTORIAL.md),
+and they *do* require WebDriver executables.
+Nevertheless, it would be good to run them when making code changes as an integration-like test.
 
 
 ### Requesting Features or Reporting Bugs
