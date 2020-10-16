@@ -34,7 +34,7 @@ is a design pattern for modeling interactions with features under test:
 For example, an Actor may be given an Ability to browse the Web using a specific browser like Chrome.
 The Ability would hold a reference to a Chrome WebDriver instance.
 Then, the Actor could call a Task to load a login page, a second Task to enter username and password, and a final Task to click the "login" button.
-Each task would access the WebDriver instance through the calling Actor’s Ability to control the Chrome browser.
+Each task would access the WebDriver instance through the calling Actorâ€™s Ability to control the Chrome browser.
 Abilities provide a mechanism for dependency injection.
 Actors can perform any kind of Interaction if it has the required Abilities.
 
@@ -66,11 +66,8 @@ Boa Constrictor provides several Interactions out of the box:
 ## Getting Started
 
 Boa Constrictor is a .NET Standard library written in C#.
-To use it, install the *Boa.Constrictor* package from NuGet.org into your .NET project.
-
-*(Warning: The public NuGet package is not yet released.
-This section will need to be updated once it is released.
-Include a link.)*
+To use it, install the [Boa.Constrictor](https://www.nuget.org/packages/Boa.Constrictor)
+package from NuGet.org into your .NET project.
 
 Then, make sure to install the appropriate WebDriver executables on your system PATH.
 For example, you will need to install [ChromeDriver](https://chromedriver.chromium.org/)
