@@ -316,7 +316,7 @@ Boa Constrictor conforms to the [Q2 Code of Conduct](CODE-OF-CONDUCT.md).
 
 ## Backstory
 
-Boa Constrictor priginally started in 2018 as part of a test automation project at
+Boa Constrictor originally started in 2018 as part of a test automation project at
 [PrecisionLender](https://precisionlender.com/), a [Q2](https://www.q2.com/) company.
 It was released publicly as an open source project in 2020 so that others could use its .NET Screenplay Pattern.
 Boa Constrictor's main goal is to show and provide a better way to model interactions for automation.
