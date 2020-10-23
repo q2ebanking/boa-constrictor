@@ -56,6 +56,9 @@
         #endregion
     }
 
+    /// <summary>
+    /// Provides builder methods for IsEqualTo conditions without type generics.
+    /// </summary>
     public static class IsEqualTo
     {
         /// <summary>
@@ -79,6 +82,9 @@
         public static IsEqualTo<TValue> Value<TValue>(TValue expected) => IsEqualTo<TValue>.Value(expected);
     }
 
+    /// <summary>
+    /// Provides builder methods for adding a logical NOT to IsEqualTo conditions.
+    /// </summary>
     public static class IsNotEqualTo
     {
         /// <summary>

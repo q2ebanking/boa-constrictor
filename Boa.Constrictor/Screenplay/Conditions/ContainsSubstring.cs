@@ -3,7 +3,6 @@
     /// <summary>
     /// Condiition for containing a substring.
     /// </summary>
-    /// <typeparam name="TValue">The value type.</typeparam>
     public class ContainsSubstring : ICondition<string>
     {
         #region Constructors

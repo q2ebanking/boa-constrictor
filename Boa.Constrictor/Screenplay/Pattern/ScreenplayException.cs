@@ -9,8 +9,22 @@ namespace Boa.Constrictor.Screenplay
     {
         #region Constructors
 
+        /// <summary>
+        /// Empty constructor.
+        /// </summary>
         public ScreenplayException() { }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="message">The exception message.</param>
         public ScreenplayException(string message) : base(message) { }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="message">The exception message.</param>
+        /// <param name="inner">The inner exception.</param>
         public ScreenplayException(string message, Exception inner) : base(message, inner) { }
 
         #endregion

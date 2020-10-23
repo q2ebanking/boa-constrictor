@@ -25,7 +25,7 @@ namespace Boa.Constrictor.Screenplay
         /// <summary>
         /// Public builder.
         /// </summary>
-        /// <param name="expected">The comparison value.</param>
+        /// <param name="value">The comparison value.</param>
         /// <returns></returns>
         public static IsLessThan<TValue> Value(TValue value) => new IsLessThan<TValue>(value);
 
@@ -49,6 +49,9 @@ namespace Boa.Constrictor.Screenplay
         #endregion
     }
 
+    /// <summary>
+    /// Provides builder methods for IsLessThan conditions without type generics.
+    /// </summary>
     public static class IsLessThan
     {
         /// <summary>
@@ -61,6 +64,9 @@ namespace Boa.Constrictor.Screenplay
             IsLessThan<TValue>.Value(expected);
     }
 
+    /// <summary>
+    /// Provides builder methods for adding a logical NOT to IsLessThan conditions.
+    /// </summary>
     public static class IsGreaterThanOrEqualTo
     {
         /// <summary>

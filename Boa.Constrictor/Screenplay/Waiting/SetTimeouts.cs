@@ -66,10 +66,8 @@
             new SetTimeouts(standardSeconds, extraSeconds);
 
         /// <summary>
-        /// Constructs the ability.
+        /// Constructs the ability using default values.
         /// </summary>
-        /// <param name="standardSeconds">The standard timeout value in seconds.</param>
-        /// <param name="extraSeconds">The extra timeout value in seconds.</param>
         /// <returns></returns>
         public static SetTimeouts ToDefaultValues() =>
             new SetTimeouts();
