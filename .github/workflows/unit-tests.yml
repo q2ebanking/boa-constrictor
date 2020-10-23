@@ -1,0 +1,16 @@
+# Runs the NUnit unit tests located in the Boa.Constrictor.UnitTests project.
+# Warning: Does not run the example tests in the Boa.Constrictor.Example project.
+
+name: Boa Constrictor Unit Tests
+
+on:
+  pull request:
+    branches: [main]
+
+jobs:
+  tests:
+    name: Unit Tests
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: dotnet test Boa.Constrictor.UnitTests/Boa.Constrictor.UnitTests.csproj
