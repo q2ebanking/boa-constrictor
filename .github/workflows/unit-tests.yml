@@ -8,7 +8,8 @@ on:
     branches: [main]
 
 jobs:
-  tests:
+  test:
+    name: Test
     runs-on: windows-latest
     steps:
       - name: Check out repository
@@ -19,5 +20,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: unit-test-results
-          path: UnitTestResults.trx
+          path: Boa.Constrictor.UnitTests/TestResults/UnitTestResults.trx
           retention-days: 30
