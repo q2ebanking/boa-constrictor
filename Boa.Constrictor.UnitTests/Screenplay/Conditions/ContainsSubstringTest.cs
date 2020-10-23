@@ -12,7 +12,7 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         [Test]
         public void True()
         {
-            ContainsSubstring.Text("World").Evaluate("Hello World!").Should().BeTrue();
+            ContainsSubstring.Text("World").Evaluate("Hello World!").Should().BeFalse();
         }
 
         [Test]
