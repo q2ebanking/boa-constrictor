@@ -9,8 +9,15 @@ on:
 
 jobs:
   tests:
-    name: Run Unit Tests
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: dotnet test Boa.Constrictor.UnitTests/Boa.Constrictor.UnitTests.csproj
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Run unit tests
+        run: dotnet test Boa.Constrictor.UnitTests/Boa.Constrictor.UnitTests.csproj --logger "trx;LogFileName=UnitTestResults.trx"
+      - name: Archive unit test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: unit-test-results
+          path: UnitTestResults.trx
+          retention-days: 30
