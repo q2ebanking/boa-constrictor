@@ -18,7 +18,7 @@
         /// (Use static methods for public construction.)
         /// </summary>
         /// <param name="question">The question upon whose answer to wait.</param>
-        /// <param name="expectation">The expected condition for which to wait.</param>
+        /// <param name="condition">The expected condition for which to wait.</param>
         private ValueAfterWaiting(IQuestion<TValue> question, ICondition<TValue> condition) :
             base(question, condition)
         { }
@@ -31,7 +31,7 @@
         /// Constructs the question.
         /// </summary>
         /// <param name="question">The question upon whose answer to wait.</param>
-        /// <param name="expectation">The expected condition for which to wait.</param>
+        /// <param name="condition">The expected condition for which to wait.</param>
         /// <returns></returns>
         public static ValueAfterWaiting<TValue> Until(IQuestion<TValue> question, ICondition<TValue> condition) =>
             new ValueAfterWaiting<TValue>(question, condition);
@@ -97,7 +97,7 @@
         /// </summary>
         /// <typeparam name="TValue">The value type.</typeparam>
         /// <param name="question">The question upon whose answer to wait.</param>
-        /// <param name="expectation">The expected condition for which to wait.</param>
+        /// <param name="condition">The expected condition for which to wait.</param>
         /// <returns></returns>
         public static ValueAfterWaiting<TValue> Until<TValue>(IQuestion<TValue> question, ICondition<TValue> condition) =>
             ValueAfterWaiting<TValue>.Until(question, condition);
