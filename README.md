@@ -23,7 +23,7 @@ For Web UI automation, the Screenplay Pattern is an improvement over the
 
 This 32-minute YouTube video introduces Screenplay Pattern concepts and Boa Constrictor code:
 
-[![Intro Video Thumbnail](Images/IntroVideoThumbnail.jpg?raw=true)](https://youtu.be/i26B1afosCo)
+[![Intro Video Thumbnail](Images/IntroVideoThumbnail.png?raw=true)](https://youtu.be/i26B1afosCo)
 
 
 ## The Screenplay Pattern
