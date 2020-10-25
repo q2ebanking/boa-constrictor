@@ -22,9 +22,19 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         public class DurationData
         {
+            /// <summary>
+            /// The start time.
+            /// </summary>
             public DateTime? StartTime { get; set; }
+
+            /// <summary>
+            /// The end time.
+            /// </summary>
             public DateTime? EndTime { get; set; }
 
+            /// <summary>
+            /// The duration time, which is end time minus start time.
+            /// </summary>
             public TimeSpan? Duration =>
                 (StartTime == null || EndTime == null)
                 ? null : EndTime - StartTime;
@@ -35,8 +45,19 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         public class ParameterData
         {
+            /// <summary>
+            /// Name.
+            /// </summary>
             public string Name { get; set; }
+
+            /// <summary>
+            /// Value.
+            /// </summary>
             public object Value { get; set; }
+
+            /// <summary>
+            /// Type.
+            /// </summary>
             public string Type { get; set; }
         }
 
@@ -45,9 +66,24 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         public class RequestData
         {
+            /// <summary>
+            /// Request method.
+            /// </summary>
             public string Method { get; set; }
+
+            /// <summary>
+            /// Request URI.
+            /// </summary>
             public Uri Uri { get; set; }
+
+            /// <summary>
+            /// Request resource path.
+            /// </summary>
             public string Resource { get; set; }
+
+            /// <summary>
+            /// Request parameters.
+            /// </summary>
             public IList<ParameterData> Parameters { get; set; }
         }
 
@@ -56,10 +92,29 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         public class ResponseData
         {
+            /// <summary>
+            /// Response URI.
+            /// </summary>
             public Uri Uri { get; set; }
+
+            /// <summary>
+            /// Response HTTP status code.
+            /// </summary>
             public HttpStatusCode StatusCode { get; set; }
+
+            /// <summary>
+            /// Response error message.
+            /// </summary>
             public string ErrorMessage { get; set; }
+
+            /// <summary>
+            /// Response content.
+            /// </summary>
             public string Content { get; set; }
+
+            /// <summary>
+            /// Response headers.
+            /// </summary>
             public IList<ParameterData> Headers { get; set; }
         }
 
@@ -68,9 +123,24 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         public class FullData
         {
+            /// <summary>
+            /// Duration time data.
+            /// </summary>
             public DurationData Duration { get; set; }
+
+            /// <summary>
+            /// Request data.
+            /// </summary>
             public RequestData Request { get; set; }
+
+            /// <summary>
+            /// Response data.
+            /// </summary>
             public ResponseData Response { get; set; }
+
+            /// <summary>
+            /// Request cookies.
+            /// </summary>
             public IList<Cookie> Cookies { get; set; }
         }
 

@@ -10,8 +10,22 @@ namespace Boa.Constrictor.WebDriver
     {
         #region Constructors
 
+        /// <summary>
+        /// Empty constructor.
+        /// </summary>
         public BrowserInteractionException() { }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="message">The exception message.</param>
         public BrowserInteractionException(string message) : base(message) { }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="message">The exception message.</param>
+        /// <param name="inner">The inner exception.</param>
         public BrowserInteractionException(string message, Exception inner) : base(message, inner) { }
 
         #endregion

@@ -32,7 +32,7 @@ namespace Boa.Constrictor.Screenplay
         /// (Use static methods for public construction.)
         /// </summary>
         /// <param name="question">The question upon whose answer to wait.</param>
-        /// <param name="expectation">The expected condition for which to wait.</param>
+        /// <param name="condition">The expected condition for which to wait.</param>
         protected AbstractWait(IQuestion<TValue> question, ICondition<TValue> condition)
         {
             Question = question;
