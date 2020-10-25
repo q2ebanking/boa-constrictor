@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// Does no logging.
-    /// It is a much safer alternative that using "null" for logger objects.
+    /// It is a much safer alternative than using "null" for logger objects.
     /// </summary>
     public class NoOpLogger : AbstractLogger
     {

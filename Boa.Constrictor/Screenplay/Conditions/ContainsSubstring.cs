@@ -1,7 +1,7 @@
 ﻿namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
-    /// Condiition for containing a substring.
+    /// Condition for containing a substring.
     /// </summary>
     public class ContainsSubstring : ICondition<string>
     {

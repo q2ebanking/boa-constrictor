@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
-    /// Gets a Web element's displyed state.
+    /// Gets a Web element's displayed state.
     /// Note that an element can exist without being displayed,
     /// But it cannot be displayed without existing.
     /// Warning: This method does NOT wait for the element to exist first!
