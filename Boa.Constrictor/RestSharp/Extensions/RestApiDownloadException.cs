@@ -9,6 +9,11 @@ namespace Boa.Constrictor.RestSharp
     {
         #region Constructors
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="request">The request object.</param>
+        /// <param name="response">The response object.</param>
         public RestApiDownloadException(IRestRequest request, IRestResponse response) 
             : base("REST API file download failed")
         {
@@ -20,8 +25,14 @@ namespace Boa.Constrictor.RestSharp
 
         #region Properties
 
+        /// <summary>
+        /// The request object.
+        /// </summary>
         public IRestRequest Request { get; }
 
+        /// <summary>
+        /// The response object.
+        /// </summary>
         public IRestResponse Response { get;  }
 
         #endregion

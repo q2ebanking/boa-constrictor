@@ -63,7 +63,7 @@ namespace Boa.Constrictor.WebDriver
         /// <summary>
         /// Resets the cookie's expiration relative to the current date and time.
         /// </summary>
-        /// <param name="expiration">The expiration date and time.</param>
+        /// <param name="span">The time span by which to increase the expiration.</param>
         /// <returns></returns>
         public SystemNetCookie AndResetFutureExpirationTo(TimeSpan span)
         {

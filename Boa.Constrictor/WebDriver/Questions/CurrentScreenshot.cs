@@ -40,7 +40,7 @@ namespace Boa.Constrictor.WebDriver
         #region Properties
 
         /// <summary>
-        /// The file name for the the screenshot image.
+        /// The file name for the screenshot image.
         /// Do NOT include the directory or the extension!
         /// </summary>
         private string FileName { get; set; }

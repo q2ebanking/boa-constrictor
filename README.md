@@ -22,7 +22,9 @@ For Web UI automation, the Screenplay Pattern is an improvement over the
 ## The Screenplay Pattern
 
 The [Screenplay Pattern](https://precisionlender.atlassian.net/wiki/spaces/PD/pages/515801239/Screenplay+Pattern)
-is a design pattern for modeling interactions with features under test:
+is a design pattern for modeling interactions with features under test.
+It can be summarized in one line:
+**Actors use Abilities to perform Interactions.**
 
  * **Actors** initiate Interactions.
  * **Abilities** enable Actors to initiate Interactions.

@@ -3,9 +3,8 @@
 namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
-    /// Condiition for matching a regular expression.
+    /// Condition for matching a regular expression.
     /// </summary>
-    /// <typeparam name="TValue">The value type.</typeparam>
     public class Matches : ICondition<string>
     {
         #region Constructors
