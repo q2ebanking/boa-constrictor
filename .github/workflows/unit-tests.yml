@@ -1,0 +1,24 @@
+# Runs the NUnit unit tests located in the Boa.Constrictor.UnitTests project.
+# Warning: Does not run the example tests in the Boa.Constrictor.Example project.
+
+name: Boa Constrictor Unit Tests
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Test
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Run unit tests
+        run: dotnet test Boa.Constrictor.UnitTests/Boa.Constrictor.UnitTests.csproj --logger "trx;LogFileName=UnitTestResults.trx"
+      - name: Archive unit test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: unit-test-results
+          path: Boa.Constrictor.UnitTests/TestResults/UnitTestResults.trx
+          retention-days: 30
