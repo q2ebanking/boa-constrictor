@@ -201,7 +201,7 @@ That makes automation much more reliable and less "flaky."
 
 As a result, Boa Constrictor enables significant **code reusability**.
 You can write a common interaction, locator, or request one time and use it repeatedly.
-You will probably write less code with Boa Constrictor than with the Page Object Pattern or raw calls.
+You will probably write less code with Boa Constrictor than with page objects or raw calls.
 Plus, all Screenplay interactions will include their safety steps, making automation more **robust**.
 
 Furthermore, the Screenplay Pattern handles scope using **dependency injection**.
@@ -228,6 +228,7 @@ A *page object* contains locator objects and interaction methods (that use those
 Page objects are great for small test automation solutions, but they don't scale well.
 By design, page objects couple the concerns of page structure with behavior.
 As a result, they tend to have repetitive methods, bloated hierarchies, and little standardization.
+Page objects are more of a "convention" than a true design pattern.
 Boa Constrictor's [Screenplay Pattern](https://www.infoq.com/articles/Beyond-Page-Objects-Test-Automation-Serenity-Screenplay/)
 applies [SOLID](https://en.wikipedia.org/wiki/SOLID) design principles to modeling behaviors under test.
 Boa Constrictor provides the boilerplate code for the Screenplay Pattern so testers can readily use it.
@@ -316,4 +317,4 @@ Boa Constrictor conforms to the [Q2 Code of Conduct](CODE-OF-CONDUCT.md).
 Boa Constrictor originally started in 2018 as the cornerstone of [PrecisionLender](https://precisionlender.com/)'s end-to-end test automation solution.
 PrecisionLender and its parent company [Q2](https://www.q2.com/) released it publicly as an open source project in October 2020.
 Boa Constrictor's main goal is to provide a better way to model interactions for automation.
-The project aims to showcase the Screenplay Pattern as an improvement over the Page Object Convention.
+The project aims to showcase the Screenplay Pattern as an improvement over page objects.
