@@ -34,7 +34,7 @@ namespace Boa.Constrictor.Screenplay
         #region Methods
 
         /// <summary>
-        /// Compares the acutal value to the comparison value.
+        /// Compares the actual value to the comparison value.
         /// </summary>
         /// <param name="actual">The actual value.</param>
         /// <returns></returns>

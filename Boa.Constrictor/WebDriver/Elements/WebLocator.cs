@@ -19,7 +19,7 @@ namespace Boa.Constrictor.WebDriver
             new WebLocator(description, query);
 
         /// <summary>
-        /// Conventient builder method for constructing WebLocator objects for links.
+        /// Convenient builder method for constructing WebLocator objects for links.
         /// </summary>
         /// <param name="linkText">The link text.</param>
         /// <returns></returns>
@@ -27,7 +27,7 @@ namespace Boa.Constrictor.WebDriver
             new WebLocator($"Link for \"{linkText}\"", By.LinkText(linkText));
 
         /// <summary>
-        /// Conventient builder method for constructing WebLocator objects for links using partial (not full) text.
+        /// Convenient builder method for constructing WebLocator objects for links using partial (not full) text.
         /// </summary>
         /// <param name="linkText">The link text.</param>
         /// <returns></returns>

@@ -659,7 +659,7 @@ Let's break it down:
 * `Appearance.Of(...)` is a Question that returns true if the target elements are currently displayed on the page.
 * `IsEqualTo.True()` is a *Condition* for checking if the return value of a Question is true.
 * `Wait.Until(...)` is a Task that halts execution until the given Question's answer meets the given Condition.
-  In this case, the apperance of the result links must become true.
+  In this case, the appearance of the result links must become true.
 
 The `Wait` Task is located under the `Boa.Constrictor.Screenplay` namespace.
 It works for any type of Question, not just WebDriver-based Questions.
