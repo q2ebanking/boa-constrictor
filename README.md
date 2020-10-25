@@ -19,6 +19,13 @@ For Web UI automation, the Screenplay Pattern is an improvement over the
 [Page Object Pattern](https://www.selenium.dev/documentation/en/guidelines_and_recommendations/page_object_models/).
 
 
+## Intro Video
+
+This 32-minute YouTube video introduces Screenplay Pattern concepts and Boa Constrictor code:
+
+[![Intro Video Thumbnail](Images/IntroVideoThumbnail.jpg?raw=true)](https://youtu.be/i26B1afosCo)
+
+
 ## The Screenplay Pattern
 
 The [Screenplay Pattern](https://precisionlender.atlassian.net/wiki/spaces/PD/pages/515801239/Screenplay+Pattern)
