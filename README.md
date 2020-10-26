@@ -19,6 +19,14 @@ For Web UI automation, the Screenplay Pattern is an improvement over the
 [Page Object Pattern](https://www.selenium.dev/documentation/en/guidelines_and_recommendations/page_object_models/).
 
 
+## Intro Video
+
+This [32-minute YouTube video](https://youtu.be/i26B1afosCo)
+introduces Screenplay Pattern concepts and Boa Constrictor code:
+
+[![Intro Video Thumbnail](Images/IntroVideoThumbnail.png?raw=true)](https://youtu.be/i26B1afosCo)
+
+
 ## The Screenplay Pattern
 
 The [Screenplay Pattern](https://precisionlender.atlassian.net/wiki/spaces/PD/pages/515801239/Screenplay+Pattern)
@@ -44,25 +52,22 @@ The Screenplay Pattern also uses a fluent-like syntax to make test code very rea
 Here is an example call:
 `Actor.AttemptsTo(Click.On(LoginPage.LoginButton));`
 
-Below is a diagram illustrating the Screenplay Pattern:
-![Screenplay Pattern Diagram](Images/ScreenplayDiagram.png?raw=true)
-
-The Screenplay Pattern adheres to [SOLID](https://en.wikipedia.org/wiki/SOLID) design principles: 
-
-* [Single-Responsibility Principle](https://en.wikipedia.org/wiki/Single-responsibility_principle):
-  Actors, Abilities, and Interactions are treated as separate concerns. 
-* [Open-Closed Principle](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle):
-  Each new Interaction must be a new class, rather than a modification of an existing class. 
-* [Liskov Substitution Principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle):
-  Actors can call all Abilities and Interactions the same way. 
-* [Interface Segregation Principle](https://en.wikipedia.org/wiki/Interface_segregation_principle):
-  Actors, Abilities, and Interactions each have distinct, separate interfaces. (Since the Screenplay Pattern is small, this principle reduces similarly to the Single-Responsibility Principle.) 
-* [Dependency Inversion Principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle):
-  Abilities and Interactions are handled as interfaces. Interactions use Abilities via dependency injection from the Actor. 
-
 Boa Constrictor provides several Interactions out of the box:
 * Web UI interactions using [Selenium WebDriver](https://www.selenium.dev/) are located under `Boa.Constrictor\WebDriver`.
 * REST API interactions using [RestSharp](https://restsharp.dev/) are located under `Boa.Constrictor\RestSharp`.
+
+The Screenplay Pattern adheres to [SOLID](https://en.wikipedia.org/wiki/SOLID) design principles: 
+
+| SOLID Principle | Explanation |
+| --------------- | ----------- |
+| [Single-Responsibility Principle](https://en.wikipedia.org/wiki/Single-responsibility_principle) | Actors, Abilities, and Interactions are treated as separate concerns. |
+| [Open-Closed Principle](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle) | Each new Interaction must be a new class, rather than a modification of an existing class. | 
+| [Liskov Substitution Principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle) | Actors can call all Abilities and Interactions the same way. |
+| [Interface Segregation Principle](https://en.wikipedia.org/wiki/Interface_segregation_principle) | Actors, Abilities, and Interactions each have distinct, separate interfaces. |
+| [Dependency Inversion Principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle) | Interactions use Abilities via dependency injection from the Actor. |
+
+Below is a diagram illustrating the Screenplay Pattern:
+![Screenplay Pattern Diagram](Images/ScreenplayDiagram.png?raw=true)
 
 
 ## Getting Started
@@ -196,7 +201,7 @@ That makes automation much more reliable and less "flaky."
 
 As a result, Boa Constrictor enables significant **code reusability**.
 You can write a common interaction, locator, or request one time and use it repeatedly.
-You will probably write less code with Boa Constrictor than with the Page Object Pattern or raw calls.
+You will probably write less code with Boa Constrictor than with page objects or raw calls.
 Plus, all Screenplay interactions will include their safety steps, making automation more **robust**.
 
 Furthermore, the Screenplay Pattern handles scope using **dependency injection**.
@@ -223,18 +228,9 @@ A *page object* contains locator objects and interaction methods (that use those
 Page objects are great for small test automation solutions, but they don't scale well.
 By design, page objects couple the concerns of page structure with behavior.
 As a result, they tend to have repetitive methods, bloated hierarchies, and little standardization.
+Page objects are more of a "convention" than a true design pattern.
 Boa Constrictor's [Screenplay Pattern](https://www.infoq.com/articles/Beyond-Page-Objects-Test-Automation-Serenity-Screenplay/)
 applies [SOLID](https://en.wikipedia.org/wiki/SOLID) design principles to modeling behaviors under test.
-That's why each interaction has its own class, instead of every page or component
-([Single-Responsibility Principle](https://en.wikipedia.org/wiki/Single-responsibility_principle)).
-Adding new interactions won't affect existing code
-([Open-Closed Principle](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle)).
-Interactions can be called interchangeably
-([Liskov Substitution Principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle)).
-Actors, abilities, and interactions have separate interfaces
-([Interface Segregation Principle](https://en.wikipedia.org/wiki/Interface_segregation_principle)).
-An actor can be given any abilities to call any tasks or questions
-([Dependency Inversion Principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle)).
 Boa Constrictor provides the boilerplate code for the Screenplay Pattern so testers can readily use it.
 As a result, Boa Constrictor can scale safely and maintainably for very large projects.
 
@@ -318,7 +314,7 @@ Boa Constrictor conforms to the [Q2 Code of Conduct](CODE-OF-CONDUCT.md).
 
 ## Backstory
 
-Boa Constrictor originally started in 2018 as part of a test automation project at
-[PrecisionLender](https://precisionlender.com/), a [Q2](https://www.q2.com/) company.
-It was released publicly as an open source project in 2020 so that others could use its .NET Screenplay Pattern.
-Boa Constrictor's main goal is to show and provide a better way to model interactions for automation.
+Boa Constrictor originally started in 2018 as the cornerstone of [PrecisionLender](https://precisionlender.com/)'s end-to-end test automation solution.
+PrecisionLender and its parent company [Q2](https://www.q2.com/) released it publicly as an open source project in October 2020.
+Boa Constrictor's main goal is to provide a better way to model interactions for automation.
+The project aims to showcase the Screenplay Pattern as an improvement over page objects.
