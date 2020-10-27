@@ -15,6 +15,7 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageReleaseNotes>Please read https://github.com/q2ebanking/boa-constrictor/blob/main/CHANGELOG.md for full release notes.</PackageReleaseNotes>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
