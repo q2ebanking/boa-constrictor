@@ -99,6 +99,11 @@ Include concise, helpful messages in each commit.
 [Squashing commits](https://medium.com/@slamflipstrom/a-beginners-guide-to-squashing-commits-with-git-rebase-8185cf6e62ec)
 is recommended but not required.
 
+Along with your code changes, update the `[Unreleased]` section of `CHANGELOG.md` with a concise description of your changes.
+Follow the format of [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+Put your description under the appropriate type heading:
+`Added`, `Changed`, `Deprecated`, `Fixed`, `Removed`, or `Security`.
+
 
 ## 8. Opening Pull Requests
 
@@ -131,6 +136,18 @@ Package versions follow [Semantic Versioning](https://semver.org/).
 Currently, the pipeline to build, test, package, and release the NuGet package is internal to PrecisionLender and Q2.
 Therefore, only maintainers who are PrecisionLender employees can make releases for now.
 [Issue #3](https://github.com/q2ebanking/boa-constrictor/issues/3) addresses the work to create a public delivery pipeline for Boa Constrictor's NuGet package.
+
+To release a new package, maintainers must:
+
+1. Create a milestone for the new version in GitHub.
+2. Mark all included issues and pull requests for the milestone.
+3. Run tests to make sure the code is good to ship.
+4. Open a pull request to set the new version.
+   * Update the `Version` field in `Boa.Constrictor.csproj`.
+   * Add a new entry for the new version in `CHANGELOG.md`.
+   * Move the changelog's `[Unreleased]` section contents to the new version's section.
+5. Trigger the Boa Constrictor delivery pipeline to build and release the new NuGet package to [NuGet.org](https://www.nuget.org/).
+6. Close the milestone in GitHub.
 
 
 ## 10. Understanding Different Roles
