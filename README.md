@@ -17,6 +17,8 @@ It also provides a standard pattern for combining interactions together.
 Each interaction is safe, reliable, and has automatic logging.
 For Web UI automation, the Screenplay Pattern is an improvement over the
 [Page Object Pattern](https://www.selenium.dev/documentation/en/guidelines_and_recommendations/page_object_models/).
+Any .NET project can use Boa Constrictor by installing the
+[Boa.Constrictor NuGet package](https://www.nuget.org/packages/Boa.Constrictor).
 
 
 ## Intro Video
@@ -266,6 +268,11 @@ Boa Constrictor conforms to the [Q2 Code of Conduct](CODE-OF-CONDUCT.md).
 As an open source project, Boa Constrictor welcomes contributions from the community.
 Please read the [contributing guide](CONTRIBUTING.md) for full details on project development and contributions.
 Note that project development needs special setup that is documented in the contributing guide.
+
+
+## Changelog
+
+Check the [changelog file](CHANGELOG.md) for all notable changes to the project per release.
 
 
 ## Backstory
