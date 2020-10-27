@@ -91,7 +91,7 @@ to learn about the Screenplay Pattern and how to write Boa Constrictor code.
 Example code is located under the `Boa.Constrictor.Example` project.
 
 
-### Brief Example Code
+## Brief Example Code
 
 Here's how to do a [DuckDuckGo](https://www.duckduckgo.com/) search using Boa Constrictor.
 
@@ -175,7 +175,7 @@ public class SearchDuckDuckGo : ITask
 ```
 
 
-### Why Should I Use Boa Constrictor?
+## Why Should I Use Boa Constrictor?
 
 There are many benefits to using Boa Constrictor for automation.
 First and foremost, it provides **rich, reusable, and reliable interactions** out of the box.
@@ -214,7 +214,7 @@ Test automation code reads more like test cases.
 The fluent syntax reduces the learning curve.
 
 
-### What Boa Constrictor is NOT!
+## What Boa Constrictor is NOT!
 
 Boa Constrictor is **not another Selenium WebDriver wrapper**.
 It is a design pattern for making *any* type of interaction, not just Web UI.
@@ -251,57 +251,6 @@ It can replace raw calls or existing patterns like page objects.
 However, other test automation concerns like the runner, test case structure, and reporting must be handled by other entities.
 
 
-## Guidelines for Contribution
-
-As an open source project, Boa Constrictor welcomes contributions from the community.
-All contributors must abide by the [Code of Conduct](CODE-OF-CONDUCT.md).
-
-
-### Development Setup
-
-To work on the Boa Constrictor code, you will need to clone the repository using [Git](https://git-scm.com/).
-The recommended editor/IDE is [Microsoft Visual Studio](https://visualstudio.microsoft.com/).
-Simply open `Boa.Constrictor.sln` in Visual Studio to open the solution and get to work!
-For Web UI development, remember to add target [WebDriver executables](https://www.selenium.dev/documentation/en/webdriver/driver_requirements/) to your system PATH.
-
-
-### Running Unit Tests
-
-Unit tests are located in the `Boa.Constrictor.UnitTests` project.
-They are written using [NUnit](https://nunit.org/).
-They can be executed from Visual Studio using *Test Explorer*
-or from the command line using the [NUnit Console](https://docs.nunit.org/articles/nunit/running-tests/Console-Runner.html).
-Unit tests must pass for every pull request.
-They do *not* require WebDriver executables.
-
-*Warning:* Tests under `Boa.Constrictor.Example` are *not* unit tests.
-They are example tests for the [tutorial](TUTORIAL.md),
-and they *do* require WebDriver executables.
-Nevertheless, it would be good to run them when making code changes as an integration-like test.
-
-
-### Requesting Features or Reporting Bugs
-
-To suggest a new feature or report a bug, please open an issue.
-Please be as clear as possible in the description.
-Core contributors will triage issues and reply in comments.
-
-
-### Contributing Code
-
-To contribute code, please clone the repository, make the changes, and submit a pull request.
-Please include explanations for the code change. Attach any relevant issues.
-All changes must pass unit tests.
-Core contributors will review all pull requests and either approve or reject them.
-
-
-### Becoming a Core Contributor
-
-A *core contributor* is someone who has write access to the Boa Constrictor repository.
-They guide the project and review all code changes.
-To express interest in becoming a core contributor, please contact [Andy Knight](mailto:andy.knight@q2.com).
-
-
 ## License
 
 Boa Constrictor is licensed under [Apache License 2.0](LICENSE.md).
@@ -310,6 +259,13 @@ Boa Constrictor is licensed under [Apache License 2.0](LICENSE.md).
 ## Code of Conduct
 
 Boa Constrictor conforms to the [Q2 Code of Conduct](CODE-OF-CONDUCT.md).
+
+
+## Contributing
+
+As an open source project, Boa Constrictor welcomes contributions from the community.
+Please read the [contributing guide](CONTRIBUTING.md) for full details on project development and contributions.
+Note that project development needs special setup that is documented in the contributing guide.
 
 
 ## Backstory
