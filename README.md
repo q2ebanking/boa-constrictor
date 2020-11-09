@@ -31,8 +31,7 @@ introduces Screenplay Pattern concepts and Boa Constrictor code:
 
 ## The Screenplay Pattern
 
-The [Screenplay Pattern](https://precisionlender.atlassian.net/wiki/spaces/PD/pages/515801239/Screenplay+Pattern)
-is a design pattern for modeling interactions with features under test.
+The *Screenplay Pattern* is a design pattern for modeling interactions with features under test.
 It can be summarized in one line:
 **Actors use Abilities to perform Interactions.**
 

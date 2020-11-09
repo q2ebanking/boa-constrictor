@@ -1,7 +1,6 @@
 ﻿using Boa.Constrictor.Screenplay;
-using Boa.Constrictor.WebDriver;
 
-namespace Boa.ProductSupport.PrecisionLender.Screenplay
+namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
     /// Safely switches to the newest tab in the browser.
