@@ -10,7 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(None)
+### Fixed
+
+- Fixed namespace for `SwitchWindowToLatest` Task
+- Fixed broken README link
+- Fixed `Names.ConcatUniqueName` for when the current thread's name is `null`
 
 
 ## [0.2.3] - 2020-10-27
