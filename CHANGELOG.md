@@ -10,7 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(None)
+### Added
+
+- Updated NuGet packages used by unit tests
+
+### Fixed
+
+- Added `nuget-push.xml` to `GitHub Actions` solution folder
 
 
 ## [0.3.0] - 2020-11-12

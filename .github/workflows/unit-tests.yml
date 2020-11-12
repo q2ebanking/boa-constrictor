@@ -12,10 +12,13 @@ jobs:
     name: Test
     runs-on: windows-latest
     steps:
+
       - name: Check out repository
         uses: actions/checkout@v2
+
       - name: Run unit tests
         run: dotnet test Boa.Constrictor.UnitTests/Boa.Constrictor.UnitTests.csproj --logger "trx;LogFileName=UnitTestResults.trx"
+
       - name: Archive unit test results
         uses: actions/upload-artifact@v2
         with:
