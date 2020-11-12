@@ -40,6 +40,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub Actions", "GitHub Actions", "{E9EBE814-0E65-48CA-8689-A76B4CAA27C8}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\codeql-analysis.yml = .github\workflows\codeql-analysis.yml
+		.github\workflows\nuget-push.yml = .github\workflows\nuget-push.yml
 		.github\workflows\unit-tests.yml = .github\workflows\unit-tests.yml
 	EndProjectSection
 EndProject
