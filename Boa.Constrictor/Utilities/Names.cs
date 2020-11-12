@@ -20,7 +20,6 @@ namespace Boa.Constrictor.Utilities
         public static string ConcatUniqueName(string name, string suffix = null)
         {
             string trimmed = name.Trim();
-            string thread = GetCurrentThreadName();
             string timestamp = DateTime.UtcNow.ToString("yyyyMMddHHmmssffff");
 
             string unique = $"{trimmed}_{timestamp}";
@@ -28,17 +27,10 @@ namespace Boa.Constrictor.Utilities
             if (!string.IsNullOrWhiteSpace(suffix))
                 unique += '_' + suffix;
 
-            if (!string.IsNullOrWhiteSpace(thread))
-                unique += '_' + thread;
+            if (!string.IsNullOrWhiteSpace(Thread.CurrentThread.Name))
+                unique += '_' + Regex.Replace(Thread.CurrentThread.Name, @"[^A-Za-z0-9]+", "");
 
             return unique;
         }
-
-        /// <summary>
-        /// Returns the current thread name in a format safe to use for file names.
-        /// </summary>
-        /// <returns>The current thread name in a format safe to use for file names.</returns>
-        public static string GetCurrentThreadName() =>
-            Regex.Replace(Thread.CurrentThread.Name, @"[^A-Za-z0-9]+", "");
     }
 }
