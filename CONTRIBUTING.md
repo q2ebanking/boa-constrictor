@@ -133,21 +133,23 @@ If pull requests are new to you, then you can learn about them from GitHub Docs:
 Boa Constrictor is released publicly as the [Boa.Constrictor NuGet package](https://www.nuget.org/packages/Boa.Constrictor/).
 Package versions follow [Semantic Versioning](https://semver.org/).
 
-Currently, the pipeline to build, test, package, and release the NuGet package is internal to PrecisionLender and Q2.
-Therefore, only maintainers who are PrecisionLender employees can make releases for now.
-[Issue #3](https://github.com/q2ebanking/boa-constrictor/issues/3) addresses the work to create a public delivery pipeline for Boa Constrictor's NuGet package.
+This repository has a GitHub Action named [`nuget-push.yml`](.github/workflows/nuget-push.yml)
+that will automatically build and publish the Boa.Constrictor NuGet package to [NuGet.org](https://www.nuget.org/packages/Boa.Constrictor/)
+whenever the project version changes in [`Boa.Constrictor.csproj`](Boa.Constrictor/Boa.Constrictor.csproj#L5)
+in the *main* branch.
 
 To release a new package, maintainers must:
 
 1. Create a milestone for the new version in GitHub.
 2. Mark all included issues and pull requests for the milestone.
 3. Run tests to make sure the code is good to ship.
-4. Open a pull request to set the new version.
+4. Open a pull request into the *main* branch to set the new version.
    * Update the `Version` field in `Boa.Constrictor.csproj`.
    * Add a new entry for the new version in `CHANGELOG.md`.
    * Move the changelog's `[Unreleased]` section contents to the new version's section.
-5. Trigger the Boa Constrictor delivery pipeline to build and release the new NuGet package to [NuGet.org](https://www.nuget.org/).
-6. Close the milestone in GitHub.
+5. Review, approve, and merge the pull request into *main*.
+6. Verify the GitHub Action to publish the package completes successfully.
+7. Close the milestone in GitHub.
 
 
 ## 10. Understanding Different Roles
