@@ -10,18 +10,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+(None)
+
+
+## [0.3.0] - 2020-11-12
+
+### Added
+
+- Created a GitHub Action named `nuget-push.yml` to automatically publish the Boa.Constrictor NuGet package to NugGet.org when the project version changes.
+
 ### Fixed
 
-- Fixed namespace for `SwitchWindowToLatest` Task
-- Fixed broken README link
-- Fixed `Names.ConcatUniqueName` for when the current thread's name is `null`
+- Fixed namespace for `SwitchWindowToLatest` Task.
+- Fixed broken README link.
+- Fixed `Names.ConcatUniqueName()` for when the current thread's name is `null`.
+
+### Removed
+
+- Removed the `Names.GetCurrentThreadName()` method.
 
 
 ## [0.2.3] - 2020-10-27
 
 ### Added
 
-- Created GitHub Action to automatically run unit tests for every pull request.
+- Created a GitHub Action to automatically run unit tests for every pull request.
 - Created a solution folder for GitHub Action .yml files.
 - Recorded a Boa Constrictor intro video and linked it in the README.
 - Added `CONTRIBUTING.md` as the new guide for project development and contributions.
@@ -39,7 +52,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- Removed *IsDateAsString* Condition.
+- Removed `IsDateAsString` Condition.
 
 
 ## [0.2.2] - 2020-10-15
