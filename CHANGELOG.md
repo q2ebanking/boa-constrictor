@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+(None)
+
+
+## [0.3.1] - 2020-11-18
+
 ### Added
 
 - Updated NuGet packages used by unit tests
