@@ -1,4 +1,8 @@
-﻿namespace Boa.Constrictor.WebDriver
+﻿using Boa.Constrictor.Screenplay;
+using Boa.Constrictor.Utilities;
+using OpenQA.Selenium;
+
+namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
     /// Abstract class for any Web tasks that use a Web element locator.
@@ -30,6 +34,23 @@
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Attempts the task.
+        /// Internally calls RequestAs with the WebDriver from the BrowseTheWeb ability.
+        /// Internally retries the interaction if StaleElementReferenceException happens.
+        /// </summary>
+        /// <param name="actor">The screenplay actor.</param>
+        public override void PerformAs(IActor actor)
+        {
+            bool attempt()
+            {
+                PerformAs(actor, actor.Using<BrowseTheWeb>().WebDriver);
+                return true;
+            }
+                
+            Retries.RetryOnException<StaleElementReferenceException, bool>(attempt, ToString(), logger: actor.Logger);
+        }
 
         /// <summary>
         /// Returns a description of the task.
