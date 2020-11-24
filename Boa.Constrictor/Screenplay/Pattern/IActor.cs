@@ -49,6 +49,22 @@ namespace Boa.Constrictor.Screenplay
         void AttemptsTo(ITask task);
 
         /// <summary>
+        /// Asks a question and returns the answer value.
+        /// The actor must have the abilities needed by the question.
+        /// </summary>
+        /// <typeparam name="TAnswer">The answer type.</typeparam>
+        /// <param name="question">The question to ask.</param>
+        /// <returns></returns>
+        TAnswer Calls<TAnswer>(IQuestion<TAnswer> question);
+
+        /// <summary>
+        /// Performs a task.
+        /// The actor must have the abilities needed by the task.
+        /// </summary>
+        /// <param name="task">The task to perform.</param>
+        void Calls(ITask task);
+
+        /// <summary>
         /// Adds an ability.
         /// </summary>
         /// <param name="ability">The ability to add.</param>
