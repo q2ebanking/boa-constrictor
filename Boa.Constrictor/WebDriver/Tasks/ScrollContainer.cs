@@ -100,9 +100,9 @@ namespace Boa.Constrictor.WebDriver
         public override void PerformAs(IActor actor, IWebDriver driver)
         {
             if (Top != null)
-                actor.AsksFor(JavaScriptElementCall.To($"arguments[0].scrollTop = {Top};", Locator));
+                actor.Calls(JavaScript.On(Locator, $"arguments[0].scrollTop = {Top};"));
             if (Left != null)
-                actor.AsksFor(JavaScriptElementCall.To($"arguments[0].scrollLeft = {Left};", Locator));
+                actor.Calls(JavaScript.On(Locator, $"arguments[0].scrollLeft = {Left};"));
         }
 
         /// <summary>

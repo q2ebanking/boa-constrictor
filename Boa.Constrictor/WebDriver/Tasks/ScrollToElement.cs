@@ -61,7 +61,7 @@ namespace Boa.Constrictor.WebDriver
         /// <param name="actor">The screenplay actor.</param>
         /// <param name="driver">The WebDriver.</param>
         public override void PerformAs(IActor actor, IWebDriver driver) =>
-            actor.AsksFor(JavaScriptElementCall.To(ScrollCommand, Locator));
+            actor.Calls(JavaScript.On(Locator, ScrollCommand));
 
         /// <summary>
         /// Returns a description of the task.

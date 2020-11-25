@@ -41,7 +41,7 @@ namespace Boa.Constrictor.WebDriver
         /// <param name="driver">The WebDriver.</param>
         /// <returns></returns>
         public override string RequestAs(IActor actor, IWebDriver driver) =>
-            actor.AsksFor(JavaScriptElementCall.To("return arguments[0].textContent;", Locator)).ToString();
+            actor.Calls(JavaScript<string>.On(Locator, "return arguments[0].textContent;")).ToString();
         
         #endregion
     }
