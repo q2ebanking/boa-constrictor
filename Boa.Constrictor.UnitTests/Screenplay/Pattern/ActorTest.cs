@@ -18,8 +18,6 @@ namespace Boa.Constrictor.UnitTests.Screenplay
     [TestFixture]
     public class ActorTest
     {
-        #region Tests
-
         [Test]
         public void DefaultName()
         {
@@ -73,6 +71,22 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         }
 
         [Test]
+        public void AsksFor()
+        {
+            var MockQuestion = new Mock<IQuestion<bool>>();
+            MockQuestion.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(true);
+            new Actor().AsksFor(MockQuestion.Object).Should().BeTrue();
+        }
+
+        [Test]
+        public void AskingFor()
+        {
+            var MockQuestion = new Mock<IQuestion<bool>>();
+            MockQuestion.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(true);
+            new Actor().AskingFor(MockQuestion.Object).Should().BeTrue();
+        }
+
+        [Test]
         public void AttemptsTo()
         {
             bool performed = false;
@@ -83,14 +97,23 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         }
 
         [Test]
-        public void AsksFor()
+        public void CallsTask()
+        {
+            bool performed = false;
+            var MockTask = new Mock<ITask>();
+            MockTask.Setup(x => x.PerformAs(It.IsAny<IActor>())).Callback((IActor actor) => performed = true).Verifiable();
+            new Actor().Calls(MockTask.Object);
+            performed.Should().BeTrue();
+        }
+
+        [Test]
+        public void CallsQuestion()
         {
             var MockQuestion = new Mock<IQuestion<bool>>();
             MockQuestion.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(true);
-            new Actor().AsksFor(MockQuestion.Object).Should().BeTrue();
+            new Actor().Calls(MockQuestion.Object).Should().BeTrue();
         }
 
-        #endregion
     }
 
     #endregion

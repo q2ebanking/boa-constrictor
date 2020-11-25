@@ -93,7 +93,33 @@ namespace Boa.Constrictor.Screenplay
         {
             Logger.Info($"{this} attempts to {task}");
             task.PerformAs(this);
-            Logger.Info($"Success: {this} did {task}");
+            Logger.Info($"{this} successfully did {task}");
+        }
+
+        /// <summary>
+        /// Asks a question and returns the answer value.
+        /// The actor must have the abilities needed by the question.
+        /// </summary>
+        /// <typeparam name="TAnswer">The answer type.</typeparam>
+        /// <param name="question">The question to ask.</param>
+        public TAnswer Calls<TAnswer>(IQuestion<TAnswer> question)
+        {
+            Logger.Info($"{this} calls {question}");
+            TAnswer answer = question.RequestAs(this);
+            Logger.Info($"{question} return \"{answer}\"");
+            return answer;
+        }
+
+        /// <summary>
+        /// Performs a task.
+        /// The actor must have the abilities needed by the task.
+        /// </summary>
+        /// <param name="task">The task to perform.</param>
+        public void Calls(ITask task)
+        {
+            Logger.Info($"{this} calls {task}");
+            task.PerformAs(this);
+            Logger.Info($"{this} successfully called {task}");
         }
 
         /// <summary>
