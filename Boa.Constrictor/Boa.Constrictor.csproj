@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <Version>0.4.0</Version>
     <Authors>Andrew "Pandy" Knight,Andrew Williams,Steve Hernandez</Authors>
     <Company>PrecisionLender, a Q2 Company</Company>
