@@ -6,7 +6,7 @@ using System;
 namespace Boa.Constrictor.RestSharp
 {
     /// <summary>
-    /// Abstract parent calss for the RestApiResponse interactions.
+    /// Abstract parent class for the RestApiResponse interactions.
     /// Child classes differ on data deserialization.
     /// </summary>
     public abstract class AbstractRestApiResponse : AbstractBaseUrlHandler
