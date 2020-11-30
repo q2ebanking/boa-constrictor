@@ -85,7 +85,7 @@ namespace Boa.Constrictor.RestSharp
             }
             finally
             {
-                if (ability.CanDumpDownloads())
+                if (ability.CanDumpDownloads() && fileBytes != null)
                 {
                     // Dump the file
                     string path = ability.DownloadDumper.Dump(fileBytes, FileExtension);
