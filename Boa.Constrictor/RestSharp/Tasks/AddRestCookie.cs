@@ -1,5 +1,4 @@
 ﻿using Boa.Constrictor.Screenplay;
-using RestSharp;
 using System.Net;
 
 namespace Boa.Constrictor.RestSharp
@@ -7,7 +6,7 @@ namespace Boa.Constrictor.RestSharp
     /// <summary>
     /// Adds the cookie to the REST client for the desired base URL.
     /// </summary>
-    public class AddRestCookie : AbstractRestTask
+    public class AddRestCookie : AbstractBaseUrlHandler, ITask
     {
         #region Constructors
 
@@ -26,7 +25,7 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// The cookie to add.
         /// </summary>
-        private Cookie Cookie { get; }
+        public Cookie Cookie { get; private set; }
 
         #endregion
 
@@ -48,9 +47,8 @@ namespace Boa.Constrictor.RestSharp
         /// Adds the cookie to the REST client for the desired base URL.
         /// </summary>
         /// <param name="actor">The Screenplay actor.</param>
-        /// <param name="client">The REST client.</param>
         /// <returns></returns>
-        public override void PerformAs(IActor actor, IRestClient client) => client.CookieContainer.Add(Cookie);
+        public void PerformAs(IActor actor) => actor.Using<CallRestApi>().GetClient(BaseUrl).CookieContainer.Add(Cookie);
 
         /// <summary>
         /// Returns a description of the task.

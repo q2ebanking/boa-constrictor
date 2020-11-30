@@ -63,10 +63,10 @@ namespace Boa.Constrictor.Dumping
         /// Concatenates the dump file path.
         /// </summary>
         /// <param name="token">The token name for the file.</param>
-        /// <param name="extension">The file extension.</param>
+        /// <param name="extension">The file extension. (blank by default)</param>
         /// <param name="suffix">An optional suffix for the filename.</param>
         /// <returns></returns>
-        protected string GetDumpFilePath(string token, string extension, string suffix = null)
+        protected string GetDumpFilePath(string token, string extension = "", string suffix = null)
         {
             string name = Names.ConcatUniqueName(token, suffix) + extension;
             string path = Path.Combine(DumpDir, name);

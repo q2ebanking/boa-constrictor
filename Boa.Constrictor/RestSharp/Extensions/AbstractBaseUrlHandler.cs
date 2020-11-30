@@ -1,7 +1,4 @@
-﻿using Boa.Constrictor.Screenplay;
-using RestSharp;
-
-namespace Boa.Constrictor.RestSharp
+﻿namespace Boa.Constrictor.RestSharp
 {
     /// <summary>
     /// Handles the base URL for REST-based Screenplay interactions.
@@ -30,16 +27,7 @@ namespace Boa.Constrictor.RestSharp
         #region Methods
 
         /// <summary>
-        /// Gets the REST client object from the Screenplay actor's CallRestApi ability.
-        /// </summary>
-        /// <param name="actor">The Screenplay actor.</param>
-        /// <param name="addIfMissing">If true, add a new client for the base URL if one does not already exists.</param>
-        /// <returns></returns>
-        public IRestClient GetClient(IActor actor, bool addIfMissing = true) =>
-            actor.Using<CallRestApi>().GetClient(BaseUrl, addIfMissing);
-
-        /// <summary>
-        /// Returns a description of the question.
+        /// Returns the type name of the interaction.
         /// </summary>
         /// <returns></returns>
         public override string ToString() => GetType().Name;

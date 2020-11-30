@@ -48,6 +48,18 @@ namespace Boa.Constrictor.UnitTests.Dumping
         }
 
         [Test]
+        public void DumpTextAsBytesWithoutExtension()
+        {
+            const string message = "Here's a test string!";
+            byte[] data = System.Text.Encoding.UTF8.GetBytes(message);
+            FilePath = Dumper.Dump(data);
+            FilePath.Should().NotEndWith(".txt");
+
+            string text = File.ReadAllText(FilePath);
+            text.Should().Be(message);
+        }
+
+        [Test]
         public void DumpNull()
         {
             Dumper.Invoking(d => d.Dump(null, "")).Should().Throw<DumpingException>();

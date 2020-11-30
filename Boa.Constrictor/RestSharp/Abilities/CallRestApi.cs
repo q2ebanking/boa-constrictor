@@ -1,4 +1,5 @@
-﻿using Boa.Constrictor.Screenplay;
+﻿using Boa.Constrictor.Dumping;
+using Boa.Constrictor.Screenplay;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ namespace Boa.Constrictor.RestSharp
     /// Enables the actor to make REST API service calls using RestSharp.
     /// It holds a RestClient object per base URL.
     /// Each RestClient is given a CookieContainer.
+    /// It also holds dumpers for requests/responses and downloaded files.
+    /// If dumpers are null, then no dumping is performed.
     /// </summary>
     public class CallRestApi : IAbility
     {
@@ -18,7 +21,12 @@ namespace Boa.Constrictor.RestSharp
         /// Private constructor.
         /// (Use the static methods for public construction.)
         /// </summary>
-        private CallRestApi() => Clients = new Dictionary<string, IRestClient>();
+        private CallRestApi()
+        {
+            Clients = new Dictionary<string, IRestClient>();
+            RequestDumper = null;
+            DownloadDumper = null;
+        }
 
         #endregion
 
@@ -35,6 +43,16 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         public ICollection<string> BaseUrls => Clients.Keys;
 
+        /// <summary>
+        /// The dumper for requests and responses.
+        /// </summary>
+        public JsonDumper RequestDumper { get; private set; }
+
+        /// <summary>
+        /// The dumper for downloaded files.
+        /// </summary>
+        public ByteDumper DownloadDumper { get; private set; }
+
         #endregion
 
         #region Builder Methods
@@ -46,6 +64,28 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <returns></returns>
         public static CallRestApi UsingRestSharp() => new CallRestApi();
+
+        /// <summary>
+        /// Sets the ability to dump requests/responses to the given path.
+        /// </summary>
+        /// <param name="dumpDir">The dump directory path.</param>
+        /// <returns></returns>
+        public CallRestApi DumpingRequestsTo(string dumpDir)
+        {
+            RequestDumper = new JsonDumper("REST Request Dumper", dumpDir, "Request");
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the ability to dump requests/responses to the given path.
+        /// </summary>
+        /// <param name="dumpDir">The dump directory path.</param>
+        /// <returns></returns>
+        public CallRestApi DumpingDownloadsTo(string dumpDir)
+        {
+            DownloadDumper = new ByteDumper("REST Download Dumper", dumpDir, "Download");
+            return this;
+        }
 
         #endregion
 
@@ -67,6 +107,18 @@ namespace Boa.Constrictor.RestSharp
 
             Clients.Add(baseUrl, client);
         }
+
+        /// <summary>
+        /// Checks if downloads can be dumped.
+        /// </summary>
+        /// <returns></returns>
+        public bool CanDumpDownloads() => DownloadDumper != null;
+
+        /// <summary>
+        /// Checks if requests and responses can be dumped
+        /// </summary>
+        /// <returns></returns>
+        public bool CanDumpRequests() => RequestDumper != null;
 
         /// <summary>
         /// Gets a REST client by its base URL.
