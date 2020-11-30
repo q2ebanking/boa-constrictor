@@ -13,11 +13,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added dumpers under `Boa.Constrictor.Dumping`
+- Added dumpers for RestSharp requests/responses and file downloads to the `CallRestApi` Ability
 
 ### Changed
 
 - Refactored RestSharp interactions to use dumpers
+- `RestApiResponse` and `RestFileDownload` no longer directly take in output directories for dumps
 - Moved RestSharp serialization classes into their own files
+- Standardized access levels for properties of RestSharp-based interactions
+
+### Removed
+
+- Removed `AbstractRestQuestion` and `AbstractRestTask`
 
 
 ## [0.4.0] - 2020-11-25
