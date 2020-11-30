@@ -1,5 +1,4 @@
-﻿using Boa.Constrictor.Dumping;
-using Boa.Constrictor.Screenplay;
+﻿using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Utilities;
 using RestSharp;
 using System;
@@ -11,6 +10,7 @@ namespace Boa.Constrictor.RestSharp
     /// The response is parsed using the given data type.
     /// (If no response body is expected, use "object" as the type.)
     /// Requires the CallRestApi ability.
+    /// Automatically dumps requests and responses if the ability has a dumper.
     /// </summary>
     /// <typeparam name="TData">The response data type for deserialization.</typeparam>
     public class RestApiResponse<TData> : AbstractBaseUrlHandler, IQuestion<IRestResponse<TData>>
@@ -25,11 +25,7 @@ namespace Boa.Constrictor.RestSharp
         /// <param name="baseUrl">The base URL for the request.</param>
         /// <param name="request">The REST request to call.</param>
         private RestApiResponse(string baseUrl, IRestRequest request) :
-            base(baseUrl)
-        {
-            Request = request;
-            OutputDir = null;
-        }
+            base(baseUrl) => Request = request;
 
         #endregion
 
@@ -39,11 +35,6 @@ namespace Boa.Constrictor.RestSharp
         /// The REST request to call.
         /// </summary>
         private IRestRequest Request { get; }
-
-        /// <summary>
-        /// The output directory for logging.
-        /// </summary>
-        private string OutputDir { get; set; }
 
         #endregion
 
@@ -58,17 +49,6 @@ namespace Boa.Constrictor.RestSharp
         public static RestApiResponse<TData> From(string baseUrl, IRestRequest request) =>
             new RestApiResponse<TData>(baseUrl, request);
 
-        /// <summary>
-        /// Sets the output directory for logging requests.
-        /// </summary>
-        /// <param name="outputDir"></param>
-        /// <returns></returns>
-        public RestApiResponse<TData> LoggedTo(string outputDir)
-        {
-            OutputDir = outputDir;
-            return this;
-        }
-
         #endregion
 
         #region Methods
@@ -80,33 +60,42 @@ namespace Boa.Constrictor.RestSharp
         /// <returns></returns>
         public IRestResponse<TData> RequestAs(IActor actor)
         {
-            IRestClient client = actor.Using<CallRestApi>().GetClient(BaseUrl);
+            // Get ability objects
+            var ability = actor.Using<CallRestApi>();
+            var client = ability.GetClient(BaseUrl);
+
+            // Prepare response variables
             IRestResponse<TData> response = null;
             DateTime? start = null;
             DateTime? end = null;
             
             try
             {
+                // Make the request
                 start = DateTime.UtcNow;
                 response = client.Execute<TData>(Request);
                 end = DateTime.UtcNow;
 
+                // Log the response code
                 actor.Logger.Info($"Response code: {(int)response.StatusCode}");
             }
             finally
             {
-                if (OutputDir == null)
+                if (ability.CanDumpRequests())
                 {
-                    actor.Logger.Debug("Request will not be logged because no output directory was provided");
+                    // Try to dump the request and the response
+                    var data = new FullRestData(client, Request, response, start, end);
+                    string path = ability.RequestDumper.Dump(data);
+                    actor.Logger.Info($"Dumped request to: {path}");
                 }
                 else
                 {
-                    var data = new FullRestData(client, Request, response, start, end);
-                    string path = new JsonDumper("Request Dumper", OutputDir, "Request").Dump(data);
-                    actor.Logger.Info($"Logged request to: {path}");
+                    // Warn that the request will not be dumped
+                    actor.Logger.Debug("Request will not be dumped");
                 }
             }
 
+            // Return the response object
             return response;
         }
 
@@ -118,5 +107,21 @@ namespace Boa.Constrictor.RestSharp
             $"REST response from calling {Request.Method} '{Urls.Combine(BaseUrl, Request.Resource)}'";
 
         #endregion
+    }
+
+    /// <summary>
+    /// Provides a non-type-generic builder method for RestApiResponse.
+    /// </summary>
+    public static class RestApiResponse
+    {
+        /// <summary>
+        /// Constructs the question using "object" as the type.
+        /// This builder allows callers to avoid the type generic templating.
+        /// </summary>
+        /// <param name="baseUrl">The base URL for the request.</param>
+        /// <param name="request">The REST request to call.</param>
+        /// <returns></returns>
+        public static RestApiResponse<object> From(string baseUrl, IRestRequest request) =>
+            RestApiResponse<object>.From(baseUrl, request);
     }
 }

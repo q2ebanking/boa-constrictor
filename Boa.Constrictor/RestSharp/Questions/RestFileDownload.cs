@@ -1,15 +1,13 @@
-﻿using Boa.Constrictor.Dumping;
-using Boa.Constrictor.Screenplay;
+﻿using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Utilities;
 using RestSharp;
-using System;
 
 namespace Boa.Constrictor.RestSharp
 {
     /// <summary>
     /// Calls the REST API given by the request spec and returns the array of bytes that make up the file in the response.
     /// Requires the CallRestApi ability.
-    /// Can also log requests and downloaded files to a given output directory if the actor has the IncrementFiles ability.
+    /// Automatically dumps the downloaded file if the ability has a dumper.
     /// </summary>
     public class RestFileDownload : AbstractBaseUrlHandler, IQuestion<byte[]>
     {
@@ -20,12 +18,12 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <param name="baseUrl">The base URL for the request.</param>
         /// <param name="request">The REST request to call.</param>
-        private RestFileDownload(string baseUrl, IRestRequest request) :
+        /// <param name="fileExtension">The extension for the file to download.</param>
+        private RestFileDownload(string baseUrl, IRestRequest request, string fileExtension = null) :
             base(baseUrl)
         {
             Request = request;
-            OutputDir = null;
-            FileSuffix = null;
+            FileExtension = fileExtension;
         }
 
         #endregion
@@ -38,14 +36,9 @@ namespace Boa.Constrictor.RestSharp
         private IRestRequest Request { get; }
 
         /// <summary>
-        /// The output directory for logging.
+        /// The extension for the file to download.
         /// </summary>
-        private string OutputDir { get; set; }
-
-        /// <summary>
-        /// The suffix that denotes the file type of the file being downloaded.
-        /// </summary>
-        private string FileSuffix { get; set; }
+        private string FileExtension { get; set; }
 
         #endregion
 
@@ -56,22 +49,10 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <param name="baseUrl">The base URL for the request.</param>
         /// <param name="request">The REST request to call.</param>
+        /// <param name="fileExtension">The extension for the file to download.</param>
         /// <returns></returns>
-        public static RestFileDownload From(string baseUrl, IRestRequest request) =>
-            new RestFileDownload(baseUrl, request);
-
-        /// <summary>
-        /// Sets the output directory for logging as well as the file suffix for specifying the file type being downloaded.
-        /// </summary>
-        /// <param name="outputDir"></param>
-        /// <param name="fileSuffix"></param>
-        /// <returns></returns>
-        public RestFileDownload To(string outputDir, string fileSuffix)
-        {
-            OutputDir = outputDir;
-            FileSuffix = fileSuffix;
-            return this;
-        }
+        public static RestFileDownload From(string baseUrl, IRestRequest request, string fileExtension = null) =>
+            new RestFileDownload(baseUrl, request, fileExtension);
 
         #endregion
 
@@ -85,46 +66,42 @@ namespace Boa.Constrictor.RestSharp
         /// <returns></returns>
         public byte[] RequestAs(IActor actor)
         {
-            IRestClient client = actor.Using<CallRestApi>().GetClient(BaseUrl);
+            // Prepare objects
+            var ability = actor.Using<CallRestApi>();
             byte[] fileBytes = null;
-            DateTime? start = null;
-            DateTime? end = null;
 
             try
             {
-                start = DateTime.UtcNow;
-
-                var response = client.Execute(Request);
-                if ((int)response.StatusCode >= 400 || response.ResponseStatus == ResponseStatus.Error)
-                    throw new RestApiDownloadException(Request, response);
-
+                // Call the request for the download
+                var response = actor.AsksFor(RestApiResponse.From(BaseUrl, Request));
                 fileBytes = response.RawBytes;
 
-                end = DateTime.UtcNow;
+                // Verify download success
+                if ((int)response.StatusCode >= 400 || response.ResponseStatus == ResponseStatus.Error || fileBytes == null)
+                    throw new RestApiDownloadException(Request, response);
 
+                // Log successful download
                 actor.Logger.Info($"Bytes received successfully");
             }
             finally
             {
-                if (OutputDir == null || FileSuffix == null)
+                if (ability.CanDumpDownloads())
                 {
-                    actor.Logger.Debug("Request will not be logged because no output directory and or file suffix was provided");
-                }
-                else if (fileBytes == null)
-                {
-                    actor.Logger.Debug("No bytes were received for the file to download");
-                }
-                else
-                {
-                    var data = new FullRestData(client, Request, null, start, end);
-                    string logPath = new JsonDumper("Request Dumper", OutputDir, "Request").Dump(data);
-                    actor.Logger.Info($"Logged request to: {logPath}");
+                    // Dump the file
+                    string path = ability.DownloadDumper.Dump(fileBytes, FileExtension);
+                    actor.Logger.Info($"Dumped downloaded file to: {path}");
 
-                    string downloadPath = new ByteDumper("Download Dumper", OutputDir, "Download").Dump(fileBytes, FileSuffix);
-                    actor.Logger.Info($"Downloaded file to: {downloadPath}");
+                    // Warn about blank file extensions
+                    if (FileExtension == "")
+                        actor.Logger.Warning("The extension for the downloaded file was blank");
+                }
+                else {
+                    // Warn that the downloaded file will not be dumped
+                    actor.Logger.Debug("The downloaded file will not be dumped");
                 }
             }
 
+            // Return the file data
             return fileBytes;
         }
 

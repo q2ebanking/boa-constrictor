@@ -36,9 +36,9 @@ namespace Boa.Constrictor.Dumping
         /// Returns the dumped file's path.
         /// </summary>
         /// <param name="data">The byte data.</param>
-        /// <param name="extension">The file extension.</param>
+        /// <param name="extension">The file extension. (blank by default)</param>
         /// <returns></returns>
-        public string Dump(byte[] data, string extension)
+        public string Dump(byte[] data, string extension = "")
         {
             // Make sure data is not null
             if (data == null)
