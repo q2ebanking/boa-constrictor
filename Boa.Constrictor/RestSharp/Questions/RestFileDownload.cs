@@ -3,7 +3,6 @@ using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Utilities;
 using RestSharp;
 using System;
-using System.IO;
 
 namespace Boa.Constrictor.RestSharp
 {
@@ -12,7 +11,7 @@ namespace Boa.Constrictor.RestSharp
     /// Requires the CallRestApi ability.
     /// Can also log requests and downloaded files to a given output directory if the actor has the IncrementFiles ability.
     /// </summary>
-    public class RestFileDownload : AbstractRestQuestion<byte[]>
+    public class RestFileDownload : AbstractBaseUrlHandler, IQuestion<byte[]>
     {
         #region Constructors
 
@@ -83,10 +82,10 @@ namespace Boa.Constrictor.RestSharp
         /// Throws a RestApiDownloadException if the request's response code is a client or server error or response status is a transport error.
         /// </summary>
         /// <param name="actor">The Screenplay actor.</param>
-        /// <param name="client">The REST client.</param>
         /// <returns></returns>
-        public override byte[] RequestAs(IActor actor, IRestClient client)
+        public byte[] RequestAs(IActor actor)
         {
+            IRestClient client = actor.Using<CallRestApi>().GetClient(BaseUrl);
             byte[] fileBytes = null;
             DateTime? start = null;
             DateTime? end = null;

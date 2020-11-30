@@ -8,7 +8,7 @@ namespace Boa.Constrictor.RestSharp
     /// <summary>
     /// Gets a cookie from the REST client by name.
     /// </summary>
-    public class RestCookie : AbstractRestQuestion<Cookie>
+    public class RestCookie : AbstractBaseUrlHandler, IQuestion<Cookie>
     {
         #region Constructors
 
@@ -72,10 +72,10 @@ namespace Boa.Constrictor.RestSharp
         /// Throws a RestApiException if the cookie does not exist.
         /// </summary>
         /// <param name="actor">The Screenplay actor.</param>
-        /// <param name="client">The REST client.</param>
         /// <returns></returns>
-        public override Cookie RequestAs(IActor actor, IRestClient client)
+        public Cookie RequestAs(IActor actor)
         {
+            IRestClient client = actor.Using<CallRestApi>().GetClient(BaseUrl);
             Cookie cookie = client.CookieContainer.GetCookies(new Uri(BaseUrl))[CookieName];
 
             if (cookie == null)

@@ -13,7 +13,7 @@ namespace Boa.Constrictor.RestSharp
     /// Requires the CallRestApi ability.
     /// </summary>
     /// <typeparam name="TData">The response data type for deserialization.</typeparam>
-    public class RestApiResponse<TData> : AbstractRestQuestion<IRestResponse<TData>>
+    public class RestApiResponse<TData> : AbstractBaseUrlHandler, IQuestion<IRestResponse<TData>>
         where TData : new()
     {
         #region Constructors
@@ -77,10 +77,10 @@ namespace Boa.Constrictor.RestSharp
         /// Calls the REST request and returns the response.
         /// </summary>
         /// <param name="actor">The Screenplay actor.</param>
-        /// <param name="client">The REST client.</param>
         /// <returns></returns>
-        public override IRestResponse<TData> RequestAs(IActor actor, IRestClient client)
+        public IRestResponse<TData> RequestAs(IActor actor)
         {
+            IRestClient client = actor.Using<CallRestApi>().GetClient(BaseUrl);
             IRestResponse<TData> response = null;
             DateTime? start = null;
             DateTime? end = null;
