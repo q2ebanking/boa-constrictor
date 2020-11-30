@@ -1,8 +1,8 @@
-﻿using Boa.Constrictor.Screenplay;
+﻿using Boa.Constrictor.Dumping;
+using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Utilities;
 using RestSharp;
 using System;
-using System.IO;
 
 namespace Boa.Constrictor.RestSharp
 {
@@ -71,28 +71,6 @@ namespace Boa.Constrictor.RestSharp
 
         #endregion
 
-        #region Private Methods
-
-        /// <summary>
-        /// Concatenates the request filepath.
-        /// Creates the output directory if necessary.
-        /// Precondition: Output directory must be given (e.g., not null).
-        /// </summary>
-        /// <param name="suffix">An optional file name suffix.</param>
-        /// <returns></returns>
-        private string PreparePath(string suffix = null)
-        {
-            if (!Directory.Exists(OutputDir))
-                Directory.CreateDirectory(OutputDir);
-            
-            string name = Names.ConcatUniqueName("Request", suffix) + ".json";
-            string path = Path.Combine(OutputDir, name);
-
-            return path;
-        }
-
-        #endregion
-
         #region Methods
 
         /// <summary>
@@ -123,8 +101,8 @@ namespace Boa.Constrictor.RestSharp
                 }
                 else
                 {
-                    string path = PreparePath();
-                    new RequestLogger(path, client, Request, response, start, end).Log();
+                    var data = new FullRestData(client, Request, response, start, end);
+                    string path = new JsonDumper("Request Dumper", OutputDir, "Request").Dump(data);
                     actor.Logger.Info($"Logged request to: {path}");
                 }
             }

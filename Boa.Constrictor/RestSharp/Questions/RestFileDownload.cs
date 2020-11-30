@@ -1,4 +1,5 @@
-﻿using Boa.Constrictor.Screenplay;
+﻿using Boa.Constrictor.Dumping;
+using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Utilities;
 using RestSharp;
 using System;
@@ -140,12 +141,11 @@ namespace Boa.Constrictor.RestSharp
                 }
                 else
                 {
-                    string logPath = PreparePath("Request", ".json");
-                    new RequestLogger(logPath, client, Request, null, start, end).Log();
+                    var data = new FullRestData(client, Request, null, start, end);
+                    string logPath = new JsonDumper("Request Dumper", OutputDir, "Request").Dump(data);
                     actor.Logger.Info($"Logged request to: {logPath}");
 
-                    string downloadPath = PreparePath("Download", FileSuffix);
-                    File.WriteAllBytes(downloadPath, fileBytes);
+                    string downloadPath = new ByteDumper("Download Dumper", OutputDir, "Download").Dump(fileBytes, FileSuffix);
                     actor.Logger.Info($"Downloaded file to: {downloadPath}");
                 }
             }
