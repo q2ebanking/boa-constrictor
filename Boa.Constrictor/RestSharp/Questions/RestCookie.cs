@@ -32,12 +32,12 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// The cookie name.
         /// </summary>
-        private string CookieName { get; set; }
+        public string CookieName { get; private set; }
 
         /// <summary>
         /// If not null, sets the cookie expiration time to the current time plus the minutes provided.
         /// </summary>
-        private int? ExpirationMinutes { get; set; }
+        public int? ExpirationMinutes { get; private set; }
 
         #endregion
 

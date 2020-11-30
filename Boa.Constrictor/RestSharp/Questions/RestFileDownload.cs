@@ -33,12 +33,12 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// The REST request to call.
         /// </summary>
-        private IRestRequest Request { get; }
+        public IRestRequest Request { get; private set; }
 
         /// <summary>
         /// The extension for the file to download.
         /// </summary>
-        private string FileExtension { get; set; }
+        public string FileExtension { get; private set; }
 
         #endregion
 

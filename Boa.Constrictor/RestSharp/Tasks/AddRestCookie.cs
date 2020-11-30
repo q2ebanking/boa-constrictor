@@ -25,7 +25,7 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// The cookie to add.
         /// </summary>
-        private Cookie Cookie { get; }
+        public Cookie Cookie { get; private set; }
 
         #endregion
 
