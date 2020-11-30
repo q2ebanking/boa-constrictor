@@ -1,4 +1,5 @@
-﻿using Boa.Constrictor.Screenplay;
+﻿using Boa.Constrictor.Dumping;
+using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Utilities;
 using RestSharp;
 using System;
@@ -75,30 +76,6 @@ namespace Boa.Constrictor.RestSharp
 
         #endregion
 
-        #region Private Methods
-
-        /// <summary>
-        /// Concatenates the request filepath.
-        /// Creates the output directory if necessary.
-        /// Precondition: Output directory and file suffix must be given (e.g., not null).
-        /// </summary>
-        /// <param name="token"></param>
-        /// <param name="fileSuffix"></param>
-        /// <param name="suffix"></param>
-        /// <returns></returns>
-        private string PreparePath(string token, string fileSuffix, string suffix = null)
-        {
-            if (!Directory.Exists(OutputDir))
-                Directory.CreateDirectory(OutputDir);
-
-            string name = Names.ConcatUniqueName(token, suffix) + fileSuffix;
-            string path = Path.Combine(OutputDir, name);
-
-            return path;
-        }
-
-        #endregion
-
         #region Methods
 
         /// <summary>
@@ -140,12 +117,11 @@ namespace Boa.Constrictor.RestSharp
                 }
                 else
                 {
-                    string logPath = PreparePath("Request", ".json");
-                    new RequestLogger(logPath, client, Request, null, start, end).Log();
+                    var data = new FullRestData(client, Request, null, start, end);
+                    string logPath = new JsonDumper("Request Dumper", OutputDir, "Request").Dump(data);
                     actor.Logger.Info($"Logged request to: {logPath}");
 
-                    string downloadPath = PreparePath("Download", FileSuffix);
-                    File.WriteAllBytes(downloadPath, fileBytes);
+                    string downloadPath = new ByteDumper("Download Dumper", OutputDir, "Download").Dump(fileBytes, FileSuffix);
                     actor.Logger.Info($"Downloaded file to: {downloadPath}");
                 }
             }

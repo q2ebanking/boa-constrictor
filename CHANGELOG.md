@@ -10,7 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(None)
+### Added
+
+- Added dumpers under `Boa.Constrictor.Dumping`
+
+### Changed
+
+- Refactored RestSharp interactions to use dumpers
+- Moved RestSharp serialization classes into their own files
 
 
 ## [0.4.0] - 2020-11-25
