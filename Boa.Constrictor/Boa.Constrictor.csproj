@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.5.0</Version>
+    <Version>0.5.1</Version>
     <Authors>Andrew "Pandy" Knight,Andrew Williams,Steve Hernandez</Authors>
     <Company>PrecisionLender, a Q2 Company</Company>
     <Title>Boa Constrictor</Title>
@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="RestSharp" Version="106.11.4" />
+    <PackageReference Include="RestSharp" Version="106.11.7" />
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
     <None Include="../LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)" />

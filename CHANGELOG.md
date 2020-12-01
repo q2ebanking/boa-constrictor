@@ -13,6 +13,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (None)
 
 
+## [0.5.1] - 2020-12-01
+
+### Added
+
+- Added the `Rest` class to provide more fluent builder methods for RestSharp Questions
+
+
 ## [0.5.0] - 2020-11-30
 
 ### Added

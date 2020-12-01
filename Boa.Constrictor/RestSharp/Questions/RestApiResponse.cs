@@ -162,7 +162,6 @@ namespace Boa.Constrictor.RestSharp
     /// </summary>
     /// <typeparam name="TData">The response data type for deserialization.</typeparam>
     public class RestApiResponse<TData> : AbstractRestApiResponse, IQuestion<IRestResponse<TData>>
-        where TData : new()
     {
         #region Constructors
 
