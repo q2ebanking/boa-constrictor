@@ -57,7 +57,7 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <param name="minutes">The minutes to add to the current time for resetting cookie expiration.</param>
         /// <returns></returns>
-        public RestCookie AndResetExpirationTo(int minutes)
+        public RestCookie AndResetExpirationTo(int? minutes)
         {
             ExpirationMinutes = minutes;
             return this;
