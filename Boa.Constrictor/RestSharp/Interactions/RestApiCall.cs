@@ -10,7 +10,7 @@ namespace Boa.Constrictor.RestSharp
     /// Automatically dumps requests and responses if the ability has a dumper.
     /// </summary>
     /// <typeparam name="TAbility">The RestSharp ability type.</typeparam>
-    public class RestApiCall<TAbility> : AbstractRestQuestion<TAbility, object, IRestResponse>
+    public class RestApiCall<TAbility> : AbstractRestQuestion<TAbility, IRestResponse>
         where TAbility : IRestSharpAbility
     {
         #region Constructors
@@ -25,6 +25,13 @@ namespace Boa.Constrictor.RestSharp
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Executes the request using the given client.
+        /// </summary>
+        /// <param name="client">The RestSharp client.</param>
+        /// <returns></returns>
+        protected override IRestResponse Execute(IRestClient client) => client.Execute(Request);
 
         /// <summary>
         /// Calls the REST request and returns the response.
@@ -43,8 +50,8 @@ namespace Boa.Constrictor.RestSharp
     /// Automatically dumps requests and responses if the ability has a dumper.
     /// </summary>
     /// <typeparam name="TAbility">The RestSharp ability type.</typeparam>
-    /// <typeparam name="TData">The response data type for deserialization.</typeparam>
-    public class RestApiCall<TAbility, TData> : AbstractRestQuestion<TAbility, TData, IRestResponse<TData>>
+    /// <typeparam name="TData">The data deserialization object type.</typeparam>
+    public class RestApiCall<TAbility, TData> : AbstractRestQuestion<TAbility, IRestResponse<TData>>
         where TAbility : IRestSharpAbility
     {
         #region Constructors
@@ -59,6 +66,13 @@ namespace Boa.Constrictor.RestSharp
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Executes the request using the given client.
+        /// </summary>
+        /// <param name="client">The RestSharp client.</param>
+        /// <returns></returns>
+        protected override IRestResponse Execute(IRestClient client) => client.Execute<TData>(Request);
 
         /// <summary>
         /// Calls the REST request and returns the response with deserialized data.

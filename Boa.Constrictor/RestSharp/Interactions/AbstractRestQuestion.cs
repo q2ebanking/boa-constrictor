@@ -9,9 +9,8 @@ namespace Boa.Constrictor.RestSharp
     /// Provides protected methods for calling requests and downloads.
     /// </summary>
     /// <typeparam name="TAbility">The RestSharp Ability type.</typeparam>
-    /// <typeparam name="TData">The response data type for deserialization.</typeparam>
     /// <typeparam name="TAnswer">The answer type for the question.</typeparam>
-    public abstract class AbstractRestQuestion<TAbility, TData, TAnswer> : IQuestion<TAnswer>
+    public abstract class AbstractRestQuestion<TAbility, TAnswer> : IQuestion<TAnswer>
         where TAbility : IRestSharpAbility
     {
         #region Properties
@@ -34,6 +33,13 @@ namespace Boa.Constrictor.RestSharp
         #endregion
 
         #region Abstract Methods
+
+        /// <summary>
+        /// Executes the request using the given client.
+        /// </summary>
+        /// <param name="client">The RestSharp client.</param>
+        /// <returns></returns>
+        protected abstract IRestResponse Execute(IRestClient client);
 
         /// <summary>
         /// Calls the question.
@@ -112,9 +118,7 @@ namespace Boa.Constrictor.RestSharp
             {
                 // Make the request
                 start = DateTime.UtcNow;
-                response = (typeof(TData) is object)
-                    ? ability.Client.Execute(Request)
-                    : ability.Client.Execute<TData>(Request);
+                response = Execute(ability.Client);
                 end = DateTime.UtcNow;
 
                 // Log the response code

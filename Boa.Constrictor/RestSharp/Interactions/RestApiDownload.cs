@@ -9,7 +9,7 @@ namespace Boa.Constrictor.RestSharp
     /// Automatically dumps the downloaded file if the ability has a dumper.
     /// </summary>
     /// <typeparam name="TAbility">The RestSharp Ability type.</typeparam>
-    public class RestApiDownload<TAbility> : AbstractRestQuestion<TAbility, object, byte[]>
+    public class RestApiDownload<TAbility> : AbstractRestQuestion<TAbility, byte[]>
         where TAbility: IRestSharpAbility
     {
         #region Properties
@@ -35,6 +35,13 @@ namespace Boa.Constrictor.RestSharp
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Executes the request using the given client.
+        /// </summary>
+        /// <param name="client">The RestSharp client.</param>
+        /// <returns></returns>
+        protected override IRestResponse Execute(IRestClient client) => client.Execute(Request);
 
         /// <summary>
         /// Calls the REST request and returns the downloaded file data as a byte array.
