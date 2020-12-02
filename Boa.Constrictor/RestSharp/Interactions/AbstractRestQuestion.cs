@@ -148,7 +148,7 @@ namespace Boa.Constrictor.RestSharp
         /// Returns a description of the question.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"REST API: {Request.Method} '{Request.Resource}'";
+        public override string ToString() => $"REST API using {typeof(TAbility)}: {Request.Method} '{Request.Resource}'";
 
         #endregion
     }
