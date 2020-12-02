@@ -1,5 +1,4 @@
 ﻿using Boa.Constrictor.Dumping;
-using Boa.Constrictor.Screenplay;
 using RestSharp;
 using System;
 using System.Net;
@@ -7,19 +6,21 @@ using System.Net;
 namespace Boa.Constrictor.RestSharp
 {
     /// <summary>
+    /// The "default" RestSharp ability.
     /// Enables the actor to make REST API calls using RestSharp.
     /// It constructs and holds one RestSharp client for the given base URL.
     /// This ability also holds dumpers for requests/responses and downloaded files.
     /// If dumpers are null, then no dumping is performed.
     /// This ability also handles adding and retrieving cookies.
     /// 
-    /// To use more than one RestSharp client, create subclasses of this ability.
+    /// To use more than one RestSharp client, create subclasses of this ability,
+    /// or implement the IRestSharpAbility interface.
     /// The subclass will bear a unique type.
     /// Then, the Actor can use that subclass as a new type of ability for lookup.
     /// RestSharp interactions without type generics use the CallRestApi ability,
     /// while interactions with type generics will use the given ability by type.
     /// </summary>
-    public class CallRestApi : IAbility
+    public class CallRestApi : IRestSharpAbility
     {
         #region Constructors
 
@@ -28,7 +29,7 @@ namespace Boa.Constrictor.RestSharp
         /// (Use the static methods for public construction.)
         /// </summary>
         /// <param name="baseUrl">The base URL for the RestSharp client.</param>
-        private CallRestApi(string baseUrl)
+        protected CallRestApi(string baseUrl)
         {
             Client = new RestClient()
             {
@@ -47,17 +48,17 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// The RestSharp client.
         /// </summary>
-        public IRestClient Client { get; private set; }
+        public IRestClient Client { get; protected set; }
 
         /// <summary>
         /// The dumper for requests and responses.
         /// </summary>
-        public JsonDumper RequestDumper { get; private set; }
+        public JsonDumper RequestDumper { get; protected set; }
 
         /// <summary>
         /// The dumper for downloaded files.
         /// </summary>
-        public ByteDumper DownloadDumper { get; private set; }
+        public ByteDumper DownloadDumper { get; protected set; }
 
         #endregion
 
@@ -101,7 +102,7 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// Adds a cookie to the RestSharp client.
         /// </summary>
-        /// <param name="cookie"></param>
+        /// <param name="cookie">The cookie to add to the RestSharp client.</param>
         public void AddCookie(Cookie cookie) => Client.CookieContainer.Add(cookie);
 
         /// <summary>
