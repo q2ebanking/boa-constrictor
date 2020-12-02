@@ -8,7 +8,7 @@ namespace Boa.Constrictor.RestSharp
     public static class Rest
     {
         /// <summary>
-        /// Builder method for RestApiDownload that uses the CallRestApi ability.
+        /// Builder method for RestApiDownload that uses the CallRestApi Ability.
         /// Recommended usage: `Actor.Calls`.
         /// </summary>
         /// <param name="request">The REST request to call.</param>
@@ -18,7 +18,7 @@ namespace Boa.Constrictor.RestSharp
             new RestApiDownload<CallRestApi>(request, fileExtension);
 
         /// <summary>
-        /// Builder method for RestApiDownload that uses a generic IRestSharpAbility ability.
+        /// Builder method for RestApiDownload that uses a generic IRestSharpAbility Ability.
         /// Recommended usage: `Actor.Calls`.
         /// </summary>
         /// <param name="request">The REST request to call.</param>
@@ -30,7 +30,7 @@ namespace Boa.Constrictor.RestSharp
             new RestApiDownload<TAbility>(request, fileExtension);
 
         /// <summary>
-        /// Builder method for RestApiCall that uses the CallRestApi ability and does not deserialize the response.
+        /// Builder method for RestApiCall that uses the CallRestApi Ability and does not deserialize the response.
         /// Recommended usage: `Actor.Calls`.
         /// </summary>
         /// <param name="request">The REST request to call.</param>
@@ -39,7 +39,7 @@ namespace Boa.Constrictor.RestSharp
             new RestApiCall<CallRestApi>(request);
 
         /// <summary>
-        /// Builder method for RestApiCall that uses the CallRestApi ability and deserializes the response.
+        /// Builder method for RestApiCall that uses the CallRestApi Ability and deserializes the response.
         /// Recommended usage: `Actor.Calls`.
         /// </summary>
         /// <param name="request">The REST request to call.</param>
@@ -49,7 +49,7 @@ namespace Boa.Constrictor.RestSharp
             new RestApiCall<CallRestApi, TData>(request);
 
         /// <summary>
-        /// Builder method for RestApiCall that uses a generic IRestSharpAbility ability ability and does not deserialize the response.
+        /// Builder method for RestApiCall that uses a generic IRestSharpAbility Ability and does not deserialize the response.
         /// Recommended usage: `Actor.Calls`.
         /// </summary>
         /// <param name="request">The REST request to call.</param>
@@ -60,7 +60,7 @@ namespace Boa.Constrictor.RestSharp
             new RestApiCall<TAbility>(request);
 
         /// <summary>
-        /// Builder method for RestApiCall that uses a generic IRestSharpAbility ability ability and does not deserialize the response.
+        /// Builder method for RestApiCall that uses a generic IRestSharpAbility Ability and does not deserialize the response.
         /// Recommended usage: `Actor.Calls`.
         /// </summary>
         /// <param name="request">The REST request to call.</param>
