@@ -4,13 +4,13 @@ namespace Boa.Constrictor.RestSharp
 {
     /// <summary>
     /// Provides more fluent calls for RestSharp Questions.
-    /// For example, `Actor.Calls(Rest.Request("...", request))` reads much better than `Actor.AsksFor(RestApiResponse.From("...", request))`.
+    /// For example, `Actor.Calls(Rest.Request(request))` reads much better than `Actor.AsksFor(RestApiResponse.From(request))`.
     /// </summary>
     public static class Rest
     {
         /// <summary>
         /// More concise builder for RestCookie.
-        /// Recommended usage: `Actor.AsksFor(Rest.Cookie("...", "..."))`
+        /// Recommended usage: `Actor.AsksFor(Rest.Cookie("..."))`
         /// </summary>
         /// <param name="name">The cookie name.</param>
         /// <param name="expirationMinutes">The minutes to add to the current time for resetting cookie expiration.</param>
@@ -20,7 +20,7 @@ namespace Boa.Constrictor.RestSharp
 
         /// <summary>
         /// More fluent builder for RestFileDownload.
-        /// Recommended usage: `Actor.Calls(Rest.Download("...", request, "..."))`
+        /// Recommended usage: `Actor.Calls(Rest.Download(request, "..."))`
         /// </summary>
         /// <param name="request">The REST request to call.</param>
         /// <param name="fileExtension">The extension for the file to download.</param>
@@ -30,7 +30,7 @@ namespace Boa.Constrictor.RestSharp
 
         /// <summary>
         /// More fluent builder for RestApiResponse.
-        /// Recommended usage: `Actor.Calls(Rest.Request("...", request))`.
+        /// Recommended usage: `Actor.Calls(Rest.Request(request))`.
         /// </summary>
         /// <param name="request">The REST request to call.</param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ namespace Boa.Constrictor.RestSharp
 
         /// <summary>
         /// More fluent builder for RestApiResponse<typeparamref name="TData"/>.
-        /// Recommended usage: `Actor.Calls(Rest.Request<typeparamref name="TData"/>("...", request))`.
+        /// Recommended usage: `Actor.Calls(Rest.Request<typeparamref name="TData"/>(request))`.
         /// </summary>
         /// <typeparam name="TData">The deserialization object type.</typeparam>
         /// <param name="request">The REST request to call.</param>
