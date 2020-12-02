@@ -8,7 +8,7 @@ namespace Boa.Constrictor.RestSharp
     /// <summary>
     /// Gets a cookie from the REST client by name.
     /// </summary>
-    public class RestCookie : AbstractBaseUrlHandler, IQuestion<Cookie>
+    public class RestCookie : IQuestion<Cookie>
     {
         #region Constructors
 
@@ -16,10 +16,8 @@ namespace Boa.Constrictor.RestSharp
         /// Private Constructor.
         /// (Use public builder methods instead.)
         /// </summary>
-        /// <param name="baseUrl">The base URL for the request.</param>
         /// <param name="name">The cookie name.</param>
-        private RestCookie(string baseUrl, string name) :
-            base(baseUrl)
+        private RestCookie(string name)
         {
             CookieName = name;
             ExpirationMinutes = null;
@@ -46,11 +44,9 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// Public builder method to construct the question.
         /// </summary>
-        /// <param name="baseUrl">The base URL for the request.</param>
         /// <param name="name">The cookie name.</param>
         /// <returns></returns>
-        public static RestCookie Named(string baseUrl, string name) =>
-            new RestCookie(baseUrl, name);
+        public static RestCookie Named(string name) => new RestCookie(name);
 
         /// <summary>
         /// Sets ExpirationMinutes.
@@ -75,11 +71,11 @@ namespace Boa.Constrictor.RestSharp
         /// <returns></returns>
         public Cookie RequestAs(IActor actor)
         {
-            IRestClient client = actor.Using<CallRestApi>().GetClient(BaseUrl);
-            Cookie cookie = client.CookieContainer.GetCookies(new Uri(BaseUrl))[CookieName];
+            IRestClient client = actor.Using<CallRestApi>().Client;
+            Cookie cookie = client.CookieContainer.GetCookies(client.BaseUrl)[CookieName];
 
             if (cookie == null)
-                throw new RestApiException($"REST client for '{BaseUrl}' did not contain cookie '{CookieName}'");
+                throw new RestApiException($"REST client for '{client.BaseUrl}' did not contain cookie '{CookieName}'");
 
             if (ExpirationMinutes != null)
                 cookie.Expires = DateTime.UtcNow.AddMinutes((int)ExpirationMinutes);

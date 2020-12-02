@@ -1,5 +1,4 @@
 ﻿using Boa.Constrictor.Screenplay;
-using Boa.Constrictor.Utilities;
 using RestSharp;
 using System;
 
@@ -9,7 +8,7 @@ namespace Boa.Constrictor.RestSharp
     /// Abstract parent class for the RestApiResponse interactions.
     /// Child classes differ on data deserialization.
     /// </summary>
-    public abstract class AbstractRestApiResponse : AbstractBaseUrlHandler
+    public abstract class AbstractRestApiResponse
     {
         #region Properties
 
@@ -25,10 +24,8 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// Protected constructor.
         /// </summary>
-        /// <param name="baseUrl">The base URL for the request.</param>
         /// <param name="request">The REST request to call.</param>
-        protected AbstractRestApiResponse(string baseUrl, IRestRequest request) :
-            base(baseUrl) => Request = request;
+        protected AbstractRestApiResponse(IRestRequest request) => Request = request;
 
         #endregion
 
@@ -53,11 +50,8 @@ namespace Boa.Constrictor.RestSharp
         /// <returns></returns>
         protected IRestResponse CallAs(IActor actor)
         {
-            // Get ability objects
+            // Prepare variables
             var ability = actor.Using<CallRestApi>();
-            var client = ability.GetClient(BaseUrl);
-
-            // Prepare response variables
             IRestResponse response = null;
             DateTime? start = null;
             DateTime? end = null;
@@ -66,7 +60,7 @@ namespace Boa.Constrictor.RestSharp
             {
                 // Make the request
                 start = DateTime.UtcNow;
-                response = Execute(client);
+                response = Execute(ability.Client);
                 end = DateTime.UtcNow;
 
                 // Log the response code
@@ -77,7 +71,7 @@ namespace Boa.Constrictor.RestSharp
                 if (ability.CanDumpRequests())
                 {
                     // Try to dump the request and the response
-                    var data = new FullRestData(client, Request, response, start, end);
+                    var data = new FullRestData(ability.Client, Request, response, start, end);
                     string path = ability.RequestDumper.Dump(data);
                     actor.Logger.Info($"Dumped request to: {path}");
                 }
@@ -97,7 +91,7 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <returns></returns>
         public override string ToString() =>
-            $"REST response from calling {Request.Method} '{Urls.Combine(BaseUrl, Request.Resource)}'";
+            $"REST response from calling {Request.Method} '{Request.Resource}'";
 
         #endregion
     }
@@ -116,9 +110,8 @@ namespace Boa.Constrictor.RestSharp
         /// Private constructor.
         /// (Use public builder methods to construct the question.)
         /// </summary>
-        /// <param name="baseUrl">The base URL for the request.</param>
         /// <param name="request">The REST request to call.</param>
-        private RestApiResponse(string baseUrl, IRestRequest request) : base(baseUrl, request) { }
+        private RestApiResponse(IRestRequest request) : base(request) { }
 
         #endregion
 
@@ -127,11 +120,9 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// Constructs the question.
         /// </summary>
-        /// <param name="baseUrl">The base URL for the request.</param>
         /// <param name="request">The REST request to call.</param>
         /// <returns></returns>
-        public static RestApiResponse From(string baseUrl, IRestRequest request) =>
-            new RestApiResponse(baseUrl, request);
+        public static RestApiResponse From(IRestRequest request) => new RestApiResponse(request);
 
         #endregion
 
@@ -169,9 +160,8 @@ namespace Boa.Constrictor.RestSharp
         /// Private constructor.
         /// (Use public builder methods to construct the question.)
         /// </summary>
-        /// <param name="baseUrl">The base URL for the request.</param>
         /// <param name="request">The REST request to call.</param>
-        private RestApiResponse(string baseUrl, IRestRequest request) : base(baseUrl, request) { }
+        private RestApiResponse(IRestRequest request) : base(request) { }
 
         #endregion
 
@@ -180,11 +170,9 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// Constructs the question.
         /// </summary>
-        /// <param name="baseUrl">The base URL for the request.</param>
         /// <param name="request">The REST request to call.</param>
         /// <returns></returns>
-        public static RestApiResponse<TData> From(string baseUrl, IRestRequest request) =>
-            new RestApiResponse<TData>(baseUrl, request);
+        public static RestApiResponse<TData> From(IRestRequest request) => new RestApiResponse<TData>(request);
 
         #endregion
 

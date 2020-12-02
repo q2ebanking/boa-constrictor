@@ -9,18 +9,16 @@ namespace Boa.Constrictor.RestSharp
     /// Requires the CallRestApi ability.
     /// Automatically dumps the downloaded file if the ability has a dumper.
     /// </summary>
-    public class RestFileDownload : AbstractBaseUrlHandler, IQuestion<byte[]>
+    public class RestFileDownload : IQuestion<byte[]>
     {
         #region Constructors
 
         /// <summary>
         /// Private constructor.
         /// </summary>
-        /// <param name="baseUrl">The base URL for the request.</param>
         /// <param name="request">The REST request to call.</param>
         /// <param name="fileExtension">The extension for the file to download.</param>
-        private RestFileDownload(string baseUrl, IRestRequest request, string fileExtension = null) :
-            base(baseUrl)
+        private RestFileDownload(IRestRequest request, string fileExtension = null)
         {
             Request = request;
             FileExtension = fileExtension;
@@ -47,12 +45,11 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// Constructs the question.
         /// </summary>
-        /// <param name="baseUrl">The base URL for the request.</param>
         /// <param name="request">The REST request to call.</param>
         /// <param name="fileExtension">The extension for the file to download.</param>
         /// <returns></returns>
-        public static RestFileDownload From(string baseUrl, IRestRequest request, string fileExtension = null) =>
-            new RestFileDownload(baseUrl, request, fileExtension);
+        public static RestFileDownload From(IRestRequest request, string fileExtension = null) =>
+            new RestFileDownload(request, fileExtension);
 
         #endregion
 
@@ -73,7 +70,7 @@ namespace Boa.Constrictor.RestSharp
             try
             {
                 // Call the request for the download
-                var response = actor.AsksFor(RestApiResponse.From(BaseUrl, Request));
+                var response = actor.AsksFor(RestApiResponse.From(Request));
                 fileBytes = response.RawBytes;
 
                 // Verify download success
@@ -110,7 +107,7 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <returns></returns>
         public override string ToString() =>
-            $"File download from calling {Request.Method} '{Urls.Combine(BaseUrl, Request.Resource)}'";
+            $"File download from calling {Request.Method} '{Request.Resource}'";
 
         #endregion
     }

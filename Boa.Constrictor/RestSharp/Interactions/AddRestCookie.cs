@@ -6,7 +6,7 @@ namespace Boa.Constrictor.RestSharp
     /// <summary>
     /// Adds the cookie to the REST client for the desired base URL.
     /// </summary>
-    public class AddRestCookie : AbstractBaseUrlHandler, ITask
+    public class AddRestCookie : ITask
     {
         #region Constructors
 
@@ -14,9 +14,8 @@ namespace Boa.Constrictor.RestSharp
         /// Private constructor.
         /// (Use static methods for public construction.)
         /// </summary>
-        /// <param name="baseUrl">The base URL for the REST client.</param>
         /// <param name="cookie">The cookie to add.</param>
-        private AddRestCookie(string baseUrl, Cookie cookie) : base(baseUrl) => Cookie = cookie;
+        private AddRestCookie(Cookie cookie) => Cookie = cookie;
 
         #endregion
 
@@ -34,10 +33,9 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// Constructs the question.
         /// </summary>
-        /// <param name="baseUrl">The base URL for the request.</param>
         /// <param name="cookie">The cookie to add.</param>
         /// <returns></returns>
-        public static AddRestCookie Named(string baseUrl, Cookie cookie) => new AddRestCookie(baseUrl, cookie);
+        public static AddRestCookie Named(Cookie cookie) => new AddRestCookie(cookie);
 
         #endregion
 
@@ -48,7 +46,7 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <param name="actor">The Screenplay actor.</param>
         /// <returns></returns>
-        public void PerformAs(IActor actor) => actor.Using<CallRestApi>().GetClient(BaseUrl).CookieContainer.Add(Cookie);
+        public void PerformAs(IActor actor) => actor.Using<CallRestApi>().Client.CookieContainer.Add(Cookie);
 
         /// <summary>
         /// Returns a description of the task.
