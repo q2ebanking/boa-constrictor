@@ -9,16 +9,6 @@ namespace Boa.Constrictor.RestSharp
     public static class Rest
     {
         /// <summary>
-        /// More concise builder for RestCookie.
-        /// Recommended usage: `Actor.AsksFor(Rest.Cookie("..."))`
-        /// </summary>
-        /// <param name="name">The cookie name.</param>
-        /// <param name="expirationMinutes">The minutes to add to the current time for resetting cookie expiration.</param>
-        /// <returns></returns>
-        public static RestCookie Cookie(string name, int? expirationMinutes = null) =>
-            RestCookie.Named(name).AndResetExpirationTo(expirationMinutes);
-
-        /// <summary>
         /// More fluent builder for RestFileDownload.
         /// Recommended usage: `Actor.Calls(Rest.Download(request, "..."))`
         /// </summary>

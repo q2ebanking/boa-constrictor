@@ -2,15 +2,16 @@
 using Boa.Constrictor.Screenplay;
 using RestSharp;
 using System;
+using System.Net;
 
 namespace Boa.Constrictor.RestSharp
 {
     /// <summary>
     /// Enables the actor to make REST API calls using RestSharp.
-    /// It constructs and holds one IRestClient object for the given base URL.
-    /// The RestClient is also given a CookieContainer.
+    /// It constructs and holds one RestSharp client for the given base URL.
     /// This ability also holds dumpers for requests/responses and downloaded files.
     /// If dumpers are null, then no dumping is performed.
+    /// This ability also handles adding and retrieving cookies.
     /// 
     /// To use more than one RestSharp client, create subclasses of this ability.
     /// The subclass will bear a unique type.
@@ -32,7 +33,7 @@ namespace Boa.Constrictor.RestSharp
             Client = new RestClient()
             {
                 BaseUrl = new Uri(baseUrl),
-                CookieContainer = new System.Net.CookieContainer()
+                CookieContainer = new CookieContainer()
             };
 
             RequestDumper = null;
@@ -64,8 +65,6 @@ namespace Boa.Constrictor.RestSharp
 
         /// <summary>
         /// Constructs this ability.
-        /// Initially, no REST API clients are available.
-        /// They must be added.
         /// </summary>
         /// <param name="baseUrl">The base URL for the RestSharp client.</param>
         /// <returns></returns>
@@ -100,6 +99,12 @@ namespace Boa.Constrictor.RestSharp
         #region Methods
 
         /// <summary>
+        /// Adds a cookie to the RestSharp client.
+        /// </summary>
+        /// <param name="cookie"></param>
+        public void AddCookie(Cookie cookie) => Client.CookieContainer.Add(cookie);
+
+        /// <summary>
         /// Checks if downloads can be dumped.
         /// </summary>
         /// <returns></returns>
@@ -110,6 +115,14 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <returns></returns>
         public bool CanDumpRequests() => RequestDumper != null;
+
+        /// <summary>
+        /// Gets a cookie from the RestSharp client by name.
+        /// If the cookie does not exist, then this method returns null.
+        /// </summary>
+        /// <param name="name">The cookie name.</param>
+        /// <returns></returns>
+        public Cookie GetCookie(string name) => Client.CookieContainer.GetCookies(Client.BaseUrl)[name];
 
         /// <summary>
         /// Returns a description of this ability.
