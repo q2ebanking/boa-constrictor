@@ -1,5 +1,4 @@
 ﻿using Boa.Constrictor.Screenplay;
-using Boa.Constrictor.Utilities;
 using RestSharp;
 
 namespace Boa.Constrictor.RestSharp
@@ -9,7 +8,7 @@ namespace Boa.Constrictor.RestSharp
     /// Requires the CallRestApi ability.
     /// Automatically dumps the downloaded file if the ability has a dumper.
     /// </summary>
-    public class RestFileDownload : IQuestion<byte[]>
+    public class RestApiDownload : IQuestion<byte[]>
     {
         #region Constructors
 
@@ -18,7 +17,7 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <param name="request">The REST request to call.</param>
         /// <param name="fileExtension">The extension for the file to download.</param>
-        private RestFileDownload(IRestRequest request, string fileExtension = null)
+        private RestApiDownload(IRestRequest request, string fileExtension = null)
         {
             Request = request;
             FileExtension = fileExtension;
@@ -48,8 +47,8 @@ namespace Boa.Constrictor.RestSharp
         /// <param name="request">The REST request to call.</param>
         /// <param name="fileExtension">The extension for the file to download.</param>
         /// <returns></returns>
-        public static RestFileDownload From(IRestRequest request, string fileExtension = null) =>
-            new RestFileDownload(request, fileExtension);
+        public static RestApiDownload From(IRestRequest request, string fileExtension = null) =>
+            new RestApiDownload(request, fileExtension);
 
         #endregion
 

@@ -15,8 +15,8 @@ namespace Boa.Constrictor.RestSharp
         /// <param name="request">The REST request to call.</param>
         /// <param name="fileExtension">The extension for the file to download.</param>
         /// <returns></returns>
-        public static RestFileDownload Download(IRestRequest request, string fileExtension = null) =>
-            RestFileDownload.From(request, fileExtension);
+        public static RestApiDownload Download(IRestRequest request, string fileExtension = null) =>
+            RestApiDownload.From(request, fileExtension);
 
         /// <summary>
         /// More fluent builder for RestApiResponse.
