@@ -1,0 +1,151 @@
+﻿using Boa.Constrictor.Screenplay;
+using RestSharp;
+using System;
+
+namespace Boa.Constrictor.RestSharp
+{
+    /// <summary>
+    /// Abstract parent class for RestSharp Questions.
+    /// Provides protected methods for calling requests and downloads.
+    /// </summary>
+    /// <typeparam name="TAbility">The RestSharp Ability type.</typeparam>
+    /// <typeparam name="TData">The response data type for deserialization.</typeparam>
+    /// <typeparam name="TAnswer">The answer type for the question.</typeparam>
+    public abstract class AbstractRestQuestion<TAbility, TData, TAnswer> : IQuestion<TAnswer>
+        where TAbility : IRestSharpAbility
+    {
+        #region Properties
+
+        /// <summary>
+        /// The REST request to call.
+        /// </summary>
+        public IRestRequest Request { get; private set; }
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Protected constructor.
+        /// </summary>
+        /// <param name="request">The REST request to call.</param>
+        protected AbstractRestQuestion(IRestRequest request) => Request = request;
+
+        #endregion
+
+        #region Abstract Methods
+
+        /// <summary>
+        /// Calls the question.
+        /// </summary>
+        /// <param name="actor">The Screenplay actor.</param>
+        /// <returns></returns>
+        public abstract TAnswer RequestAs(IActor actor);
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Calls the REST request and returns the downloaded file byte array.
+        /// Throws a RestApiDownloadException if the request's response code is a client or server error or response status is a transport error.
+        /// </summary>
+        /// <param name="actor">The Screenplay actor.</param>
+        /// <param name="fileExtension">The extension for the file to download.</param>
+        /// <returns></returns>
+        protected byte[] CallDownload(IActor actor, string fileExtension)
+        {
+            // Prepare objects
+            var ability = actor.Using<TAbility>();
+            byte[] fileBytes = null;
+
+            try
+            {
+                // Call the request for the download
+                var response = CallRequest(actor);
+                fileBytes = response.RawBytes;
+
+                // Verify download success
+                if ((int)response.StatusCode >= 400 || response.ResponseStatus == ResponseStatus.Error || fileBytes == null)
+                    throw new RestApiDownloadException(Request, response);
+
+                // Log successful download
+                actor.Logger.Info($"Bytes received successfully");
+            }
+            finally
+            {
+                if (ability.CanDumpDownloads() && fileBytes != null)
+                {
+                    // Dump the file
+                    string path = ability.DownloadDumper.Dump(fileBytes, fileExtension);
+                    actor.Logger.Info($"Dumped downloaded file to: {path}");
+
+                    // Warn about blank file extensions
+                    if (fileExtension == "")
+                        actor.Logger.Warning("The extension for the downloaded file was blank");
+                }
+                else
+                {
+                    // Warn that the downloaded file will not be dumped
+                    actor.Logger.Debug("The downloaded file will not be dumped");
+                }
+            }
+
+            // Return the file data
+            return fileBytes;
+        }
+
+        /// <summary>
+        /// Calls the REST request and returns the response.
+        /// </summary>
+        /// <param name="actor">The Screenplay actor.</param>
+        /// <returns></returns>
+        protected IRestResponse CallRequest(IActor actor)
+        {
+            // Prepare variables
+            var ability = actor.Using<TAbility>();
+            IRestResponse response = null;
+            DateTime? start = null;
+            DateTime? end = null;
+
+            try
+            {
+                // Make the request
+                start = DateTime.UtcNow;
+                response = (typeof(TData) is object)
+                    ? ability.Client.Execute(Request)
+                    : ability.Client.Execute<TData>(Request);
+                end = DateTime.UtcNow;
+
+                // Log the response code
+                actor.Logger.Info($"Response code: {(int)response.StatusCode}");
+            }
+            finally
+            {
+                if (ability.CanDumpRequests())
+                {
+                    // Try to dump the request and the response
+                    var data = new FullRestData(ability.Client, Request, response, start, end);
+                    string path = ability.RequestDumper.Dump(data);
+                    actor.Logger.Info($"Dumped request to: {path}");
+                }
+                else
+                {
+                    // Warn that the request will not be dumped
+                    actor.Logger.Debug("Request will not be dumped");
+                }
+            }
+
+            // Return the response object
+            return response;
+        }
+
+        /// <summary>
+        /// Returns a description of the question.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => $"REST API: {Request.Method} '{Request.Resource}'";
+
+        #endregion
+    }
+}
