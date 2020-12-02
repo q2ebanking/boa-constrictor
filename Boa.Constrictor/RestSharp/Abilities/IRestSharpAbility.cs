@@ -7,16 +7,13 @@ namespace Boa.Constrictor.RestSharp
 {
     /// <summary>
     /// Enables the actor to make REST API calls using RestSharp.
-    /// It constructs and holds one RestSharp client for the given base URL.
+    /// It holds one RestSharp client for the given base URL.
     /// This ability also holds dumpers for requests/responses and downloaded files.
     /// If dumpers are null, then no dumping is performed.
     /// This ability also handles adding and retrieving cookies.
     /// 
-    /// To use more than one RestSharp client, create subclasses of this ability.
-    /// The subclass will bear a unique type.
-    /// Then, the Actor can use that subclass as a new type of ability for lookup.
-    /// RestSharp interactions without type generics use the CallRestApi ability,
-    /// while interactions with type generics will use the given ability by type.
+    /// To use more than one RestSharp client, create classes that implement this interface.
+    /// Then, the Actor can use that class as a new type of ability for lookup.
     /// </summary>
     public interface IRestSharpAbility : IAbility
     {
