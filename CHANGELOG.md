@@ -13,6 +13,61 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (None)
 
 
+## [0.6.0] - 2020-12-02
+
+### Changed
+
+This release contains major changes to RestSharp Screenplay support.
+Changes are **not** backwards-compatible.
+
+- Previously, there was one Ability named `CallRestApi` that could hold multiple `IRestClient` RestSharp client objects.
+  Each RestSharp Interaction would need a base URL as an input, and it would look up the appropriate client object from the Ability.
+  However, this was not the best design because it required each call to include a base URL, which led to repetitive code.
+
+- Now, there can be multiple Abilities for calling REST APIs using RestSharp.
+  One RestSharp Ability has only one `IRestClient` object.
+  Users should write their own Ability class for each base URL they want to use.
+  `IRestSharpAbility` provides the interface for RestSharp Abilities, with properties and methods for clients, dumpers, and cookies.
+  `AbstractRestSharpAbility` implements most of the pieces from `IRestSharpAbility`.
+  Custom RestSharp Abilities should either implement `IRestSharpAbility` or extend `AbstractRestSharpAbility`.
+  The `CallRestApi` Ability still exists as a "common" or "default" RestSharp Ability.
+  It extends `AbstractRestSharpAbility`.
+
+- All RestSharp interactions have been updated with a generic type parameter for an `IRestSharpAbility` Ability.
+  This type parameter dictates which Ability will be used by the interaction, thus determining the RestSharp client and thereby the base URL.
+  For simplicity, the `Rest` static class's builder methods now each have two versions:
+  one with a type generic to specify the RestSharp Ability, and one without a type generic that uses `CallRestApi` as a "default" Ability.
+
+- RestSharp interactions for cookies have been removed because they simply made changes to the `IRestClient` object instead of performing real interactions.
+  They have been replaced by `IRestSharpAbility` methods.
+
+- RestSharp interactions for calling requests and downloads have also changed significantly.
+  `RestApiResponse` has been renamed to `RestApiCall` for readability.
+  `RestFileDownload` has been renamed to `RestApiDownload` for consistency.
+  Both no longer have in-class builder methods.
+  Instead, the `Rest` class holds the only public builder methods for them.
+  You *must* use the `Rest` class to instantiate them.
+  Both also now share a parent class named `AbstractRestQuestion`.
+
+Examples of new RestSharp interactions:
+
+```csharp
+IActor actor = new Actor();
+
+// Simple "default" RestSharp client calls
+actor.Can(CallRestApi.At("www.somebaseurl.com"));
+IRestRequest request = new RestRequest(...);
+IRestResponse response = actor.Calls(Rest.Request(request));
+
+// Custom RestSharp client calls
+// Assume `CallOtherApi` is a class that implements `IRestSharpAbility`
+// Assume `DataObject` is a deserialization class
+actor.Can(CallOtherApi.At("www.someotherapi.com"));
+IRestRequest request2 = new RestRequest(...);
+IRestResponse<DataObject> response2 = actor.Calls(Rest.RequestUsing<CallOtherApi, DataObject>(request2));
+```
+
+
 ## [0.5.1] - 2020-12-01
 
 ### Added
