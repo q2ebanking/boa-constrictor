@@ -69,10 +69,11 @@ namespace Boa.Constrictor.RestSharp
         /// Sets the ability to dump requests/responses to the given path.
         /// </summary>
         /// <param name="dumpDir">The dump directory path.</param>
+        /// <param name="fileToken">The file token.</param>
         /// <returns></returns>
-        public CallRestApi DumpingRequestsTo(string dumpDir)
+        public CallRestApi DumpingRequestsTo(string dumpDir, string fileToken = "Request")
         {
-            RequestDumper = new JsonDumper("REST Request Dumper", dumpDir, "Request");
+            RequestDumper = new JsonDumper("REST Request Dumper", dumpDir, fileToken);
             return this;
         }
 
@@ -80,10 +81,11 @@ namespace Boa.Constrictor.RestSharp
         /// Sets the ability to dump requests/responses to the given path.
         /// </summary>
         /// <param name="dumpDir">The dump directory path.</param>
+        /// <param name="fileToken">The file token.</param>
         /// <returns></returns>
-        public CallRestApi DumpingDownloadsTo(string dumpDir)
+        public CallRestApi DumpingDownloadsTo(string dumpDir, string fileToken = "Download")
         {
-            DownloadDumper = new ByteDumper("REST Download Dumper", dumpDir, "Download");
+            DownloadDumper = new ByteDumper("REST Download Dumper", dumpDir, fileToken);
             return this;
         }
 
