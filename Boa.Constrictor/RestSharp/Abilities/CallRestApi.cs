@@ -48,7 +48,7 @@ namespace Boa.Constrictor.RestSharp
         /// <returns></returns>
         public CallRestApi DumpingRequestsTo(string dumpDir, string fileToken = "Request")
         {
-            RequestDumper = new JsonDumper("REST Request Dumper", dumpDir, fileToken);
+            RequestDumper = new RequestDumper("REST Request Dumper", dumpDir, fileToken);
             return this;
         }
 

@@ -13,6 +13,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (None)
 
 
+## [0.6.1] - 2020-12-08
+
+### Added
+
+- Added the `RequestDumper` class to automatically store the last request and response objects
+- Added `LastRequest` and `LastResponse` properties to `IRestSharpAbility` to more conveniently access these values from the dumper
+
+### Changed
+
+- `IRestSharpAbility` now uses `RequestDumper` instead of `JsonDumper` to dump requests and responses
+
+
 ## [0.6.0] - 2020-12-02
 
 ### Changed

@@ -25,14 +25,26 @@ namespace Boa.Constrictor.RestSharp
         IRestClient Client { get; }
 
         /// <summary>
-        /// The dumper for requests and responses.
+        /// The dumper for downloaded files.
         /// </summary>
         ByteDumper DownloadDumper { get; }
 
         /// <summary>
-        /// The dumper for downloaded files.
+        /// The dumper for requests and responses.
         /// </summary>
-        JsonDumper RequestDumper { get; }
+        RequestDumper RequestDumper { get; }
+
+        /// <summary>
+        /// The last request object dumped.
+        /// Warning: it might be null.
+        /// </summary>
+        IRestRequest LastRequest { get; }
+
+        /// <summary>
+        /// The last response object dumped.
+        /// Warning: it might be null.
+        /// </summary>
+        IRestResponse LastResponse { get; }
 
         #endregion
 
