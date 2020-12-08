@@ -129,8 +129,7 @@ namespace Boa.Constrictor.RestSharp
                 if (ability.CanDumpRequests())
                 {
                     // Try to dump the request and the response
-                    var data = new FullRestData(ability.Client, Request, response, start, end);
-                    string path = ability.RequestDumper.Dump(data);
+                    string path = ability.RequestDumper.Dump(ability.Client, Request, response, start, end);
                     actor.Logger.Info($"Dumped request to: {path}");
                 }
                 else
