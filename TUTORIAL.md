@@ -661,14 +661,16 @@ Let's break it down:
 * `Actor.WaitsUntil(...)` is an extension method that halts execution until the given Question's answer meets the given Condition.
   In this case, the appearance of the result links must become true.
 
-`WaitsUntil` is an `IActor` extension method that calls waiting interactions.
-Internally, it makes a call like this:
+`WaitsUntil` is an `IActor` extension method that internally calls waiting interactions.
+The following calls are essentially the same:
 
 ```csharp
+// The full, "traditional" way to wait
 actor.AttemptsTo(Wait.Until(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True()));
-```
 
-Both calls do the same thing, but `WaitsUntil` is more concise.
+// The more concise way using
+actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
+```
 
 There are two waiting interactions under the `Boa.Constrictor.Screenplay` namespace:
 a Task named `Wait` and a Question named `ValueAfterWaiting`.
