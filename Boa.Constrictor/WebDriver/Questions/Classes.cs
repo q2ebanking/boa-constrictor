@@ -40,7 +40,7 @@ namespace Boa.Constrictor.WebDriver
         /// <returns></returns>
         public override string[] RequestAs(IActor actor, IWebDriver driver)
         {
-            actor.AttemptsTo(Wait.Until(Existence.Of(Locator), IsEqualTo.True()));
+            actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
             string classes = driver.FindElement(Locator.Query).GetAttribute("class");
             return classes.Split();
         }

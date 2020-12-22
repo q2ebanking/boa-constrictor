@@ -42,7 +42,7 @@ namespace Boa.Constrictor.WebDriver
         /// <returns></returns>
         public override IEnumerable<string> RequestAs(IActor actor, IWebDriver driver)
         {
-            actor.AttemptsTo(Wait.Until(Existence.Of(Locator), IsEqualTo.True()));
+            actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
             var elements = driver.FindElements(Locator.Query);
             var strings = from e in elements select e.Text;
 
