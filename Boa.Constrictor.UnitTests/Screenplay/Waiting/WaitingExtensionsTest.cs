@@ -6,11 +6,11 @@ using NUnit.Framework;
 namespace Boa.Constrictor.UnitTests.Screenplay
 {
     /// <summary>
-    /// These tests for the ValueAfterWaiting question are very rudimentary.
+    /// These tests for WaitingExtensions are very rudimentary.
     /// They simply verify if exceptions are thrown when questions do and do not satisfy the condition for waiting.
     /// </summary>
     [TestFixture]
-    public class ValueAfterWaitingTest
+    public class WaitingExtensionsTest
     {
         #region Test Variables
 
@@ -40,7 +40,7 @@ namespace Boa.Constrictor.UnitTests.Screenplay
             MockQuestion.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
             MockCondition.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(true);
 
-            Actor.AskingFor(ValueAfterWaiting.Until(MockQuestion.Object, MockCondition.Object).ForUpTo(0))
+            Actor.WaitsUntil(MockQuestion.Object, MockCondition.Object, timeout: 0)
                 .Should().Be(1, because: "waiting should return the question's final answer");
         }
 
@@ -54,7 +54,7 @@ namespace Boa.Constrictor.UnitTests.Screenplay
             MockCondition.Setup(x => x.Evaluate(It.Is<int>(v => v < limit))).Returns(false);
             MockCondition.Setup(x => x.Evaluate(It.Is<int>(v => v >= limit))).Returns(true);
 
-            Actor.AskingFor(ValueAfterWaiting.Until(MockQuestion.Object, MockCondition.Object).ForUpTo(1))
+            Actor.WaitsUntil(MockQuestion.Object, MockCondition.Object, timeout: 1)
                 .Should().Be(limit, because: "waiting should return the question's final answer");
 
             incrementer.Should().Be(limit, because: $"the question should be called {limit} times");
@@ -66,7 +66,7 @@ namespace Boa.Constrictor.UnitTests.Screenplay
             MockQuestion.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
             MockCondition.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(false);
 
-            Actor.Invoking(actor => actor.AskingFor(ValueAfterWaiting.Until(MockQuestion.Object, MockCondition.Object).ForUpTo(0)))
+            Actor.Invoking(actor => actor.WaitsUntil(MockQuestion.Object, MockCondition.Object, timeout: 0))
                 .Should().Throw<WaitingException<int>>(because: "the question should not satisfy the condition");
         }
 
