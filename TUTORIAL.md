@@ -492,7 +492,7 @@ public class ValueAttribute : IQuestion<string>
     public string RequestAs(IActor actor)
     {
         var driver = actor.Using<BrowseTheWeb>().WebDriver;
-        actor.AttemptsTo(Wait.Until(Existence.Of(Locator), IsEqualTo.True()));
+        actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
         return driver.FindElement(Locator.Query).GetAttribute("value");
     }
 }
@@ -647,28 +647,37 @@ This locator will find all result links on the result page.
 Then, add the following line to `TestDuckDuckGoSearch`:
 
 ```csharp
-actor.AttemptsTo(Wait.Until(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True()));
+actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
 ```
 
 Read this line in plain English:
-"The actor attempts to wait until the appearance of result page result links is equal to true."
+"The actor waits until the appearance of result page result links is equal to true."
 In simpler terms, "Wait until the result links appear."
 Let's break it down:
 
 * `ResultPage.ResultLinks` is the locator for the result link elements.
 * `Appearance.Of(...)` is a Question that returns true if the target elements are currently displayed on the page.
 * `IsEqualTo.True()` is a *Condition* for checking if the return value of a Question is true.
-* `Wait.Until(...)` is a Task that halts execution until the given Question's answer meets the given Condition.
+* `Actor.WaitsUntil(...)` is an extension method that halts execution until the given Question's answer meets the given Condition.
   In this case, the appearance of the result links must become true.
 
-The `Wait` Task is located under the `Boa.Constrictor.Screenplay` namespace.
-It works for any type of Question, not just WebDriver-based Questions.
+`WaitsUntil` is an `IActor` extension method that calls waiting interactions.
+Internally, it makes a call like this:
+
+```csharp
+actor.AttemptsTo(Wait.Until(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True()));
+```
+
+Both calls do the same thing, but `WaitsUntil` is more concise.
+
+There are two waiting interactions under the `Boa.Constrictor.Screenplay` namespace:
+a Task named `Wait` and a Question named `ValueAfterWaiting`.
+Both waiting interactions work for any type of Question, not just WebDriver-based Questions.
 If the given Question fails to meet the given Condition within a timeout limit,
-then `Wait` throws a `WaitingException`.
+then waiting throws a `WaitingException`.
 The default timeout is 30 seconds, but it may be overridden like this:
-`Wait.Until(...).ForUpTo(60)'`.
-There is also a waiting Question named `ValueAfterWaiting` that works the same way as `Wait`
-except that it returns the final answer from the given Question.
+`WaitsUntil(..., timeout: 60)`,
+or like this: `Wait.Until(...).ForUpTo(60)`.
 
 Waiting also requires Conditions.
 A *Condition* is a required state for a value.
@@ -761,7 +770,7 @@ namespace Boa.Constrictor.Example
             Actor.AttemptsTo(Navigate.ToUrl(SearchPage.Url));
             Actor.AskingFor(ValueAttribute.Of(SearchPage.SearchInput)).Should().BeEmpty();
             Actor.AttemptsTo(SearchDuckDuckGo.For("panda"));
-            Actor.AttemptsTo(Wait.Until(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True()));
+            Actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
         }
     }
 }
