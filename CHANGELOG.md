@@ -13,6 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (None)
 
 
+## [0.7.0] - 2020-12-22
+
+### Added
+
+- Added `WaitsUntil` extension method to `IActor` for more concise waiting calls
+- Updated all interactions and the tutorial to use `WaitsUntil`
+
+
 ## [0.6.1] - 2020-12-08
 
 ### Added
