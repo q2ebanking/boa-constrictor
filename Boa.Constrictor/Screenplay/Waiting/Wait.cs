@@ -8,8 +8,8 @@
     /// If the actor has the SetTimeouts ability, then the ability will be used to calculate timeouts.
     /// Otherwise, DefaultTimeout will be used.
     /// </summary>
-    /// <typeparam name="TValue">The type of the question's answer value.</typeparam>
-    public class Wait<TValue> : AbstractWait<TValue>, ITask
+    /// <typeparam name="TAnswer">The type of the question's answer value.</typeparam>
+    public class Wait<TAnswer> : AbstractWait<TAnswer>, ITask
     {
         #region Constructors
 
@@ -19,7 +19,7 @@
         /// </summary>
         /// <param name="question">The question upon whose answer to wait.</param>
         /// <param name="condition">The expected condition for which to wait.</param>
-        private Wait(IQuestion<TValue> question, ICondition<TValue> condition) :
+        private Wait(IQuestion<TAnswer> question, ICondition<TAnswer> condition) :
             base(question, condition)
         { }
 
@@ -33,15 +33,15 @@
         /// <param name="question">The question upon whose answer to wait.</param>
         /// <param name="condition">The expected condition for which to wait.</param>
         /// <returns></returns>
-        public static Wait<TValue> Until(IQuestion<TValue> question, ICondition<TValue> condition) =>
-            new Wait<TValue>(question, condition);
+        public static Wait<TAnswer> Until(IQuestion<TAnswer> question, ICondition<TAnswer> condition) =>
+            new Wait<TAnswer>(question, condition);
 
         /// <summary>
         /// Sets an override value for timeout seconds.
         /// </summary>
         /// <param name="seconds">The new timeout in seconds.</param>
         /// <returns></returns>
-        public Wait<TValue> ForUpTo(int? seconds)
+        public Wait<TAnswer> ForUpTo(int? seconds)
         {
             TimeoutSeconds = seconds;
             return this;
@@ -52,7 +52,7 @@
         /// </summary>
         /// <param name="seconds">The seconds to add to the timeout.</param>
         /// <returns></returns>
-        public Wait<TValue> ForAnAdditional(int seconds)
+        public Wait<TAnswer> ForAnAdditional(int seconds)
         {
             AdditionalSeconds = seconds;
             return this;
@@ -64,7 +64,7 @@
         /// This may generate lots of spam.
         /// </summary>
         /// <returns></returns>
-        public Wait<TValue> ButDontSuppressLogs()
+        public Wait<TAnswer> ButDontSuppressLogs()
         {
             SuppressLogs = false;
             return this;

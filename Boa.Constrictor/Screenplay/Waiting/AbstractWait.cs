@@ -11,8 +11,8 @@ namespace Boa.Constrictor.Screenplay
     /// If the actor has the SetTimeouts ability, then the ability will be used to calculate timeouts.
     /// Otherwise, DefaultTimeout will be used.
     /// </summary>
-    /// <typeparam name="TValue">The type of the question's answer value.</typeparam>
-    public abstract class AbstractWait<TValue>
+    /// <typeparam name="TAnswer">The type of the question's answer value.</typeparam>
+    public abstract class AbstractWait<TAnswer>
     {
         #region Constants
 
@@ -33,7 +33,7 @@ namespace Boa.Constrictor.Screenplay
         /// </summary>
         /// <param name="question">The question upon whose answer to wait.</param>
         /// <param name="condition">The expected condition for which to wait.</param>
-        protected AbstractWait(IQuestion<TValue> question, ICondition<TValue> condition)
+        protected AbstractWait(IQuestion<TAnswer> question, ICondition<TAnswer> condition)
         {
             Question = question;
             Condition = condition;
@@ -50,12 +50,12 @@ namespace Boa.Constrictor.Screenplay
         /// <summary>
         /// The expected condition for which to wait.
         /// </summary>
-        public ICondition<TValue> Condition { get; protected set; }
+        public ICondition<TAnswer> Condition { get; protected set; }
 
         /// <summary>
         /// The question upon whose answer to wait.
         /// </summary>
-        public IQuestion<TValue> Question { get; protected set; }
+        public IQuestion<TAnswer> Question { get; protected set; }
 
         /// <summary>
         /// The timeout override in seconds.
@@ -105,10 +105,10 @@ namespace Boa.Constrictor.Screenplay
         /// </summary>
         /// <param name="actor">The actor.</param>
         /// <returns></returns>
-        protected TValue WaitForValue(IActor actor)
+        protected TAnswer WaitForValue(IActor actor)
         {
             // Set variables
-            TValue actual = default(TValue);
+            TAnswer actual = default(TAnswer);
             bool satisfied = false;
             ActualTimeout = CalculateTimeout(actor);
 
@@ -143,7 +143,7 @@ namespace Boa.Constrictor.Screenplay
 
             // Verify successful waiting
             if (!satisfied)
-                throw new WaitingException<TValue>(this, actual);
+                throw new WaitingException<TAnswer>(this, actual);
 
             // Return the actual awaited value
             return actual;

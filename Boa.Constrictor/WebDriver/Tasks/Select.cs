@@ -100,7 +100,7 @@ namespace Boa.Constrictor.WebDriver
         /// <param name="driver">The WebDriver.</param>
         public override void PerformAs(IActor actor, IWebDriver driver)
         {
-            actor.AttemptsTo(Wait.Until(Existence.Of(Locator), IsEqualTo.True()));
+            actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
 
             var select = new SelectElement(driver.FindElement(Locator.Query));
 

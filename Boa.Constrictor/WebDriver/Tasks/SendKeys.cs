@@ -150,7 +150,7 @@ namespace Boa.Constrictor.WebDriver
         public override void PerformAs(IActor actor, IWebDriver driver)
         {
             // Wait for the element to exist
-            actor.AttemptsTo(Wait.Until(Appearance.Of(Locator), IsEqualTo.True()));
+            actor.WaitsUntil(Appearance.Of(Locator), IsEqualTo.True());
 
             // Get the element
             IWebElement element = driver.FindElement(Locator.Query);
