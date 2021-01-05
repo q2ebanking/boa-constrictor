@@ -29,6 +29,14 @@
         /// <param name="severity">The severity level (defaults to Info).</param>
         void Log(string message, LogSeverity severity = LogSeverity.Info);
 
+        /// <summary>
+        /// Logs an artifact.
+        /// The artifact must be saved to a file, like a screenshot image or a JSON dump.
+        /// </summary>
+        /// <param name="type">The name for the type of artifact.</param>
+        /// <param name="path">The file path to the artifact.</param>
+        void LogArtifact(string type, string path);
+
         #endregion
 
         #region Log-by-Level Methods

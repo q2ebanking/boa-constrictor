@@ -58,6 +58,14 @@
                 LogRaw(message, severity: severity);
         }
 
+        /// <summary>
+        /// Logs an artifact.
+        /// The artifact must be saved to a file, like a screenshot image or a JSON dump.
+        /// </summary>
+        /// <param name="type">The name for the type of artifact.</param>
+        /// <param name="path">The file path to the artifact.</param>
+        public virtual void LogArtifact(string type, string path) => Info($"{type}: {path}");
+
         #endregion
 
         #region Log-by-Level Methods
