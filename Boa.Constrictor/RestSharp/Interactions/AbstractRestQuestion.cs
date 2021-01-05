@@ -1,4 +1,5 @@
-﻿using Boa.Constrictor.Screenplay;
+﻿using Boa.Constrictor.Logging;
+using Boa.Constrictor.Screenplay;
 using RestSharp;
 using System;
 
@@ -84,7 +85,7 @@ namespace Boa.Constrictor.RestSharp
                 {
                     // Dump the file
                     string path = ability.DownloadDumper.Dump(fileBytes, fileExtension);
-                    actor.Logger.Info($"Dumped downloaded file to: {path}");
+                    actor.Logger.LogArtifact(ArtifactTypes.Request, path);
 
                     // Warn about blank file extensions
                     if (fileExtension == "")
@@ -130,7 +131,7 @@ namespace Boa.Constrictor.RestSharp
                 {
                     // Try to dump the request and the response
                     string path = ability.RequestDumper.Dump(ability.Client, Request, response, start, end);
-                    actor.Logger.Info($"Dumped request to: {path}");
+                    actor.Logger.LogArtifact(ArtifactTypes.Download, path);
                 }
                 else
                 {

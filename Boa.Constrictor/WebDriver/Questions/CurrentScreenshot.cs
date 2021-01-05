@@ -1,4 +1,5 @@
-﻿using Boa.Constrictor.Screenplay;
+﻿using Boa.Constrictor.Logging;
+using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Utilities;
 using OpenQA.Selenium;
 using System.IO;
@@ -110,9 +111,9 @@ namespace Boa.Constrictor.WebDriver
                 fileName = Path.GetFileNameWithoutExtension(fileName);
             }
             
-            // Create the output directory if it doesn't exist.
             if (!Directory.Exists(OutputDir))
             {
+                // Create the output directory if it doesn't exist.
                 actor.Logger.Debug($"Creating screenshot directory '{OutputDir}'");
                 Directory.CreateDirectory(OutputDir);
             }
@@ -120,7 +121,7 @@ namespace Boa.Constrictor.WebDriver
             // Capture and save the screenshot.
             string path = Path.Combine(OutputDir, $"{fileName}.{Format.ToString().ToLower()}");
             (driver as ITakesScreenshot).GetScreenshot().SaveAsFile(path, Format);
-            actor.Logger.Info($"Screen shot taken at: {path}");
+            actor.Logger.LogArtifact(ArtifactTypes.Screenshot, path);
 
             // Return the path to the screenshot image file.
             return path;
