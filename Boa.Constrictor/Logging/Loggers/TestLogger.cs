@@ -52,7 +52,7 @@ namespace Boa.Constrictor.Logging
 
         #endregion
 
-        #region Overridden Methods
+        #region Overridden Log Methods
 
         /// <summary>
         /// Closes the logger and writes the test log as a JSON file.
@@ -61,6 +61,18 @@ namespace Boa.Constrictor.Logging
         {
             var dumper = new JsonDumper("Test Log Dumper", TestLogDir, "TestLog");
             TestLogPath = dumper.Dump(Data);
+        }
+
+        /// <summary>
+        /// Logs an artifact.
+        /// The artifact must be saved to a file, like a screenshot image or a JSON dump.
+        /// </summary>
+        /// <param name="type">The name for the type of artifact.</param>
+        /// <param name="path">The file path to the artifact.</param>
+        public override void LogArtifact(string type, string path)
+        {
+            base.LogArtifact(type, path);
+            CurrentStep.AddArtifact(type, path);
         }
 
         /// <summary>
@@ -78,7 +90,7 @@ namespace Boa.Constrictor.Logging
 
         #endregion
 
-        #region New Methods
+        #region New Log Methods
 
         /// <summary>
         /// Logs a new step.
