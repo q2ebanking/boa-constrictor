@@ -106,6 +106,18 @@ namespace Boa.Constrictor.Logging
         }
 
         /// <summary>
+        /// Logs an artifact for each inner logger.
+        /// The artifact must be saved to a file, like a screenshot image or a JSON dump.
+        /// </summary>
+        /// <param name="type">The name for the type of artifact.</param>
+        /// <param name="path">The file path to the artifact.</param>
+        public override void LogArtifact(string type, string path)
+        {
+            foreach (ILogger logger in Loggers.Values)
+                logger.LogArtifact(type, path);
+        }
+
+        /// <summary>
         /// Logs a basic message to each inner logger.
         /// Lowest log severity is not considered.
         /// </summary>

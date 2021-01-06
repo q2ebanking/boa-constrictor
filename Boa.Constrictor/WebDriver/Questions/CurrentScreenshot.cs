@@ -121,7 +121,7 @@ namespace Boa.Constrictor.WebDriver
             // Capture and save the screenshot.
             string path = Path.Combine(OutputDir, $"{fileName}.{Format.ToString().ToLower()}");
             (driver as ITakesScreenshot).GetScreenshot().SaveAsFile(path, Format);
-            actor.Logger.LogArtifact(ArtifactTypes.Screenshot, path);
+            actor.Logger.LogArtifact(ArtifactTypes.Screenshots, path);
 
             // Return the path to the screenshot image file.
             return path;

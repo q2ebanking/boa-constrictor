@@ -9,16 +9,16 @@
         /// <summary>
         /// Artifact type for downloaded files.
         /// </summary>
-        public const string Download = "Download";
+        public const string Downloads = "Downloads";
 
         /// <summary>
         /// Artifact type for request data dump files.
         /// </summary>
-        public const string Request = "Request";
+        public const string Requests = "Requests";
 
         /// <summary>
         /// Artifact type for screenshot images.
         /// </summary>
-        public const string Screenshot = "Screenshot";
+        public const string Screenshots = "Screenshots";
     }
 }

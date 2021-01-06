@@ -85,7 +85,7 @@ namespace Boa.Constrictor.RestSharp
                 {
                     // Dump the file
                     string path = ability.DownloadDumper.Dump(fileBytes, fileExtension);
-                    actor.Logger.LogArtifact(ArtifactTypes.Request, path);
+                    actor.Logger.LogArtifact(ArtifactTypes.Downloads, path);
 
                     // Warn about blank file extensions
                     if (fileExtension == "")
@@ -131,7 +131,7 @@ namespace Boa.Constrictor.RestSharp
                 {
                     // Try to dump the request and the response
                     string path = ability.RequestDumper.Dump(ability.Client, Request, response, start, end);
-                    actor.Logger.LogArtifact(ArtifactTypes.Download, path);
+                    actor.Logger.LogArtifact(ArtifactTypes.Requests, path);
                 }
                 else
                 {

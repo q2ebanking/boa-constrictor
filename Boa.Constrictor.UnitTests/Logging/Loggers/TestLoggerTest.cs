@@ -78,13 +78,13 @@ namespace Boa.Constrictor.UnitTests.Logging
         public void DumpTestLogWithArtifacts()
         {
             Logger.LogStep("A");
-            Logger.LogArtifact(ArtifactTypes.Screenshot, "a1.png");
-            Logger.LogArtifact(ArtifactTypes.Screenshot, "a2.png");
-            Logger.LogArtifact(ArtifactTypes.Download, "downA.pdf");
+            Logger.LogArtifact(ArtifactTypes.Screenshots, "a1.png");
+            Logger.LogArtifact(ArtifactTypes.Screenshots, "a2.png");
+            Logger.LogArtifact(ArtifactTypes.Downloads, "downA.pdf");
             Logger.LogStep("B");
-            Logger.LogArtifact(ArtifactTypes.Screenshot, "b.png");
-            Logger.LogArtifact(ArtifactTypes.Download, "downB1.pdf");
-            Logger.LogArtifact(ArtifactTypes.Download, "downB2.pdf");
+            Logger.LogArtifact(ArtifactTypes.Screenshots, "b.png");
+            Logger.LogArtifact(ArtifactTypes.Downloads, "downB1.pdf");
+            Logger.LogArtifact(ArtifactTypes.Downloads, "downB2.pdf");
             Logger.Close();
 
             using var file = new StreamReader(Logger.TestLogPath);
@@ -99,11 +99,11 @@ namespace Boa.Constrictor.UnitTests.Logging
             data.Steps[0].Messages[1].Should().EndWith("Screenshot: a2.png");
             data.Steps[0].Messages[2].Should().EndWith("Download: downA.pdf");
             data.Steps[0].Artifacts.Count.Should().Be(2);
-            data.Steps[0].Artifacts[ArtifactTypes.Screenshot].Count.Should().Be(2);
-            data.Steps[0].Artifacts[ArtifactTypes.Screenshot][0].Should().Be("a1.png");
-            data.Steps[0].Artifacts[ArtifactTypes.Screenshot][1].Should().Be("a2.png");
-            data.Steps[0].Artifacts[ArtifactTypes.Download].Count.Should().Be(1);
-            data.Steps[0].Artifacts[ArtifactTypes.Download][0].Should().Be("downA.pdf");
+            data.Steps[0].Artifacts[ArtifactTypes.Screenshots].Count.Should().Be(2);
+            data.Steps[0].Artifacts[ArtifactTypes.Screenshots][0].Should().Be("a1.png");
+            data.Steps[0].Artifacts[ArtifactTypes.Screenshots][1].Should().Be("a2.png");
+            data.Steps[0].Artifacts[ArtifactTypes.Downloads].Count.Should().Be(1);
+            data.Steps[0].Artifacts[ArtifactTypes.Downloads][0].Should().Be("downA.pdf");
 
             data.Steps[1].Name.Should().Be("B");
             data.Steps[1].Messages.Count.Should().Be(3);
@@ -111,11 +111,11 @@ namespace Boa.Constrictor.UnitTests.Logging
             data.Steps[1].Messages[1].Should().EndWith("Download: downB1.pdf");
             data.Steps[1].Messages[2].Should().EndWith("Download: downB2.pdf");
             data.Steps[1].Artifacts.Count.Should().Be(2);
-            data.Steps[1].Artifacts[ArtifactTypes.Screenshot].Count.Should().Be(1);
-            data.Steps[1].Artifacts[ArtifactTypes.Screenshot][0].Should().Be("b.png");
-            data.Steps[1].Artifacts[ArtifactTypes.Download].Count.Should().Be(2);
-            data.Steps[1].Artifacts[ArtifactTypes.Download][0].Should().Be("downB1.pdf");
-            data.Steps[1].Artifacts[ArtifactTypes.Download][1].Should().Be("downB2.pdf");
+            data.Steps[1].Artifacts[ArtifactTypes.Screenshots].Count.Should().Be(1);
+            data.Steps[1].Artifacts[ArtifactTypes.Screenshots][0].Should().Be("b.png");
+            data.Steps[1].Artifacts[ArtifactTypes.Downloads].Count.Should().Be(2);
+            data.Steps[1].Artifacts[ArtifactTypes.Downloads][0].Should().Be("downB1.pdf");
+            data.Steps[1].Artifacts[ArtifactTypes.Downloads][1].Should().Be("downB2.pdf");
         }
 
         #endregion
