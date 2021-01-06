@@ -13,6 +13,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (None)
 
 
+## [0.8.0] - 2021-01-06
+
+### Added
+
+- Added `TestLogger` for dumping JSON files with test steps, messages, and test artifact files
+
+
 ## [0.7.0] - 2020-12-22
 
 ### Added
