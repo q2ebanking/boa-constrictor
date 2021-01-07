@@ -25,12 +25,12 @@ namespace Boa.Constrictor.Logging
         /// <summary>
         /// The test case data being logged.
         /// </summary>
-        private TestLogData Data { get; set; }
+        public TestLogData Data { get; private set; }
 
         /// <summary>
         /// The current step data object.
         /// </summary>
-        private StepArtifactData CurrentStep { get; set; }
+        public StepArtifactData CurrentStep { get; private set; }
 
         #endregion
 
@@ -48,6 +48,7 @@ namespace Boa.Constrictor.Logging
             TestLogDir = testLogDir;
             TestLogPath = null;
             Data = new TestLogData(testName);
+            CurrentStep = null;
         }
 
         #endregion
@@ -83,7 +84,7 @@ namespace Boa.Constrictor.Logging
         protected override void LogRaw(string message, LogSeverity severity = LogSeverity.Info)
         {
             if (CurrentStep == null)
-                throw new LoggingException("TestFileLogger does not have its first step");
+                throw new LoggingException("TestLogger does not have its first step");
 
             CurrentStep.Messages.Add(MessageFormat.StandardTimestamp(message, severity));
         }
@@ -91,6 +92,15 @@ namespace Boa.Constrictor.Logging
         #endregion
 
         #region New Log Methods
+
+        /// <summary>
+        /// Logs the test result.
+        /// </summary>
+        /// <param name="result">The test result.</param>
+        public void LogResult(string result)
+        {
+            Data.Result = result;
+        }
 
         /// <summary>
         /// Logs a new step.
