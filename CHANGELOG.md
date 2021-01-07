@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (None)
 
 
+## [0.8.1] - 2021-01-07
+
+### Changed
+
+- `TestLogData` now has a `Result` property for storing the test result
+- `TestLogData`'s properties are all now public to *get* but remain private to *set*
+- `TestLogger` now has a `LogResult` method for logging the test result
+
+
 ## [0.8.0] - 2021-01-06
 
 ### Added
