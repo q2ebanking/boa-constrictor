@@ -17,6 +17,13 @@ namespace Boa.Constrictor.Logging
         /// </summary>
         [JsonProperty]
         public string Name { get; private set; }
+        
+        /// <summary>
+        /// The test result.
+        /// This is a string value so that it may be free form.
+        /// </summary>
+        [JsonProperty]
+        public string Result { get; set; }
 
         /// <summary>
         /// The test steps.
@@ -43,6 +50,7 @@ namespace Boa.Constrictor.Logging
         public TestLogData(string name)
         {
             Name = name;
+            Result = null;
             Steps = new List<StepArtifactData>();
         }
 
