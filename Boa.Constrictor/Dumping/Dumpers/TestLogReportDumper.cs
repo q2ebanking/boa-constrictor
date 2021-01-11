@@ -64,11 +64,11 @@ namespace Boa.Constrictor.Dumping
             string background = "";
 
             if (lowerResult.Contains("pass") || lowerResult.Contains("success") || lowerResult.Contains("ok"))
-                background = " background-color: #B8F5B5;";
+                background = " background-color: #B8F5B5;";   // light green
             else if (lowerResult.Contains("fail") || lowerResult.Contains("error") || lowerResult.Contains("fatal"))
-                background = " background-color: #FFCCCB;";
+                background = " background-color: #FFCCCB;";   // light red
             else if (lowerResult.Contains("skip") || lowerResult.Contains("ignore"))
-                background = " background-color: #FFFFCC;";
+                background = " background-color: #FFFFCC;";   // light yellow
 
             return background;
         }
