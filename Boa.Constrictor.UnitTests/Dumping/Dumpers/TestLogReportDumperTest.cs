@@ -82,7 +82,6 @@ namespace Boa.Constrictor.UnitTests.Dumping
             test2.Steps.Add(t2step1);
             test2.Steps.Add(t2step2);
 
-
             // Create test 3
             var t3step1 = new StepArtifactData("Step 1");
             t3step1.Messages.Add("A");
