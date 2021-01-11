@@ -115,7 +115,7 @@ namespace Boa.Constrictor.Dumping
 
         /// <summary>
         /// Writes the HTML report using the given TestLogData objects.
-        /// Returns the report file's file's path.
+        /// Returns the report file's file path.
         /// </summary>
         /// <param name="logs">A list of log data objects.</param>
         /// <param name="relativePath">If provided, overwrites artifact absolute paths with this relative path.</param>
