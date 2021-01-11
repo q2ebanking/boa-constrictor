@@ -36,6 +36,11 @@ namespace Boa.Constrictor.Dumping
         }
 
         /// <summary>
+        /// The token for the file name.
+        /// </summary>
+        public string FileToken { get; private set; }
+
+        /// <summary>
         /// A descriptive name for the dumper.
         /// </summary>
         public string Name { get; private set; }
@@ -49,10 +54,12 @@ namespace Boa.Constrictor.Dumping
         /// </summary>
         /// <param name="name">A descriptive name for the dumper.</param>
         /// <param name="dumpDir">The output directory for dumped files.</param>
-        public AbstractDumper(string name, string dumpDir)
+        /// <param name="fileToken">The token for the file name.</param>
+        public AbstractDumper(string name, string dumpDir, string fileToken)
         {
             Name = name;
             DumpDir = dumpDir;
+            FileToken = fileToken;
         }
 
         #endregion
@@ -62,13 +69,12 @@ namespace Boa.Constrictor.Dumping
         /// <summary>
         /// Concatenates the dump file path.
         /// </summary>
-        /// <param name="token">The token name for the file.</param>
         /// <param name="extension">The file extension. (blank by default)</param>
         /// <param name="suffix">An optional suffix for the filename.</param>
         /// <returns></returns>
-        protected string GetDumpFilePath(string token, string extension = "", string suffix = null)
+        protected string GetDumpFilePath(string extension = "", string suffix = null)
         {
-            string name = Names.ConcatUniqueName(token, suffix) + extension;
+            string name = Names.ConcatUniqueName(FileToken, suffix) + extension;
             string path = Path.Combine(DumpDir, name);
 
             return path;

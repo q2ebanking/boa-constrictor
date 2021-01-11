@@ -7,15 +7,6 @@ namespace Boa.Constrictor.Dumping
     /// </summary>
     public class ByteDumper : AbstractDumper
     {
-        #region Properties
-
-        /// <summary>
-        /// The token for the file name.
-        /// </summary>
-        public string FileToken { get; private set; }
-
-        #endregion
-
         #region Constructors
 
         /// <summary>
@@ -25,7 +16,8 @@ namespace Boa.Constrictor.Dumping
         /// <param name="dumpDir">The output directory for dumping requests and responses.</param>
         /// <param name="fileToken">The token for the file name.</param>
         public ByteDumper(string name, string dumpDir, string fileToken) :
-            base(name, dumpDir) => FileToken = fileToken;
+            base(name, dumpDir, fileToken)
+        { }
 
         #endregion
 
@@ -45,7 +37,7 @@ namespace Boa.Constrictor.Dumping
                 throw new DumpingException($"Dumper \"{Name}\" cannot dump null data");
 
             // Get the path for the file
-            string path = GetDumpFilePath(FileToken, extension);
+            string path = GetDumpFilePath(extension);
 
             // Write the file
             File.WriteAllBytes(path, data);
