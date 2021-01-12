@@ -13,6 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (None)
 
 
+## [0.8.2] - 2021-01-11
+
+### Added
+
+- Added `TestLogReportDumper` to combine `TestLogData` objects into one pretty HTML report
+- Refactored `AbstractDumper` to share more parts
+
+
 ## [0.8.1] - 2021-01-07
 
 ### Changed

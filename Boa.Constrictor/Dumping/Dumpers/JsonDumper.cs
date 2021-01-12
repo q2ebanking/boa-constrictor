@@ -17,15 +17,6 @@ namespace Boa.Constrictor.Dumping
 
         #endregion
 
-        #region Properties
-
-        /// <summary>
-        /// The token for the file name.
-        /// </summary>
-        public string FileToken { get; private set; }
-
-        #endregion
-
         #region Constructors
 
         /// <summary>
@@ -35,7 +26,8 @@ namespace Boa.Constrictor.Dumping
         /// <param name="dumpDir">The output directory for dumping requests and responses.</param>
         /// <param name="fileToken">The token for the file name.</param>
         public JsonDumper(string name, string dumpDir, string fileToken) :
-            base(name, dumpDir) => FileToken = fileToken;
+            base(name, dumpDir, fileToken)
+        { }
 
         #endregion
 
@@ -50,7 +42,7 @@ namespace Boa.Constrictor.Dumping
         public string Dump(object jsonData)
         {
             // Get the path for the file
-            string path = GetDumpFilePath(FileToken, JsonExtension);
+            string path = GetDumpFilePath(JsonExtension);
 
             // Write the JSON file
             using (var file = new StreamWriter(path))
