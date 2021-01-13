@@ -13,6 +13,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (None)
 
 
+## [0.8.3] - 2021-01-13
+
+### Fixed
+
+- Removed "file:" from screenshot and artifact relative links in the test log report HTML file
+
+
 ## [0.8.2] - 2021-01-11
 
 ### Added
