@@ -88,7 +88,7 @@ namespace Boa.Constrictor.Dumping
 
             if (!Path.IsPathRooted(absolute))
             {
-                newPath = "file:" + absolute;
+                newPath = absolute;
             }
             else if (string.IsNullOrWhiteSpace(relative))
             {
@@ -103,7 +103,7 @@ namespace Boa.Constrictor.Dumping
                 Uri relativeUri = new Uri(relative);
                 Uri newUri = relativeUri.MakeRelativeUri(absoluteUri);
 
-                newPath = "file:" + newUri.ToString();
+                newPath = newUri.ToString();
             }
 
             return newPath;
