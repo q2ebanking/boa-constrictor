@@ -13,6 +13,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (None)
 
 
+## [0.9.0] - 2021-01-15
+
+### Added
+
+- Added .NET 5 support!
+  - `Boa.Constrictor` targets both .NET 5 and .NET Standard 2.0
+  - `Boa.Constrictor.Example` targets .NET 5 exclusively
+  - `Boa.Constrictor.UnitTests` targets .NET 5 exclusively
+
+
 ## [0.8.3] - 2021-01-13
 
 ### Fixed
