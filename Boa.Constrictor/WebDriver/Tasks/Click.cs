@@ -41,7 +41,7 @@ namespace Boa.Constrictor.WebDriver
         /// <param name="driver">The WebDriver.</param>
         public override void PerformAs(IActor actor, IWebDriver driver)
         {
-            actor.AttemptsTo(Wait.Until(Appearance.Of(Locator), IsEqualTo.True()));
+            actor.WaitsUntil(Appearance.Of(Locator), IsEqualTo.True());
             new Actions(driver).MoveToElement(driver.FindElement(Locator.Query)).Click().Perform();
         }
 

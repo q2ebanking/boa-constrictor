@@ -131,6 +131,21 @@ namespace Boa.Constrictor.UnitTests.Logging
                 }
             }
 
+            [Test]
+            public void LogArtifact()
+            {
+                const string type = "Screenshot";
+                const string path = "path/to/screen.png";
+                Logger.LogArtifact(type, path);
+
+                for (int i = 1; i <= LoggerCount; i++)
+                {
+                    ListLogger lister = (ListLogger)Logger.Get(i.ToString());
+                    lister.Messages.Count.Should().Be(1);
+                    lister.Messages[0].Should().MatchRegex(MessageFormatTest.TimePattern).And.EndWith($"[INFO] {type}: {path}");
+                }
+            }
+
             [TestCase("Trace")]
             [TestCase("Debug")]
             [TestCase("Info")]

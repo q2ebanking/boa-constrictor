@@ -85,7 +85,7 @@ namespace Boa.Constrictor.WebDriver
             // If a locator is given, get the element and make it the first argument
             if (Locator != null)
             {
-                actor.AttemptsTo(Wait.Until(Existence.Of(Locator), IsEqualTo.True()));
+                actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
                 var e = driver.FindElement(Locator.Query);
 
                 IList<object> tempList = Args.ToList();

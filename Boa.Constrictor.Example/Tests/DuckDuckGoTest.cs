@@ -30,7 +30,7 @@ namespace Boa.Constrictor.Example
             Actor.AttemptsTo(Navigate.ToUrl(SearchPage.Url));
             Actor.AskingFor(ValueAttribute.Of(SearchPage.SearchInput)).Should().BeEmpty();
             Actor.AttemptsTo(SearchDuckDuckGo.For("panda"));
-            Actor.AttemptsTo(Wait.Until(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True()));
+            Actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
         }
     }
 }

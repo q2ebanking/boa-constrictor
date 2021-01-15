@@ -1,16 +1,24 @@
-﻿using Boa.Constrictor.Screenplay;
-using RestSharp;
-using System;
-using System.Collections.Generic;
+﻿using Boa.Constrictor.Dumping;
 
 namespace Boa.Constrictor.RestSharp
 {
     /// <summary>
-    /// Enables the actor to make REST API service calls using RestSharp.
-    /// It holds a RestClient object per base URL.
-    /// Each RestClient is given a CookieContainer.
+    /// The "default" RestSharp ability.
+    /// Enables the actor to make REST API calls using RestSharp.
+    /// It constructs and holds one RestSharp client for the given base URL.
+    /// This ability also holds dumpers for requests/responses and downloaded files.
+    /// If dumpers are null, then no dumping is performed.
+    /// This ability also handles adding and retrieving cookies.
+    /// 
+    /// To use more than one RestSharp client, create subclasses of AbstractRestSharpAbility,
+    /// or implement the IRestSharpAbility interface.
+    /// Do not make subclasses of CallRestApi, or else static builders will break.
+    /// The subclass will bear a unique type.
+    /// Then, the Actor can use that subclass as a new type of ability for lookup.
+    /// RestSharp interactions without type generics use the CallRestApi ability,
+    /// while interactions with type generics will use the given ability by type.
     /// </summary>
-    public class CallRestApi : IAbility
+    public class CallRestApi : AbstractRestSharpAbility
     {
         #region Constructors
 
@@ -18,22 +26,8 @@ namespace Boa.Constrictor.RestSharp
         /// Private constructor.
         /// (Use the static methods for public construction.)
         /// </summary>
-        private CallRestApi() => Clients = new Dictionary<string, IRestClient>();
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// The available REST clients.
-        /// The keys are the base URLs.
-        /// </summary>
-        private IDictionary<string, IRestClient> Clients { get; }
-
-        /// <summary>
-        /// The base URLs for the available REST clients.
-        /// </summary>
-        public ICollection<string> BaseUrls => Clients.Keys;
+        /// <param name="baseUrl">The base URL for the RestSharp client.</param>
+        protected CallRestApi(string baseUrl) : base(baseUrl) { }
 
         #endregion
 
@@ -41,73 +35,33 @@ namespace Boa.Constrictor.RestSharp
 
         /// <summary>
         /// Constructs this ability.
-        /// Initially, no REST API clients are available.
-        /// They must be added.
         /// </summary>
+        /// <param name="baseUrl">The base URL for the RestSharp client.</param>
         /// <returns></returns>
-        public static CallRestApi UsingRestSharp() => new CallRestApi();
-
-        #endregion
-
-        #region Methods
+        public static CallRestApi At(string baseUrl) => new CallRestApi(baseUrl);
 
         /// <summary>
-        /// Adds a REST client for the given base URL.
-        /// The client will be given a CookieContainer.
-        /// If a client already exists for the base URL, then it is overwritten.
+        /// Sets the ability to dump requests/responses to the given path.
         /// </summary>
-        /// <param name="baseUrl">The REST client's base URL.</param>
-        public void AddClient(string baseUrl)
+        /// <param name="dumpDir">The dump directory path.</param>
+        /// <param name="fileToken">The file token.</param>
+        /// <returns></returns>
+        public CallRestApi DumpingRequestsTo(string dumpDir, string fileToken = "Request")
         {
-            IRestClient client = new RestClient()
-            {
-                BaseUrl = new Uri(baseUrl),
-                CookieContainer = new System.Net.CookieContainer()
-            };
-
-            Clients.Add(baseUrl, client);
+            RequestDumper = new RequestDumper("REST Request Dumper", dumpDir, fileToken);
+            return this;
         }
 
         /// <summary>
-        /// Gets a REST client by its base URL.
-        /// Optionally can create a client for the base URL if one does not already exist.
-        /// Throws a RestApiException if no client exists and one should not be created.
+        /// Sets the ability to dump requests/responses to the given path.
         /// </summary>
-        /// <param name="baseUrl">The REST client's base URL.</param>
-        /// <param name="addIfMissing">If true, add a new client for the base URL if one does not already exists.</param>
+        /// <param name="dumpDir">The dump directory path.</param>
+        /// <param name="fileToken">The file token.</param>
         /// <returns></returns>
-        public IRestClient GetClient(string baseUrl, bool addIfMissing = true)
+        public CallRestApi DumpingDownloadsTo(string dumpDir, string fileToken = "Download")
         {
-            if (!HasClient(baseUrl))
-            {
-                if (addIfMissing)
-                    AddClient(baseUrl);
-                else
-                    throw new RestApiException($"Ability '{GetType()}' does not contain a REST client with the base URL '{baseUrl}'");
-            }
-
-            return Clients[baseUrl];
-        }
-
-        /// <summary>
-        /// Checks if this ability has a REST client for the given base URL.
-        /// </summary>
-        /// <param name="baseUrl">The REST client's base URL.</param>
-        /// <returns></returns>
-        public bool HasClient(string baseUrl) => Clients.ContainsKey(baseUrl);
-
-        /// <summary>
-        /// Returns a description of this ability.
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            string message = "call REST APIs";
-
-            if (Clients.Keys.Count > 0)
-                message += $" at {string.Join(", ", Clients.Keys)}";
-
-            return message;
+            DownloadDumper = new ByteDumper("REST Download Dumper", dumpDir, fileToken);
+            return this;
         }
 
         #endregion

@@ -61,11 +61,19 @@ namespace Boa.Constrictor.UnitTests.Logging
         [Test]
         public void Close()
         {
-            using (var output = new ConsoleOutput())
-            {
-                Logger.Close();
-                output.GetOutput().Trim().Should().Be("");
-            }
+            using var output = new ConsoleOutput();
+            Logger.Close();
+            output.GetOutput().Trim().Should().Be("");
+        }
+
+        [Test]
+        public void LogArtifact()
+        {
+            using var output = new ConsoleOutput();
+            const string type = "Screenshot";
+            const string path = "path/to/screen.png";
+            Logger.LogArtifact(type, path);
+            output.GetOutput().Trim().Should().MatchRegex(MessageFormatTest.TimePattern).And.EndWith($"[INFO] {type}: {path}");
         }
 
         [TestCase("Trace")]
@@ -76,12 +84,10 @@ namespace Boa.Constrictor.UnitTests.Logging
         [TestCase("Fatal")]
         public void LogByLevel(string level)
         {
-            using (var output = new ConsoleOutput())
-            {
-                const string message = "Message text!";
-                Logger.GetType().GetMethod(level).Invoke(Logger, new object[] { message });
-                output.GetOutput().Trim().Should().MatchRegex(MessageFormatTest.TimePattern).And.EndWith($"[{level.ToUpper()}] {message}");
-            }
+            using var output = new ConsoleOutput();
+            const string message = "Message text!";
+            Logger.GetType().GetMethod(level).Invoke(Logger, new object[] { message });
+            output.GetOutput().Trim().Should().MatchRegex(MessageFormatTest.TimePattern).And.EndWith($"[{level.ToUpper()}] {message}");
         }
 
         [TestCase("Info")]
@@ -90,13 +96,11 @@ namespace Boa.Constrictor.UnitTests.Logging
         [TestCase("Fatal")]
         public void LowestSeverityLogged(string level)
         {
-            using (var output = new ConsoleOutput())
-            {
-                const string message = "Message text!";
-                Logger.LowestSeverity = LogSeverity.Info;
-                Logger.GetType().GetMethod(level).Invoke(Logger, new object[] { message });
-                output.GetOutput().Trim().Should().MatchRegex(MessageFormatTest.TimePattern).And.EndWith($"[{level.ToUpper()}] {message}");
-            }
+            using var output = new ConsoleOutput();
+            const string message = "Message text!";
+            Logger.LowestSeverity = LogSeverity.Info;
+            Logger.GetType().GetMethod(level).Invoke(Logger, new object[] { message });
+            output.GetOutput().Trim().Should().MatchRegex(MessageFormatTest.TimePattern).And.EndWith($"[{level.ToUpper()}] {message}");
         }
 
         [TestCase("Trace")]
@@ -106,13 +110,11 @@ namespace Boa.Constrictor.UnitTests.Logging
         [TestCase("Error")]
         public void LowestSeverityBlocked(string level)
         {
-            using (var output = new ConsoleOutput())
-            {
-                const string message = "Message text!";
-                Logger.LowestSeverity = LogSeverity.Fatal;
-                Logger.GetType().GetMethod(level).Invoke(Logger, new object[] { message });
-                output.GetOutput().Trim().Should().BeEmpty();
-            }
+            using var output = new ConsoleOutput();
+            const string message = "Message text!";
+            Logger.LowestSeverity = LogSeverity.Fatal;
+            Logger.GetType().GetMethod(level).Invoke(Logger, new object[] { message });
+            output.GetOutput().Trim().Should().BeEmpty();
         }
 
         #endregion
