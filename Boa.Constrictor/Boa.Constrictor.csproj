@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
-    <Version>0.8.3</Version>
+    <Version>0.9.0</Version>
     <Authors>Andrew "Pandy" Knight,Andrew Williams,Steve Hernandez</Authors>
     <Company>PrecisionLender, a Q2 Company</Company>
     <Title>Boa Constrictor</Title>
