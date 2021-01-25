@@ -6,7 +6,7 @@ namespace Boa.Constrictor.WebDriver
     /// <summary>
     /// Gets a web element's HTML attribute by name.
     /// </summary>
-    public class HtmlAttribute : AbstractWebPropertyQuestion
+    public class HtmlAttribute : AbstractWebPropertyQuestion<string>
     {
         #region Constructors
 

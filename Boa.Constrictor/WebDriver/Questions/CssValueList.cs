@@ -1,12 +1,13 @@
-﻿using OpenQA.Selenium;
-using System;
+﻿using Boa.Constrictor.Screenplay;
+using OpenQA.Selenium;
+using System.Collections.Generic;
 
 namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
     /// Gets web elements' CSS values by property name.
     /// </summary>
-    public class CssValueList : AbstractWebPropertyListQuestion
+    public class CssValueList : AbstractWebPropertyQuestion<IEnumerable<string>>
     {
         #region Constructors
 
@@ -16,16 +17,7 @@ namespace Boa.Constrictor.WebDriver
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
         /// <param name="propertyName">The attribute name.</param>
-        protected CssValueList(IWebLocator locator, string propertyName) : base(locator, propertyName) { }
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// Retrieves the Web element's CSS value by name.
-        /// </summary>
-        protected override Func<IWebElement, string> Retrieval => e => e.GetCssValue(PropertyName);
+        private CssValueList(IWebLocator locator, string propertyName) : base(locator, propertyName) { }
 
         #endregion
 
@@ -37,7 +29,20 @@ namespace Boa.Constrictor.WebDriver
         /// <param name="locator">The target Web element's locator.</param>
         /// <param name="named">The attribute name.</param>
         /// <returns></returns>
-        public static CssValueList For(IWebLocator locator, string named) => new CssValueList(locator, named);
+        public static CssValueList Of(IWebLocator locator, string named) => new CssValueList(locator, named);
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Gets web elements' CSS values by property name.
+        /// </summary>
+        /// <param name="actor">The actor.</param>
+        /// <param name="driver">The WebDriver.</param>
+        /// <returns></returns>
+        public override IEnumerable<string> RequestAs(IActor actor, IWebDriver driver) =>
+            ElementLists.GetValues(actor, driver, Locator, e => e.GetCssValue(PropertyName));
 
         #endregion
     }

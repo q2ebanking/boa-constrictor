@@ -6,7 +6,7 @@ namespace Boa.Constrictor.WebDriver
     /// <summary>
     /// Gets a web element's CSS value by property name.
     /// </summary>
-    public class CssValue : AbstractWebPropertyQuestion
+    public class CssValue : AbstractWebPropertyQuestion<string>
     {
         #region Constructors
 

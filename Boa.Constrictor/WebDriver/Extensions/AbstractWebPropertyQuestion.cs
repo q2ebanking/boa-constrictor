@@ -3,7 +3,7 @@
     /// <summary>
     /// Abstract class for any Web questions that use a Web element locator and a property name.
     /// </summary>
-    public abstract class AbstractWebPropertyQuestion : AbstractWebLocatorQuestion<string>
+    public abstract class AbstractWebPropertyQuestion<TAnswer> : AbstractWebLocatorQuestion<TAnswer>
     {
         #region Constructors
 

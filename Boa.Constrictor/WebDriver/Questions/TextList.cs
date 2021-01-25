@@ -1,12 +1,13 @@
-﻿using OpenQA.Selenium;
-using System;
+﻿using Boa.Constrictor.Screenplay;
+using OpenQA.Selenium;
+using System.Collections.Generic;
 
 namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
     /// Gets a list of Web elements' text values.
     /// </summary>
-    public class TextList : AbstractWebLocatorListQuestion
+    public class TextList : AbstractWebLocatorQuestion<IEnumerable<string>>
     {
         #region Constructors
 
@@ -19,15 +20,6 @@ namespace Boa.Constrictor.WebDriver
 
         #endregion
 
-        #region Properties
-
-        /// <summary>
-        /// Retrieves the Web element's text.
-        /// </summary>
-        protected override Func<IWebElement, string> Retrieval => e => e.Text;
-
-        #endregion
-
         #region Builder Methods
 
         /// <summary>
@@ -36,6 +28,19 @@ namespace Boa.Constrictor.WebDriver
         /// <param name="locator">The target Web element's locator.</param>
         /// <returns></returns>
         public static TextList For(IWebLocator locator) => new TextList(locator);
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Gets the Web element's text.
+        /// </summary>
+        /// <param name="actor">The actor.</param>
+        /// <param name="driver">The WebDriver.</param>
+        /// <returns></returns>
+        public override IEnumerable<string> RequestAs(IActor actor, IWebDriver driver) =>
+            ElementLists.GetValues(actor, driver, Locator, e => e.Text);
 
         #endregion
     }
