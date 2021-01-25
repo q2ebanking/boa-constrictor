@@ -4,9 +4,9 @@ using System;
 namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
-    /// Gets a list of Web elements' text values.
+    /// Gets web elements' CSS values by property name.
     /// </summary>
-    public class TextList : AbstractWebLocatorListQuestion
+    public class CssValueList : AbstractWebPropertyListQuestion
     {
         #region Constructors
 
@@ -15,16 +15,17 @@ namespace Boa.Constrictor.WebDriver
         /// (Use static methods for public construction.)
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
-        private TextList(IWebLocator locator) : base(locator) { }
+        /// <param name="propertyName">The attribute name.</param>
+        protected CssValueList(IWebLocator locator, string propertyName) : base(locator, propertyName) { }
 
         #endregion
 
         #region Properties
 
         /// <summary>
-        /// Retrieves the Web element's text.
+        /// Retrieves the Web element's CSS value by name.
         /// </summary>
-        protected override Func<IWebElement, string> Retrieval => e => e.Text;
+        protected override Func<IWebElement, string> Retrieval => e => e.GetCssValue(PropertyName);
 
         #endregion
 
@@ -34,8 +35,9 @@ namespace Boa.Constrictor.WebDriver
         /// Constructs the question.
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
+        /// <param name="named">The attribute name.</param>
         /// <returns></returns>
-        public static TextList For(IWebLocator locator) => new TextList(locator);
+        public static CssValueList For(IWebLocator locator, string named) => new CssValueList(locator, named);
 
         #endregion
     }
