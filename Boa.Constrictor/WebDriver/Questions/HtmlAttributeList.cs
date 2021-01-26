@@ -1,12 +1,13 @@
 ﻿using Boa.Constrictor.Screenplay;
 using OpenQA.Selenium;
+using System.Collections.Generic;
 
 namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
-    /// Gets a web element's CSS value by property name.
+    /// Gets web elements' HTML attributes by name.
     /// </summary>
-    public class CssValue : AbstractWebPropertyQuestion<string>
+    public class HtmlAttributeList : AbstractWebPropertyQuestion<IEnumerable<string>>
     {
         #region Constructors
 
@@ -16,37 +17,33 @@ namespace Boa.Constrictor.WebDriver
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
         /// <param name="propertyName">The attribute name.</param>
-        private CssValue(IWebLocator locator, string propertyName) : base(locator, propertyName) { }
+        protected HtmlAttributeList(IWebLocator locator, string propertyName) : base(locator, propertyName) { }
 
         #endregion
-        
+
         #region Builder Methods
 
         /// <summary>
         /// Constructs the question.
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
-        /// <param name="named">The property name.</param>
+        /// <param name="named">The attribute name.</param>
         /// <returns></returns>
-        public static CssValue Of(IWebLocator locator, string named) =>
-            new CssValue(locator, named);
+        public static HtmlAttributeList For(IWebLocator locator, string named) => new HtmlAttributeList(locator, named);
 
         #endregion
 
         #region Methods
 
         /// <summary>
-        /// Gets a web element's CSS value by property name.
+        /// Gets web elements' HTML attributes by name.
         /// </summary>
         /// <param name="actor">The actor.</param>
         /// <param name="driver">The WebDriver.</param>
         /// <returns></returns>
-        public override string RequestAs(IActor actor, IWebDriver driver)
-        {
-            actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
-            return driver.FindElement(Locator.Query).GetCssValue(PropertyName);
-        }
-        
+        public override IEnumerable<string> RequestAs(IActor actor, IWebDriver driver) =>
+            ElementLists.GetValues(actor, driver, Locator, e => e.GetAttribute(PropertyName));
+
         #endregion
     }
 }

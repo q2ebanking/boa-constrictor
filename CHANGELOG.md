@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (None)
 
 
+## [0.10.0] - 2021-01-26
+
+### Added
+
+- Added several new Questions to return lists of requested string values from multiple elements found by a locator
+- Additions include `CssValueList`, `HtmlAttributeList`, `IdAttributeList`
+- New Questions (and existing `TextList`) implement new extension `ElementLists.GetValues()`
+
+
 ## [0.9.0] - 2021-01-15
 
 ### Added

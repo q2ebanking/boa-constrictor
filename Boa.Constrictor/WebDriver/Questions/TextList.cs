@@ -1,7 +1,6 @@
 ﻿using Boa.Constrictor.Screenplay;
 using OpenQA.Selenium;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Boa.Constrictor.WebDriver
 {
@@ -40,15 +39,8 @@ namespace Boa.Constrictor.WebDriver
         /// <param name="actor">The actor.</param>
         /// <param name="driver">The WebDriver.</param>
         /// <returns></returns>
-        public override IEnumerable<string> RequestAs(IActor actor, IWebDriver driver)
-        {
-            actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
-            var elements = driver.FindElements(Locator.Query);
-            var strings = from e in elements select e.Text;
-
-            // ToList() will avoid lazy evaluation
-            return strings.ToList();
-        }
+        public override IEnumerable<string> RequestAs(IActor actor, IWebDriver driver) =>
+            ElementLists.GetValues(actor, driver, Locator, e => e.Text);
 
         #endregion
     }

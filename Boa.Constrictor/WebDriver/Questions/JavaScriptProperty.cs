@@ -6,7 +6,7 @@ namespace Boa.Constrictor.WebDriver
     /// <summary>
     /// Gets a web element's JavaScript property value.
     /// </summary>
-    public class JavaScriptProperty : AbstractWebPropertyQuestion
+    public class JavaScriptProperty : AbstractWebPropertyQuestion<string>
     {
         #region Constructors
 
