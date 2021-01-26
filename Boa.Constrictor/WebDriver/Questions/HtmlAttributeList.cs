@@ -29,7 +29,7 @@ namespace Boa.Constrictor.WebDriver
         /// <param name="locator">The target Web element's locator.</param>
         /// <param name="named">The attribute name.</param>
         /// <returns></returns>
-        public static HtmlAttributeList Of(IWebLocator locator, string named) => new HtmlAttributeList(locator, named);
+        public static HtmlAttributeList For(IWebLocator locator, string named) => new HtmlAttributeList(locator, named);
 
         #endregion
 

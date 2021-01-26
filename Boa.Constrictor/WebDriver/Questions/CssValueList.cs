@@ -29,7 +29,7 @@ namespace Boa.Constrictor.WebDriver
         /// <param name="locator">The target Web element's locator.</param>
         /// <param name="named">The attribute name.</param>
         /// <returns></returns>
-        public static CssValueList Of(IWebLocator locator, string named) => new CssValueList(locator, named);
+        public static CssValueList For(IWebLocator locator, string named) => new CssValueList(locator, named);
 
         #endregion
 

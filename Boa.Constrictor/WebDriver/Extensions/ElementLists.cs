@@ -16,7 +16,7 @@ namespace Boa.Constrictor.WebDriver
         /// </summary>
         /// <param name="actor">The Screenplay actor.</param>
         /// <param name="driver">The Selenium web driver.</param>
-        /// <param name="locator">Locator used to find Web elements</param>
+        /// <param name="locator">Locator used to find Web elements.</param>
         /// <param name="getValue">The method used to obtain the desired value from each Web element.</param>
         /// <returns>A list of string values from each Web element found.</returns>
         public static IEnumerable<string> GetValues(IActor actor, IWebDriver driver, IWebLocator locator, Func<IWebElement, string> getValue)
