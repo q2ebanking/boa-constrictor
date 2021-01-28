@@ -10,6 +10,14 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
+        /// Convenient builder method for constructing WebLocator objects for IDs.
+        /// </summary>
+        /// <param name="id">The target element ID.</param>
+        /// <returns></returns>
+        public static WebLocator Id(string id) =>
+            new WebLocator($"ID for \"{id}\"", By.Id(id));
+
+        /// <summary>
         /// Convenient builder method for constructing WebLocator objects without too much text.
         /// </summary>
         /// <param name="description">Plain-language description of the Web element (used for logging).</param>
