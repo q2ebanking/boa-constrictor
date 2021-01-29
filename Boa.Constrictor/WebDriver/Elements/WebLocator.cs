@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 
 namespace Boa.Constrictor.WebDriver
 {
@@ -74,6 +76,23 @@ namespace Boa.Constrictor.WebDriver
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Checks if this locator is equal to another locator.
+        /// </summary>
+        /// <param name="obj">The other object.</param>
+        /// <returns></returns>
+        public override bool Equals(object obj) =>
+            obj is WebLocator locator &&
+            Description == locator.Description &&
+            EqualityComparer<By>.Default.Equals(Query, locator.Query);
+
+        /// <summary>
+        /// Gets a unique hash code for the locator.
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode() => 
+            HashCode.Combine(GetType(), Description, Query);
 
         /// <summary>
         /// Returns a string representation of the object.
