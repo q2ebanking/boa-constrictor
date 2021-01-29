@@ -33,10 +33,18 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         }
 
         [Test]
-        public void Equals_False_Query()
+        public void Equals_False_QueryValue()
         {
             var a = new WebLocator("hello", By.Id("moto"));
             var b = new WebLocator("hello", By.Id("goodbye"));
+            a.Equals(b).Should().BeFalse();
+        }
+
+        [Test]
+        public void Equals_False_QueryType()
+        {
+            var a = new WebLocator("hello", By.Id("moto"));
+            var b = new WebLocator("hello", By.CssSelector("moto"));
             a.Equals(b).Should().BeFalse();
         }
 
@@ -71,10 +79,20 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         }
 
         [Test]
-        public void GetHashCode_Different_Query()
+        public void GetHashCode_Different_QueryValue()
         {
             var a = new WebLocator("hello", By.Id("moto"));
             var b = new WebLocator("hello", By.Id("goodbye"));
+            int codeA = a.GetHashCode();
+            int codeB = b.GetHashCode();
+            codeA.Should().NotBe(codeB);
+        }
+
+        [Test]
+        public void GetHashCode_Different_QueryType()
+        {
+            var a = new WebLocator("hello", By.Id("moto"));
+            var b = new WebLocator("hello", By.CssSelector("moto"));
             int codeA = a.GetHashCode();
             int codeB = b.GetHashCode();
             codeA.Should().NotBe(codeB);
