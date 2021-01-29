@@ -46,4 +46,31 @@ namespace Boa.Constrictor.WebDriver
 
         #endregion
     }
+
+    /// <summary>
+    /// Gets a list of Web elements' id values.
+    /// Useful when working with a group of Web elements whose ids are unique, but not consistent.
+    /// </summary>
+    public static class IdAttributeList
+    {
+        #region Constants
+
+        /// <summary>
+        /// The "id" attribute name.
+        /// </summary>
+        public const string Id = "id";
+
+        #endregion
+
+        #region Builder Methods
+
+        /// <summary>
+        /// Constructs a HtmlAttributeList question for the "id" attribute.
+        /// </summary>
+        /// <param name="locator">The target Web element's locator.</param>
+        /// <returns></returns>
+        public static HtmlAttributeList For(IWebLocator locator) => HtmlAttributeList.For(locator, Id);
+
+        #endregion
+    }
 }
