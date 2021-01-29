@@ -102,6 +102,22 @@ namespace Boa.Constrictor.WebDriver
         }
 
         /// <summary>
+        /// Gets a unique hash code for this interaction.
+        /// </summary>
+        /// <returns></returns>
+        public override bool Equals(object obj) =>
+            obj is SystemNetCookie cookie &&
+            CookieName == cookie.CookieName &&
+            Expiration == cookie.Expiration;
+
+        /// <summary>
+        /// Returns a description of the question.
+        /// The script and the arguments will be printed during execution.
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode() => HashCode.Combine(CookieName, Expiration);
+
+        /// <summary>
         /// Returns a description of the question.
         /// </summary>
         /// <returns></returns>
