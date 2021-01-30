@@ -13,11 +13,11 @@ namespace Boa.Constrictor.UnitTests.WebDriver
     {
         #region Interactions
 
-        static readonly IWebLocator LocatorA = L("hello", By.Id("moto"));
-        static readonly IWebLocator LocatorA1 = L("hello", By.Id("moto"));
-        static readonly IWebLocator LocatorB = L("hello", By.Id("goodbye"));
+        private static readonly IWebLocator LocatorA = L("hello", By.Id("moto"));
+        private static readonly IWebLocator LocatorA1 = L("hello", By.Id("moto"));
+        private static readonly IWebLocator LocatorB = L("hello", By.Id("goodbye"));
 
-        static readonly object[] SameInteractions =
+        private static readonly object[] SameInteractions =
         {
             // The interaction object must be duplicated to prove that two separate instances may be equal to each other.
 
@@ -58,7 +58,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
             new object[] { WindowHandle.At(1), WindowHandle.At(1) },
         };
 
-        static readonly object[] DifferentInteractions =
+        private static readonly object[] DifferentInteractions =
         {
             new object[] { AlertPresence.InBrowser(), Title.OfPage() },
             new object[] { Appearance.Of(LocatorA), Title.OfPage() },
