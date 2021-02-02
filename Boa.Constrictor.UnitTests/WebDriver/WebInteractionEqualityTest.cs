@@ -4,12 +4,13 @@ using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
+using System.Text.RegularExpressions;
 using static Boa.Constrictor.WebDriver.WebLocator;
 
 namespace Boa.Constrictor.UnitTests.WebDriver
 {
     [TestFixture]
-    public class WebQuestionEqualityTest
+    public class WebInteractionEqualityTest
     {
         #region Interactions
 
@@ -20,6 +21,8 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         private static readonly object[] SameInteractions =
         {
             // The interaction object must be duplicated to prove that two separate instances may be equal to each other.
+
+            // Questions
 
             new object[] { AlertPresence.InBrowser(), AlertPresence.InBrowser() },
             new object[] { Appearance.Of(LocatorA), Appearance.Of(LocatorA1) },
@@ -56,10 +59,53 @@ namespace Boa.Constrictor.UnitTests.WebDriver
             new object[] { TextList.For(LocatorA), TextList.For(LocatorA1) },
             new object[] { Title.OfPage(), Title.OfPage() },
             new object[] { WindowHandle.At(1), WindowHandle.At(1) },
+
+            // Tasks
+            
+            new object[] { AcceptAlert.IfItExists(), AcceptAlert.IfItExists() },
+            new object[] { AcceptAlert.ThatMustExist(), AcceptAlert.ThatMustExist() },
+            new object[] { AddBrowserCookie.Named("cookie", "chips"), AddBrowserCookie.Named("cookie", "chips") },
+            new object[] { Clear.On(LocatorA), Clear.On(LocatorA1) },
+            new object[] { Click.On(LocatorA), Click.On(LocatorA1) },
+            new object[] { Hover.Over(LocatorA), Hover.Over(LocatorA1) },
+            new object[] { JavaScriptClick.On(LocatorA), JavaScriptClick.On(LocatorA1) },
+            new object[] { MaximizeWindow.ForBrowser(), MaximizeWindow.ForBrowser() },
+            new object[] { Navigate.ToUrl("https://wwww.google.com/"), Navigate.ToUrl("https://wwww.google.com/") },
+            new object[] { NavigateIfNew.ToUrl("https://wwww.google.com/"), NavigateIfNew.ToUrl("https://wwww.google.com/") },
+            new object[] { NavigateIfNew.ToUrl("https://wwww.google.com/", ifNot: new Regex(@"google")), NavigateIfNew.ToUrl("https://wwww.google.com/", ifNot: new Regex(@"google")) },
+            new object[] { NavigateIfNew.ToUrl("https://wwww.google.com/").AndAcceptAlerts(false), NavigateIfNew.ToUrl("https://wwww.google.com/").AndAcceptAlerts(false) },
+            new object[] { QuitWebDriver.ForBrowser(), QuitWebDriver.ForBrowser() },
+            new object[] { Refresh.Browser(), Refresh.Browser() },
+            new object[] { ScrollContainer.Reset(LocatorA), ScrollContainer.Reset(LocatorA1) },
+            new object[] { ScrollContainer.ToTop(LocatorA, 100), ScrollContainer.ToTop(LocatorA1, 100) },
+            new object[] { ScrollContainer.ToLeft(LocatorA, 100), ScrollContainer.ToLeft(LocatorA1, 100) },
+            new object[] { ScrollContainer.To(LocatorA, 100, 200), ScrollContainer.To(LocatorA1, 100, 200) },
+            new object[] { ScrollToElement.At(LocatorA), ScrollToElement.At(LocatorA1) },
+            new object[] { ScrollToElement.At(LocatorA, alignToTop: false), ScrollToElement.At(LocatorA1, alignToTop: false) },
+            new object[] { Select.ByIndex(LocatorA, 0), Select.ByIndex(LocatorA1, 0) },
+            new object[] { Select.ByText(LocatorA, "this"), Select.ByText(LocatorA1, "this") },
+            new object[] { Select.ByText(LocatorA, "this", partialMatch: true), Select.ByText(LocatorA1, "this", partialMatch: true) },
+            new object[] { Select.ByValue(LocatorA, "this"), Select.ByValue(LocatorA1, "this") },
+            new object[] { SendKeys.To(LocatorA, "hello"), SendKeys.To(LocatorA1, "hello") },
+            new object[] { SendKeys.To(LocatorA, "hello").Privately(), SendKeys.To(LocatorA1, "hello").Privately() },
+            new object[] { SendKeys.To(LocatorA, "hello").Privately(), SendKeys.To(LocatorA1, "hello").Privately() },
+            new object[] { SendKeys.To(LocatorA, "hello").ThenClick(LocatorB), SendKeys.To(LocatorA1, "hello").ThenClick(LocatorB) },
+            new object[] { SendKeys.To(LocatorA, "hello").ThenHitEnter(), SendKeys.To(LocatorA1, "hello").ThenHitEnter() },
+            new object[] { SendKeys.To(LocatorA, "hello").UsingClearMethod(), SendKeys.To(LocatorA1, "hello").UsingClearMethod() },
+            new object[] { SendKeys.To(LocatorA, "hello").WithoutClearing(), SendKeys.To(LocatorA1, "hello").WithoutClearing() },
+            new object[] { Submit.On(LocatorA), Submit.On(LocatorA1) },
+            new object[] { SwitchWindow.To("window3"), SwitchWindow.To("window3") },
+            new object[] { SwitchWindowToLatest.InBrowser(), SwitchWindowToLatest.InBrowser() },
+            new object[] { WaitAndRefresh.For(LocatorA), WaitAndRefresh.For(LocatorA1) },
+            new object[] { WaitAndRefresh.For(LocatorA).ForUpTo(10), WaitAndRefresh.For(LocatorA1).ForUpTo(10) },
+            new object[] { WaitAndRefresh.For(LocatorA).ForAnAdditional(10), WaitAndRefresh.For(LocatorA1).ForAnAdditional(10) },
+            new object[] { WaitAndRefresh.For(LocatorA).RefreshWaiting(10), WaitAndRefresh.For(LocatorA1).RefreshWaiting(10) },
         };
 
         private static readonly object[] DifferentInteractions =
         {
+            // Questions
+
             new object[] { AlertPresence.InBrowser(), Title.OfPage() },
             new object[] { Appearance.Of(LocatorA), Title.OfPage() },
             new object[] { Appearance.Of(LocatorA), Appearance.Of(LocatorB) },
@@ -130,6 +176,74 @@ namespace Boa.Constrictor.UnitTests.WebDriver
             new object[] { Title.OfPage(), AlertPresence.InBrowser() },
             new object[] { WindowHandle.At(1), Title.OfPage() },
             new object[] { WindowHandle.At(1), WindowHandle.At(2) },
+
+            // Tasks
+
+            new object[] { AcceptAlert.IfItExists(), QuitWebDriver.ForBrowser() },
+            new object[] { AcceptAlert.IfItExists(), AcceptAlert.ThatMustExist() },
+            new object[] { AddBrowserCookie.Named("cookie", "chips"), QuitWebDriver.ForBrowser() },
+            new object[] { AddBrowserCookie.Named("cookie", "chips"), AddBrowserCookie.Named("nomnom", "chips") },
+            new object[] { Clear.On(LocatorA), QuitWebDriver.ForBrowser() },
+            new object[] { Clear.On(LocatorA), Clear.On(LocatorB) },
+            new object[] { Click.On(LocatorA), QuitWebDriver.ForBrowser() },
+            new object[] { Click.On(LocatorA), Click.On(LocatorB) },
+            new object[] { Hover.Over(LocatorA), QuitWebDriver.ForBrowser() },
+            new object[] { Hover.Over(LocatorA), Hover.Over(LocatorB) },
+            new object[] { JavaScriptClick.On(LocatorA), QuitWebDriver.ForBrowser() },
+            new object[] { JavaScriptClick.On(LocatorA), JavaScriptClick.On(LocatorB) },
+            new object[] { MaximizeWindow.ForBrowser(), QuitWebDriver.ForBrowser() },
+            new object[] { Navigate.ToUrl("https://wwww.google.com/"), QuitWebDriver.ForBrowser() },
+            new object[] { Navigate.ToUrl("https://wwww.google.com/"), Navigate.ToUrl("https://wwww.yahoo.com/") },
+            new object[] { NavigateIfNew.ToUrl("https://wwww.google.com/"), QuitWebDriver.ForBrowser() },
+            new object[] { NavigateIfNew.ToUrl("https://wwww.google.com/"), NavigateIfNew.ToUrl("https://wwww.yahoo.com/") },
+            new object[] { NavigateIfNew.ToUrl("https://wwww.google.com/"), NavigateIfNew.ToUrl("https://wwww.google.com/", ifNot: new Regex(@"google")) },
+            new object[] { NavigateIfNew.ToUrl("https://wwww.google.com/"), NavigateIfNew.ToUrl("https://wwww.google.com/").AndAcceptAlerts(false) },
+            new object[] { QuitWebDriver.ForBrowser(), AcceptAlert.IfItExists() },
+            new object[] { Refresh.Browser(), QuitWebDriver.ForBrowser() },
+            new object[] { ScrollContainer.Reset(LocatorA), QuitWebDriver.ForBrowser() },
+            new object[] { ScrollContainer.Reset(LocatorA), ScrollContainer.Reset(LocatorB) },
+            new object[] { ScrollContainer.ToTop(LocatorA, 100), ScrollContainer.ToTop(LocatorB, 100) },
+            new object[] { ScrollContainer.ToTop(LocatorA, 100), ScrollContainer.ToTop(LocatorA1, 200) },
+            new object[] { ScrollContainer.ToLeft(LocatorA, 100), ScrollContainer.ToLeft(LocatorB, 100) },
+            new object[] { ScrollContainer.ToLeft(LocatorA, 100), ScrollContainer.ToLeft(LocatorA1, 200) },
+            new object[] { ScrollContainer.To(LocatorA, 100, 200), ScrollContainer.To(LocatorB, 100, 200) },
+            new object[] { ScrollContainer.To(LocatorA, 100, 200), ScrollContainer.To(LocatorA1, 300, 200) },
+            new object[] { ScrollContainer.To(LocatorA, 100, 200), ScrollContainer.To(LocatorA1, 100, 300) },
+            new object[] { ScrollToElement.At(LocatorA), QuitWebDriver.ForBrowser() },
+            new object[] { ScrollToElement.At(LocatorA), ScrollToElement.At(LocatorB) },
+            new object[] { ScrollToElement.At(LocatorA), ScrollToElement.At(LocatorA1, alignToTop: false) },
+            new object[] { ScrollToElement.At(LocatorA, alignToTop: false), ScrollToElement.At(LocatorB, alignToTop: false) },
+            new object[] { Select.ByIndex(LocatorA, 0), QuitWebDriver.ForBrowser() },
+            new object[] { Select.ByIndex(LocatorA, 0), Select.ByIndex(LocatorB, 0) },
+            new object[] { Select.ByIndex(LocatorA, 0), Select.ByIndex(LocatorA1, 1) },
+            new object[] { Select.ByText(LocatorA, "this"), Select.ByText(LocatorB, "this") },
+            new object[] { Select.ByText(LocatorA, "this"), Select.ByText(LocatorA1, "that") },
+            new object[] { Select.ByText(LocatorA, "this"), Select.ByText(LocatorA, "this", partialMatch: true) },
+            new object[] { Select.ByText(LocatorA, "this", partialMatch: true), Select.ByText(LocatorA1, "that", partialMatch: true) },
+            new object[] { Select.ByText(LocatorA, "this", partialMatch: true), Select.ByText(LocatorB, "this", partialMatch: true) },
+            new object[] { Select.ByValue(LocatorA, "this"), Select.ByValue(LocatorB, "this") },
+            new object[] { Select.ByValue(LocatorA, "this"), Select.ByValue(LocatorA1, "that") },
+            new object[] { SendKeys.To(LocatorA, "hello"), QuitWebDriver.ForBrowser() },
+            new object[] { SendKeys.To(LocatorA, "hello"), SendKeys.To(LocatorB, "hello") },
+            new object[] { SendKeys.To(LocatorA, "hello"), SendKeys.To(LocatorA1, "goodbye") },
+            new object[] { SendKeys.To(LocatorA, "hello"), SendKeys.To(LocatorA1, "hello").Privately() },
+            new object[] { SendKeys.To(LocatorA, "hello"), SendKeys.To(LocatorA1, "hello").ThenClick(LocatorB) },
+            new object[] { SendKeys.To(LocatorA, "hello"), SendKeys.To(LocatorA1, "hello").ThenHitEnter() },
+            new object[] { SendKeys.To(LocatorA, "hello"), SendKeys.To(LocatorA1, "hello").UsingClearMethod() },
+            new object[] { SendKeys.To(LocatorA, "hello"), SendKeys.To(LocatorA1, "hello").WithoutClearing() },
+            new object[] { Submit.On(LocatorA), QuitWebDriver.ForBrowser() },
+            new object[] { Submit.On(LocatorA), Submit.On(LocatorB) },
+            new object[] { SwitchWindow.To("window3"), QuitWebDriver.ForBrowser() },
+            new object[] { SwitchWindow.To("window3"), SwitchWindow.To("window2") },
+            new object[] { SwitchWindowToLatest.InBrowser(), QuitWebDriver.ForBrowser() },
+            new object[] { WaitAndRefresh.For(LocatorA), QuitWebDriver.ForBrowser() },
+            new object[] { WaitAndRefresh.For(LocatorA), WaitAndRefresh.For(LocatorB) },
+            new object[] { WaitAndRefresh.For(LocatorA), WaitAndRefresh.For(LocatorA1).ForUpTo(10) },
+            new object[] { WaitAndRefresh.For(LocatorA).ForUpTo(10), WaitAndRefresh.For(LocatorB).ForUpTo(10) },
+            new object[] { WaitAndRefresh.For(LocatorA), WaitAndRefresh.For(LocatorA1).ForAnAdditional(10) },
+            new object[] { WaitAndRefresh.For(LocatorA).ForAnAdditional(10), WaitAndRefresh.For(LocatorB).ForAnAdditional(10) },
+            new object[] { WaitAndRefresh.For(LocatorA), WaitAndRefresh.For(LocatorA1).RefreshWaiting(10) },
+            new object[] { WaitAndRefresh.For(LocatorA).RefreshWaiting(10), WaitAndRefresh.For(LocatorB).RefreshWaiting(10) },
         };
 
         #endregion

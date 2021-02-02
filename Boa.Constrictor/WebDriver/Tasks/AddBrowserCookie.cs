@@ -1,5 +1,7 @@
 ﻿using Boa.Constrictor.Screenplay;
 using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 
 namespace Boa.Constrictor.WebDriver
 {
@@ -70,6 +72,22 @@ namespace Boa.Constrictor.WebDriver
             actor.Logger.Info($"Cookie: {Cookie.Name} = {Cookie.Value}");
             driver.Manage().Cookies.AddCookie(Cookie);
         }
+
+        /// <summary>
+        /// Checks if this interaction is equal to another interaction.
+        /// </summary>
+        /// <param name="obj">The other object.</param>
+        /// <returns></returns>
+        public override bool Equals(object obj) =>
+            obj is AddBrowserCookie cookie &&
+            EqualityComparer<Cookie>.Default.Equals(Cookie, cookie.Cookie);
+
+        /// <summary>
+        /// Gets a unique hash code for this interaction.
+        /// Warning: Cookies with the same names but different values have the same hash code.
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode() => HashCode.Combine(GetType(), Cookie);
 
         /// <summary>
         /// Returns a description of the task.

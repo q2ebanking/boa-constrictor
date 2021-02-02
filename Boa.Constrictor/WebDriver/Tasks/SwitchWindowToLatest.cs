@@ -1,11 +1,12 @@
 ﻿using Boa.Constrictor.Screenplay;
+using OpenQA.Selenium;
 
 namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
     /// Safely switches to the newest tab in the browser.
     /// </summary>
-    public class SwitchWindowToLatest : ITask
+    public class SwitchWindowToLatest : AbstractWebTask
     {
         #region Constructors
 
@@ -34,7 +35,8 @@ namespace Boa.Constrictor.WebDriver
         /// Gets the latest window handle and switches to it.
         /// </summary>
         /// <param name="actor">The Screenplay actor.</param>
-        public void PerformAs(IActor actor)
+        /// <param name="driver">The WebDriver from the BrowseTheWeb ability.</param>
+        public override void PerformAs(IActor actor, IWebDriver driver)
         {
             string handle = actor.AsksFor(WindowHandle.Latest());
             actor.AttemptsTo(SwitchWindow.To(handle));
