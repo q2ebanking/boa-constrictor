@@ -73,4 +73,30 @@ namespace Boa.Constrictor.WebDriver
 
         #endregion
     }
+
+    /// <summary>
+    /// Gets a list of Web elements' "value" values.
+    /// </summary>
+    public static class ValueAttributeList
+    {
+        #region Constants
+
+        /// <summary>
+        /// The "value" attribute name.
+        /// </summary>
+        public const string Value = "value";
+
+        #endregion
+
+        #region Builder Methods
+
+        /// <summary>
+        /// Constructs a HtmlAttributeList question for the "value" attribute.
+        /// </summary>
+        /// <param name="locator">The target Web element's locator.</param>
+        /// <returns></returns>
+        public static HtmlAttributeList For(IWebLocator locator) => HtmlAttributeList.For(locator, Value);
+
+        #endregion
+    }
 }
