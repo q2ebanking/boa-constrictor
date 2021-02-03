@@ -1,5 +1,6 @@
 ﻿using Boa.Constrictor.Screenplay;
 using OpenQA.Selenium;
+using System;
 
 namespace Boa.Constrictor.WebDriver
 {
@@ -48,6 +49,18 @@ namespace Boa.Constrictor.WebDriver
         /// <param name="actor">The screenplay actor.</param>
         /// <param name="driver">The WebDriver.</param>
         public override void PerformAs(IActor actor, IWebDriver driver) => driver.SwitchTo().Window(Handle);
+
+        /// <summary>
+        /// Checks if this interaction is equal to another interaction.
+        /// </summary>
+        /// <param name="obj">The other object.</param>
+        public override bool Equals(object obj) => obj is SwitchWindow window && Handle == window.Handle;
+
+        /// <summary>
+        /// Gets a unique hash code for this interaction.
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode() => HashCode.Combine(GetType(), Handle);
 
         /// <summary>
         /// Returns a description of the task.

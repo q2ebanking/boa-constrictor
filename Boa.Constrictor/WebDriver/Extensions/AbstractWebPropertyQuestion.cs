@@ -1,4 +1,6 @@
-﻿namespace Boa.Constrictor.WebDriver
+﻿using System;
+
+namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
     /// Abstract class for any Web questions that use a Web element locator and a property name.
@@ -32,7 +34,23 @@
         #endregion
 
         #region Methods
-        
+
+        /// <summary>
+        /// Checks if this interaction is equal to another interaction.
+        /// </summary>
+        /// <param name="obj">The other object.</param>
+        /// <returns></returns>
+        public override bool Equals(object obj) =>
+            base.Equals(obj) &&
+            PropertyName == ((AbstractWebPropertyQuestion<TAnswer>)obj).PropertyName;
+
+        /// <summary>
+        /// Gets a unique hash code for this interaction.
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode() =>
+            HashCode.Combine(GetType(), Locator, PropertyName);
+
         /// <summary>
         /// Returns a description of the property question.
         /// </summary>

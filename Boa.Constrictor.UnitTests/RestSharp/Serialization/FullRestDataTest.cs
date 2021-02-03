@@ -163,6 +163,7 @@ namespace Boa.Constrictor.UnitTests.RestSharp
             data.Request.Parameters.Count.Should().Be(Parameters.Count);
             data.Request.Parameters[0].Name.Should().Be(Parameters[0].Name);
             data.Request.Parameters[1].Name.Should().Be(Parameters[1].Name);
+            data.Request.Body.Should().BeNull();
 
             data.Response.Should().BeNull();
 
@@ -189,6 +190,7 @@ namespace Boa.Constrictor.UnitTests.RestSharp
             data.Request.Parameters.Count.Should().Be(Parameters.Count);
             data.Request.Parameters[0].Name.Should().Be(Parameters[0].Name);
             data.Request.Parameters[1].Name.Should().Be(Parameters[1].Name);
+            data.Request.Body.Should().BeNull();
 
             data.Response.Should().NotBeNull();
             data.Response.Uri.Should().Be(ClientUri);

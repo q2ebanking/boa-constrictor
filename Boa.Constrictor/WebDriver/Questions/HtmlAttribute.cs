@@ -48,4 +48,56 @@ namespace Boa.Constrictor.WebDriver
         
         #endregion
     }
+
+    /// <summary>
+    /// Gets a web element's "id" attribute.
+    /// </summary>
+    public static class IdAttribute
+    {
+        #region Constants
+
+        /// <summary>
+        /// The "id" attribute name.
+        /// </summary>
+        public const string Id = "id";
+
+        #endregion
+
+        #region Builder Methods
+
+        /// <summary>
+        /// Constructs a HtmlAttribute question for the "id" attribute.
+        /// </summary>
+        /// <param name="locator">The target Web element's locator.</param>
+        /// <returns></returns>
+        public static HtmlAttribute Of(IWebLocator locator) => HtmlAttribute.Of(locator, Id);
+
+        #endregion
+    }
+
+    /// <summary>
+    /// Gets a web element's "value" attribute.
+    /// </summary>
+    public static class ValueAttribute
+    {
+        #region Constants
+
+        /// <summary>
+        /// The "value" attribute name.
+        /// </summary>
+        public const string Value = "value";
+
+        #endregion
+
+        #region Builder Methods
+
+        /// <summary>
+        /// Constructs a HtmlAttribute question for the "value" attribute.
+        /// </summary>
+        /// <param name="locator">The target Web element's locator.</param>
+        /// <returns></returns>
+        public static HtmlAttribute Of(IWebLocator locator) => HtmlAttribute.Of(locator, Value);
+
+        #endregion
+    }
 }

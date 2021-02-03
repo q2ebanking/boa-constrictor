@@ -52,7 +52,7 @@ namespace Boa.Constrictor.RestSharp
             DateTime? end = null)
         {
             Duration = new DurationData(start, end);
-            Request = (request == null) ? null : new RequestData(client, request);
+            Request = (request == null) ? null : new RequestData(request, client);
             Response = (response == null) ? null : new ResponseData(response);
             Cookies = GetCookieData(client);
         }

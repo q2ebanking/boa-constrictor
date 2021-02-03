@@ -13,6 +13,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (None)
 
 
+## [0.11.0] - 2021-02-02
+
+### Added
+
+- Added Screenplay answer cache
+  - `AnswerCache` stores answers to Questions using the Question object as the key
+  - `CacheAnswers` is the Ability that enables Actors to use `AnswerCache`
+  - `CachedAnswer` returns a cached answer for a Question or calls the Question to store its answer
+- Added `Equals` and `GetHashCode` methods to all WebDriver interactions so they can work with `AnswerCache`
+- Added `Equals` and `GetHashCode` methods to `WebLocator`
+- Added `Id` builder method to `WebLocator`
+- Added body data to `RequestData` for dumping RestSharp requests
+
+### Changed
+
+- Refactored `HtmlAttribute` and `HtmlAttributeList` interactions
+  - `IdAttribute`/`IdAttributeList`
+  - `ValueAttribute`/`ValueAttributeList`
+
+
 ## [0.10.0] - 2021-01-26
 
 ### Added

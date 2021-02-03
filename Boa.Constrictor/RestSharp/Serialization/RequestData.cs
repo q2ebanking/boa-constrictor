@@ -31,6 +31,11 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         public IList<ParameterData> Parameters { get; set; }
 
+        /// <summary>
+        /// Request body.
+        /// </summary>
+        public RequestBody Body { get; set; }
+
         #endregion
 
         #region Constructors
@@ -38,14 +43,28 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// Constructor.
         /// </summary>
+        /// <param name="request">Request object.</param>
+        public RequestData(IRestRequest request)
+        {
+            Method = request.Method.ToString();
+            Uri = null;
+            Resource = request.Resource;
+            Parameters = ParameterData.GetParameterDataList(request.Parameters);
+            Body = request.Body;
+        }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         /// <param name="client">RestSharp client.</param>
         /// <param name="request">Request object.</param>
-        public RequestData(IRestClient client, IRestRequest request)
+        public RequestData(IRestRequest request, IRestClient client)
         {
             Method = request.Method.ToString();
             Uri = client.BuildUri(request);
             Resource = request.Resource;
             Parameters = ParameterData.GetParameterDataList(request.Parameters);
+            Body = request.Body;
         }
 
         #endregion

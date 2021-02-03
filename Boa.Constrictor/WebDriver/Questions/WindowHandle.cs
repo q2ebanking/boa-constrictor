@@ -1,5 +1,6 @@
 ﻿using Boa.Constrictor.Screenplay;
 using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -167,6 +168,19 @@ namespace Boa.Constrictor.WebDriver
 
             return handle;
         }
+
+        /// <summary>
+        /// Gets a unique hash code for this interaction.
+        /// </summary>
+        /// <returns></returns>
+        public override bool Equals(object obj) => obj is WindowHandle handle && Index == handle.Index;
+
+        /// <summary>
+        /// Returns a description of the question.
+        /// The script and the arguments will be printed during execution.
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode() => HashCode.Combine(GetType(), Index);
 
         #endregion
     }

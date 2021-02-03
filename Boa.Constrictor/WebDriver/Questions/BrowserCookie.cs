@@ -1,5 +1,6 @@
 ﻿using Boa.Constrictor.Screenplay;
 using OpenQA.Selenium;
+using System;
 
 namespace Boa.Constrictor.WebDriver
 {
@@ -85,10 +86,26 @@ namespace Boa.Constrictor.WebDriver
         }
 
         /// <summary>
+        /// Checks if this interaction is equal to another interaction.
+        /// </summary>
+        /// <param name="obj">The other object.</param>
+        public override bool Equals(object obj) =>
+            obj is BrowserCookie cookie &&
+            CookieName == cookie.CookieName;
+
+        /// <summary>
+        /// Gets a unique hash code for this interaction.
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode() =>
+            HashCode.Combine(GetType(), CookieName);
+
+        /// <summary>
         /// Returns a description of the question.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"Browser cookie named '{CookieName}'";
+        public override string ToString() =>
+            $"Browser cookie named '{CookieName}'";
 
         #endregion
     }
