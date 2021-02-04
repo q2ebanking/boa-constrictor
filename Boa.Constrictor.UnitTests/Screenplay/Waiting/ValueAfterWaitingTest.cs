@@ -14,7 +14,7 @@ namespace Boa.Constrictor.UnitTests.Screenplay
     {
         #region Test Variables
 
-        private IActor Screenplayer { get; set; }
+        private IActor Actor { get; set; }
         private Mock<IQuestion<int>> MockQuestion { get; set; }
         private Mock<ICondition<int>> MockCondition { get; set; }
 
@@ -25,7 +25,7 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         [SetUp]
         public void SetUp()
         {
-            Screenplayer = new Actor();
+            Actor = new Actor();
             MockQuestion = new Mock<IQuestion<int>>();
             MockCondition = new Mock<ICondition<int>>();
         }
@@ -40,7 +40,7 @@ namespace Boa.Constrictor.UnitTests.Screenplay
             MockQuestion.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
             MockCondition.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(true);
 
-            Screenplayer.AskingFor(ValueAfterWaiting.Until(MockQuestion.Object, MockCondition.Object).ForUpTo(0))
+            Actor.AskingFor(ValueAfterWaiting.Until(MockQuestion.Object, MockCondition.Object).ForUpTo(0))
                 .Should().Be(1, because: "waiting should return the question's final answer");
         }
 
@@ -54,7 +54,7 @@ namespace Boa.Constrictor.UnitTests.Screenplay
             MockCondition.Setup(x => x.Evaluate(It.Is<int>(v => v < limit))).Returns(false);
             MockCondition.Setup(x => x.Evaluate(It.Is<int>(v => v >= limit))).Returns(true);
 
-            Screenplayer.AskingFor(ValueAfterWaiting.Until(MockQuestion.Object, MockCondition.Object).ForUpTo(1))
+            Actor.AskingFor(ValueAfterWaiting.Until(MockQuestion.Object, MockCondition.Object).ForUpTo(1))
                 .Should().Be(limit, because: "waiting should return the question's final answer");
 
             incrementer.Should().Be(limit, because: $"the question should be called {limit} times");
@@ -66,7 +66,7 @@ namespace Boa.Constrictor.UnitTests.Screenplay
             MockQuestion.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
             MockCondition.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(false);
 
-            Screenplayer.Invoking(actor => actor.AskingFor(ValueAfterWaiting.Until(MockQuestion.Object, MockCondition.Object).ForUpTo(0)))
+            Actor.Invoking(actor => actor.AskingFor(ValueAfterWaiting.Until(MockQuestion.Object, MockCondition.Object).ForUpTo(0)))
                 .Should().Throw<WaitingException<int>>(because: "the question should not satisfy the condition");
         }
 

@@ -33,6 +33,13 @@ namespace Boa.Constrictor.UnitTests.Logging
             Logger.Invoking(y => y.Close()).Should().NotThrow();
         }
 
+        [Test]
+        public void LogArtifact()
+        {
+            Logger.LogArtifact("Screenshot", "path/to/screen.png");
+            Logger.Invoking(y => y.Close()).Should().NotThrow();
+        }
+
         [TestCase("Trace")]
         [TestCase("Debug")]
         [TestCase("Info")]

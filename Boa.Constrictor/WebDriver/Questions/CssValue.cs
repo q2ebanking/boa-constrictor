@@ -6,7 +6,7 @@ namespace Boa.Constrictor.WebDriver
     /// <summary>
     /// Gets a web element's CSS value by property name.
     /// </summary>
-    public class CssValue : AbstractWebPropertyQuestion
+    public class CssValue : AbstractWebPropertyQuestion<string>
     {
         #region Constructors
 
@@ -43,7 +43,7 @@ namespace Boa.Constrictor.WebDriver
         /// <returns></returns>
         public override string RequestAs(IActor actor, IWebDriver driver)
         {
-            actor.AttemptsTo(Wait.Until(Existence.Of(Locator), IsEqualTo.True()));
+            actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
             return driver.FindElement(Locator.Query).GetCssValue(PropertyName);
         }
         

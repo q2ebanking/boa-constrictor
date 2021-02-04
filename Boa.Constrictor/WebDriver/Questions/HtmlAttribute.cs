@@ -6,7 +6,7 @@ namespace Boa.Constrictor.WebDriver
     /// <summary>
     /// Gets a web element's HTML attribute by name.
     /// </summary>
-    public class HtmlAttribute : AbstractWebPropertyQuestion
+    public class HtmlAttribute : AbstractWebPropertyQuestion<string>
     {
         #region Constructors
 
@@ -42,10 +42,62 @@ namespace Boa.Constrictor.WebDriver
         /// <returns></returns>
         public override string RequestAs(IActor actor, IWebDriver driver)
         {
-            actor.AttemptsTo(Wait.Until(Existence.Of(Locator), IsEqualTo.True()));
+            actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
             return driver.FindElement(Locator.Query).GetAttribute(PropertyName);
         }
         
+        #endregion
+    }
+
+    /// <summary>
+    /// Gets a web element's "id" attribute.
+    /// </summary>
+    public static class IdAttribute
+    {
+        #region Constants
+
+        /// <summary>
+        /// The "id" attribute name.
+        /// </summary>
+        public const string Id = "id";
+
+        #endregion
+
+        #region Builder Methods
+
+        /// <summary>
+        /// Constructs a HtmlAttribute question for the "id" attribute.
+        /// </summary>
+        /// <param name="locator">The target Web element's locator.</param>
+        /// <returns></returns>
+        public static HtmlAttribute Of(IWebLocator locator) => HtmlAttribute.Of(locator, Id);
+
+        #endregion
+    }
+
+    /// <summary>
+    /// Gets a web element's "value" attribute.
+    /// </summary>
+    public static class ValueAttribute
+    {
+        #region Constants
+
+        /// <summary>
+        /// The "value" attribute name.
+        /// </summary>
+        public const string Value = "value";
+
+        #endregion
+
+        #region Builder Methods
+
+        /// <summary>
+        /// Constructs a HtmlAttribute question for the "value" attribute.
+        /// </summary>
+        /// <param name="locator">The target Web element's locator.</param>
+        /// <returns></returns>
+        public static HtmlAttribute Of(IWebLocator locator) => HtmlAttribute.Of(locator, Value);
+
         #endregion
     }
 }

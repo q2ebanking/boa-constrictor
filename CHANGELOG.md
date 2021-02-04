@@ -13,6 +13,84 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (None)
 
 
+## [0.11.0] - 2021-02-02
+
+### Added
+
+- Added Screenplay answer cache
+  - `AnswerCache` stores answers to Questions using the Question object as the key
+  - `CacheAnswers` is the Ability that enables Actors to use `AnswerCache`
+  - `CachedAnswer` returns a cached answer for a Question or calls the Question to store its answer
+- Added `Equals` and `GetHashCode` methods to all WebDriver interactions so they can work with `AnswerCache`
+- Added `Equals` and `GetHashCode` methods to `WebLocator`
+- Added `Id` builder method to `WebLocator`
+- Added body data to `RequestData` for dumping RestSharp requests
+
+### Changed
+
+- Refactored `HtmlAttribute` and `HtmlAttributeList` interactions
+  - `IdAttribute`/`IdAttributeList`
+  - `ValueAttribute`/`ValueAttributeList`
+
+
+## [0.10.0] - 2021-01-26
+
+### Added
+
+- Added several new Questions to return lists of requested string values from multiple elements found by a locator
+- Additions include `CssValueList`, `HtmlAttributeList`, `IdAttributeList`
+- New Questions (and existing `TextList`) implement new extension `ElementLists.GetValues()`
+
+
+## [0.9.0] - 2021-01-15
+
+### Added
+
+- Added .NET 5 support!
+  - `Boa.Constrictor` targets both .NET 5 and .NET Standard 2.0
+  - `Boa.Constrictor.Example` targets .NET 5 exclusively
+  - `Boa.Constrictor.UnitTests` targets .NET 5 exclusively
+
+
+## [0.8.3] - 2021-01-13
+
+### Fixed
+
+- Removed "file:" from screenshot and artifact relative links in the test log report HTML file
+
+
+## [0.8.2] - 2021-01-11
+
+### Added
+
+- Added `TestLogReportDumper` to combine `TestLogData` objects into one pretty HTML report
+- Refactored `AbstractDumper` to share more parts
+
+
+## [0.8.1] - 2021-01-07
+
+### Changed
+
+- `TestLogData` now has a `Result` property for storing the test result
+- `TestLogData`'s properties are all now public to *get* but remain private to *set*
+- `TestLogger` now has a `LogResult` method for logging the test result
+
+
+## [0.8.0] - 2021-01-06
+
+### Added
+
+- Added `TestLogger` for dumping JSON files with test steps, messages, and test artifact files
+
+
+## [0.7.0] - 2020-12-22
+
+### Added
+
+- Added `WaitsUntil` extension method to `IActor` for more concise waiting calls
+- Updated all interactions and the tutorial to use `WaitsUntil`
+
+
 ## [0.6.1] - 2020-12-08
 
 ### Added

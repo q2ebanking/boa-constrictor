@@ -8,8 +8,8 @@
     /// If the actor has the SetTimeouts ability, then the ability will be used to calculate timeouts.
     /// Otherwise, DefaultTimeout will be used.
     /// </summary>
-    /// <typeparam name="TValue">The type of the question's answer value.</typeparam>
-    public class ValueAfterWaiting<TValue> : AbstractWait<TValue>, IQuestion<TValue>
+    /// <typeparam name="TAnswer">The type of the question's answer value.</typeparam>
+    public class ValueAfterWaiting<TAnswer> : AbstractWait<TAnswer>, IQuestion<TAnswer>
     {
         #region Constructors
 
@@ -19,7 +19,7 @@
         /// </summary>
         /// <param name="question">The question upon whose answer to wait.</param>
         /// <param name="condition">The expected condition for which to wait.</param>
-        private ValueAfterWaiting(IQuestion<TValue> question, ICondition<TValue> condition) :
+        private ValueAfterWaiting(IQuestion<TAnswer> question, ICondition<TAnswer> condition) :
             base(question, condition)
         { }
 
@@ -33,15 +33,15 @@
         /// <param name="question">The question upon whose answer to wait.</param>
         /// <param name="condition">The expected condition for which to wait.</param>
         /// <returns></returns>
-        public static ValueAfterWaiting<TValue> Until(IQuestion<TValue> question, ICondition<TValue> condition) =>
-            new ValueAfterWaiting<TValue>(question, condition);
+        public static ValueAfterWaiting<TAnswer> Until(IQuestion<TAnswer> question, ICondition<TAnswer> condition) =>
+            new ValueAfterWaiting<TAnswer>(question, condition);
 
         /// <summary>
         /// Sets an override value for timeout seconds.
         /// </summary>
         /// <param name="seconds">The new timeout in seconds.</param>
         /// <returns></returns>
-        public ValueAfterWaiting<TValue> ForUpTo(int? seconds)
+        public ValueAfterWaiting<TAnswer> ForUpTo(int? seconds)
         {
             TimeoutSeconds = seconds;
             return this;
@@ -52,7 +52,7 @@
         /// </summary>
         /// <param name="seconds">The seconds to add to the timeout.</param>
         /// <returns></returns>
-        public ValueAfterWaiting<TValue> ForAnAdditional(int seconds)
+        public ValueAfterWaiting<TAnswer> ForAnAdditional(int seconds)
         {
             AdditionalSeconds = seconds;
             return this;
@@ -64,7 +64,7 @@
         /// This may generate lots of spam.
         /// </summary>
         /// <returns></returns>
-        public ValueAfterWaiting<TValue> ButDontSuppressLogs()
+        public ValueAfterWaiting<TAnswer> ButDontSuppressLogs()
         {
             SuppressLogs = false;
             return this;
@@ -81,7 +81,7 @@
         /// </summary>
         /// <param name="actor">The actor.</param>
         /// <returns></returns>
-        public TValue RequestAs(IActor actor) => WaitForValue(actor);
+        public TAnswer RequestAs(IActor actor) => WaitForValue(actor);
 
         #endregion
     }

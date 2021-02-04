@@ -1,5 +1,6 @@
 ﻿using Boa.Constrictor.Screenplay;
 using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -85,7 +86,7 @@ namespace Boa.Constrictor.WebDriver
             // If a locator is given, get the element and make it the first argument
             if (Locator != null)
             {
-                actor.AttemptsTo(Wait.Until(Existence.Of(Locator), IsEqualTo.True()));
+                actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
                 var e = driver.FindElement(Locator.Query);
 
                 IList<object> tempList = Args.ToList();
@@ -110,6 +111,39 @@ namespace Boa.Constrictor.WebDriver
 
             // Return the type-casted result
             return (TValue)response;
+        }
+
+        /// <summary>
+        /// Checks if this interaction is equal to another interaction.
+        /// </summary>
+        /// <param name="obj">The other object.</param>
+        public override bool Equals(object obj)
+        {
+            bool same =
+                obj is JavaScript<TValue> interaction &&
+                EqualityComparer<IWebLocator>.Default.Equals(Locator, interaction.Locator) &&
+                Script == interaction.Script &&
+                Args.Length == interaction.Args.Length;
+
+            if (same)
+                for (int i = 0; i < Args.Length; i++)
+                    same = same && Args[i].Equals(((JavaScript<TValue>)obj).Args[i]);
+
+            return same;
+        }
+
+        /// <summary>
+        /// Gets a unique hash code for this interaction.
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            int hash = 17;
+            foreach (object item in Args)
+                hash = HashCode.Combine(hash, item);
+
+            hash = HashCode.Combine(GetType(), Locator, Script, hash);
+            return hash;
         }
 
         /// <summary>

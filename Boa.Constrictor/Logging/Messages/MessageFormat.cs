@@ -27,10 +27,8 @@ namespace Boa.Constrictor.Logging
         /// <param name="message">The message text.</param>
         /// <param name="severity">The log severity level.</param>
         /// <returns></returns>
-        public static string StandardTimestamp(string message, LogSeverity severity)
-        {
-            return StandardTimestamp(message, severity.ToString());
-        }
+        public static string StandardTimestamp(string message, LogSeverity severity) =>
+            StandardTimestamp(message, severity.ToString());
 
         #endregion
     }

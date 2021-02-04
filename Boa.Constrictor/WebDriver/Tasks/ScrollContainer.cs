@@ -1,5 +1,7 @@
 ﻿using Boa.Constrictor.Screenplay;
 using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 
 namespace Boa.Constrictor.WebDriver
 {
@@ -106,19 +108,36 @@ namespace Boa.Constrictor.WebDriver
         }
 
         /// <summary>
+        /// Checks if this interaction is equal to another interaction.
+        /// </summary>
+        /// <param name="obj">The other object.</param>
+        public override bool Equals(object obj) =>
+            obj is ScrollContainer container &&
+            EqualityComparer<IWebLocator>.Default.Equals(Locator, container.Locator) &&
+            Top == container.Top &&
+            Left == container.Left;
+
+        /// <summary>
+        /// Gets a unique hash code for this interaction.
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode() => 
+            HashCode.Combine(base.GetHashCode(), Locator, $"Top {Top}", $"Left {Left}");
+
+        /// <summary>
         /// Returns a description of the task.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            string message = $"Scroll container '{Locator.Description}' {ToStringAdjective}";
+            string message = $"Scroll container '{Locator.Description}' {ToStringAdjective} ";
 
             if (Top == null)
                 message += $"left = {Left}";
             else if (Left == null)
                 message += $"top = {Top}";
             else
-                message += $"(top = {Top}, left = {Left})";
+                message += $"top = {Top}, left = {Left}";
 
             return message;
         }

@@ -1,5 +1,7 @@
 ﻿using Boa.Constrictor.Screenplay;
 using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 
 namespace Boa.Constrictor.WebDriver
 {
@@ -120,6 +122,24 @@ namespace Boa.Constrictor.WebDriver
                 actor.AttemptsTo(wait);
             }
         }
+
+        /// <summary>
+        /// Checks if this interaction is equal to another interaction.
+        /// </summary>
+        /// <param name="obj">The other object.</param>
+        public override bool Equals(object obj) =>
+            obj is WaitAndRefresh refresh &&
+            EqualityComparer<IWebLocator>.Default.Equals(Locator, refresh.Locator) &&
+            RefreshSeconds == refresh.RefreshSeconds &&
+            TimeoutSeconds == refresh.TimeoutSeconds &&
+            AdditionalSeconds == refresh.AdditionalSeconds;
+
+        /// <summary>
+        /// Gets a unique hash code for this interaction.
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode() =>
+            HashCode.Combine(GetType(), Locator, RefreshSeconds, TimeoutSeconds, AdditionalSeconds);
 
         #endregion
     }
