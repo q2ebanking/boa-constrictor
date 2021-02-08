@@ -4,6 +4,9 @@
     /// Question to get an answer from the answer cache.
     /// If the answer is cached, this returns that value.
     /// If the answer is not cached, this calls the question, caches the answer, and returns the value.
+    /// Questions to cache must implement `ICacheableQuestion`.
+    /// WARNING: Do NOT cache answers to every Question.
+    /// Only cache answers that you know will be fairly constant.
     /// </summary>
     /// <typeparam name="TAnswer"></typeparam>
     public class CachedAnswer<TAnswer> : IQuestion<TAnswer>
@@ -11,20 +14,20 @@
         /// <summary>
         /// The target Question.
         /// </summary>
-        public IQuestion<TAnswer> Question { get; private set; }
+        public ICacheableQuestion<TAnswer> Question { get; private set; }
 
         /// <summary>
         /// Private constructor.
         /// </summary>
         /// <param name="question">The target Question.</param>
-        private CachedAnswer(IQuestion<TAnswer> question) => Question = question;
+        private CachedAnswer(ICacheableQuestion<TAnswer> question) => Question = question;
 
         /// <summary>
         /// Builder method.
         /// </summary>
         /// <param name="question">The target Question.</param>
         /// <returns></returns>
-        public static CachedAnswer<TAnswer> For(IQuestion<TAnswer> question) =>
+        public static CachedAnswer<TAnswer> For(ICacheableQuestion<TAnswer> question) =>
             new CachedAnswer<TAnswer>(question);
 
         /// <summary>

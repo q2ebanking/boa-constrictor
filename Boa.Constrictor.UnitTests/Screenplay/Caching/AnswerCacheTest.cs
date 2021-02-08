@@ -12,8 +12,8 @@ namespace Boa.Constrictor.UnitTests.Screenplay
 
         private IActor Actor { get; set; }
         private AnswerCache Cache { get; set; }
-        private Mock<IQuestion<int>> MockQuestionA { get; set; }
-        private Mock<IQuestion<int>> MockQuestionB { get; set; }
+        private Mock<ICacheableQuestion<int>> MockQuestionA { get; set; }
+        private Mock<ICacheableQuestion<int>> MockQuestionB { get; set; }
 
         #endregion
 
@@ -25,11 +25,11 @@ namespace Boa.Constrictor.UnitTests.Screenplay
             Actor = new Actor();
             Cache = new AnswerCache();
 
-            MockQuestionA = new Mock<IQuestion<int>>();
+            MockQuestionA = new Mock<ICacheableQuestion<int>>();
             MockQuestionA.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
             MockQuestionA.Setup(x => x.GetHashCode()).Returns(1);
 
-            MockQuestionB = new Mock<IQuestion<int>>();
+            MockQuestionB = new Mock<ICacheableQuestion<int>>();
             MockQuestionB.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(2);
             MockQuestionB.Setup(x => x.GetHashCode()).Returns(2);
         }

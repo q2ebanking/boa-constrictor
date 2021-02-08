@@ -9,7 +9,7 @@ namespace Boa.Constrictor.WebDriver
     /// Optionally reset the cookie's expiration.
     /// Warning: The cookie's expiration will be wrong.
     /// </summary>
-    public class SystemNetCookie : IQuestion<System.Net.Cookie>
+    public class SystemNetCookie : ICacheableQuestion<System.Net.Cookie>
     {
         #region Constructors
 

@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (None)
 
 
+## [0.11.1] - 2021-02-08
+
+### Changed
+
+- Added `ICacheableQuestion` as an interface for Questions that can be cached
+- Updated `AnswerCache` and related classes to use `ICacheableQuestion` instead of `IQuestion`
+- Updated WebDriver-based Questions to implement `ICacheableQuestion`
+
+
 ## [0.11.0] - 2021-02-02
 
 ### Added
