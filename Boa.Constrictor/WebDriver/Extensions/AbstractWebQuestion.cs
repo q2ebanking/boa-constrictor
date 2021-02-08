@@ -8,7 +8,7 @@ namespace Boa.Constrictor.WebDriver
     /// Abstract class that makes it easier to write questions that use the BrowseTheWeb ability.
     /// </summary>
     /// <typeparam name="TAnswer">The answer type.</typeparam>
-    public abstract class AbstractWebQuestion<TAnswer> : IQuestion<TAnswer>
+    public abstract class AbstractWebQuestion<TAnswer> : ICacheableQuestion<TAnswer>
     {
         #region Abstract Methods
 

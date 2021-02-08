@@ -4,6 +4,9 @@ namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Caches answers to Questions.
+    /// Questions must implement `ICacheableQuestion` to be compatible with caching.
+    /// WARNING: Do NOT cache answers to every Question.
+    /// Only cache answers that you know will be fairly constant.
     /// </summary>
     public class AnswerCache
     {
@@ -46,7 +49,7 @@ namespace Boa.Constrictor.Screenplay
         /// <param name="question">The Question.</param>
         /// <param name="actor">The Actor.</param>
         /// <returns></returns>
-        public TAnswer Get<TAnswer>(IQuestion<TAnswer> question, IActor actor)
+        public TAnswer Get<TAnswer>(ICacheableQuestion<TAnswer> question, IActor actor)
         {
             lock (Lock)
             {
@@ -67,7 +70,7 @@ namespace Boa.Constrictor.Screenplay
         /// <typeparam name="TAnswer">The answer type.</typeparam>
         /// <param name="question">The Question.</param>
         /// <returns></returns>
-        public bool Has<TAnswer>(IQuestion<TAnswer> question)
+        public bool Has<TAnswer>(ICacheableQuestion<TAnswer> question)
         {
             lock (Lock)
             {
@@ -81,7 +84,7 @@ namespace Boa.Constrictor.Screenplay
         /// </summary>
         /// <typeparam name="TAnswer">The answer type.</typeparam>
         /// <param name="question">The Question.</param>
-        public void Invalidate<TAnswer>(IQuestion<TAnswer> question)
+        public void Invalidate<TAnswer>(ICacheableQuestion<TAnswer> question)
         {
             lock (Lock)
             {
