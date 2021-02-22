@@ -13,6 +13,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (None)
 
 
+## [0.11.2] - 2021-02-22
+
+### Changed
+
+- Enabled `IRestClient` objects to be directly injectable into `AbstractRestSharpAbility` and its child classes
+
+
 ## [0.11.1] - 2021-02-08
 
 ### Changed
