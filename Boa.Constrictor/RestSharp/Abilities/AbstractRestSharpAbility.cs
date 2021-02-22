@@ -1,6 +1,5 @@
 ﻿using Boa.Constrictor.Dumping;
 using RestSharp;
-using System;
 using System.Net;
 
 namespace Boa.Constrictor.RestSharp
@@ -25,21 +24,28 @@ namespace Boa.Constrictor.RestSharp
         #region Constructors
 
         /// <summary>
-        /// Private constructor.
-        /// (Use the static methods for public construction.)
+        /// Protected constructor.
+        /// (Use static methods in a subclass for public construction.)
         /// </summary>
-        /// <param name="baseUrl">The base URL for the RestSharp client.</param>
-        protected AbstractRestSharpAbility(string baseUrl)
+        /// <param name="client">The RestSharp client.</param>
+        protected AbstractRestSharpAbility(IRestClient client)
         {
-            Client = new RestClient()
-            {
-                BaseUrl = new Uri(baseUrl),
-                CookieContainer = new CookieContainer()
-            };
-
+            Client = client;
             RequestDumper = null;
             DownloadDumper = null;
+
+            if (Client.CookieContainer == null)
+                Client.CookieContainer = new CookieContainer();
         }
+
+        /// <summary>
+        /// Protected constructor.
+        /// (Use static methods in a subclass for public construction.)
+        /// </summary>
+        /// <param name="baseUrl">The base URL for the RestSharp client.</param>
+        protected AbstractRestSharpAbility(string baseUrl) :
+            this(new RestClient(baseUrl))
+        { }
 
         #endregion
 
