@@ -8,7 +8,7 @@
     <Title>Boa Constrictor</Title>
     <Product>Boa Constrictor</Product>
     <Description>Boa Constrictor is a standalone .NET implementation of the Screenplay Pattern for modeling interactions. It includes out-of-the-box interactions for Web UI (Selenium WebDriver) and REST API (RestSharp) behaviors.</Description>
-    <Copyright>Copyright © 2020 Q2 Holdings Inc.</Copyright>
+    <Copyright>Copyright © 2020-2021 Q2 Holdings Inc.</Copyright>
     <RepositoryUrl>https://github.com/q2ebanking/boa-constrictor</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
