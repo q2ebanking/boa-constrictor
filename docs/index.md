@@ -1,9 +1,25 @@
 ---
-layout: home
+layout: page
 title: Boa Constrictor
 permalink: /
 ---
 
-Hello! This is the first attempt at creating pages locally with Jekyll.
+*Boa Constrictor* is a C# implementation of the
+[Screenplay Pattern](https://www.infoq.com/articles/Beyond-Page-Objects-Test-Automation-Serenity-Screenplay/).
+Its primary use case is Web UI and REST API test automation.
+**Boa Constrictor helps you make better interactions for better automation!**
 
-Let's try again.
+*Interactions* are units of behavior.
+Every test case is essentially a sequence of interactions.
+When test cases are written, interactions are described in plain language, like, "Log into the app as an admin."
+Most of those high-level interactions are composed of smaller interactions, like clicks, scrapes, and waits.
+
+Boa Constrictor can automate interactions at any level in a readable way.
+Out of the box, it includes Web UI interactions using [Selenium WebDriver](https://www.selenium.dev/)
+and REST API interactions using [RestSharp](https://restsharp.dev/).
+It also provides a standard pattern for combining interactions together.
+Each interaction is safe, reliable, and has automatic logging.
+For Web UI automation, the Screenplay Pattern is an improvement over the
+[Page Object Pattern](https://www.selenium.dev/documentation/en/guidelines_and_recommendations/page_object_models/).
+Any .NET project can use Boa Constrictor by installing the
+[Boa.Constrictor NuGet package](https://www.nuget.org/packages/Boa.Constrictor).
