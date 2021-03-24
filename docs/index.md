@@ -1,3 +1,7 @@
-﻿# Boa Constrictor
+﻿layout: page
+title: "Boa Constrictor"
+permalink: /
 
-Hello! First doc page.
+# Boa Constrictor: The .NET Screenplay Pattern
+
+Hello! First doc page, now with frontmatter!
