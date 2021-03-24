@@ -31,7 +31,6 @@ github_username:  q2ebanking
 
 # Build settings
 theme: minima
-remote_theme: jekyll/minima
 plugins:
   - jekyll-feed
   - jekyll-remote-theme

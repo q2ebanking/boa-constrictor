@@ -262,7 +262,10 @@ PLATFORMS
 DEPENDENCIES
   github-pages (~> 212)
   jekyll (~> 3.9.0)
-  jekyll-feed (~> 0.12)
+  jekyll-feed (~> 0.15.1)
+  jekyll-remote-theme (~> 0.4.2)
+  jekyll-seo-tag (~> 2.7.1)
+  jekyll-sitemap (~> 1.4.0)
   minima (~> 2.5)
   tzinfo (~> 1.2)
   tzinfo-data
