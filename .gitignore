@@ -112,3 +112,10 @@ DatabaseSchema.Processed.sql
 
 # SonarQube
 .sonarqube
+
+# Jekyll
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor

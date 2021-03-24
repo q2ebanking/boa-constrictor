@@ -1,9 +1,7 @@
-﻿---
-layout: page
-title: "Boa Constrictor: The .NET Screenplay Pattern"
+---
+layout: home
+title: Boa Constrictor
 permalink: /
 ---
 
-# Boa Constrictor: The .NET Screenplay Pattern
-
-Hello! First doc page, now with frontmatter! Should be all fixed.
+Hello! This is the first attempt at creating pages locally with Jekyll.
