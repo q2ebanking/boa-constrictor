@@ -6,4 +6,4 @@ permalink: /
 
 Hello! This is the first attempt at creating pages locally with Jekyll.
 
-I'm trying to get the theme to work...
+Let's try again.
