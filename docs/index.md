@@ -1,6 +1,8 @@
-﻿layout: page
+﻿---
+layout: page
 title: "Boa Constrictor"
 permalink: /
+---
 
 # Boa Constrictor: The .NET Screenplay Pattern
 
