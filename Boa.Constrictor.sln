@@ -44,6 +44,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub Actions", "GitHub Ac
 		.github\workflows\unit-tests.yml = .github\workflows\unit-tests.yml
 	EndProjectSection
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "docs", "docs\", "{20E9F298-0AEF-4BC2-838F-28B188851B6C}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_60070"
+		Debug.AspNetCompiler.PhysicalPath = "docs\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60070\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_60070"
+		Release.AspNetCompiler.PhysicalPath = "docs\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60070\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "60070"
+		SlnRelativePath = "docs\"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +83,9 @@ Global
 		{2EDE1932-D1D3-45DD-80C6-6E08A3F96942}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EDE1932-D1D3-45DD-80C6-6E08A3F96942}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EDE1932-D1D3-45DD-80C6-6E08A3F96942}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20E9F298-0AEF-4BC2-838F-28B188851B6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20E9F298-0AEF-4BC2-838F-28B188851B6C}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{20E9F298-0AEF-4BC2-838F-28B188851B6C}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
