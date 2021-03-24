@@ -26,13 +26,14 @@ description: >- # this means to ignore newlines until "baseurl:"
   Boa Constrictor helps you make better interactions for better automation!
 baseurl: "/boa-constrictor" # the subpath of your site, e.g. /blog
 url: "https://q2ebanking.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-# twitter_username: jekyllrb
+# twitter_username: AutomationPanda
 github_username:  q2ebanking
 
 # Build settings
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 
 # Exclude from processing.
 # The following items will not be processed, by default.
