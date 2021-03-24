@@ -33,9 +33,6 @@ github_username:  q2ebanking
 theme: minima
 plugins:
   - jekyll-feed
-  - jekyll-remote-theme
-  - jekyll-sitemap
-  - jekyll-seo-tag
 
 # Exclude from processing.
 # The following items will not be processed, by default.
