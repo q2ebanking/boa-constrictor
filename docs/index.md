@@ -1,6 +1,6 @@
 ---
-layout: page
 title: Boa Constrictor
+layout: home
 permalink: /
 ---
 

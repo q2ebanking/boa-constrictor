@@ -11,29 +11,58 @@
 # If you need help with YAML syntax, here are some quick references for you: 
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
-#
+
+
+# Build settings
+
+remote_theme: "mmistakes/minimal-mistakes@4.22.0"
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-include-cache
+  - jekyll-remote-theme
+
+  
 # Site settings
 # These are used to personalize your new site. If you look in the HTML files,
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Boa Constrictor - The .NET Screenplay Pattern
-#email: your-email@example.com
-description: >- # this means to ignore newlines until "baseurl:"
+minimal_mistakes_skin: "contrast"
+
+locale: "en-US"
+title: "Boa Constrictor"
+subtitle: "The .NET Screenplay Pattern"
+logo: "/assets/images/blue-ball-192x192.png"
+name: Q2 Holdings Inc
+description: >-
   Boa Constrictor is a C# implementation of the Screenplay Pattern.
   Its primary use case is Web UI and REST API test automation.
   Boa Constrictor helps you make better interactions for better automation!
-baseurl: "/boa-constrictor" # the subpath of your site, e.g. /blog
-url: "https://q2ebanking.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-# twitter_username: AutomationPanda
-github_username:  q2ebanking
 
-# Build settings
-theme: minima
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
+url: "https://q2ebanking.github.io"
+baseurl: "/boa-constrictor"
+repository: "q2ebanking/boa-constrictor"
+
+search: true
+
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      sidebar:
+        nav: "pages"
+
+footer:
+  links:
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/AutomationPanda"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/q2ebanking/boa-constrictor/"
 
 # Exclude from processing.
 # The following items will not be processed, by default.

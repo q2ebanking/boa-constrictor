@@ -1,6 +1,6 @@
 ﻿---
-layout: page
 title: Quickstart Tutorial
+layout: single
 permalink: /tutorial
 ---
 
