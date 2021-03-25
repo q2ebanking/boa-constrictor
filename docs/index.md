@@ -1,6 +1,6 @@
 ---
 title: Boa Constrictor
-layout: home
+layout: single
 permalink: /
 ---
 
