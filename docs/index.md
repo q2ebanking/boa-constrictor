@@ -23,3 +23,10 @@ For Web UI automation, the Screenplay Pattern is an improvement over the
 [Page Object Pattern](https://www.selenium.dev/documentation/en/guidelines_and_recommendations/page_object_models/).
 Any .NET project can use Boa Constrictor by installing the
 [Boa.Constrictor NuGet package](https://www.nuget.org/packages/Boa.Constrictor).
+
+This [32-minute YouTube video](https://youtu.be/i26B1afosCo)
+introduces Screenplay Pattern concepts and Boa Constrictor code:
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/i26B1afosCo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
