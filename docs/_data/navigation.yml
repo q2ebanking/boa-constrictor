@@ -1,0 +1,6 @@
+﻿pages:
+
+  - title: Tutorials
+    children:
+      - title: "Tutorial"
+        url: /tutorial/
