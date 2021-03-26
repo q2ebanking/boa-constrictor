@@ -1,6 +1,45 @@
 ﻿pages:
 
+  - title: Getting Started
+    children:
+      - title: "Home"
+        url: /
+      - title: "Quickstart Guide"
+      - title: "What is Screenplay?"
+      - title: "Why Use Boa Constrictor?"
+      - title: "Screenplay vs. Page Objects"
+
   - title: Tutorials
     children:
-      - title: "Tutorial"
-        url: /tutorial/
+      - title: "Main Tutorial"
+        url: /tutorials/tutorial/
+
+  - title: Integrations
+    children:
+      - title: "SpecFlow"
+      - title: "NUnit"
+
+  - title: Guides
+    children:
+      - title: "Writing Custom Interactions"
+      - title: "Waiting for Answers"
+      - title: "Caching Answers"
+      - title: "Logging Messages"
+      - title: "Dumping Artifacts"
+      - title: "Extending the Actor"
+
+  - title: Contributing
+    children:
+      - title: "Code of Conduct"
+      - title: "Contributing Code"
+      - title: "Opening Issues"
+
+  - title: Project
+    children:
+      - title: "GitHub Repository"
+        url: https://github.com/q2ebanking/boa-constrictor
+      - title: "NuGet Package"
+        url: https://www.nuget.org/packages/Boa.Constrictor/
+      - title: "Requirements"
+        url: /project/requirements/
+      - title: "Backstory"
