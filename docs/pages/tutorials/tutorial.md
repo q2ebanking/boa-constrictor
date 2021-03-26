@@ -1,7 +1,7 @@
 ﻿---
-title: Quickstart Tutorial
+title: Main Tutorial
 layout: single
-permalink: /tutorial/
+permalink: /tutorials/tutorial/
 ---
 
 This tutorial will teach you how to use Boa Constrictor and the Screenplay Pattern step-by-step.
