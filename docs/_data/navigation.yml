@@ -31,6 +31,7 @@
   - title: Contributing
     children:
       - title: "Code of Conduct"
+        url: /contributing/code-of-conduct/
       - title: "Contributing Code"
       - title: "Opening Issues"
 
