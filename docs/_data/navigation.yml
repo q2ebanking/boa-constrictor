@@ -43,6 +43,8 @@
         url: https://github.com/q2ebanking/boa-constrictor
       - title: "NuGet Package"
         url: https://www.nuget.org/packages/Boa.Constrictor/
+      - title: "License"
+        url: https://github.com/q2ebanking/boa-constrictor/blob/main/LICENSE.md
       - title: "Requirements"
         url: /project/requirements/
       - title: "Backstory"
