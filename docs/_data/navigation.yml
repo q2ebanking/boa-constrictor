@@ -33,7 +33,9 @@
       - title: "Code of Conduct"
         url: /contributing/code-of-conduct/
       - title: "Contributing Code"
+        url: /contributing/contributing-code/
       - title: "Opening Issues"
+        url: /contributing/opening-issues/
 
   - title: Project
     children:
