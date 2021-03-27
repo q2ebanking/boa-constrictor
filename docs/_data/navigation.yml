@@ -4,29 +4,33 @@
     children:
       - title: "Home"
         url: /
-      - title: "Quickstart Guide"
-      - title: "What is Screenplay?"
-      - title: "Why Use Boa Constrictor?"
-      - title: "Screenplay vs. Page Objects"
+#      - title: "Quickstart Guide"
+#        url: /getting-started/quickstart/
+#      - title: "What is Screenplay?"
+#        url: /getting-started/screenplay/
+#      - title: "Why Use Boa Constrictor?"
+#        url: /getting-started/why-boa-constrictor
+#      - title: "Screenplay vs. Page Objects"
+#        url: /getting-started/page-objects/
 
   - title: Tutorials
     children:
       - title: "Main Tutorial"
         url: /tutorials/tutorial/
 
-  - title: Integrations
-    children:
-      - title: "SpecFlow"
-      - title: "NUnit"
+#  - title: Integrations
+#    children:
+#      - title: "SpecFlow"
+#      - title: "NUnit"
 
-  - title: Guides
-    children:
-      - title: "Writing Custom Interactions"
-      - title: "Waiting for Answers"
-      - title: "Caching Answers"
-      - title: "Logging Messages"
-      - title: "Dumping Artifacts"
-      - title: "Extending the Actor"
+#  - title: Guides
+#    children:
+#      - title: "Writing Custom Interactions"
+#      - title: "Waiting for Answers"
+#      - title: "Caching Answers"
+#      - title: "Logging Messages"
+#      - title: "Dumping Artifacts"
+#      - title: "Extending the Actor"
 
   - title: Contributing
     children:
