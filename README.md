@@ -87,7 +87,8 @@ page to set them up.
 If you try to run tests using Boa Constrictor but get a `DriverServiceNotFoundException`,
 then double-check your WebDriver installation.
 
-Once your project is set up, follow the [quickstart tutorial](TUTORIAL.md)
+Once your project is set up, follow the
+[quickstart tutorial](https://q2ebanking.github.io/boa-constrictor/tutorials/tutorial/)
 to learn about the Screenplay Pattern and how to write Boa Constrictor code.
 Example code is located under the `Boa.Constrictor.Example` project.
 
