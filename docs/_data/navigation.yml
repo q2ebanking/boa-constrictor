@@ -35,7 +35,7 @@
       - title: "Contributing Code"
         url: /contributing/contributing-code/
       - title: "Opening Issues"
-        url: /contributing/opening-issues/
+        url: /contributing/contributing-code/#2-opening-issues
 
   - title: Project
     children:

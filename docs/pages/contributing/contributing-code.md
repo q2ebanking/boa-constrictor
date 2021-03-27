@@ -26,14 +26,12 @@ All contributors must abide by the [Code of Conduct]({{ "/contributing/code-of-c
 Anyone who violates the code of conduct may be banned from the project and the community.
 
 
-## 2. Handling Issues
+## 2. Opening Issues
 
 The Boa Constrictor project uses
 [GitHub Issues](https://github.com/q2ebanking/boa-constrictor/issues)
 to track work items and welcome communication from members of the community.
-
-Please [open a new issue]({{ "/contributing/opening-issues/" | relative_url }})
-against the Boa Constrictor project if you want to:
+Please open a new issue against the Boa Constrictor project if you want to:
 
 * Report a bug
 * Request a new feature
