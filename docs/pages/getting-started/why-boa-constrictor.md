@@ -54,11 +54,11 @@ It is a design pattern for making *any* type of interaction, not just Web UI.
 It provides WebDriver-based interactions to support Web UI test automation out of the box.
 Any other types of interactions can be added.
 
-Boa Constrictor is also **not another type of Page Object Pattern**.
-The [Page Object Pattern](https://www.selenium.dev/documentation/en/guidelines_and_recommendations/page_object_models/)
+Boa Constrictor is also **not another type of Page Object Model**.
+The [Page Object Model](https://www.selenium.dev/documentation/en/guidelines_and_recommendations/page_object_models/)
 is the traditional way to model Web pages for automation.
 A *page object* contains locator objects and interaction methods (that use those locators).
-Page objects are great for small test automation solutions, but they don't scale well.
+Page objects are good for small test automation solutions, but they don't scale well.
 By design, page objects couple the concerns of page structure with behavior.
 As a result, they tend to have repetitive methods, bloated hierarchies, and little standardization.
 Page objects are more of a "convention" than a true design pattern.
