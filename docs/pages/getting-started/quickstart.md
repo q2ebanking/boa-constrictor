@@ -5,8 +5,10 @@ permalink: /getting-started/quickstart/
 ---
 
 This brief guide should help you start using Boa Constrictor quickly.
-To learn more about Boa Constrictor and the Screenplay Pattern,
-complete the [tutorial]({{ "/getting-started/screenplay/" | relative_url }}).
+Please read [What is Screenplay?]({{ "/getting-started/screenplay/" | relative_url }})
+to learn more about the Screenplay Pattern itself,
+and please complete the [tutorial]({{ "/tutorials/tutorial/" | relative_url }})
+to learn Boa Constrictor's code in depth.
 
 
 ## Setup
