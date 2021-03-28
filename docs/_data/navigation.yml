@@ -4,8 +4,8 @@
     children:
       - title: "Home"
         url: /
-#      - title: "Quickstart Guide"
-#        url: /getting-started/quickstart/
+      - title: "Quickstart Guide"
+        url: /getting-started/quickstart/
 #      - title: "What is Screenplay?"
 #        url: /getting-started/screenplay/
 #      - title: "Why Use Boa Constrictor?"
