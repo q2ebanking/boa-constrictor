@@ -8,6 +8,9 @@ The *Screenplay Pattern* is a design pattern for automating interacting with sof
 It can handle any type of interaction - web browser, mobile app, service API, command line, etc.
 Test automation is the most popular use case for the pattern.
 
+
+## The Design
+
 The Screenplay Pattern can be summarized in one line:
 *Actors use Abilities to perform Interactions.*
 
@@ -28,7 +31,10 @@ Each task would access the WebDriver instance through the calling Actor's Abilit
 Abilities provide a mechanism for dependency injection.
 Actors can perform any kind of Interaction if it has the required Abilities.
 
-The Screenplay Pattern also uses a fluent-like syntax to make test code very readable:
+
+## The Code
+
+The Screenplay Pattern uses a fluent-like syntax to make test code very readable:
 
 ```csharp
 IActor actor = new Actor(logger: new ConsoleLogger());
@@ -56,7 +62,10 @@ There are [many reasons]({{ "/getting-started/why-boa-constrictor/" | relative_u
 to choose the Screenplay Pattern (and specifically Boa Constrictor) for automation over other patterns like the
 [Page Object Model]({{ "/getting-started/page-objects/" | relative_url }}).
 
-The Screenplay Pattern also adheres to [SOLID](https://en.wikipedia.org/wiki/SOLID) design principles: 
+
+## The Principles
+
+The Screenplay Pattern adheres to [SOLID](https://en.wikipedia.org/wiki/SOLID) design principles: 
 
 | SOLID Principle | Explanation |
 | --------------- | ----------- |
@@ -65,6 +74,9 @@ The Screenplay Pattern also adheres to [SOLID](https://en.wikipedia.org/wiki/SOL
 | [Liskov Substitution Principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle) | Actors can call all Abilities and Interactions the same way. |
 | [Interface Segregation Principle](https://en.wikipedia.org/wiki/Interface_segregation_principle) | Actors, Abilities, and Interactions each have distinct, separate interfaces. |
 | [Dependency Inversion Principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle) | Interactions use Abilities via dependency injection from the Actor. |
+
+
+## Boa Constrictor's Implementation
 
 Boa Constrictor did not create the Screenplay Pattern.
 In fact, the Screenplay Pattern (or the "Journey Pattern") has been around
