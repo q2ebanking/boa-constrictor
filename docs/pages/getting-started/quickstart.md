@@ -6,7 +6,7 @@ permalink: /getting-started/quickstart/
 
 This brief guide should help you start using Boa Constrictor quickly.
 To learn more about Boa Constrictor and the Screenplay Pattern,
-complete the [tutorial](https://q2ebanking.github.io/boa-constrictor/tutorials/tutorial/).
+complete the [tutorial]({{ "/getting-started/screenplay/" | relative_url }}).
 
 
 ## Setup
