@@ -8,8 +8,8 @@
         url: /getting-started/quickstart/
       - title: "What is Screenplay?"
         url: /getting-started/screenplay/
-#      - title: "Why Use Boa Constrictor?"
-#        url: /getting-started/why-boa-constrictor/
+      - title: "Why Use Boa Constrictor?"
+        url: /getting-started/why-boa-constrictor/
 #      - title: "Screenplay vs. Page Objects"
 #        url: /getting-started/page-objects/
 
