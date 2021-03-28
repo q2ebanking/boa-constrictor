@@ -1,6 +1,8 @@
 # Boa Constrictor Tutorial Setup Guide Using Visual Studio 2019
 
-This guide is an in-depth walkthrough of setting up your environment for the Boa Constrictor [quickstart tutorial](TUTORIAL.md) using Microsoft Visual Studio 2019.
+This guide is an in-depth walkthrough of setting up your environment for the Boa Constrictor
+[quickstart tutorial](https://q2ebanking.github.io/boa-constrictor/tutorials/tutorial/)
+using Microsoft Visual Studio 2019.
 
 ### 1. Create the project
 Open *Visual Studio 2019* and select **Create a new project**.
@@ -75,4 +77,7 @@ namespace Boa.Constrictor.Example
 
 ### 10. Start the Tutorial
 Congratulations, your project is now ready. 
-Please follow the [Tutorial Instructions](TUTORIAL.md#tutorial-instructions) in the Boa Constrictor [quickstart tutorial](TUTORIAL.md).
+Please follow the
+[Tutorial Instructions](https://q2ebanking.github.io/boa-constrictor/tutorials/tutorial/#tutorial-instructions)
+in the Boa Constrictor
+[quickstart tutorial](https://q2ebanking.github.io/boa-constrictor/tutorials/tutorial/).
