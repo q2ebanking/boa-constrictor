@@ -6,7 +6,7 @@ that helps you make *better interactions* for *better automation*!
 Its primary use case is Web UI and REST API test automation.
 
 Please visit https://q2ebanking.github.io/boa-constrictor/ for full documentation.
-You can also read the doc pages locally under the [/docs/pages](/docs/pages) directory.
+You can also read the doc pages locally under the [/docs](/docs) directory.
 
 
 #### Documentation
