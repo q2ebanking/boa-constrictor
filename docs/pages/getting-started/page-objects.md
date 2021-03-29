@@ -331,3 +331,15 @@ Screenplay's design offers the following [benefits]({{ "/getting-started/why-boa
 * Screenplay code resists copy-paste errors because each interaction can be written once and then reused.
 * Locators can be used by any interaction, instead of being locked into one page object class.
 * Actors automatically log all interactions, making output easily traceable.
+
+
+## More Refactoring
+
+Boa Constrictor's Screenplay calls can easily replace raw WebDriver calls, page objects, and other patterns in existing test automation projects.
+Check out this livestream to see how
+[Andreas Willich](https://twitter.com/SabotageAndi) and [Pandy Knight](https://twitter.com/AutomationPanda)
+converted a SpecFlow project to use Boa Constrictor:
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hJ_ni5s6vhA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
