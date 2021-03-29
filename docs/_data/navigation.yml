@@ -12,6 +12,8 @@
         url: /getting-started/why-boa-constrictor/
       - title: "Screenplay vs. Page Objects"
         url: /getting-started/page-objects/
+      - title: "Videos"
+        url: /getting-started/videos/
 
   - title: Tutorials
     children:
