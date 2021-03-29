@@ -118,7 +118,27 @@ Put your description under the appropriate type heading:
 `Added`, `Changed`, `Deprecated`, `Fixed`, `Removed`, or `Security`.
 
 
-## 8. Opening Pull Requests
+## 8. Writing Docs
+
+Boa Constrictor uses [GitHub Pages](https://pages.github.com/) to publish documentation.
+GitHub Pages uses [Jekyll](https://jekyllrb.com/),
+a static site generator written in [Ruby](https://www.ruby-lang.org/en/),
+to turn Markdown files into web pages hosted by GitHub.
+Boa Constrictor's doc site address is
+[https://q2ebanking.github.io/boa-constrictor/](https://q2ebanking.github.io/boa-constrictor/).
+
+The Boa Constrictor project treats documentation as code.
+The doc site is built using the files under the `/docs` directory.
+If you need to update the docs, simply edit the Markdown files together with your other code changes.
+When changes are merged into the *main* branch, GitHub will generate and deploy the updated docs.
+
+If you want to make deeper changes to the docs (such as theme changes),
+you will probably need to set up Ruby and Jekyll on your development machine to test changes locally.
+Follow the official [GitHub Pages guides](https://docs.github.com/en/github/working-with-github-pages)
+for complete instructions.
+
+
+## 9. Opening Pull Requests
 
 Once your changes are complete, push your branch to your forked repository and
 [open a pull request from your fork to the original repository](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork).
@@ -127,7 +147,7 @@ The Boa Constrictor repository's GitHub Actions will automatically trigger unit 
 
 Here are guidelines for opening good pull requests:
 
-* Focus on one main change or concern per pull request.
+* Focus on one primary change or concern per pull request.
 * Merge the latest changes from the *main* branch into your branch before opening the pull request to avoid merge conflicts.
 * Include explanations for the code change.
 * Link any relevant issues.
@@ -141,7 +161,7 @@ If pull requests are new to you, then you can learn about them from GitHub Docs:
 [Collaborating with issues and pull requests](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests).
 
 
-## 9. Releasing NuGet Packages
+## 10. Releasing NuGet Packages
 
 Boa Constrictor is released publicly as the [Boa.Constrictor NuGet package](https://www.nuget.org/packages/Boa.Constrictor/).
 Package versions follow [Semantic Versioning](https://semver.org/).
@@ -168,7 +188,7 @@ To release a new package, maintainers must:
 7. Close the milestone in GitHub.
 
 
-## 10. Understanding Different Roles
+## 11. Understanding Different Roles
 
 A *contributor* is anyone who opens an issue or submits a pull request to the Boa Constrictor repository.
 Anyone can become a contributor by following this guide.
