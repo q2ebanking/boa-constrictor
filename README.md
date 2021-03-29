@@ -9,7 +9,7 @@ Please visit https://q2ebanking.github.io/boa-constrictor/ for full documentatio
 You can also read the documentation locally under the [/docs](/docs) directory.
 
 
-##### Documentation
+#### Documentation
 
 * [GitHub Pages doc site](https://q2ebanking.github.io/boa-constrictor/)
 * [Quickstart Guide](https://q2ebanking.github.io/boa-constrictor/getting-started/quickstart/)
@@ -18,19 +18,19 @@ You can also read the documentation locally under the [/docs](/docs) directory.
 * [Tutorial](https://q2ebanking.github.io/boa-constrictor/tutorials/tutorial/)
 
 
-##### Videos
+#### Videos
 
 * [Introduction to Boa Constrictor](https://youtu.be/i26B1afosCo)
 * [Using Boa Constrictor with SpecFlow](https://www.youtube.com/watch?v=hJ_ni5s6vhA)
 
 
-##### Contributing
+#### Contributing
 
 * [Contributing Code](https://q2ebanking.github.io/boa-constrictor/contributing/contributing-code/)
 * [Code of Conduct](https://q2ebanking.github.io/boa-constrictor/contributing/code-of-conduct/)
 
 
-##### Project
+#### Project
 
 * [NuGet Package](https://www.nuget.org/packages/Boa.Constrictor/)
 * [License](LICENSE.md)
