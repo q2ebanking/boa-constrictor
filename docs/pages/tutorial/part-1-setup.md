@@ -2,6 +2,7 @@
 title: Tutorial Part 1 - Setup
 layout: single
 permalink: /tutorial/part-1-setup/
+toc: true
 ---
 
 In this part of the tutorial, you will create a new .NET project for testing with Boa Constrictor.

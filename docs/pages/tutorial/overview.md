@@ -2,6 +2,7 @@
 title: Tutorial Overview
 layout: single
 permalink: /tutorial/overview/
+toc: true
 ---
 
 The Boa Constrictor tutorial will teach you how to use Boa Constrictor and the Screenplay Pattern step-by-step.

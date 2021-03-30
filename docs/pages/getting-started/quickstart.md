@@ -2,6 +2,7 @@
 title: Quickstart Guide
 layout: single
 permalink: /getting-started/quickstart/
+toc: true
 ---
 
 This brief guide should help you start using Boa Constrictor quickly.

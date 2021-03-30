@@ -2,6 +2,7 @@
 title: What is Screenplay?
 layout: single
 permalink: /getting-started/screenplay/
+toc: true
 ---
 
 The *Screenplay Pattern* is a design pattern for automating interacting with software products.

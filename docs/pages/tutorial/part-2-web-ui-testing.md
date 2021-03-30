@@ -2,6 +2,7 @@
 title: Tutorial Part 2 - Web UI Testing
 layout: single
 permalink: /tutorial/part-2-web-ui-testing/
+toc: true
 ---
 
 # REFINE THIS CONTENT!

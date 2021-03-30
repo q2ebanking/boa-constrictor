@@ -2,6 +2,7 @@
 title: Contributing Code
 layout: single
 permalink: /contributing/contributing-code/
+toc: true
 ---
 
 As an open source project, Boa Constrictor welcomes contributions from the community.

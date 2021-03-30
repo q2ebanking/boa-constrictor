@@ -2,6 +2,7 @@
 title: Screenplay vs. Page Objects
 layout: single
 permalink: /getting-started/page-objects/
+toc: true
 ---
 
 [Page objects](https://www.selenium.dev/documentation/en/guidelines_and_recommendations/page_object_models/)
