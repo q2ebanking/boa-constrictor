@@ -15,7 +15,7 @@ You can also read the doc pages locally under the [/docs](/docs) directory.
 * [Quickstart Guide](https://q2ebanking.github.io/boa-constrictor/getting-started/quickstart/)
 * [What is Screenplay?](https://q2ebanking.github.io/boa-constrictor/getting-started/screenplay/)
 * [Why Use Boa Constrictor?](https://q2ebanking.github.io/boa-constrictor/getting-started/why-boa-constrictor/)
-* [Tutorial](https://q2ebanking.github.io/boa-constrictor/tutorials/tutorial/)
+* [Tutorial](https://q2ebanking.github.io/boa-constrictor/tutorial/overview/)
 
 
 #### Videos

@@ -321,7 +321,7 @@ public class SearchDuckDuckGo : ITask
 }
 ```
 
-To learn more about how this code works, read the [tutorial]({{ "/tutorials/tutorial/" | relative_url }}).
+To learn more about how this code works, read the [tutorial]({{ "/tutorial/overview/" | relative_url }}).
 
 Screenplay's design offers the following [benefits]({{ "/getting-started/why-boa-constrictor/#the-benefits" | relative_url }}) over raw calls and page objects:
 

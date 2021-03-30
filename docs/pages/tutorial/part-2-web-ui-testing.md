@@ -1,8 +1,10 @@
 ﻿---
-title: Main Tutorial
+title: Tutorial Part 2 - Web UI Testing
 layout: single
-permalink: /tutorials/tutorial/
+permalink: /tutorial/part-2-web-ui-testing/
 ---
+
+# REFINE THIS CONTENT!
 
 This tutorial will teach you how to use Boa Constrictor and the Screenplay Pattern step-by-step.
 In this tutorial, you will build a small test project using [NUnit](https://nunit.org/).
@@ -52,9 +54,6 @@ Visual Studio makes it easy to create projects, add packages, navigate code, and
 
 ### Creating the Project
 Below are the high-level instructions for creating the example project. 
-You may also follow our
-[Tutorial Setup Guide Using Visual Studio 2019](https://github.com/q2ebanking/boa-constrictor/blob/main/TUTORIAL-SETUP-GUIDE-VS2019.md),
-which offers more in-depth instructions on creating the example project.
 
 You will need to create a new .NET test project named *Boa.Constrictor.Example* for this tutorial.
 You may create it as part of a new solution or inside an existing solution.
