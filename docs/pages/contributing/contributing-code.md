@@ -2,14 +2,14 @@
 title: Contributing Code
 layout: single
 permalink: /contributing/contributing-code/
+toc: true
 ---
 
 As an open source project, Boa Constrictor welcomes contributions from the community.
 This step-by-step guide explains how to set up the project and make code contributions.
 
 
-## Where Do I Start?
-
+**Where Do I Start?**
 Sometimes, joining a new project can feel overwhelming or intimidating.
 Never fear, if you are reading this doc, then you are in the right place!
 There are many ways to contribute to Boa Constrictor,
@@ -18,6 +18,7 @@ Start by reading this guide, reading the
 [Code of Conduct]({{ "/contributing/code-of-conduct/" | relative_url }}),
 and perusing open issues to see where you can help.
 You can also contact [Pandy Knight](https://twitter.com/AutomationPanda) for help.
+{: .notice--warning}
 
 
 ## 1. Following the Code of Conduct
@@ -50,8 +51,10 @@ If you want to make code contributions to Boa Constrictor, start by forking the 
 That way, you can make changes to the code without affecting the original repository.
 Later, after you make changes in your forked repository, you can propose to merge those changes into the main repository using a pull request.
 
-If forks are new to you, then you can learn about them from GitHub Docs:
-[Working with forks](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/working-with-forks).
+If forks are new to you, then you can learn about them from
+[Working with forks](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/working-with-forks)
+in the GitHub docs.
+{: .notice--info}
 
 
 ## 4. Setting Up the .NET Solution
@@ -80,7 +83,7 @@ They do *not* require WebDriver executables.
 
 The `Boa.Constrictor.Example` project also contains tests, but they are *not* unit tests.
 Instead, they are example tests for the
-[tutorial]({{ "/tutorials/tutorial/" | relative_url }}),
+[tutorial]({{ "/tutorial/overview/" | relative_url }}),
 and they *do* require WebDriver executables.
 If you simply check out the repository and try to run all tests without setting up WebDriver,
 then the `Boa.Constrictor.Example` tests will fail.
@@ -99,9 +102,11 @@ Use sensible names with appropriate prefixes for branch names.
 For example, names like `feature/add-mobile-interactions` and `bugfix/readme-typos` would be good,
 whereas names like `fix` or `do_stuff` would be bad.
 
-If branches are new to you, then you can learn about them from GitHub Docs:
+If branches are new to you, then you can learn about them from
 [About branches](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-branches)
-and [Creating and deleting branches within your repository](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-and-deleting-branches-within-your-repository).
+and [Creating and deleting branches within your repository](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-and-deleting-branches-within-your-repository)
+in the GitHub docs.
+{: .notice--info}
 
 
 ## 7. Making Code Changes
@@ -130,12 +135,13 @@ Boa Constrictor's doc site address is
 The Boa Constrictor project treats documentation as code.
 The doc site is built using the files under the `/docs` directory.
 If you need to update the docs, simply edit the Markdown files together with your other code changes.
-When changes are merged into the *main* branch, GitHub will generate and deploy the updated docs.
-
-If you want to make deeper changes to the docs (such as theme changes),
+However, if you want to make deeper changes to the docs (such as theme changes),
 you will probably need to set up Ruby and Jekyll on your development machine to test changes locally.
-Follow the official [GitHub Pages guides](https://docs.github.com/en/github/working-with-github-pages)
-for complete instructions.
+Either way, when changes are merged into the *main* branch, GitHub will generate and deploy the updated docs.
+
+To learn more about developing static sites with GitHub Pages and Jekyll, 
+read the official [GitHub Pages guides](https://docs.github.com/en/github/working-with-github-pages).
+{: .notice--info}
 
 
 ## 9. Opening Pull Requests
@@ -157,8 +163,10 @@ Here are guidelines for opening good pull requests:
 Once maintainers approve your pull request, they will merge the code.
 Then, you can move onto the next change!
 
-If pull requests are new to you, then you can learn about them from GitHub Docs:
-[Collaborating with issues and pull requests](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests).
+If pull requests are new to you, then you can learn about them from
+[Collaborating with issues and pull requests](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests)
+in the GitHub docs.
+{: .notice--info}
 
 
 ## 10. Releasing NuGet Packages

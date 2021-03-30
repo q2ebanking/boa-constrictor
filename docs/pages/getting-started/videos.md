@@ -2,6 +2,7 @@
 title: Videos
 layout: single
 permalink: /getting-started/videos/
+toc: true
 ---
 
 Check out the videos below to learn more about Boa Constrictor and the Screenplay Pattern.

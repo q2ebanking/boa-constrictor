@@ -15,10 +15,16 @@
       - title: "Videos"
         url: /getting-started/videos/
 
-  - title: Tutorials
+  - title: Tutorial
     children:
-      - title: "Main Tutorial"
-        url: /tutorials/tutorial/
+      - title: "Overview"
+        url: /tutorial/overview/
+      - title: "Part 1 - Setup"
+        url: /tutorial/part-1-setup/
+      - title: "Part 2 - Web UI Testing"
+        url: /tutorial/part-2-web-ui-testing/
+      - title: "Part 3 - REST API Testing"
+        url: /tutorial/part-3-rest-api-testing/
 
 #  - title: Integrations
 #    children:

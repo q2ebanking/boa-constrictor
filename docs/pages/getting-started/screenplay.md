@@ -2,6 +2,7 @@
 title: What is Screenplay?
 layout: single
 permalink: /getting-started/screenplay/
+toc: true
 ---
 
 The *Screenplay Pattern* is a design pattern for automating interacting with software products.
@@ -76,7 +77,7 @@ The Screenplay Pattern adheres to [SOLID](https://en.wikipedia.org/wiki/SOLID) d
 | [Dependency Inversion Principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle) | Interactions use Abilities via dependency injection from the Actor. |
 
 
-## Boa Constrictor's Implementation
+## The Implementation
 
 Boa Constrictor did not create the Screenplay Pattern.
 In fact, the Screenplay Pattern (or the "Journey Pattern") has been around

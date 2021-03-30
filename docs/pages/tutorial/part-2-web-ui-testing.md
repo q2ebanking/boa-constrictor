@@ -1,82 +1,48 @@
 ﻿---
-title: Main Tutorial
+title: Tutorial Part 2 - Web UI Testing
 layout: single
-permalink: /tutorials/tutorial/
+permalink: /tutorial/part-2-web-ui-testing/
+toc: true
 ---
 
-This tutorial will teach you how to use Boa Constrictor and the Screenplay Pattern step-by-step.
-In this tutorial, you will build a small test project using [NUnit](https://nunit.org/).
-Inside, you will create a simple Web UI test case that performs a search using [DuckDuckGo](https://duckduckgo.com/).
-You will use Boa Constrictor to handle all interactions.
-At the end of the tutorial, you will have a complete test project that you can extend with new tests or use as a reference for future projects.
+In this part of the tutorial, you will use Boa Constrictor to automate a Web UI test
+to perform a [DuckDuckGo](https://duckduckgo.com/) search.
+The test case steps will be simple:
 
-*This tutorial should take about 30 minutes to complete.*
+1. Load the DuckDuckGo home page
+2. Verify the search field is empty
+3. Enter a search phrase
+4. Verify result links are returned
 
-
-## Tutorial Setup
-
-This section contains instructions for setting up the tutorial.
-
-
-### Example Code
-
-This document provides all code for the tutorial.
-The *Boa.Constrictor.Example* project in this repository also contains this tutorial's completed example code.
-It is a .NET Core project.
-If you get stuck during the tutorial, refer to this project.
+**Prerequisite:**
+Make sure you created the `Boa.Constrictor.Example` tutorial project
+from [Tutorial Part 1 - Setup]({{ "/tutorial/part-1-setup" | relative_url }})
+before attempting Part 2.
+{: .notice--warning}
 
 
-### Prerequisites
+## Screenplay Basics
 
-Boa Constrictor is a C# library.
-You will need C# programming skills to use it.
-If you are new to C#, take some time to learn it before trying Boa Constrictor.
-C# is very similar to Java and C++.
+The [Screenplayer Pattern]({{ "/getting-started/screenplay" | relative_url }})
+is a design pattern for automating interactions with features under test.
+Boa Constrictor is a C# implementation of this pattern.
+Rather than giving a bunch of definitions and diagrams up front,
+this tutorial will show how to use Boa Constrictor's Screenplay Pattern step-by-step with example code.
 
-This tutorial uses [Google Chrome](https://www.google.com/chrome/) for Web UI automation.
-Install or update the latest version of Chrome on your machine before starting the tutorial.
+The heart of the Screenplay Pattern can be defined in one line:
+**Actors use Abilities to perform Interactions.**
 
-Since Boa Constrictor uses [Selenium WebDriver](https://www.selenium.dev/) under the hood,
-you will also need to download and install the latest version of [ChromeDriver](https://chromedriver.chromium.org/) on your system PATH.
-Follow the instructions on the
-[Selenium WebDriver Driver Requirements](https://www.selenium.dev/documentation/en/webdriver/driver_requirements/)
-page to set it up.
+* *Actors* initiate Interactions.
+* *Abilities* enable Actors to initiate Interactions.
+* *Interactions* are procedures that exercise behaviors under test.
 
-(Note: You may also use other browsers for testing.
-To use other browsers, install the appropriate WebDriver executable,
-and substitute the desired WebDriver constructor in the example code.)
-
-[Microsoft Visual Studio](https://visualstudio.microsoft.com/) is the recommended editor/IDE for this tutorial.
-Visual Studio makes it easy to create projects, add packages, navigate code, and run tests.
+The following steps will explain each component in detail.
 
 
-### Creating the Project
-Below are the high-level instructions for creating the example project. 
-You may also follow our
-[Tutorial Setup Guide Using Visual Studio 2019](https://github.com/q2ebanking/boa-constrictor/blob/main/TUTORIAL-SETUP-GUIDE-VS2019.md),
-which offers more in-depth instructions on creating the example project.
+## 1. Creating a Test Class
 
-You will need to create a new .NET test project named *Boa.Constrictor.Example* for this tutorial.
-You may create it as part of a new solution or inside an existing solution.
-If you are new to .NET development, please read the
-[Visual Studio docs on projects and solutions](https://docs.microsoft.com/en-us/visualstudio/get-started/tutorial-projects-solutions?view=vs-2019).
-The project may be either [.NET Framework or .NET Core](https://dzone.com/articles/net-framework-vs-net-core),
-though [.NET Core](https://docs.microsoft.com/en-us/dotnet/core/introduction) is recommended.
-You may delete any stub files that Visual Studio automatically creates in the project, like `UnitTest1.cs`.
-
-The tutorial project requires the following NuGet packages:
-
-* Boa.Constrictor
-* FluentAssertions
-* NUnit
-* NUnit3TestAdapter
-* Selenium.Support
-* Selenium.WebDriver
-
-This tutorial will use [NUnit](https://nunit.org/) as the core test framework.
-(Boa Constrictor can also be used with any other .NET test framework, such as
-[xUnit.net](https://xunit.net/) and [SpecFlow](https://specflow.org/).)
-Inside the project, create a new file named `DuckDuckGoTest.cs`.
+Inside the `Boa.Constrictor.Example` project,
+create a new file named `DuckDuckGoTest.cs`.
 Add the following NUnit code stub to the file:
 
 ```csharp
@@ -95,49 +61,14 @@ namespace Boa.Constrictor.Example
 }
 ```
 
-`DuckDuckGoTest` will contain the main NUnit test case for this tutorial.
+`DuckDuckGoTest` will contain the main NUnit test case for Part 2 of this tutorial.
 To make sure it works, build the project and run the test.
 You can run the test from [Test Explorer](https://docs.microsoft.com/en-us/visualstudio/test/run-unit-tests-with-test-explorer?view=vs-2019) in Visual Studio
 or from the command line using the [NUnit Console Runner](https://docs.nunit.org/articles/nunit/running-tests/Console-Runner.html).
 The test should run and pass.
 
 
-## Tutorial Instructions
-
-This section contains the main tutorial instructions.
-It covers how to use Boa Constrictor and its implementation of the Screenplay Pattern to automate a simple DuckDuckGo search test.
-The test case steps will be simple:
-
-1. Load the DuckDuckGo home page
-2. Verify the search field is empty
-3. Enter a search phrase
-4. Verify result links are returned
-
-Build and run your code after each step to make sure it works.
-
-
-### Screenplay Basics
-
-The [Screenplayer Pattern](https://www.infoq.com/articles/Beyond-Page-Objects-Test-Automation-Serenity-Screenplay/)
-is a design pattern for automating interactions with features under test.
-The Screenplay Pattern has existed for years,
-but Boa Constrictor's implementation of it is different from other popular implementations
-(like [Serenity BDD](http://serenity-bdd.info/#/)).
-One of Boa Constrictor's goals is to provide a simpler, standalone version of the Screenplay Pattern.
-Rather than giving a bunch of definitions and diagrams up front,
-this tutorial will show how to use Boa Constrictor's Screenplay Pattern step-by-step with example code.
-
-The heart of the Screenplay Pattern can be defined in one line:
-**Actors use Abilities to perform Interactions.**
-
-* *Actors* initiate Interactions.
-* *Abilities* enable Actors to initiate Interactions.
-* *Interactions* are procedures that exercise behaviors under test.
-
-The tutorial steps will explain each in detail.
-
-
-### Creating the Actor
+## 2. Creating the Actor
 
 The *Actor* is the entity that initiates Interactions.
 It represents the main caller.
@@ -175,7 +106,7 @@ Build and run the test.
 It should pass.
 
 
-### Adding Abilities
+## 3. Adding Abilities
 
 *Abilities* enable Actors to initiate Interactions.
 That might sound a little weird at first.
@@ -240,9 +171,11 @@ It simply holds a reference to the WebDriver object.
 Web UI Interactions will retrieve this WebDriver object from the Actor.
 Thus, Abilities act as a form of [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) for Interactions.
 
+**Multiple Abilities:**
 Actors can be given any number of Abilities.
 For example, one Actor can have both `BrowseTheWeb` and `CallRestApi` (from the `Boa.Constrictor.RestSharp` namespace).
 For best practice, give Actors only the Abilities they need.
+{: .notice--info}
 
 Build and run the test again.
 This time, the test should open a Chrome browser window and then stop.
@@ -250,7 +183,7 @@ This means the Ability is working!
 Close the browser window when the test stops.
 
 
-### Modeling Web Pages
+## 4. Modeling Web Pages
 
 Before the Actor can call any WebDriver-based Interactions,
 the Web pages under test need models.
@@ -343,7 +276,7 @@ Leave `ResultPage` empty for now.
 You will add locators to both classes later in this tutorial.
 
 
-### Attempting a Task
+## 5. Attempting a Task
 
 The Screenplay Pattern has two types of Interactions.
 The first type of Interaction is called a Task.
@@ -442,7 +375,7 @@ This time, the browser should load the DuckDuckGo search page.
 Close the browser once the test stops.
 
 
-### Asking a Question
+## 6. Asking a Question
 
 The second type of Interaction is called a Question.
 A *Question* returns an answer after performing actions.
@@ -509,7 +442,10 @@ Just like the `Navigate` Task, it has a private constructor and a public static 
 The `RequestAs` method gets the WebDriver object from the Actor's `BrowseTheWeb` Ability.
 It then waits for the element to exist on the page, finds the element, and return's the element's "value" attribute.
 Under the hood, these are all just Selenium WebDriver calls.
-(Waiting will be explained later in the tutorial.)
+
+**Waiting:**
+Waiting, as shown with `actor.WaitsUntil(...)`, will be explained later in the tutorial.
+{: .notice--warning}
 
 Actors can call any Questions using the `AsksFor` method:
 
@@ -554,7 +490,7 @@ It should open the browser, load DuckDuckGo, and pass just like before.
 If you want to make sure the assertion is really working, you can temporarily change it to `Should().NotBeEmpty()` and watch the test fail.
 
 
-### Composing a Custom Interaction
+## 7. Composing a Custom Interaction
 
 The test case's next step is to enter a search phrase.
 Doing this requires two interactions: typing the phrase into the search input and clicking the search button.
@@ -631,7 +567,7 @@ Build and run the test again.
 This time, you should see the search happen.
 
 
-### Waiting for Questions to Yield Answers
+## 8. Waiting for Questions to Yield Answers
 
 The last test case step should verify that result links appear after entering a search phrase.
 Unfortunately, this step has a *race condition*:
@@ -719,7 +655,7 @@ The browser should do the same things as before, and the test case should pass.
 This time, the test won't stop until the result links appear.
 
 
-### Quitting the Browser
+## 9. Quitting the Browser
 
 Before ending the test case, the browser must be quit safely.
 Otherwise, the browser and its associated WebDriver executable will keep running,
@@ -739,7 +675,7 @@ Build and run the test again.
 This time, when the test finishes, it will automatically quit the browser window.
 
 
-### Refactoring the Project
+## 10. Refactoring the Project
 
 The test steps are complete, and if you run the test case, it should pass.
 However, it should be refactored a bit for better setup and cleanup.
@@ -793,13 +729,16 @@ Create new folders and move source files like this:
 
 ```
 Boa.Constrictor.Example
- |- Interactions
- |   `- SearchDuckDuckGo.cs
- |- Pages
- |   |- ResultPage.cs
- |   `- SearchPage.cs
- `- Tests
-     `- DuckDuckGoTest.cs
+│
+├── Interactions
+│   └── SearchDuckDuckGo.cs
+│
+├── Pages
+│   ├── ResultPage.cs
+│   └── SearchPage.cs
+│
+└── Tests
+    └── DuckDuckGoTest.cs
 ```
 
 Build and run the test code one final time to make sure it passes.
@@ -807,15 +746,13 @@ Build and run the test code one final time to make sure it passes.
 
 ## Conclusion
 
-Congrats on finishing the tutorial!
+Congrats on finishing Part 2 tutorial!
 
-Boa Constrictor provides several Interactions that could not be covered in this brief tutorial:
-* Web UI interactions using [Selenium WebDriver](https://www.selenium.dev/) are located under `Boa.Constrictor\WebDriver`.
-* REST API interactions using [RestSharp](https://restsharp.dev/) are located under `Boa.Constrictor\RestSharp`.
-
+Boa Constrictor provides several Web UI Interactions that could not be covered in this brief tutorial.
+All interactions using [Selenium WebDriver](https://www.selenium.dev/) are located under `Boa.Constrictor\WebDriver`.
 Take some time to review them.
 They will be very useful when writing new tests.
 You can also use them as examples for writing new Interactions.
 
-If you'd like to contribute to the Boa Constrictor project, please read the
-[README](https://github.com/q2ebanking/boa-constrictor/blob/main/README.md#guidelines-for-contribution) for guidelines.
+Proceed to [Part 3 - REST API Testing]({{ "/tutorial/part-3-rest-api-testing/" | relative_url }})
+to learn how to use Boa Constrictor's REST API interactions.

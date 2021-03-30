@@ -2,6 +2,7 @@
 title: Screenplay vs. Page Objects
 layout: single
 permalink: /getting-started/page-objects/
+toc: true
 ---
 
 [Page objects](https://www.selenium.dev/documentation/en/guidelines_and_recommendations/page_object_models/)
@@ -321,7 +322,7 @@ public class SearchDuckDuckGo : ITask
 }
 ```
 
-To learn more about how this code works, read the [tutorial]({{ "/tutorials/tutorial/" | relative_url }}).
+To learn more about how this code works, read the [tutorial]({{ "/tutorial/overview/" | relative_url }}).
 
 Screenplay's design offers the following [benefits]({{ "/getting-started/why-boa-constrictor/#the-benefits" | relative_url }}) over raw calls and page objects:
 

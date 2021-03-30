@@ -2,6 +2,7 @@
 title: Why Use Boa Constrictor?
 layout: single
 permalink: /getting-started/why-boa-constrictor/
+toc: true
 ---
 
 There are many benefits to using Boa Constrictor for automation.

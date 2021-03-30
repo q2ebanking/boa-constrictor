@@ -2,6 +2,7 @@
 title: Requirements
 layout: single
 permalink: /project/requirements/
+toc: true
 ---
 
 Boa Constrictor is a .NET project written in C#.
