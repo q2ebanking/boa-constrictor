@@ -96,10 +96,10 @@ If so, right-click the file in *Solution Explorer* and select **Delete**.
 
 You will need to add the following NuGet packages to the project:
 
-* Boa.Constrictor
-* FluentAssertions
-* NUnit
-* NUnit3TestAdapter
+* [Boa.Constrictor](https://www.nuget.org/packages/Boa.Constrictor/)
+* [FluentAssertions](https://www.nuget.org/packages/FluentAssertions/)
+* [NUnit](https://www.nuget.org/packages/NUnit/)
+* [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/)
 
 To add them, right-click the solution in *Solution Explorer*,
  and select **Manage Nuget Packages for Solution...**.
@@ -113,8 +113,14 @@ Then, select the `Boa.Constrictor.Example` project for the package and click *In
 
 **Note:**
 If you created an *NUnit Test Project* through Visual Studio,
-then the `Boa.Constrictor.Example` project should already have the `NUnit` and `NUnit3TestAdapter` installed.
+then the `Boa.Constrictor.Example` project should already have the *NUnit* and *NUnit3TestAdapter* packages installed.
 {: .notice--info}
+
+These NuGet packages should pull in other dependencies as well.
+For example, *Boa.Constrictor* should pull in
+[Selenium.WebDriver](https://www.nuget.org/packages/Selenium.WebDriver),
+[RestSharp](https://www.nuget.org/packages/RestSharp),
+and possibly other packages.
 
 
 ## All Set!
