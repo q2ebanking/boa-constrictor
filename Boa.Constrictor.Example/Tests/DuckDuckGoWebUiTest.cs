@@ -7,7 +7,7 @@ using OpenQA.Selenium.Chrome;
 
 namespace Boa.Constrictor.Example
 {
-    public class DuckDuckGoTest
+    public class DuckDuckGoWebUiTest
     {
         private IActor Actor;
 

@@ -42,7 +42,7 @@ The following steps will explain each component in detail.
 ## 1. Creating a Test Class
 
 Inside the `Boa.Constrictor.Example` project,
-create a new file named `DuckDuckGoTest.cs`.
+create a new file named `DuckDuckGoWebUiTest.cs`.
 Add the following NUnit code stub to the file:
 
 ```csharp
@@ -50,7 +50,7 @@ using NUnit.Framework;
 
 namespace Boa.Constrictor.Example
 {
-    public class DuckDuckGoTest
+    public class DuckDuckGoWebUiTest
     {
         [Test]
         public void TestDuckDuckGoSearch()
@@ -61,7 +61,7 @@ namespace Boa.Constrictor.Example
 }
 ```
 
-`DuckDuckGoTest` will contain the main NUnit test case for Part 2 of this tutorial.
+`DuckDuckGoWebUiTest` will contain the main NUnit test case for Part 2 of this tutorial.
 To make sure it works, build the project and run the test.
 You can run the test from [Test Explorer](https://docs.microsoft.com/en-us/visualstudio/test/run-unit-tests-with-test-explorer?view=vs-2019) in Visual Studio
 or from the command line using the [NUnit Console Runner](https://docs.nunit.org/articles/nunit/running-tests/Console-Runner.html).
@@ -76,7 +76,7 @@ For example, it could represent a user logged into a Web app.
 All Screenplay calls start with an Actor.
 Most test cases need only one Actor.
 
-To create an actor, add the following import statements to `DuckDuckGoTest`:
+To create an actor, add the following import statements to `DuckDuckGoWebUiTest`:
 
 ```csharp
 using Boa.Constrictor.Logging;
@@ -113,7 +113,7 @@ That might sound a little weird at first.
 In a programming sense, Abilities provide objects that Actors use when calling Interactions.
 For example, an Actor needs a Selenium WebDriver instance in order to click elements on a Web page.
 
-Add the following imports to `DuckDuckGoTest`:
+Add the following imports to `DuckDuckGoWebUiTest`:
 
 ```csharp
 using Boa.Constrictor.WebDriver;
@@ -463,7 +463,7 @@ The test case must also verify that the value is empty using an assertion.
 The recommended assertion library to use with Boa Constrictor is
 [Fluent Assertions](https://fluentassertions.com/).
 
-Add the following import statement to `DuckDuckGoTest`:
+Add the following import statement to `DuckDuckGoWebUiTest`:
 
 ```csharp
 using FluentAssertions;
@@ -679,7 +679,7 @@ This time, when the test finishes, it will automatically quit the browser window
 
 The test steps are complete, and if you run the test case, it should pass.
 However, it should be refactored a bit for better setup and cleanup.
-Rewrite `DuckDuckGoTest` with the following code:
+Rewrite `DuckDuckGoWebUiTest` with the following code:
 
 ```csharp
 using Boa.Constrictor.Logging;
@@ -691,7 +691,7 @@ using OpenQA.Selenium.Chrome;
 
 namespace Boa.Constrictor.Example
 {
-    public class DuckDuckGoTest
+    public class DuckDuckGoWebUiTest
     {
         private IActor Actor;
 
@@ -738,7 +738,7 @@ Boa.Constrictor.Example
 │   └── SearchPage.cs
 │
 └── Tests
-    └── DuckDuckGoTest.cs
+    └── DuckDuckGoWebUiTest.cs
 ```
 
 Build and run the test code one final time to make sure it passes.
