@@ -16,9 +16,7 @@ namespace Boa.Constrictor.Example
         public void InitializeScreenplay()
         {
             Actor = new Actor(name: "Andy", logger: new ConsoleLogger());
-
-            var client = new RestClient("https://dog.ceo/");
-            Actor.Can(CallRestApi.Using(client));
+            Actor.Can(CallRestApi.Using(new RestClient("https://dog.ceo/")));
         }
 
         [Test]
