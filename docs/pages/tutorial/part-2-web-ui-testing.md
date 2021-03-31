@@ -14,6 +14,10 @@ The test case steps will be simple:
 3. Enter a search phrase
 4. Verify result links are returned
 
+**WebDriver:**
+Boa Constrictor's Web UI interactions use [Selenium WebDriver](https://www.selenium.dev/).
+{: .notice--info}
+
 **Prerequisite:**
 Make sure you created the `Boa.Constrictor.Example` tutorial project
 from [Tutorial Part 1 - Setup]({{ "/tutorial/part-1-setup" | relative_url }})
@@ -42,7 +46,7 @@ The following steps will explain each component in detail.
 ## 1. Creating a Test Class
 
 Inside the `Boa.Constrictor.Example` project,
-create a new file named `DuckDuckGoWebUiTest.cs`.
+create a new file named `ScreenplayWebUiTest.cs`.
 Add the following NUnit code stub to the file:
 
 ```csharp
@@ -50,10 +54,10 @@ using NUnit.Framework;
 
 namespace Boa.Constrictor.Example
 {
-    public class DuckDuckGoWebUiTest
+    public class ScreenplayWebUiTest
     {
         [Test]
-        public void TestDuckDuckGoSearch()
+        public void TestDuckDuckGoWebSearch()
         {
 
         }
@@ -61,7 +65,7 @@ namespace Boa.Constrictor.Example
 }
 ```
 
-`DuckDuckGoWebUiTest` will contain the main NUnit test case for Part 2 of this tutorial.
+`ScreenplayWebUiTest` will contain the main NUnit test case for Part 2 of this tutorial.
 To make sure it works, build the project and run the test.
 You can run the test from [Test Explorer](https://docs.microsoft.com/en-us/visualstudio/test/run-unit-tests-with-test-explorer?view=vs-2019) in Visual Studio
 or from the command line using the [NUnit Console Runner](https://docs.nunit.org/articles/nunit/running-tests/Console-Runner.html).
@@ -76,14 +80,14 @@ For example, it could represent a user logged into a Web app.
 All Screenplay calls start with an Actor.
 Most test cases need only one Actor.
 
-To create an actor, add the following import statements to `DuckDuckGoWebUiTest`:
+To create an actor, add the following import statements to `ScreenplayWebUiTest`:
 
 ```csharp
 using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
 ```
 
-Then, add the following constructor call to its `TestDuckDuckGoSearch` method:
+Then, add the following constructor call to its `TestDuckDuckGoWebSearch` method:
 
 ```csharp
 IActor actor = new Actor(name: "Andy", logger: new ConsoleLogger());
@@ -106,14 +110,14 @@ Build and run the test.
 It should pass.
 
 
-## 3. Adding Abilities
+## 3. Adding Web UI Abilities
 
 *Abilities* enable Actors to initiate Interactions.
 That might sound a little weird at first.
 In a programming sense, Abilities provide objects that Actors use when calling Interactions.
 For example, an Actor needs a Selenium WebDriver instance in order to click elements on a Web page.
 
-Add the following imports to `DuckDuckGoWebUiTest`:
+Add the following imports to `ScreenplayWebUiTest`:
 
 ```csharp
 using Boa.Constrictor.WebDriver;
@@ -287,7 +291,7 @@ These interactions all "do" something rather than "get" something.
 The test case's first step should load the DuckDuckGo search page.
 Boa Constrictor provides a Task named `Navigate` under the `Boa.Constrictor.WebDriver` namespace for loading a Web page using a target URL.
 
-Add this line to `TestDuckDuckGoSearch`:
+Add this line to `TestDuckDuckGoWebSearch`:
 
 ```csharp
 actor.AttemptsTo(Navigate.ToUrl(SearchPage.Url));
@@ -385,7 +389,7 @@ Each of these interactions return some sort of value.
 The test case's second step verifies that the search field is empty.
 The `ValueAttribute` Question gets the "value" of the text currently inside an input field.
 (Note: this is different from regular element text, which uses the `Text` Question.)
-To use `ValueAttribute`, add the following line to `TestDuckDuckGoSearch`:
+To use `ValueAttribute`, add the following line to `TestDuckDuckGoWebSearch`:
 
 ```csharp
 string text = actor.AsksFor(ValueAttribute.Of(SearchPage.SearchInput));
@@ -463,7 +467,7 @@ The test case must also verify that the value is empty using an assertion.
 The recommended assertion library to use with Boa Constrictor is
 [Fluent Assertions](https://fluentassertions.com/).
 
-Add the following import statement to `DuckDuckGoWebUiTest`:
+Add the following import statement to `ScreenplayWebUiTest`:
 
 ```csharp
 using FluentAssertions;
@@ -503,7 +507,7 @@ public static IWebLocator SearchButton => L(
     By.Id("search_button_homepage"));
 ```
 
-Then, add the following lines to `TestDuckDuckGoSearch`:
+Then, add the following lines to `TestDuckDuckGoWebSearch`:
 
 ```csharp
 actor.AttemptsTo(SendKeys.To(SearchPage.SearchInput, "panda"));
@@ -546,7 +550,7 @@ namespace Boa.Constrictor.Example
 `SearchDuckDuckGo` is a new Task that takes in a search phrase
 and internally calls `SendKeys` and `Click` to enter the phrase on the DuckDuckGo search page.
 
-Replace the old calls in `TestDuckDuckGoSearch` with this new Task:
+Replace the old calls in `TestDuckDuckGoWebSearch` with this new Task:
 
 ```csharp
 actor.AttemptsTo(SearchDuckDuckGo.For("panda"));
@@ -586,7 +590,7 @@ public static IWebLocator ResultLinks => L(
 
 This locator will find all result links on the result page.
 
-Then, add the following line to `TestDuckDuckGoSearch`:
+Then, add the following line to `TestDuckDuckGoWebSearch`:
 
 ```csharp
 actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
@@ -661,7 +665,7 @@ Before ending the test case, the browser must be quit safely.
 Otherwise, the browser and its associated WebDriver executable will keep running,
 hogging system resources and possibly causing other problems.
 
-Add the following call to the bottom of `TestDuckDuckGoSearch`:
+Add the following call to the bottom of `TestDuckDuckGoWebSearch`:
 
 ```csharp
 actor.AttemptsTo(QuitWebDriver.ForBrowser());
@@ -679,7 +683,7 @@ This time, when the test finishes, it will automatically quit the browser window
 
 The test steps are complete, and if you run the test case, it should pass.
 However, it should be refactored a bit for better setup and cleanup.
-Rewrite `DuckDuckGoWebUiTest` with the following code:
+Rewrite `ScreenplayWebUiTest` with the following code:
 
 ```csharp
 using Boa.Constrictor.Logging;
@@ -691,7 +695,7 @@ using OpenQA.Selenium.Chrome;
 
 namespace Boa.Constrictor.Example
 {
-    public class DuckDuckGoWebUiTest
+    public class ScreenplayWebUiTest
     {
         private IActor Actor;
 
@@ -709,7 +713,7 @@ namespace Boa.Constrictor.Example
         }
 
         [Test]
-        public void TestDuckDuckGoSearch()
+        public void TestDuckDuckGoWebSearch()
         {
             Actor.AttemptsTo(Navigate.ToUrl(SearchPage.Url));
             Actor.AskingFor(ValueAttribute.Of(SearchPage.SearchInput)).Should().BeEmpty();
@@ -738,7 +742,7 @@ Boa.Constrictor.Example
 │   └── SearchPage.cs
 │
 └── Tests
-    └── DuckDuckGoWebUiTest.cs
+    └── ScreenplayWebUiTest.cs
 ```
 
 Build and run the test code one final time to make sure it passes.

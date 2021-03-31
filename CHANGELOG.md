@@ -10,7 +10,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(None)
+### Added
+
+- Added official documentation!
+  - Hosting: GitHub Pages at [https://q2ebanking.github.io/boa-constrictor/](https://q2ebanking.github.io/boa-constrictor/)
+  - Static site generator: [Jekyll](https://jekyllrb.com/)
+  - Theme: [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/)
+- Added REST APIs to the tutorial and example project
+
+### Changed
+
+- Moved `Rest` `DownloadUsing` and `RequestUsing` build methods to a new type-generic `Rest<TAbility>` class
+
+### Fixed
+
+- Removed "NonParallelWorker" from `Names.ConcatUniqueName` return values
+
+### Removed
+
+- Moved content from root-level Markdown files to the doc site
+  - Removed much of the `README` content
+  - Deleted files for tutorials, code of conduct, and contributing
 
 
 ## [0.11.2] - 2021-02-22
