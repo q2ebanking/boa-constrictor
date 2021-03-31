@@ -96,15 +96,16 @@ IActor actor = new Actor(name: "Andy", logger: new ConsoleLogger());
 Actors implement the `IActor` interface, which is part of the `Boa.Constrictor.Screenplay` namespace.
 The `Actor` class optionally takes two arguments:
 
-1. The first argument is a *name*, which can help describe who the actor is.
-   The default name is "Screenplayer".
-   The name will appear in logged messages.
-2. The second argument is a *logger*, which will send log messages from Screenplay calls to a target destination.
-   Loggers must implement the `ILogger` interface.
-   They are part of the `Boa.Constrictor.Logging` namespace.
-   `ConsoleLogger` is a class that will log messages to the system console.
-   You can define your own custom loggers by implementing `ILogger`.
-   You can also combine multiple loggers together using `TeeLogger`.
+| Argument | Purpose |
+| -------- | ------- |
+| *name*   | Helps describe who the actor is. The default name is "Screenplayer". The name will appear in logged messages. |
+| *logger* | Send log messages from Screenplay calls to a target destination. |
+   
+Loggers must implement the `ILogger` interface.
+They are part of the `Boa.Constrictor.Logging` namespace.
+`ConsoleLogger` is a class that will log messages to the system console.
+You can define your own custom loggers by implementing `ILogger`.
+You can also combine multiple loggers together using `TeeLogger`.
 
 Build and run the test.
 It should pass.
@@ -135,13 +136,16 @@ Read this line in plain English:
 Boa Constrictor's fluent-like syntax makes its call chains very readable.
 Let's unpack what this line does:
 
-1. Web UI automation uses Selenium WebDriver to control a browser.
-   `new ChromeDriver()` instantiates a new WebDriver object for [ChromeDriver](https://chromedriver.chromium.org/).
-   (You could use a different browser type here, and you could also specify WebDriver options.)
-2. `BrowseTheWeb` is an Ability that enables Actors to perform Web UI Interactions.
-   `BrowseTheWeb.With(...)` constructs the Ability with the given WebDriver object.
-3. `actor.Can(...)` adds the given Ability to the Actor.
-   In this case, the `actor` Actor is given the `BrowseTheWeb` Ability with a `ChromeDriver` object.
+| Code | Purpose |
+| ---- | ------- |
+| `new ChromeDriver()` | Web UI automation uses Selenium WebDriver to control a browser. This code instantiates a new WebDriver object for [ChromeDriver](https://chromedriver.chromium.org/). |
+| `BrowseTheWeb` | An Ability that enables Actors to perform Web UI Interactions. |
+| `BrowseTheWeb.With(...)` | Constructs the Ability with the given WebDriver object. |
+| `actor.Can(...)` | Adds the given Ability to the Actor. In this case, the `actor` Actor is given the `BrowseTheWeb` Ability with a `ChromeDriver` object. |
+
+**Other Browsers:**
+You could use a different browser type here, and you could also specify WebDriver options.
+{: .notice--info}
 
 Abilities must implement the `IAbility` interface:
 
@@ -241,14 +245,12 @@ public interface IWebLocator
 }
 ```
 
-A locator has two parts:
+A locator has two properties:
 
-1. A *Description* that describes the element in plain language.
-   It will be used for logging.
-2. A *Query* that is used to find the element on the page.
-   Boa Constrictor uses Selenium WebDriver's `By` queries.
-   Learn more about locator queries by reading
-   [Web Element Locators for Test Automation](https://automationpanda.com/2019/01/15/web-element-locators-for-test-automation/).
+| Code | Purpose |
+| ---- | ------- |
+| *Description* | Describes the element in plain language. It will be used for logging. |
+| *Query* | Finds the element on the page. Boa Constrictor uses Selenium WebDriver's `By` queries. Learn more about locator queries by reading [Web Element Locators for Test Automation](https://automationpanda.com/2019/01/15/web-element-locators-for-test-automation/). |
 
 For convenience, locators can be constructed using the `Boa.Constrictor.WebDriver.WebLocator.L` static builder method.
 Since `SearchPage` uses a static import for this method, it can use the short `L` method call.
@@ -303,12 +305,11 @@ Again, Boa Constrictor's fluent-like syntax is very readable.
 Clearly, this line will load the DuckDuckGo search page.
 Let's unpack it:
 
-* `SearchPage.Url` is the target URL.
-  It is a member of the `SearchPage` model class so that it can be used by any Interaction.
-* `Navigate.ToUrl(...)` constructs a Task object using the given URL string.
-  The `Navigate` class provides the logic for performing the page load.
-* `actor.AttemptsTo(...)` calls the given Task.
-  The call is an "attempt" because the Task may or may not ultimately be successful.
+| Code | Purpose |
+| ---- | ------- |
+| `SearchPage.Url` | The target URL. It is a member of the `SearchPage` model class so that it can be used by any Interaction. |
+| `Navigate.ToUrl(...)` | Constructs a Task object using the given URL string. The `Navigate` class provides the logic for performing the page load. |
+| `actor.AttemptsTo(...)` | Calls the given Task. The call is an "attempt" because the Task may or may not ultimately be successful. |
 
 All Interactions, including Tasks, must implement the `IInteraction` interface for common typing:
 
@@ -399,12 +400,11 @@ Read this line in plain English:
 "The actor asks for the value attribute of the search page's search input element."
 Let's break it down:
 
-* `SearchPage.SearchInput` is the locator for the search input field.
-  You previously added this locator to the `SearchPage` class.
-* `ValueAttribute.Of(...)` constructs a Question using the given locator.
-  It returns the "value" attribute of the locator's target element.
-* `actor.AsksFor(...)` calls the given Question.
-  The Actor "asks for" the answer to the Question.
+| Code | Purpose |
+| ---- | ------- |
+| `SearchPage.SearchInput` | The locator for the search input field. You previously added this locator to the `SearchPage` class. |
+| `ValueAttribute.Of(...)` | Constructs a Question using the given locator. It returns the "value" attribute of the locator's target element. |
+| `actor.AsksFor(...)` | Calls the given Question. The Actor "asks for" the answer to the Question. |
 
 Questions must implement the `IQuestion` interface:
 
@@ -601,11 +601,12 @@ Read this line in plain English:
 In simpler terms, "Wait until the result links appear."
 Let's break it down:
 
-* `ResultPage.ResultLinks` is the locator for the result link elements.
-* `Appearance.Of(...)` is a Question that returns true if the target elements are currently displayed on the page.
-* `IsEqualTo.True()` is a *Condition* for checking if the return value of a Question is true.
-* `Actor.WaitsUntil(...)` is an extension method that halts execution until the given Question's answer meets the given Condition.
-  In this case, the appearance of the result links must become true.
+| Code | Purpose |
+| ---- | ------- |
+| `ResultPage.ResultLinks` | The locator for the result link elements. |
+| `Appearance.Of(...)` | A Question that returns true if the target elements are currently displayed on the page. |
+| `IsEqualTo.True()` | A *Condition* for checking if the return value of a Question is true. |
+| `Actor.WaitsUntil(...)` | An extension method that halts execution until the given Question's answer meets the given Condition. In this case, the appearance of the result links must become true. |
 
 `WaitsUntil` is an `IActor` extension method that internally calls waiting interactions.
 The following calls are essentially the same:
