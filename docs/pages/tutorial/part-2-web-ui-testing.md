@@ -615,7 +615,7 @@ The following calls are essentially the same:
 // The full, "traditional" way to wait
 actor.AttemptsTo(Wait.Until(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True()));
 
-// The more concise way using
+// The more concise way to wait
 actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
 ```
 

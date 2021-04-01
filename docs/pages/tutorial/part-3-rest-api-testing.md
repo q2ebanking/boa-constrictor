@@ -128,7 +128,7 @@ The response has two parts:
 RestSharp uses the [`IRestRequest` interface](https://restsharp.dev/usage/parameters.html)
 for creating requests that the client executes.
 `IRestRequest` supports all types of request fields: headers, parameters, bodies, etc.
-Boa Constrictor does not add anything on top - it uses `IRestRequest` directly for interactions.
+Boa Constrictor does *not* add anything on top - it uses `IRestRequest` directly for interactions.
 
 Requests can be long.
 Many tests may need to call the same requests, too.
@@ -166,10 +166,82 @@ They may also take in arguments to customize parts of the request, such as IDs o
 
 ### 4. Calling Basic Requests
 
-(Coming soon!)
+For our first test, we will call the Dog API endpoint and verify a successful response.
+Add the following test stub to `ScreenplayRestApiBasicTest`:
 
-* Calling the request
-* Checking the response
+```csharp
+[Test]
+public void TestDogApiStatusCode()
+{
+
+}
+```
+
+To call the endpoint, add the following code to the test:
+
+```csharp
+var request = DogRequests.GetRandomDog();
+var response = Actor.Calls(Rest.Request(request));
+```
+
+The first line builds the request object.
+The second line calls the request using a Boa Constrictor interaction.
+Read that second line in plain English:
+"The actor calls the REST request to get a random dog."
+Let's break it down:
+
+| Code | Purpose |
+| ---- | ------- |
+| `response` | The `IRestResponse` object returned by the REST API call. |
+| `Actor.Calls(...)` | Calls any type of interaction. Alias for `Actor.AsksFor(...)` or `Actor.AttemptsTo(...)`. |
+| `Rest.Request(...)` | The Question that calls the given request. Under the hood, it uses the Ability's `IRestClient` object to execute the given `IRestRequest` object. |
+| `request` | The `IRestRequest` object for calling the Dog API endpoint. |
+
+The `Rest` class shown in the code is actually syntactic Screenplay sugar.
+Boa Constrictor's REST requests are actually `RestApiCall` Questions that return `IRestResponse` answers.
+The two lines below are equivalent:
+
+```csharp
+// The concise, readable way to call REST APIs
+Actor.Calls(Rest.Request(request));
+
+// The "traditional" way to call REST APIs
+Actor.AsksFor(new RestApiCall(request));
+```
+
+**Warning:**
+Do not try to call `RestApiCall` directly.
+Its constructor is not public.
+The example above serves only to show how REST requests follow the Screenplay Pattern.
+Use `Rest.Request(...)` to call REST API interactions.
+{: .notice--danger}
+
+All REST requests return RestSharp `IRestResponse` objects.
+Just like for requests, Boa Constrictor does *not* add anything to RestSharp's responses.
+It simply passes response objects through the interaction.
+Check the [RestSharp docs for `IRestResponse`](https://restsharp.dev/api/RestSharp.html#interface-irestresponse)
+to see all response values.
+
+The simplest way to verify if the call was successful is to check the response code.
+The recommended assertion library to use with Boa Constrictor is
+[Fluent Assertions](https://fluentassertions.com/).
+To check the status code, add the following import statements to `ScreenplayRestApiBasicTest`:
+
+```csharp
+using FluentAssertions;
+using System.Net;
+```
+
+Then, add this line to `ScreenplayRestApiBasicTest`:
+
+```csharp
+response.StatusCode.Should().Be(HttpStatusCode.OK);
+```
+
+Build and run the test.
+It should take about 1 second to execute, and it should pass.
+If you want to make sure the assertion is really working,
+you can temporarily change it to `Should().NotBe(HttpStatusCode.OK)` and watch the test fail.
 
 
 ### 5. Parsing Response Bodies
