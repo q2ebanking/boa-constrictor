@@ -232,10 +232,23 @@ using FluentAssertions;
 using System.Net;
 ```
 
-Then, add this line to `ScreenplayRestApiBasicTest`:
+Then, add this line to `TestDogApiStatusCode`:
 
 ```csharp
 response.StatusCode.Should().Be(HttpStatusCode.OK);
+```
+
+The completed test case should now look like this:
+
+```csharp
+[Test]
+public void TestDogApiStatusCode()
+{
+    var request = DogRequests.GetRandomDog();
+    var response = Actor.Calls(Rest.Request(request));
+
+    response.StatusCode.Should().Be(HttpStatusCode.OK);
+}
 ```
 
 Build and run the test.
@@ -244,15 +257,118 @@ If you want to make sure the assertion is really working,
 you can temporarily change it to `Should().NotBe(HttpStatusCode.OK)` and watch the test fail.
 
 
-### 5. Parsing Response Bodies
+### 5. Deserializing Response Bodies
 
-(Coming soon!)
+Checking a response's status code is a valuable assertion,
+but checking a response's content is arguably more important.
+Most response bodies are formatted using JSON or XML.
+For convenience,
+RestSharp can automatically [deserialize](https://restsharp.dev/usage/serialization.html) responses.
+Deserialized objects make it possible to check fields in response bodies,
+such as the `message` and `status` strings from the Dog API responses.
 
-* Use type generics to automatically parse
-* Check more fields from Data
-* Info: you can make custom serializers
-* Warning: be careful with request parts
-* Warning: duplication in test cases is for examples
+To deserialize the content of an `IRestResponse` object,
+RestSharp needs a class with properties or instance variables that match the structure of the response body.
+Create a new directory named `Responses` under the `Boa.Constrictor.Example` project.
+Then, create a new file named `DogResponses.cs` in this folder with the following code:
+
+```csharp
+namespace Boa.Constrictor.Example
+{
+    public class DogResponse
+    {
+        public string Message { get; set; }
+        public string Status { get; set; }
+    }
+}
+```
+
+`DogResponse` is the serialization class for Dog API's `GET` response.
+Notice how its properties mirror the structure of the API's actual JSON response:
+
+```json
+{
+    "message": "https://images.dog.ceo/breeds/schipperke/n02104365_9489.jpg",
+    "status": "success"
+}
+```
+
+Let's write a new test case to show how to use `DogResponse` for deserializing responses.
+Add the following test stub to `ScreenplayRestApiBasicTest`:
+
+```csharp
+[Test]
+public void TestDogApiContent()
+{
+
+}
+```
+
+Next, add the following code to the new test:
+
+```csharp
+var request = DogRequests.GetRandomDog();
+var response = Actor.Calls(Rest.Request<DogResponse>(request));
+```
+
+Compare this call to the one from the previous test, `TestDogApiStatusCode`.
+The only difference is the `DogResponse` type generic tacked onto `Rest.Request<DogResponse>(...)`.
+Adding the type generic makes the interaction automatically deserialize the response body into the given type.
+Boa Constrictor simply passes it through to RestSharp.
+The response object will by typed as `IRestResponse<DogResponse>`,
+and it will have a special member named `Data` that is the `DogResponse` object parsed from the response's body.
+
+Finally, add assertions to the test:
+
+```csharp
+response.StatusCode.Should().Be(HttpStatusCode.OK);
+response.Data.Status.Should().Be("success");
+response.Data.Message.Should().NotBeNullOrWhiteSpace();
+```
+
+The first assertion is the same status code check.
+However, the second and third assertions check values in `response.Data`.
+The status should indicate success, and the message should contain a URL to a random image.
+
+**Custom Serializers:**
+RestSharp lets you provide [custom serializers](https://restsharp.dev/usage/serialization.html)
+for request and response bodies.
+You can use serializers provided by RestSharp,
+such as one for [Json.Net](https://restsharp.dev/usage/serialization.html#newtonsoftjson-aka-json-net),
+or you can [implement your own](https://restsharp.dev/usage/serialization.html#custom).
+Simply add custom serializers directly to the RestSharp client object before adding the `CallRestApi` Ability to the Actor.
+{: .notice--info}
+
+**Troubleshooting:**
+Requests can be tricky to call and deserialize properly.
+Make sure to specify all parts carefully.
+{: .notice--warning}
+
+The completed test should look like this:
+
+```csharp
+[Test]
+public void TestDogApiContent()
+{
+    var request = DogRequests.GetRandomDog();
+    var response = Actor.Calls(Rest.Request<DogResponse>(request));
+
+    response.StatusCode.Should().Be(HttpStatusCode.OK);
+    response.Data.Status.Should().Be("success");
+    response.Data.Message.Should().NotBeNullOrWhiteSpace();
+}
+```
+
+Build and run the test.
+It should pass.
+
+**Test Duplication:**
+This tutorial added two very similar tests to `ScreenplayRestApiBasicTest`.
+`TestDogApiContent` essentially supersedes `TestDogApiStatusCode`.
+In a real-world test project, `TestDogApiStatusCode` should arguably be removed.
+However, this tutorial project retains both to provide side-by-side examples of calling REST APIs with and without deserializing responses.
+{: .notice--danger}
+
 
 
 ## Advanced Interactions
