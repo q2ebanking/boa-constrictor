@@ -373,12 +373,50 @@ However, this tutorial project retains both to provide side-by-side examples of 
 
 ## Advanced Interactions
 
-(Coming soon!)
+The first half of Tutorial Part 3 shows how to call basic REST APIs using Boa Constrictor.
+The `ScreenplayRestApiBasicTest` tests showed how to call the Dog API endpoint to get a random image of a dog.
+However, endpoint did not return an image file - it merely returned a *hyperlink* to an image file.
+Downloading the actual image requires some advanced REST API techniques, which will be covered next.
 
 
 ### 6. Creating Another Test Class
 
-(Coming soon!)
+Let's create a second test class for "advanced" tests.
+Create a class named `ScreenplayRestApiBasicTest.cs` under the `Tests` folder,
+and add the following code:
+
+```csharp
+using Boa.Constrictor.Logging;
+using Boa.Constrictor.RestSharp;
+using Boa.Constrictor.Screenplay;
+using FluentAssertions;
+using NUnit.Framework;
+using RestSharp;
+using System;
+using System.Net;
+
+namespace Boa.Constrictor.Example
+{
+    public class ScreenplayRestApiAdvancedTest
+    {
+        private IActor Actor;
+
+        [SetUp]
+        public void InitializeScreenplay()
+        {
+            Actor = new Actor(name: "Andy", logger: new ConsoleLogger());
+        }
+    }
+}
+```
+
+This initial code stub should look very similar to the
+[stub for the basic tests](#1-creating-a-test-class-with-an-actor).
+
+**Imports:**
+For convenience, this stub includes all the `using` statements from the start.
+The previous steps showed which parts come from which namespaces.
+{: .notice--info}
 
 
 ### 7. Calling Multiple Base URLs
