@@ -101,17 +101,86 @@ directly to the RestSharp client.
 
 ### 3. Modeling Requests
 
-(Coming soon!)
+The REST API endpoint we want to test is the
+[HTTP `GET` method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) for
+[https://dog.ceo/api/breeds/image/random](https://dog.ceo/api/breeds/image/random).
+It should yield a response like this:
+
+```json
+{
+    "message": "https://images.dog.ceo/breeds/schipperke/n02104365_9489.jpg",
+    "status": "success"
+}
+```
+
+Since this is a basic `GET` request with no headers or body,
+you could even enter the absolute URL
+[directly into your web browser](https://dog.ceo/api/breeds/image/random)
+to test the response.
+
+The response has two parts:
+
+| Field | Value |
+| ----- | ----- |
+| `message` | A hyperlink to a random picture of a dog. This link should be different every time the request is called. |
+| `status` | A string indicating the success-or-failure status of fetching the image link. |
+
+RestSharp uses the [`IRestRequest` interface](https://restsharp.dev/usage/parameters.html)
+for creating requests that the client executes.
+`IRestRequest` supports all types of request fields: headers, parameters, bodies, etc.
+Boa Constrictor does not add anything on top - it uses `IRestRequest` directly for interactions.
+
+Requests can be long.
+Many tests may need to call the same requests, too.
+As a best practice, requests typically should not be written in-line where they are called.
+Instead, they should be written in separate classes as builer methods so that they can be reused anywhere,
+just like [locators for web elements]({{ "/tutorial/part-2-web-ui-testing/#4-modeling-web-pages" | relative_url }}).
+
+Create a new directory in the `Boa.Constrictor.Example` project named `Requests`.
+Inside this new folder, create a new file named `DogRequests.cs` with the following content:
+
+```csharp
+using RestSharp;
+
+namespace Boa.Constrictor.Example
+{
+    public static class DogRequests
+    {
+        public static IRestRequest GetRandomDog() =>
+            new RestRequest("api/breeds/image/random", Method.GET);
+    }
+}
+```
+
+`DogRequests` is a class that contains builder methods for `IRestRequest` objects.
+Like [page classes with locators]({{ "/tutorial/part-2-web-ui-testing/#4-modeling-web-pages" | relative_url }}),
+it is *static* so that it does not maintain any state of its own.
+It only provides builders.
+
+The `GetRandomDog` method constructs a new RestSharp request.
+The request's method is `GET`, and its resource path is `api/breeds/image/random`.
+You can use `IRestRequest`'s fluent syntax to add other fields, like headers and parameters.
+Builder methods like this should have descriptive names and declarative bodies.
+They may also take in arguments to customize parts of the request, such as IDs or request parameter values.
 
 
 ### 4. Calling Basic Requests
 
 (Coming soon!)
 
+* Calling the request
+* Checking the response
+
 
 ### 5. Parsing Response Bodies
 
 (Coming soon!)
+
+* Use type generics to automatically parse
+* Check more fields from Data
+* Info: you can make custom serializers
+* Warning: be careful with request parts
+* Warning: duplication in test cases is for examples
 
 
 ## Advanced Interactions
