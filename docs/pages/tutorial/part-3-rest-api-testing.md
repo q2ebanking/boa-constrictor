@@ -613,7 +613,7 @@ or it could be piped to other destinations.
 **File Data:**
 When Boa Constrictor downloads a file, the file data is stored in memory.
 The file is *not* automatically saved to the file system by default.
-[Step 10](#10-dumping-responses) shows how to configure RestSharp Abilities to automatically save downloads to the file system.
+[Step 11](#11-dumping-responses) shows how to configure RestSharp Abilities to automatically save downloads to the file system.
 {: .notice--warning}
 
 Let's write a test to verify that the image can be successfully downloaded.
@@ -666,21 +666,93 @@ It should pass, but it might take a little more time to complete since it makes 
 
 ### 9. Creating Workflows
 
-(Coming soon!)
+The `TestDogApiImage` test from the previous step is longer than all the other tests.
+Not only does it call two requests, but it calls two *interlocking* requests.
+The response from the first request becomes part of the second request.
+Request sequences like this are common in both applications and test automation.
+Many workflows require chains of [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations.
 
-This is the power of Screenplay!
+Workflows should be written as Screenplay interactions.
+Rather than calling a series of REST requests,
+an Actor could call just one interaction to perform the workflow.
+For example, when fetching random dog images,
+the caller probably doesn't care what endpoints need to be called -
+they just want the picture of the dog!
+
+Create a new class in the `Interactions` directory named `RandomDogImage.cs`,
+and add the follow code to it:
+
+```csharp
+using Boa.Constrictor.RestSharp;
+using Boa.Constrictor.Screenplay;
+using RestSharp;
+using System;
+
+namespace Boa.Constrictor.Example
+{
+    public class RandomDogImage : IQuestion<byte[]>
+    {
+        private RandomDogImage() { }
+
+        public static RandomDogImage FromDogApi() =>
+            new RandomDogImage();
+
+        public byte[] RequestAs(IActor actor)
+        {
+            var request = DogRequests.GetRandomDog();
+            var response = actor.Calls(Rest<CallDogApi>.Request<DogResponse>(request));
+
+            var resource = new Uri(response.Data.Message).AbsolutePath;
+            var imageRequest = new RestRequest(resource);
+            var imageData = actor.Calls(Rest<CallDogImagesApi>.Download(imageRequest));
+
+            return imageData;
+        }
+    }
+}
+```
+
+`RandomDogImage` is a Question that gets a random dog image from Dog API.
+Most of its code comes directly from the `TestDogApiImage` test.
+
+Now, refactor the `TestDogApiImage` test to use `RandomDogImage`:
+
+```csharp
+[Test]
+public void TestDogApiImage()
+{
+    var imageData = Actor.AsksFor(RandomDogImage.FromDogApi());
+    imageData.Should().NotBeNullOrEmpty();
+}
+```
+
+Read the first line in plain English:
+"The actor asks for a random dog image from Dog API."
+Concise, descriptive calls like this make the Screenplay Pattern great.
+Screenplay's syntax puts focus on intent, not mechanics.
+What ultimately matters is that the Actor gets a picture of a dog.
+Screenplay interactions can compose low-level actions like REST API calls into reusable workflows.
+
+**Web UI + REST API:**
+Screenplay interactions can compose Web UI and REST API interactions together.
+For example, a `Login` Task could authenticate a user via a REST API,
+add the authentication token to a browser,
+and refresh the browser to become logged in as that user.
+{: .notice--info}
+
+Run the refactored test to make sure it still passes.
 
 
-### 10. Dumping Responses
-
-(Coming soon!)
-
-
-### 11. Simplifying Calls for Custom Abilities
+### 10. Simplifying REST Builders
 
 (Coming soon!)
 
 (Info block - this isn't required)
+
+
+### 11. Dumping Responses
+
+(Coming soon!)
 
 
 ## Conclusion
