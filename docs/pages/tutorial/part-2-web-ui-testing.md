@@ -751,7 +751,7 @@ Build and run the test code one final time to make sure it passes.
 
 ## Conclusion
 
-Congrats on finishing Part 2 tutorial!
+Congrats on finishing Part 2 of the tutorial!
 
 Boa Constrictor provides several Web UI Interactions that could not be covered in this brief tutorial.
 All interactions using [Selenium WebDriver](https://www.selenium.dev/) are located under `Boa.Constrictor\WebDriver`.
