@@ -2,6 +2,9 @@
 using RestSharp;
 using System;
 
+using DogApi = Boa.Constrictor.RestSharp.Rest<Boa.Constrictor.Example.CallDogApi>;
+using DogImagesApi = Boa.Constrictor.RestSharp.Rest<Boa.Constrictor.Example.CallDogImagesApi>;
+
 namespace Boa.Constrictor.Example
 {
     public class RandomDogImage : IQuestion<byte[]>

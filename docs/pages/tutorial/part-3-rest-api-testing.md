@@ -197,7 +197,7 @@ Let's break it down:
 | `Rest.Request(...)` | The Question that calls the given request. Under the hood, it uses the Ability's `IRestClient` object to execute the given `IRestRequest` object. |
 | `request` | The `IRestRequest` object for calling the Dog API endpoint. |
 
-The `Rest` class shown in the code is actually syntactic Screenplay sugar.
+The `Rest` class shown in the code is actually [syntactic Screenplay sugar](https://en.wikipedia.org/wiki/Syntactic_sugar).
 Boa Constrictor's REST requests are actually `RestApiCall` Questions that return `IRestResponse` answers.
 The two lines below are equivalent:
 
@@ -743,11 +743,103 @@ and refresh the browser to become logged in as that user.
 Run the refactored test to make sure it still passes.
 
 
-### 10. Simplifying REST Builders
+### 10. Simplifying REST Syntax
 
-(Coming soon!)
+Let's take a closer look at the Screenplay calls from the new `RandomDogImage` Question:
 
-(Info block - this isn't required)
+```csharp
+actor.Calls(Rest<CallDogApi>.Request<DogResponse>(request))
+actor.Calls(Rest<CallDogImagesApi>.Download(imageRequest))
+```
+
+These calls work, but the type generics on the `Rest` class look out of place.
+Try to read the first line in plain English:
+"The actor calls REST call Dog API request dog response request."
+*What?* That doesn't make sense.
+We know what these calls will do, but the syntax is not very fluent.
+
+As stated previously, the `Rest` class is merely syntactic Screenplay sugar.
+It provides a cleaner way to make REST requests using RestSharp.
+`Rest` works great for the "default" `CallRestApi` Ability,
+but it doesn't work well for custom RestSharp Abilities.
+
+The simplest way to improve the syntax is to use C#'s
+[using alias directives](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive),
+also known as "type aliases".
+Add the following lines to the top of `RandomDogImage.cs`, immediately beneath the `using` statements:
+
+```csharp
+using DogApi = Boa.Constrictor.RestSharp.Rest<Boa.Constrictor.Example.CallDogApi>;
+using DogImagesApi = Boa.Constrictor.RestSharp.Rest<Boa.Constrictor.Example.CallDogImagesApi>;
+```
+
+Then, rewrite the Screenplay calls:
+
+```csharp
+// Old calls using the type generics
+actor.Calls(Rest<CallDogApi>.Request<DogResponse>(request))
+actor.Calls(Rest<CallDogImagesApi>.Download(imageRequest))
+
+// New calls using the aliases
+actor.Calls(DogApi.Request<DogResponse>(request))
+actor.Calls(DogImagesApi.Download(imageRequest))
+```
+
+Read the new calls in plain English:
+
+* "The actor calls Dog API to request a dog response from request."
+* "The actor calls Dog Images API to download an image request."
+
+These calls are much more readable now.
+
+The full code for `RandomDogImage.cs` should now look like this:
+
+```csharp
+using Boa.Constrictor.Screenplay;
+using RestSharp;
+using System;
+
+using DogApi = Boa.Constrictor.RestSharp.Rest<Boa.Constrictor.Example.CallDogApi>;
+using DogImagesApi = Boa.Constrictor.RestSharp.Rest<Boa.Constrictor.Example.CallDogImagesApi>;
+
+namespace Boa.Constrictor.Example
+{
+    public class RandomDogImage : IQuestion<byte[]>
+    {
+        private RandomDogImage() { }
+
+        public static RandomDogImage FromDogApi() =>
+            new RandomDogImage();
+
+        public byte[] RequestAs(IActor actor)
+        {
+            var request = DogRequests.GetRandomDog();
+            var response = actor.Calls(DogApi.Request<DogResponse>(request));
+
+            var resource = new Uri(response.Data.Message).AbsolutePath;
+            var imageRequest = new RestRequest(resource);
+            var imageData = actor.Calls(DogImagesApi.Download(imageRequest));
+
+            return imageData;
+        }
+    }
+}
+```
+
+Rebuild and rerun the tests.
+They should all pass.
+
+**Aliases are Not Required:**
+You do not *need* to create type aliases for RestSharp Abilities.
+Type aliases are optional.
+They simply improve code readability.
+{: .notice--info}
+
+**Limited Scope:**
+Unfortunately, `using` aliases are local to the file in which they are declared.
+They [cannot be given global scope](https://bytes.com/topic/c-sharp/answers/745345-using-alias-global-scope).
+You will need to define aliases in each file that uses them.
+{: .notice--warning}
 
 
 ### 11. Dumping Responses
