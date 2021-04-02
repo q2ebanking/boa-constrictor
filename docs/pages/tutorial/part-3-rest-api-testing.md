@@ -647,10 +647,17 @@ public void TestDogApiImage()
 The tricky part about this test is using the values in the first request's response to create the second request.
 `new Uri(response.Data.Message).AbsolutePath` parses the resource path from the full hyperlink returned by Dog API.
 
-**Download Assertion:**
+**Download Assertions:**
 Checking that the file is not empty is a weak assertion.
 It would not determine if the file is incorrect or corrupted.
 A real-world test should try stricter assertions.
+{: .notice--warning}
+
+**Response Assertions:**
+`Rest.Download` returns *only* the file data.
+It does not capture other parts of the REST response.
+If you need to perform assertions on other parts of the response,
+then use `Rest.Request`, and simply read the file data from the response's body.
 {: .notice--warning}
 
 Build and run the new test.
@@ -660,6 +667,8 @@ It should pass, but it might take a little more time to complete since it makes 
 ### 9. Creating Workflows
 
 (Coming soon!)
+
+This is the power of Screenplay!
 
 
 ### 10. Dumping Responses
