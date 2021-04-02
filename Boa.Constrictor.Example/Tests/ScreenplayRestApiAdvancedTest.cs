@@ -3,8 +3,6 @@ using Boa.Constrictor.RestSharp;
 using Boa.Constrictor.Screenplay;
 using FluentAssertions;
 using NUnit.Framework;
-using RestSharp;
-using System;
 using System.Net;
 
 namespace Boa.Constrictor.Example
@@ -25,8 +23,6 @@ namespace Boa.Constrictor.Example
         [Test]
         public void TestDogApi()
         {
-            // `Rest<CallDogApi>.Request(...)` uses the built-in `Rest` builder methods
-
             var request = DogRequests.GetRandomDog();
             var response = Actor.Calls(Rest<CallDogApi>.Request<DogResponse>(request));
 
@@ -38,14 +34,7 @@ namespace Boa.Constrictor.Example
         [Test]
         public void TestDogApiImage()
         {
-            // `DogApi.Request(...)` is a custom alias for `Rest<CallDogApi>.Request(...)` that looks nicer.
-
-            var request = DogRequests.GetRandomDog();
-            var response = Actor.Calls(DogApi.Request<DogResponse>(request));
-            var resource = new Uri(response.Data.Message).AbsolutePath;
-
-            var imageRequest = new RestRequest(resource);
-            var imageData = Actor.Calls(DogImagesApi.Download(imageRequest));
+            var imageData = Actor.AsksFor(RandomDogImage.FromDogApi());
             imageData.Should().NotBeNullOrEmpty();
         }
     }
