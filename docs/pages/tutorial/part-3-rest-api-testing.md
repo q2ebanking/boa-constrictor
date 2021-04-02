@@ -541,12 +541,13 @@ Let's unpack this line:
 | `Actor.Calls` | Calls any type of interaction. |
 | `Rest<CallDogApi>` | The builder class for REST API interactions. Uses a type generic to specify the RestSharp Ability (e.g. `<CallDogApi>`) to use when executing the given request. |
 | `Request<DogResponse>` | The builder method that creates a Question to call a RestSharp request and deserialize the response as a `DogResponse` object. |
-| `request` | The `IRestRequest` object for calling the Dog API endpoint. |
+| `DogRequests.GetRandomDog()` | The builder method that creates an `IRestRequest` object for calling the Dog API endpoint. |
 
 The only difference between this call and the call from the
 [basic test in Step 5](#5-deserializing-response-bodies)
 is that the `Rest` builder class bears a type generic for the Ability to use.
 
+Let's use this new call in a test.
 Add this new test to `ScreenplayRestApiAdvancedTest` to test the new Abilities:
 
 ```csharp
