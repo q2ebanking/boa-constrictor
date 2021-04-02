@@ -578,7 +578,83 @@ then create custom RestSharp Abilities.
 
 ### 8. Downloading Files
 
-(Coming soon!)
+In addition to receiving JSON and XML bodies, REST requests can also receive file data.
+For example, a REST API call could download the random dog image given by the Dog API.
+Files are just another type of response body.
+
+Boa Constrictor provides a special Question for downloading files.
+Take a look at the following code:
+
+```csharp
+// Image endpoint: https://images.dog.ceo/breeds/schipperke/n02104365_9489.jpg
+
+var imageRequest = new RestRequest("breeds/schipperke/n02104365_9489.jpg");
+byte[] imageData = Actor.Calls(Rest<CallDogImagesApi>.Download(imageRequest));
+```
+
+These lines download the image file as an array of bytes.
+Let's break them down:
+
+| Code | Purpose |
+| ---- | ------- |
+| `byte[] imageData` | The raw data for the downloaded file. |
+| `Actor.Calls` | Calls any type of interaction. |
+| `Rest<CallDogImagesApi>` | The builder class for REST API interactions using `CallDogImagesApi`. |
+| `Download` | A builder method for the Question to download the file given by the request. |
+| `imageRequest` | A `RestRequest` object whose resource is the path to the image. |
+
+Just like [`Rest.Request`](#4-calling-basic-requests),
+`Rest.Download` is syntactic Screenplay sugar.
+Underneath, it constructs a `RestApiDownload` Question.
+Once the file is downloaded as a byte array,
+its contents could be checked with assertions,
+or it could be piped to other destinations.
+
+**File Data:**
+When Boa Constrictor downloads a file, the file data is stored in memory.
+The file is *not* automatically saved to the file system by default.
+[Step 10](#10-dumping-responses) shows how to configure RestSharp Abilities to automatically save downloads to the file system.
+{: .notice--warning}
+
+Let's write a test to verify that the image can be successfully downloaded.
+The test should have the following steps:
+
+1. Call the Dog API to get a random dog image link.
+2. Call the Dog Images API to download the image file at the hyperlink returned by the Dog API request.
+3. Verify that the file contents are not empty.
+
+The code below implements this test.
+Add it to `ScreenplayRestApiAdvancedTest`:
+
+```csharp
+[Test]
+public void TestDogApiImage()
+{
+    // Call the Dog API to get a random dog image link
+    var request = DogRequests.GetRandomDog();
+    var response = Actor.Calls(Rest<CallRestApi>.Request<DogResponse>(request));
+
+    // Call the Dog Images API to download the image file
+    var resource = new Uri(response.Data.Message).AbsolutePath;
+    var imageRequest = new RestRequest(resource);
+    var imageData = Actor.Calls(Rest<CallRestImagesApi>.Download(imageRequest));
+
+    // Verify that the file contents are not empty
+    imageData.Should().NotBeNullOrEmpty();
+}
+```
+
+The tricky part about this test is using the values in the first request's response to create the second request.
+`new Uri(response.Data.Message).AbsolutePath` parses the resource path from the full hyperlink returned by Dog API.
+
+**Download Assertion:**
+Checking that the file is not empty is a weak assertion.
+It would not determine if the file is incorrect or corrupted.
+A real-world test should try stricter assertions.
+{: .notice--warning}
+
+Build and run the new test.
+It should pass, but it might take a little more time to complete since it makes two requests.
 
 
 ### 9. Creating Workflows
