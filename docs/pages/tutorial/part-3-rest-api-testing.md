@@ -125,15 +125,17 @@ The response has two parts:
 | `message` | A hyperlink to a random picture of a dog. This link should be different every time the request is called. |
 | `status` | A string indicating the success-or-failure status of fetching the image link. |
 
-RestSharp uses the [`IRestRequest` interface](https://restsharp.dev/usage/parameters.html)
+RestSharp uses the [`IRestRequest` interface](https://restsharp.dev/api/restsharp.html#interface-irestrequest)
 for creating requests that the client executes.
-`IRestRequest` supports all types of request fields: headers, parameters, bodies, etc.
+`IRestRequest` supports all types of
+[request fields](https://restsharp.dev/usage/parameters.html):
+headers, parameters, bodies, etc.
 Boa Constrictor does *not* add anything on top - it uses `IRestRequest` directly for interactions.
 
 Requests can be long.
 Many tests may need to call the same requests, too.
 As a best practice, requests typically should not be written in-line where they are called.
-Instead, they should be written in separate classes as builer methods so that they can be reused anywhere,
+Instead, they should be written in separate classes as builder methods so that they can be reused anywhere,
 just like [locators for web elements]({{ "/tutorial/part-2-web-ui-testing/#4-modeling-web-pages" | relative_url }}).
 
 Create a new directory in the `Boa.Constrictor.Example` project named `Requests`.
@@ -153,8 +155,7 @@ namespace Boa.Constrictor.Example
 ```
 
 `DogRequests` is a class that contains builder methods for `IRestRequest` objects.
-Like [page classes with locators]({{ "/tutorial/part-2-web-ui-testing/#4-modeling-web-pages" | relative_url }}),
-it is *static* so that it does not maintain any state of its own.
+Like page classes with locators, it is *static* so that it does not maintain any state of its own.
 It only provides builders.
 
 The `GetRandomDog` method constructs a new RestSharp request.
