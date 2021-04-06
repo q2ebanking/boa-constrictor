@@ -7,7 +7,7 @@ using OpenQA.Selenium.Chrome;
 
 namespace Boa.Constrictor.Example
 {
-    public class DuckDuckGoTest
+    public class ScreenplayWebUiTest
     {
         private IActor Actor;
 
@@ -25,7 +25,7 @@ namespace Boa.Constrictor.Example
         }
 
         [Test]
-        public void TestDuckDuckGoSearch()
+        public void TestDuckDuckGoWebSearch()
         {
             Actor.AttemptsTo(Navigate.ToUrl(SearchPage.Url));
             Actor.AskingFor(ValueAttribute.Of(SearchPage.SearchInput)).Should().BeEmpty();

@@ -14,6 +14,10 @@ The test case steps will be simple:
 3. Enter a search phrase
 4. Verify result links are returned
 
+**WebDriver:**
+Boa Constrictor's Web UI interactions use [Selenium WebDriver](https://www.selenium.dev/).
+{: .notice--info}
+
 **Prerequisite:**
 Make sure you created the `Boa.Constrictor.Example` tutorial project
 from [Tutorial Part 1 - Setup]({{ "/tutorial/part-1-setup" | relative_url }})
@@ -42,7 +46,7 @@ The following steps will explain each component in detail.
 ## 1. Creating a Test Class
 
 Inside the `Boa.Constrictor.Example` project,
-create a new file named `DuckDuckGoTest.cs`.
+create a new file named `ScreenplayWebUiTest.cs`.
 Add the following NUnit code stub to the file:
 
 ```csharp
@@ -50,10 +54,10 @@ using NUnit.Framework;
 
 namespace Boa.Constrictor.Example
 {
-    public class DuckDuckGoTest
+    public class ScreenplayWebUiTest
     {
         [Test]
-        public void TestDuckDuckGoSearch()
+        public void TestDuckDuckGoWebSearch()
         {
 
         }
@@ -61,7 +65,7 @@ namespace Boa.Constrictor.Example
 }
 ```
 
-`DuckDuckGoTest` will contain the main NUnit test case for Part 2 of this tutorial.
+`ScreenplayWebUiTest` will contain the main NUnit test case for Part 2 of this tutorial.
 To make sure it works, build the project and run the test.
 You can run the test from [Test Explorer](https://docs.microsoft.com/en-us/visualstudio/test/run-unit-tests-with-test-explorer?view=vs-2019) in Visual Studio
 or from the command line using the [NUnit Console Runner](https://docs.nunit.org/articles/nunit/running-tests/Console-Runner.html).
@@ -76,14 +80,14 @@ For example, it could represent a user logged into a Web app.
 All Screenplay calls start with an Actor.
 Most test cases need only one Actor.
 
-To create an actor, add the following import statements to `DuckDuckGoTest`:
+To create an actor, add the following import statements to `ScreenplayWebUiTest`:
 
 ```csharp
 using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
 ```
 
-Then, add the following constructor call to its `TestDuckDuckGoSearch` method:
+Then, add the following constructor call to its `TestDuckDuckGoWebSearch` method:
 
 ```csharp
 IActor actor = new Actor(name: "Andy", logger: new ConsoleLogger());
@@ -92,28 +96,29 @@ IActor actor = new Actor(name: "Andy", logger: new ConsoleLogger());
 Actors implement the `IActor` interface, which is part of the `Boa.Constrictor.Screenplay` namespace.
 The `Actor` class optionally takes two arguments:
 
-1. The first argument is a *name*, which can help describe who the actor is.
-   The default name is "Screenplayer".
-   The name will appear in logged messages.
-2. The second argument is a *logger*, which will send log messages from Screenplay calls to a target destination.
-   Loggers must implement the `ILogger` interface.
-   They are part of the `Boa.Constrictor.Logging` namespace.
-   `ConsoleLogger` is a class that will log messages to the system console.
-   You can define your own custom loggers by implementing `ILogger`.
-   You can also combine multiple loggers together using `TeeLogger`.
+| Argument | Purpose |
+| -------- | ------- |
+| *name*   | Helps describe who the actor is. The default name is "Screenplayer". The name will appear in logged messages. |
+| *logger* | Send log messages from Screenplay calls to a target destination. |
+   
+Loggers must implement the `ILogger` interface.
+They are part of the `Boa.Constrictor.Logging` namespace.
+`ConsoleLogger` is a class that will log messages to the system console.
+You can define your own custom loggers by implementing `ILogger`.
+You can also combine multiple loggers together using `TeeLogger`.
 
 Build and run the test.
 It should pass.
 
 
-## 3. Adding Abilities
+## 3. Adding Web UI Abilities
 
 *Abilities* enable Actors to initiate Interactions.
 That might sound a little weird at first.
 In a programming sense, Abilities provide objects that Actors use when calling Interactions.
 For example, an Actor needs a Selenium WebDriver instance in order to click elements on a Web page.
 
-Add the following imports to `DuckDuckGoTest`:
+Add the following imports to `ScreenplayWebUiTest`:
 
 ```csharp
 using Boa.Constrictor.WebDriver;
@@ -131,13 +136,16 @@ Read this line in plain English:
 Boa Constrictor's fluent-like syntax makes its call chains very readable.
 Let's unpack what this line does:
 
-1. Web UI automation uses Selenium WebDriver to control a browser.
-   `new ChromeDriver()` instantiates a new WebDriver object for [ChromeDriver](https://chromedriver.chromium.org/).
-   (You could use a different browser type here, and you could also specify WebDriver options.)
-2. `BrowseTheWeb` is an Ability that enables Actors to perform Web UI Interactions.
-   `BrowseTheWeb.With(...)` constructs the Ability with the given WebDriver object.
-3. `actor.Can(...)` adds the given Ability to the Actor.
-   In this case, the `actor` Actor is given the `BrowseTheWeb` Ability with a `ChromeDriver` object.
+| Code | Purpose |
+| ---- | ------- |
+| `new ChromeDriver()` | Web UI automation uses Selenium WebDriver to control a browser. This code instantiates a new WebDriver object for [ChromeDriver](https://chromedriver.chromium.org/). |
+| `BrowseTheWeb` | An Ability that enables Actors to perform Web UI Interactions. |
+| `BrowseTheWeb.With(...)` | Constructs the Ability with the given WebDriver object. |
+| `actor.Can(...)` | Adds the given Ability to the Actor. In this case, the `actor` Actor is given the `BrowseTheWeb` Ability with a `ChromeDriver` object. |
+
+**Other Browsers:**
+You could use a different browser type here, and you could also specify WebDriver options.
+{: .notice--info}
 
 Abilities must implement the `IAbility` interface:
 
@@ -237,14 +245,12 @@ public interface IWebLocator
 }
 ```
 
-A locator has two parts:
+A locator has two properties:
 
-1. A *Description* that describes the element in plain language.
-   It will be used for logging.
-2. A *Query* that is used to find the element on the page.
-   Boa Constrictor uses Selenium WebDriver's `By` queries.
-   Learn more about locator queries by reading
-   [Web Element Locators for Test Automation](https://automationpanda.com/2019/01/15/web-element-locators-for-test-automation/).
+| Code | Purpose |
+| ---- | ------- |
+| *Description* | Describes the element in plain language. It will be used for logging. |
+| *Query* | Finds the element on the page. Boa Constrictor uses Selenium WebDriver's `By` queries. Learn more about locator queries by reading [Web Element Locators for Test Automation](https://automationpanda.com/2019/01/15/web-element-locators-for-test-automation/). |
 
 For convenience, locators can be constructed using the `Boa.Constrictor.WebDriver.WebLocator.L` static builder method.
 Since `SearchPage` uses a static import for this method, it can use the short `L` method call.
@@ -287,7 +293,7 @@ These interactions all "do" something rather than "get" something.
 The test case's first step should load the DuckDuckGo search page.
 Boa Constrictor provides a Task named `Navigate` under the `Boa.Constrictor.WebDriver` namespace for loading a Web page using a target URL.
 
-Add this line to `TestDuckDuckGoSearch`:
+Add this line to `TestDuckDuckGoWebSearch`:
 
 ```csharp
 actor.AttemptsTo(Navigate.ToUrl(SearchPage.Url));
@@ -299,12 +305,11 @@ Again, Boa Constrictor's fluent-like syntax is very readable.
 Clearly, this line will load the DuckDuckGo search page.
 Let's unpack it:
 
-* `SearchPage.Url` is the target URL.
-  It is a member of the `SearchPage` model class so that it can be used by any Interaction.
-* `Navigate.ToUrl(...)` constructs a Task object using the given URL string.
-  The `Navigate` class provides the logic for performing the page load.
-* `actor.AttemptsTo(...)` calls the given Task.
-  The call is an "attempt" because the Task may or may not ultimately be successful.
+| Code | Purpose |
+| ---- | ------- |
+| `SearchPage.Url` | The target URL. It is a member of the `SearchPage` model class so that it can be used by any Interaction. |
+| `Navigate.ToUrl(...)` | Constructs a Task object using the given URL string. The `Navigate` class provides the logic for performing the page load. |
+| `actor.AttemptsTo(...)` | Calls the given Task. The call is an "attempt" because the Task may or may not ultimately be successful. |
 
 All Interactions, including Tasks, must implement the `IInteraction` interface for common typing:
 
@@ -385,7 +390,7 @@ Each of these interactions return some sort of value.
 The test case's second step verifies that the search field is empty.
 The `ValueAttribute` Question gets the "value" of the text currently inside an input field.
 (Note: this is different from regular element text, which uses the `Text` Question.)
-To use `ValueAttribute`, add the following line to `TestDuckDuckGoSearch`:
+To use `ValueAttribute`, add the following line to `TestDuckDuckGoWebSearch`:
 
 ```csharp
 string text = actor.AsksFor(ValueAttribute.Of(SearchPage.SearchInput));
@@ -395,12 +400,11 @@ Read this line in plain English:
 "The actor asks for the value attribute of the search page's search input element."
 Let's break it down:
 
-* `SearchPage.SearchInput` is the locator for the search input field.
-  You previously added this locator to the `SearchPage` class.
-* `ValueAttribute.Of(...)` constructs a Question using the given locator.
-  It returns the "value" attribute of the locator's target element.
-* `actor.AsksFor(...)` calls the given Question.
-  The Actor "asks for" the answer to the Question.
+| Code | Purpose |
+| ---- | ------- |
+| `SearchPage.SearchInput` | The locator for the search input field. You previously added this locator to the `SearchPage` class. |
+| `ValueAttribute.Of(...)` | Constructs a Question using the given locator. It returns the "value" attribute of the locator's target element. |
+| `actor.AsksFor(...)` | Calls the given Question. The Actor "asks for" the answer to the Question. |
 
 Questions must implement the `IQuestion` interface:
 
@@ -463,7 +467,7 @@ The test case must also verify that the value is empty using an assertion.
 The recommended assertion library to use with Boa Constrictor is
 [Fluent Assertions](https://fluentassertions.com/).
 
-Add the following import statement to `DuckDuckGoTest`:
+Add the following import statement to `ScreenplayWebUiTest`:
 
 ```csharp
 using FluentAssertions;
@@ -503,7 +507,7 @@ public static IWebLocator SearchButton => L(
     By.Id("search_button_homepage"));
 ```
 
-Then, add the following lines to `TestDuckDuckGoSearch`:
+Then, add the following lines to `TestDuckDuckGoWebSearch`:
 
 ```csharp
 actor.AttemptsTo(SendKeys.To(SearchPage.SearchInput, "panda"));
@@ -546,7 +550,7 @@ namespace Boa.Constrictor.Example
 `SearchDuckDuckGo` is a new Task that takes in a search phrase
 and internally calls `SendKeys` and `Click` to enter the phrase on the DuckDuckGo search page.
 
-Replace the old calls in `TestDuckDuckGoSearch` with this new Task:
+Replace the old calls in `TestDuckDuckGoWebSearch` with this new Task:
 
 ```csharp
 actor.AttemptsTo(SearchDuckDuckGo.For("panda"));
@@ -586,7 +590,7 @@ public static IWebLocator ResultLinks => L(
 
 This locator will find all result links on the result page.
 
-Then, add the following line to `TestDuckDuckGoSearch`:
+Then, add the following line to `TestDuckDuckGoWebSearch`:
 
 ```csharp
 actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
@@ -597,11 +601,12 @@ Read this line in plain English:
 In simpler terms, "Wait until the result links appear."
 Let's break it down:
 
-* `ResultPage.ResultLinks` is the locator for the result link elements.
-* `Appearance.Of(...)` is a Question that returns true if the target elements are currently displayed on the page.
-* `IsEqualTo.True()` is a *Condition* for checking if the return value of a Question is true.
-* `Actor.WaitsUntil(...)` is an extension method that halts execution until the given Question's answer meets the given Condition.
-  In this case, the appearance of the result links must become true.
+| Code | Purpose |
+| ---- | ------- |
+| `ResultPage.ResultLinks` | The locator for the result link elements. |
+| `Appearance.Of(...)` | A Question that returns true if the target elements are currently displayed on the page. |
+| `IsEqualTo.True()` | A *Condition* for checking if the return value of a Question is true. |
+| `Actor.WaitsUntil(...)` | An extension method that halts execution until the given Question's answer meets the given Condition. In this case, the appearance of the result links must become true. |
 
 `WaitsUntil` is an `IActor` extension method that internally calls waiting interactions.
 The following calls are essentially the same:
@@ -610,7 +615,7 @@ The following calls are essentially the same:
 // The full, "traditional" way to wait
 actor.AttemptsTo(Wait.Until(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True()));
 
-// The more concise way using
+// The more concise way to wait
 actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
 ```
 
@@ -661,7 +666,7 @@ Before ending the test case, the browser must be quit safely.
 Otherwise, the browser and its associated WebDriver executable will keep running,
 hogging system resources and possibly causing other problems.
 
-Add the following call to the bottom of `TestDuckDuckGoSearch`:
+Add the following call to the bottom of `TestDuckDuckGoWebSearch`:
 
 ```csharp
 actor.AttemptsTo(QuitWebDriver.ForBrowser());
@@ -679,7 +684,7 @@ This time, when the test finishes, it will automatically quit the browser window
 
 The test steps are complete, and if you run the test case, it should pass.
 However, it should be refactored a bit for better setup and cleanup.
-Rewrite `DuckDuckGoTest` with the following code:
+Rewrite `ScreenplayWebUiTest` with the following code:
 
 ```csharp
 using Boa.Constrictor.Logging;
@@ -691,7 +696,7 @@ using OpenQA.Selenium.Chrome;
 
 namespace Boa.Constrictor.Example
 {
-    public class DuckDuckGoTest
+    public class ScreenplayWebUiTest
     {
         private IActor Actor;
 
@@ -709,7 +714,7 @@ namespace Boa.Constrictor.Example
         }
 
         [Test]
-        public void TestDuckDuckGoSearch()
+        public void TestDuckDuckGoWebSearch()
         {
             Actor.AttemptsTo(Navigate.ToUrl(SearchPage.Url));
             Actor.AskingFor(ValueAttribute.Of(SearchPage.SearchInput)).Should().BeEmpty();
@@ -738,7 +743,7 @@ Boa.Constrictor.Example
 │   └── SearchPage.cs
 │
 └── Tests
-    └── DuckDuckGoTest.cs
+    └── ScreenplayWebUiTest.cs
 ```
 
 Build and run the test code one final time to make sure it passes.
@@ -746,7 +751,7 @@ Build and run the test code one final time to make sure it passes.
 
 ## Conclusion
 
-Congrats on finishing Part 2 tutorial!
+Congrats on finishing Part 2 of the tutorial!
 
 Boa Constrictor provides several Web UI Interactions that could not be covered in this brief tutorial.
 All interactions using [Selenium WebDriver](https://www.selenium.dev/) are located under `Boa.Constrictor\WebDriver`.

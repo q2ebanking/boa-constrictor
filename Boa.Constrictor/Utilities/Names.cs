@@ -27,8 +27,9 @@ namespace Boa.Constrictor.Utilities
             if (!string.IsNullOrWhiteSpace(suffix))
                 unique += '_' + suffix;
 
-            if (!string.IsNullOrWhiteSpace(Thread.CurrentThread.Name))
-                unique += '_' + Regex.Replace(Thread.CurrentThread.Name, @"[^A-Za-z0-9]+", "");
+            string thread = Thread.CurrentThread.Name;
+            if (!string.IsNullOrWhiteSpace(thread) && thread != "NonParallelWorker")
+                unique += '_' + Regex.Replace(thread, @"[^A-Za-z0-9]+", "");
 
             return unique;
         }
