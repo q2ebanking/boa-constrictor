@@ -852,17 +852,255 @@ You will need to define aliases in each file that uses them.
 
 ### 11. Dumping Responses
 
-(Coming soon!)
+So far in this tutorial, Boa Constrictor has handled responses in memory.
+It can also dump requests and downloads to files so that testers can review them later.
+Request dumps include the full request and response, field by field.
+Download dumps are the actual files downloaded in response bodies, like PDFs or PNGs.
+Dumps plainly show problems like error messages, bad status codes, and corrupted files.
 
-* Boa Constrictor can automatically dump requests and downloads
-* How to do it with CallRestApi
-* How to do it with custom Abilities
-* retrofitting tests
-* example request dump
-* example download dump
-* Info: dumping is optional
+**Dumping is Optional:**
+Dumping requests and downloads is optional.
+You do not need to dump files when using Boa Constrictor.
+Dumping does not happen by default - you must explicitly enable it.
+{: .notice--info}
+
+The basic `CallRestApi` Ability provides extra builder methods to configure dumping.
+Each file type must be given a destination directory path and a filename prefix.
+The example call below shows how to configure the Ability for dumping:
+
+```csharp
+Actor.Can(
+    CallRestApi.At("https://dog.ceo/")
+        .DumpingRequestsTo("/path/to/dump/requests/", "DogApiRequest")
+        .DumpingDownloadsTo("/path/to/dump/downloads/", "DogApiImage"))
+```
+
+With this configuration, the `Rest.Request` and `Request.Download` methods will automatically dump their responses to these directories.
+Boa Constrictor will create these directories if they do not already exist.
+The dumped files will be named `"<prefix>_<timestamp>.<extension>"`.
+Request are dumped as JSON files, while downloads are dumped using their given file extension.
+For example, a dog request dump file could be named `"DogApiRequest_202104061352038197.json"`.
+
+**Dumping Naming Conventions:**
+Automation can make several requests and downloads during one execution.
+Boa Constrictor uses a prefix like `"DogApiRequest"` to categorize all responses from one Ability (meaning one base URL).
+It uses timestamps to give a chronological sequence to dumped files.
+{: .notice--info}
+
+Custom Abilities like `CallDogApi` and `CallDogImagesApi` do not inherit these dumping methods.
+They need to specify dumping on their own.
+They can either copy `CallRestApi`'s builder methods for dumping, or they can customize how dumping is handled.
+
+Let's update `CallDogApi` to automatically dump requests for Dog API.
+Since Dog API does not provide the images to download, it does *not* need to be configured for dumping downloaded files.
+Change `CallDogApi.cs` to the following code:
+
+```csharp
+using Boa.Constrictor.RestSharp;
+using RestSharp;
+using System.IO;
+
+namespace Boa.Constrictor.Example
+{
+    public class CallDogApi : AbstractRestSharpAbility
+    {
+        public const string BaseUrl = "https://dog.ceo/";
+        public const string RequestToken = "DogApiRequest";
+
+        private CallDogApi(RestClient client, string dumpDir) :
+            base(client)
+        {
+            RequestDumper = new RequestDumper(
+                "Dog API Request Dumper",
+                Path.Combine(dumpDir, RequestToken),
+                RequestToken);
+        }
+
+        public static CallDogApi DumpingTo(string dumpDir) =>
+            new CallDogApi(new RestClient(BaseUrl), dumpDir);
+    }
+}
+```
+
+Let's break down the changes:
+
+| Change | Reason |
+| ------ | ------ |
+| `using System.IO;` | Required by the `Path` class. |
+| `RequestToken` | A string constant for the request dump filename prefix. |
+| `CallDogApi` constructor | The constructor now has a `dumpDir` argument for the path to the dump directory. |
+| `RequestDumper` | The `AbstractRestSharpAbility` property for the request dumper. |
+| `new RequestDumper(...)` | The class used for dumping requests. Needs a name, a dumping directory path, and a dump filename prefix. |
+| `Path.Combine(dumpDir, RequestToken)` | Adds a subdirectory to the dumping directory for dumping Dog API requests. |
+| `DumpingTo` | Builder method that replaces `UsingBaseUrl`. Takes in the dumping directory path. |
+
+Let's make a similar update to `CallDogImagesApi`.
+This Ability should dump both requests and downloads.
+Change `CallDogImagesApi.cs` to the following code:
+
+```csharp
+using Boa.Constrictor.Dumping;
+using Boa.Constrictor.RestSharp;
+using RestSharp;
+using System.IO;
+
+namespace Boa.Constrictor.Example
+{
+    public class CallDogImagesApi : AbstractRestSharpAbility
+    {
+        public const string BaseUrl = "https://images.dog.ceo/";
+        public const string DownloadToken = "DogImagesApiDownload";
+        public const string RequestToken = "DogImagesApiRequest";
+
+        private CallDogImagesApi(RestClient client, string dumpDir) :
+            base(client)
+        {
+            RequestDumper = new RequestDumper(
+                "Dog Images API Request Dumper",
+                Path.Combine(dumpDir, RequestToken),
+                RequestToken);
+            DownloadDumper = new ByteDumper(
+                "Dog Images API Download Dumper",
+                Path.Combine(dumpDir, DownloadToken),
+                DownloadToken);
+        }
+
+        public static CallDogImagesApi DumpingTo(string dumpDir) =>
+            new CallDogImagesApi(new RestClient(BaseUrl), dumpDir);
+    }
+}
+```
+
+These changes are very similar to the ones made for `CallDogApi`,
+but `CallDogImagesApi` sets `DownloadDumper` to a new `ByteDumper` object.
+The dumping subdirectories are different to keep files organized.
+
+To use the updated Abilities, update `ScreenplayRestApiAdvancedTest`.
+Add the following import statement:
+
+```csharp
+using System.IO;
+```
+
+And edit the `[Setup]` method:
+
+```csharp
+[SetUp]
+public void InitializeScreenplay()
+{
+    Actor = new Actor(name: "Andy", logger: new ConsoleLogger());
+    AssemblyDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+    Actor.Can(CallDogApi.DumpingTo(AssemblyDir));
+    Actor.Can(CallDogImagesApi.DumpingTo(AssemblyDir));
+}
+```
+
+Both custom Abilities set the dumping directory to `AssemblyDir`,
+which is the directory where the `Boa.Constrictor.Example` is located.
+They can share the same dumping directory because each Ability adds subdirectories for different file types.
+
+**Assembly Directory:**
+The assembly directory is typically the build output directory.
+It is a decent location for dumping files when running tests on a local machine.
+However, you should consider using a better output path when running tests in a Continuous Integration system.
+{: .notice--warning}
+
+Rerun the tests, and make sure they all pass.
+Then, check the assembly directory for the dumped files.
+(The assembly file is most likely located at
+`boa-constrictor\Boa.Constrictor.Example\bin\Debug\net5.0`.)
+It should contain the following directories:
+
+```
+Assembly Directory
+│
+├── DogApiRequest
+├── DogImagesApiDownload
+└── DogImagesApiRequest
+```
+
+Request dumps can be large.
+Below is a snippet from one of the dumps for a Dog API request:
+
+```json
+{
+  "Duration": {
+    "StartTime": "2021-04-06T16:54:25.0631404Z",
+    "EndTime": "2021-04-06T16:54:33.5413263Z",
+    "Duration": "00:00:08.4781859"
+  },
+  "Request": {
+    "Method": "GET",
+    "Uri": "https://dog.ceo/api/breeds/image/random",
+    "Resource": "api/breeds/image/random",
+    "Parameters": [],
+    "Body": null
+  },
+  "Response": {
+    "Uri": "https://dog.ceo/api/breeds/image/random",
+    "StatusCode": 200,
+    "ErrorMessage": null,
+    "Content": "{\"message\":\"https:\\/\\/images.dog.ceo\\/breeds\\/brabancon\\/n02112706_2087.jpg\",\"status\":\"success\"}",
+    "Headers": [
+      {
+        "Name": "Date",
+        "Value": "Tue, 06 Apr 2021 16:54:32 GMT",
+        "Type": "HttpHeader"
+      },
+      {
+        "Name": "Transfer-Encoding",
+        "Value": "chunked",
+        "Type": "HttpHeader"
+      },
+      // ...
+    ],
+    // ...
+  }
+}
+```
+
+And below is an image of a dog downloaded from Dog Images API:
+
+![Example Dog Image]({{ "/assets/images/example-dog-image.png" | relative_url }})
+
+**File Storage:**
+File dumps can fill up storage space on the file system.
+Remember to delete old dumps or archive them from time to time.
+{: .notice--warning}
 
 
 ## Conclusion
 
-(Coming soon!)
+Congrats on finishing Part 3 of the tutorial!
+The example project should now be structured like this:
+
+```
+Boa.Constrictor.Example
+│
+├── Abilities
+│   ├── CallDogApi.cs
+│   └── CallDogImagesApi.cs
+│
+├── Interactions
+│   ├── RandomDogImage.cs
+│   └── SearchDuckDuckGo.cs
+│
+├── Pages
+│   ├── ResultPage.cs
+│   └── SearchPage.cs
+│
+├── Requests
+│   └── DogRequests.cs
+│
+├── Responses
+│   └── DogResponse.cs
+│
+└── Tests
+    ├── ScreenplayRestApiAdvancedTest.cs
+    ├── ScreenplayRestApiBasicTest.cs
+    └── ScreenplayWebUiTest.cs
+```
+
+Now that you have completed the tutorial,
+you should be ready to use Boa Constrictor in your own projects!
