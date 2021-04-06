@@ -590,7 +590,7 @@ Take a look at the following code:
 // Image endpoint: https://images.dog.ceo/breeds/schipperke/n02104365_9489.jpg
 
 var imageRequest = new RestRequest("breeds/schipperke/n02104365_9489.jpg");
-byte[] imageData = Actor.Calls(Rest<CallDogImagesApi>.Download(imageRequest));
+byte[] imageData = Actor.Calls(Rest<CallDogImagesApi>.Download(imageRequest, ".jpg"));
 ```
 
 These lines download the image file as an array of bytes.
@@ -603,6 +603,7 @@ Let's break them down:
 | `Rest<CallDogImagesApi>` | The builder class for REST API interactions using `CallDogImagesApi`. |
 | `Download` | A builder method for the Question to download the file given by the request. |
 | `imageRequest` | A `RestRequest` object whose resource is the path to the image. |
+| `".jpg"` | The extension for the file to download. |
 
 Just like [`Rest.Request`](#4-calling-basic-requests),
 `Rest.Download` is syntactic Screenplay sugar.
@@ -638,7 +639,8 @@ public void TestDogApiImage()
     // Call the Dog Images API to download the image file
     var resource = new Uri(response.Data.Message).AbsolutePath;
     var imageRequest = new RestRequest(resource);
-    var imageData = Actor.Calls(Rest<CallRestImagesApi>.Download(imageRequest));
+    var extension = System.IO.Path.GetExtension(resource);
+    var imageData = Actor.Calls(Rest<CallRestImagesApi>.Download(imageRequest, extension));
 
     // Verify that the file contents are not empty
     imageData.Should().NotBeNullOrEmpty();
@@ -647,6 +649,7 @@ public void TestDogApiImage()
 
 The tricky part about this test is using the values in the first request's response to create the second request.
 `new Uri(response.Data.Message).AbsolutePath` parses the resource path from the full hyperlink returned by Dog API.
+`System.IO.Path.GetExtension(resource)` gets the file extension from the resource. 
 
 **Download Assertions:**
 Checking that the file is not empty is a weak assertion.
@@ -688,6 +691,7 @@ using Boa.Constrictor.RestSharp;
 using Boa.Constrictor.Screenplay;
 using RestSharp;
 using System;
+using System.IO;
 
 namespace Boa.Constrictor.Example
 {
@@ -705,7 +709,8 @@ namespace Boa.Constrictor.Example
 
             var resource = new Uri(response.Data.Message).AbsolutePath;
             var imageRequest = new RestRequest(resource);
-            var imageData = actor.Calls(Rest<CallDogImagesApi>.Download(imageRequest));
+            var extension = Path.GetExtension(resource);
+            var imageData = actor.Calls(DogImagesApi.Download(imageRequest, extension));
 
             return imageData;
         }
@@ -799,6 +804,7 @@ The full code for `RandomDogImage.cs` should now look like this:
 using Boa.Constrictor.Screenplay;
 using RestSharp;
 using System;
+using System.IO.
 
 using DogApi = Boa.Constrictor.RestSharp.Rest<Boa.Constrictor.Example.CallDogApi>;
 using DogImagesApi = Boa.Constrictor.RestSharp.Rest<Boa.Constrictor.Example.CallDogImagesApi>;
@@ -819,7 +825,8 @@ namespace Boa.Constrictor.Example
 
             var resource = new Uri(response.Data.Message).AbsolutePath;
             var imageRequest = new RestRequest(resource);
-            var imageData = actor.Calls(DogImagesApi.Download(imageRequest));
+            var extension = Path.GetExtension(resource);
+            var imageData = actor.Calls(DogImagesApi.Download(imageRequest, extension));
 
             return imageData;
         }
@@ -846,6 +853,14 @@ You will need to define aliases in each file that uses them.
 ### 11. Dumping Responses
 
 (Coming soon!)
+
+* Boa Constrictor can automatically dump requests and downloads
+* How to do it with CallRestApi
+* How to do it with custom Abilities
+* retrofitting tests
+* example request dump
+* example download dump
+* Info: dumping is optional
 
 
 ## Conclusion

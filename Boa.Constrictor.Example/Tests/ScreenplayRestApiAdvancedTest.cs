@@ -3,21 +3,25 @@ using Boa.Constrictor.RestSharp;
 using Boa.Constrictor.Screenplay;
 using FluentAssertions;
 using NUnit.Framework;
+using System.IO;
 using System.Net;
+using System.Reflection;
 
 namespace Boa.Constrictor.Example
 {
     public class ScreenplayRestApiAdvancedTest
     {
         private IActor Actor;
+        private string AssemblyDir;
 
         [SetUp]
         public void InitializeScreenplay()
         {
             Actor = new Actor(name: "Andy", logger: new ConsoleLogger());
+            AssemblyDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-            Actor.Can(CallDogApi.UsingBaseUrl());
-            Actor.Can(CallDogImagesApi.UsingBaseUrl());
+            Actor.Can(CallDogApi.DumpingTo(AssemblyDir));
+            Actor.Can(CallDogImagesApi.DumpingTo(AssemblyDir));
         }
 
         [Test]
