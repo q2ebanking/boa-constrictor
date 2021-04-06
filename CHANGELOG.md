@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+(None)
+
+
+## [0.12.0] - 2021-04-06
+
 ### Added
 
 - Added official documentation!
@@ -21,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Moved `Rest` `DownloadUsing` and `RequestUsing` build methods to a new type-generic `Rest<TAbility>` class
+- Updated NuGet package versions
 
 ### Fixed
 
