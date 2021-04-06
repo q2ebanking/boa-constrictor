@@ -383,7 +383,7 @@ Downloading the actual image requires some advanced REST API techniques, which w
 ### 6. Creating Another Test Class
 
 Let's create a second test class for "advanced" tests.
-Create a class named `ScreenplayRestApiBasicTest.cs` under the `Tests` folder,
+Create a class named `ScreenplayRestApiAdvancedTest.cs` under the `Tests` folder,
 and add the following code:
 
 ```csharp
