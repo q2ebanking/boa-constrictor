@@ -54,6 +54,8 @@ defaults:
     values:
       sidebar:
         nav: "pages"
+      header:
+        og_image: /assets/images/blue-ball-512x512.png
 
 footer:
   links:
