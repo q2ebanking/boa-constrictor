@@ -10,7 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(None)
+### Fixed
+
+- Improved `SendKeys` text clearing logic
 
 
 ## [0.12.0] - 2021-04-06
