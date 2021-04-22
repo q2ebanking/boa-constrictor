@@ -13,16 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (None)
 
 
-## [0.13.1-alpha2] - 2021-04-22
+## [0.13.1] - 2021-04-22
 
 ### Added
 
-- Set project icon to the new Boa Constrictor logo
-
-### Fixed
-
-- Attempted to fix error message in `nuget-push.yml` GitHub Action
-- Undid that attempt because it didn't work
+- Set the NuGet package icon to the new Boa Constrictor logo
 
 
 ## [0.13.0] - 2021-04-22
