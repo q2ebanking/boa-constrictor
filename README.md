@@ -2,9 +2,7 @@
 ---
 
 <center>
-
-![Boa Constrictor Logo](docs/assets/images/logos/logo-title-black-400x64.png)
-
+<img src="docs/assets/images/logos/logo-title-black-400x64.png" alt="Boa Constrictor Logo"/>
 </center>
 
 ---
