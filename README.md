@@ -1,5 +1,11 @@
 
-![Boa Constrictor Logo](docs/assets/images/logos/logo-title-black-400x64.png)
+---
+
+<center>
+
+![Boa Constrictor Logo](docs/assets/images/logos/logo-title-black-600x96.png)
+
+</center>
 
 ---
 
