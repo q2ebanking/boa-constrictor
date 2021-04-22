@@ -42,8 +42,7 @@ jobs:
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
 
           # NuGet server uri hosting the packages, defaults to https://api.nuget.org
-          # Commenting this out due to https://github.com/brandedoutcast/publish-nuget/issues/58#issuecomment-825194931
-          # NUGET_SOURCE: https://api.nuget.org
+          NUGET_SOURCE: https://api.nuget.org
 
           # Flag to toggle pushing symbols along with nuget package to the server, disabled by default
           INCLUDE_SYMBOLS: true
