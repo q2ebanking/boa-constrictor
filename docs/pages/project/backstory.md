@@ -39,6 +39,8 @@ Knowing that a .NET implementation of the Screenplay Pattern could benefit other
 PrecisionLender and its parent company [Q2](https://www.q2.com/)
 released Boa Constrictor publicly as an open source project in October 2020.
 Q2 continues to support Boa Constrictor's development.
+[Tia Nieland](https://www.linkedin.com/in/tia-nieland-2b68a4152/)
+from Q2's Brand and Design team designed Boa Constrictor's awesome logo.
 
 Boa Constrictor's main goal is to provide a better way to model interactions for automation.
 It can be extended for any type of interaction, not just Web UI and REST API.

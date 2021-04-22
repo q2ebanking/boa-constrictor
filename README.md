@@ -1,3 +1,12 @@
+
+---
+
+<p align="center">
+<img src="docs/assets/images/logos/logo-title-black-400x64.png" alt="Boa Constrictor Logo"/>
+</p>
+
+---
+
 # Boa Constrictor: The .NET Screenplay Pattern
 
 **Boa Constrictor** is a C# implementation of the

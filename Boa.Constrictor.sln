@@ -5,6 +5,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{7AEFAF69-D35F-4A70-9152-687C7486280F}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		Boa Constrictor Logo Spec Sheet.pdf = Boa Constrictor Logo Spec Sheet.pdf
 		CHANGELOG.md = CHANGELOG.md
 		LICENSE.md = LICENSE.md
 		README.md = README.md

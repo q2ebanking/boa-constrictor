@@ -1,4 +1,8 @@
-﻿<div class="page__footer-follow">
+﻿<div style="margin-bottom:15px">
+    <img src="{{ "/assets/images/logos/logo-title-white-200x32.png" | relative_url }}" alt="Boa Constrictor Logo" />
+</div>
+
+<div class="page__footer-follow">
     <ul class="social-icons">
         {% if site.data.ui-text[site.locale].follow_label %}
         <li><strong>{{ site.data.ui-text[site.locale].follow_label }}</strong></li>
@@ -18,4 +22,4 @@
     </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}. &nbsp; Boa Constrictor is maintained by the <a href="https://twitter.com/AutomationPanda" rel="nofollow">Automation Panda</a> and the PrecisionLender Software Engineers in Test.</div>
+<div class="page__footer-copyright">&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}. &nbsp; Boa Constrictor is maintained by the <a href="https://twitter.com/AutomationPanda" rel="nofollow">Automation Panda</a> and the <a href="https://precisionlender.com/" rel="nofollow">PrecisionLender</a> Software Engineers in Test.</div>
