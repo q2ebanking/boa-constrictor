@@ -10,9 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+(None)
+
+
+## [0.13.0] - 2021-04-22
+
 ### Added
 
-- Added Boa Constrictor logo
+- Added Boa Constrictor logo and updated docs
 
 ### Fixed
 
