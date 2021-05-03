@@ -1,3 +1,12 @@
+
+---
+
+<p align="center">
+<img src="logos/title/no-margin/png/logo-title-black-400x64.png" alt="Boa Constrictor Logo"/>
+</p>
+
+---
+
 # Changelog
 
 Boa Constrictor is released publicly as the [Boa.Constrictor NuGet package](https://www.nuget.org/packages/Boa.Constrictor)
