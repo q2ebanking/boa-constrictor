@@ -12,7 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added more Boa Constrictor logo assets
+- Added more Boa Constrictor logo assets under the `logos` directory.
+
+### Changed
+
+- Removed unused logo image assets from the doc site
+- Changed a few of the images used in the doc site
 
 
 ## [0.13.1] - 2021-04-22
