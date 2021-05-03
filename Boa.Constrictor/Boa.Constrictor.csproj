@@ -26,7 +26,7 @@
     <PackageReference Include="RestSharp" Version="106.11.7" />
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
-    <None Include="../docs/assets/images/logos/logo-symbol-black-120x148.png" Pack="true" PackagePath="$(PackageIcon)" />
+    <None Include="../logos/symbol/no-margin/png/logo-symbol-black-120x148.png" Pack="true" PackagePath="$(PackageIcon)" />
     <None Include="../LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)" />
   </ItemGroup>
 
