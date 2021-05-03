@@ -2,7 +2,7 @@
 ---
 
 <p align="center">
-<img src="docs/assets/images/logos/logo-title-black-400x64.png" alt="Boa Constrictor Logo"/>
+<img src="logos/title/no-margin/logo-title-black-400x64.png" alt="Boa Constrictor Logo"/>
 </p>
 
 ---
