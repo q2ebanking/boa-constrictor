@@ -1,3 +1,12 @@
+
+---
+
+<p align="center">
+<img src="logos/title/no-margin/png/logo-title-black-400x64.png" alt="Boa Constrictor Logo"/>
+</p>
+
+---
+
 # Changelog
 
 Boa Constrictor is released publicly as the [Boa.Constrictor NuGet package](https://www.nuget.org/packages/Boa.Constrictor)
@@ -10,7 +19,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(None)
+### Added
+
+- Added more Boa Constrictor logo assets under the `logos` directory.
+
+### Changed
+
+- Removed unused logo image assets from the doc site
+- Changed a few of the images used in the doc site
 
 
 ## [0.13.1] - 2021-04-22

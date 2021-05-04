@@ -144,7 +144,18 @@ read the official [GitHub Pages guides](https://docs.github.com/en/github/workin
 {: .notice--info}
 
 
-## 9. Opening Pull Requests
+## 9. Handling Logos
+
+Boa Constrictor's logo assets are located under the `/logos` directory.
+They were originally designed and created by
+[Tia Nieland](https://www.linkedin.com/in/tia-nieland-2b68a4152/)
+from Q2's Brand and Design team.
+You may use the logos for docs, web pages, stickers, etc.
+Please ask other maintainers before making any changes to logo image assets.
+Furthermore, please do **not** edit the original files - make copies with changes instead.
+
+
+## 10. Opening Pull Requests
 
 Once your changes are complete, push your branch to your forked repository and
 [open a pull request from your fork to the original repository](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork).
@@ -169,7 +180,7 @@ in the GitHub docs.
 {: .notice--info}
 
 
-## 10. Releasing NuGet Packages
+## 11. Releasing NuGet Packages
 
 Boa Constrictor is released publicly as the [Boa.Constrictor NuGet package](https://www.nuget.org/packages/Boa.Constrictor/).
 Package versions follow [Semantic Versioning](https://semver.org/).
@@ -196,7 +207,7 @@ To release a new package, maintainers must:
 7. Close the milestone in GitHub.
 
 
-## 11. Understanding Different Roles
+## 12. Understanding Different Roles
 
 A *contributor* is anyone who opens an issue or submits a pull request to the Boa Constrictor repository.
 Anyone can become a contributor by following this guide.

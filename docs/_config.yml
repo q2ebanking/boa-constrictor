@@ -34,7 +34,7 @@ minimal_mistakes_skin: "contrast"
 locale: "en-US"
 title: "Boa Constrictor"
 subtitle: "The .NET Screenplay Pattern"
-logo: "/assets/images/logos/logo-symbol-black-120x148.png"
+logo: "/assets/images/logo-symbol-black-120x148.png"
 name: Q2 Holdings Inc
 description: >-
   Boa Constrictor is a C# implementation of the Screenplay Pattern.
@@ -55,7 +55,7 @@ defaults:
       sidebar:
         nav: "pages"
       header:
-        og_image: /assets/images/logos/logo-title-black-800x128.png
+        og_image: /assets/images/logo-og-image.png
 
 footer:
   links:
