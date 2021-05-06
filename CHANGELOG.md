@@ -21,7 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added more Boa Constrictor logo assets under the `logos` directory.
+- Added more Boa Constrictor logo assets under the `logos` directory
+- Added Boa Constrictor PowerPoint master slide deck
 
 ### Changed
 
