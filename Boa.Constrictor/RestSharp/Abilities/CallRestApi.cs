@@ -1,4 +1,5 @@
 ﻿using Boa.Constrictor.Dumping;
+using RestSharp;
 
 namespace Boa.Constrictor.RestSharp
 {
@@ -23,8 +24,15 @@ namespace Boa.Constrictor.RestSharp
         #region Constructors
 
         /// <summary>
-        /// Private constructor.
-        /// (Use the static methods for public construction.)
+        /// Protected constructor.
+        /// (Use static builder methods for public construction.)
+        /// </summary>
+        /// <param name="client">The RestSharp client.</param>
+        protected CallRestApi(IRestClient client) : base(client) { }
+
+        /// <summary>
+        /// Protected constructor.
+        /// (Use static builder methods for public construction.)
         /// </summary>
         /// <param name="baseUrl">The base URL for the RestSharp client.</param>
         protected CallRestApi(string baseUrl) : base(baseUrl) { }
@@ -39,6 +47,13 @@ namespace Boa.Constrictor.RestSharp
         /// <param name="baseUrl">The base URL for the RestSharp client.</param>
         /// <returns></returns>
         public static CallRestApi At(string baseUrl) => new CallRestApi(baseUrl);
+
+        /// <summary>
+        /// Constructs this ability.
+        /// </summary>
+        /// <param name="client">The RestSharp client.</param>
+        /// <returns></returns>
+        public static CallRestApi Using(IRestClient client) => new CallRestApi(client);
 
         /// <summary>
         /// Sets the ability to dump requests/responses to the given path.

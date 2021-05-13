@@ -1,0 +1,61 @@
+﻿pages:
+
+  - title: Getting Started
+    children:
+      - title: "Home"
+        url: /
+      - title: "Quickstart Guide"
+        url: /getting-started/quickstart/
+      - title: "What is Screenplay?"
+        url: /getting-started/screenplay/
+      - title: "Why Use Boa Constrictor?"
+        url: /getting-started/why-boa-constrictor/
+      - title: "Screenplay vs. Page Objects"
+        url: /getting-started/page-objects/
+      - title: "Videos"
+        url: /getting-started/videos/
+
+  - title: Tutorial
+    children:
+      - title: "Overview"
+        url: /tutorial/overview/
+      - title: "Part 1 - Setup"
+        url: /tutorial/part-1-setup/
+      - title: "Part 2 - Web UI Testing"
+        url: /tutorial/part-2-web-ui-testing/
+      - title: "Part 3 - REST API Testing"
+        url: /tutorial/part-3-rest-api-testing/
+
+#  - title: Integrations
+#    children:
+#      - title: "SpecFlow"
+#      - title: "NUnit"
+
+#  - title: Guides
+#    children:
+#      - title: "Writing Custom Interactions"
+#      - title: "Waiting for Answers"
+#      - title: "Caching Answers"
+#      - title: "Logging Messages"
+#      - title: "Dumping Artifacts"
+#      - title: "Extending the Actor"
+
+  - title: Contributing
+    children:
+      - title: "Code of Conduct"
+        url: /contributing/code-of-conduct/
+      - title: "Contributing Code"
+        url: /contributing/contributing-code/
+      - title: "Opening Issues"
+        url: /contributing/contributing-code/#2-opening-issues
+
+  - title: Project
+    children:
+      - title: "GitHub Repository"
+        url: https://github.com/q2ebanking/boa-constrictor
+      - title: "NuGet Package"
+        url: https://www.nuget.org/packages/Boa.Constrictor/
+      - title: "Requirements"
+        url: /project/requirements/
+      - title: "Backstory"
+        url: /project/backstory/

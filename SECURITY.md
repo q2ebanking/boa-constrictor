@@ -1,11 +1,14 @@
+
+---
+
+<p align="center">
+<img src="logos/title/no-margin/png/logo-title-black-400x64.png" alt="Boa Constrictor Logo"/>
+</p>
+
+---
+
 # Security Policy
-
-## Supported Versions
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 1.0.x   | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
-Vulnerabilities can be reported to DevSecOps@q2.com
+Vulnerabilities can be reported to DevSecOps@q2.com.

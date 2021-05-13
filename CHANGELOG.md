@@ -1,3 +1,12 @@
+
+---
+
+<p align="center">
+<img src="logos/title/no-margin/png/logo-title-black-400x64.png" alt="Boa Constrictor Logo"/>
+</p>
+
+---
+
 # Changelog
 
 Boa Constrictor is released publicly as the [Boa.Constrictor NuGet package](https://www.nuget.org/packages/Boa.Constrictor)
@@ -10,7 +19,76 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(None)
+### Added
+
+- Added more Boa Constrictor logo assets under the `logos` directory
+- Added Boa Constrictor PowerPoint master slide deck
+- Added Boa Constrictor talk slides and script
+
+### Changed
+
+- Removed unused logo image assets from the doc site
+- Changed a few of the images used in the doc site
+
+
+## [0.13.1] - 2021-04-22
+
+### Added
+
+- Set the NuGet package icon to the new Boa Constrictor logo
+
+
+## [0.13.0] - 2021-04-22
+
+### Added
+
+- Added Boa Constrictor logo and updated docs
+
+### Fixed
+
+- Improved `SendKeys` text clearing logic
+
+
+## [0.12.0] - 2021-04-06
+
+### Added
+
+- Added official documentation!
+  - Hosting: GitHub Pages at [https://q2ebanking.github.io/boa-constrictor/](https://q2ebanking.github.io/boa-constrictor/)
+  - Static site generator: [Jekyll](https://jekyllrb.com/)
+  - Theme: [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/)
+- Added REST APIs to the tutorial and example project
+
+### Changed
+
+- Moved `Rest` `DownloadUsing` and `RequestUsing` build methods to a new type-generic `Rest<TAbility>` class
+- Updated NuGet package versions
+
+### Fixed
+
+- Removed "NonParallelWorker" from `Names.ConcatUniqueName` return values
+
+### Removed
+
+- Moved content from root-level Markdown files to the doc site
+  - Removed much of the `README` content
+  - Deleted files for tutorials, code of conduct, and contributing
+
+
+## [0.11.2] - 2021-02-22
+
+### Changed
+
+- Enabled `IRestClient` objects to be directly injectable into `AbstractRestSharpAbility` and its child classes
+
+
+## [0.11.1] - 2021-02-08
+
+### Changed
+
+- Added `ICacheableQuestion` as an interface for Questions that can be cached
+- Updated `AnswerCache` and related classes to use `ICacheableQuestion` instead of `IQuestion`
+- Updated WebDriver-based Questions to implement `ICacheableQuestion`
 
 
 ## [0.11.0] - 2021-02-02

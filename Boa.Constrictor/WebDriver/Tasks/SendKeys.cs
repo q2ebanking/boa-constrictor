@@ -171,14 +171,17 @@ namespace Boa.Constrictor.WebDriver
                     // One for each character in the input!
                     int length = element.GetAttribute("value").Length;
 
-                    // Send the backspaces
-                    string backspaces = string.Concat(Enumerable.Repeat(Keys.Backspace, length));
-                    element.SendKeys(backspaces);
+                    if (length > 0)
+                    {
+                        // Send the backspaces
+                        string backspaces = string.Concat(Enumerable.Repeat(Keys.Backspace, length));
+                        element.SendKeys(backspaces);
 
-                    // The browser may put the cursor to the left instead of the right
-                    // Do the same thing for delete button
-                    string deletes = string.Concat(Enumerable.Repeat(Keys.Delete, length));
-                    element.SendKeys(deletes);
+                        // The browser may put the cursor to the left instead of the right
+                        // Do the same thing for delete button
+                        string deletes = string.Concat(Enumerable.Repeat(Keys.Delete, length));
+                        element.SendKeys(deletes);
+                    }
                 }
             }
 

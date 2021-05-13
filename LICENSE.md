@@ -1,4 +1,13 @@
-Copyright 2020 Q2 Holdings Inc.
+
+---
+
+<p align="center">
+<img src="logos/title/no-margin/png/logo-title-black-400x64.png" alt="Boa Constrictor Logo"/>
+</p>
+
+---
+
+Copyright 2020-2021 Q2 Holdings Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
