@@ -19,8 +19,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+(None)
+
+
+## [0.14.0] - 2021-05-14
+
 ### Added
 
+- Added `ChangeWebDriver` Task for changing `BrowseTheWeb`'s WebDriver
 - Added more Boa Constrictor logo assets under the `logos` directory
 - Added Boa Constrictor PowerPoint master slide deck
 - Added Boa Constrictor talk slides and script
