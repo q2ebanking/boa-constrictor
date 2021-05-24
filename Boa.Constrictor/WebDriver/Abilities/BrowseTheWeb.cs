@@ -30,7 +30,7 @@ namespace Boa.Constrictor.WebDriver
         /// <summary>
         /// The WebDriver instance.
         /// </summary>
-        public IWebDriver WebDriver { get; }
+        public IWebDriver WebDriver { get; internal set; }
 
         /// <summary>
         /// The collection of stored browser window handles.
