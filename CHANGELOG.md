@@ -22,6 +22,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (None)
 
 
+## [1.0.0] - 2021-05-24
+
+This is Boa Constrictor's **1.0 Release!**
+It does not contain any changes from 0.14.0.
+Setting the version to 1.0 signals that the current code is "good" and will be supported.
+You should not be hesitant to use 1.0 because its code has been hardened for months.
+
+
 ## [0.14.0] - 2021-05-14
 
 ### Added
