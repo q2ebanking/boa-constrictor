@@ -32,6 +32,20 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         }
 
         [Test]
+        public void AndTheItemAtPositionIsEqualToValue_WithNegativeItemInPosition_ShouldBeFalse()
+        {
+            int[] array = { 1, 2, 3 };
+            IsACollectionOfType<int>.AndTheItemAtPosition(-1, IsEqualTo.Value(1)).Evaluate(array).Should().BeFalse();
+        }
+
+        [Test]
+        public void AndTheItemAtPositionIsEqualToValue_WithJustOneItemAndNotExistentItemInPosition_ShouldBeFalse()
+        {
+            int[] array = { 1 };
+            IsACollectionOfType<int>.AndTheItemAtPosition(1, IsEqualTo.Value(1)).Evaluate(array).Should().BeFalse();
+        }
+
+        [Test]
         public void AndTheItemAtPositionIsGreaterThanValue_WithItemAtPositionGreater_ShouldBeTrue()
         {
             int[] array = { 1, 2, 3 };

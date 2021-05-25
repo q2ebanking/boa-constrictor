@@ -14,11 +14,11 @@ namespace Boa.Constrictor.Screenplay
         #region Constructors
 
         /// <summary>
-        /// Private constructor.
+        /// Internal constructor.
         /// (Use the public builder method instead. <See cref="Boa.Constrictor.Screenplay.IsACollectionOfType{T}"></See> )
         /// </summary>
         /// <param name="condition">The condition to evaluate.</param>
-        public FirstItem(ICondition<T> condition)
+        internal FirstItem(ICondition<T> condition)
         {
             Condition = condition;
         }

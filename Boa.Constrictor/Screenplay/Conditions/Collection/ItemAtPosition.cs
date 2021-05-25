@@ -15,12 +15,12 @@ namespace Boa.Constrictor.Screenplay
         #region Constructors
 
         /// <summary>
-        /// Private constructor.
+        /// Internal constructor.
         /// (Use the public builder method instead. <See cref="Boa.Constrictor.Screenplay.IsACollectionOfType{T}"></See> )
         /// </summary>
         /// <param name="index">The index of the item to evaluate.</param>
         /// <param name="condition">The condition to evaluate.</param>
-        public ItemAtPosition(int index, ICondition<T> condition)
+        internal ItemAtPosition(int index, ICondition<T> condition)
         {
             Condition = condition;
             Index = index;
@@ -50,7 +50,7 @@ namespace Boa.Constrictor.Screenplay
         /// <returns>boolean</returns>
         public bool Evaluate(IEnumerable<T> actual)
         {
-            if (actual.Count() <= Index) return false;
+            if (actual.Count() <= Index || Index < 0) return false;
             return Condition.Evaluate(actual.ElementAt(Index));
         }
 

@@ -14,11 +14,11 @@ namespace Boa.Constrictor.Screenplay
         #region Constructors
 
         /// <summary>
-        /// Private constructor.
+        /// Internal constructor.
         /// (Use the public builder method instead. <See cref="Boa.Constrictor.Screenplay.IsACollectionOfType{T}"></See> )
         /// </summary>
         /// <param name="condition">The condition to evaluate.</param>
-        public HasSize(ICondition<int> condition)
+        internal HasSize(ICondition<int> condition)
         {
             Condition = condition;
         }
