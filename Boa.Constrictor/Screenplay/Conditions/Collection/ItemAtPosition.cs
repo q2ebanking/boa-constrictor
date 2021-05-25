@@ -50,7 +50,7 @@ namespace Boa.Constrictor.Screenplay
         /// <returns>boolean</returns>
         public bool Evaluate(IEnumerable<T> actual)
         {
-
+            if (actual.Count() <= Index) return false;
             return Condition.Evaluate(actual.ElementAt(Index));
         }
 

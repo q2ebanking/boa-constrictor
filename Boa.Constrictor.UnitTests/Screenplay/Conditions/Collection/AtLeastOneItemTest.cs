@@ -38,6 +38,20 @@ namespace Boa.Constrictor.UnitTests.Screenplay
             IsACollectionOfType<int>.AndAtLeastOneItem(IsGreaterThan.Value(2)).Evaluate(array).Should().BeTrue();
         }
 
+        [Test]
+        public void AndAtLeastOneItemIsGreaterThanValue_WithAllItemsGreater_ShouldBeTrue()
+        {
+            int[] array = { 1, 2, 3 };
+            IsACollectionOfType<int>.AndAtLeastOneItem(IsGreaterThan.Value(0)).Evaluate(array).Should().BeTrue();
+        }
+
+        [Test]
+        public void AndAtLeastOneItemIsGreaterThanValue_WithNoItemsGreater_ShouldBeFalse()
+        {
+            int[] array = { 1, 2, 3 };
+            IsACollectionOfType<int>.AndAtLeastOneItem(IsGreaterThan.Value(3)).Evaluate(array).Should().BeFalse();
+        }
+
         #endregion
     }
 }
