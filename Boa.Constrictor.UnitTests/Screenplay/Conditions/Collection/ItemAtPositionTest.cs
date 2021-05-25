@@ -32,7 +32,7 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         }
 
         [Test]
-        public void AndTheItemAtPositionIsEqualToValue_WithNegativeItemInPosition_ShouldBeFalse()
+        public void AndTheItemAtPositionIsEqualToValue_WithNegativePosition_ShouldBeFalse()
         {
             int[] array = { 1, 2, 3 };
             IsACollectionOfType<int>.AndTheItemAtPosition(-1, IsEqualTo.Value(1)).Evaluate(array).Should().BeFalse();
