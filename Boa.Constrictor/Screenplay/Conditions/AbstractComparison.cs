@@ -11,11 +11,11 @@ namespace Boa.Constrictor.Screenplay
         #region Constructors
 
         /// <summary>
-        /// Private constructor.
+        /// Protected constructor.
         /// (Use the public builder method instead.)
         /// </summary>
         /// <param name="expected">The comparison value.</param>
-        public AbstractComparison(TValue expected) => Expected = expected;
+        protected AbstractComparison(TValue expected) => Expected = expected;
 
         #endregion
 
