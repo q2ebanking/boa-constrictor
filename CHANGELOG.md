@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added overload for AttemptsTo that accepts multiple tasks
+
 ### Changed
 
 - Updated AbstractComparison constructor to protected

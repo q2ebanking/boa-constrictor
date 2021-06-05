@@ -49,6 +49,13 @@ namespace Boa.Constrictor.Screenplay
         void AttemptsTo(ITask task);
 
         /// <summary>
+        /// Performs multiple tasks
+        /// The actor must have the abilities needed by the task(s).
+        /// </summary>
+        /// <param name="tasks">The tasks to perform.</param>
+        void AttemptsTo(params ITask[] tasks);
+
+        /// <summary>
         /// Asks a question and returns the answer value.
         /// The actor must have the abilities needed by the question.
         /// </summary>
