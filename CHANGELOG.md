@@ -19,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Added screenplay conditions to enumerations
+
 ### Added
 
 - Added overload for AttemptsTo that accepts multiple tasks
