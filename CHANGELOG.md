@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added overload for AttemptsTo that accepts multiple tasks
+- Added overloaded for `Actor.AttemptsTo(...)` that accepts multiple Tasks as `params`
 
 ### Changed
 

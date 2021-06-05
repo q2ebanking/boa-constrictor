@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Boa.Constrictor.Screenplay
 {
@@ -15,8 +16,8 @@ namespace Boa.Constrictor.Screenplay
         /// Private constructor.
         /// (Use static builder methods to construct.)
         /// </summary>
-        /// <param name="tasks"></param>
-        private RunTasks(IEnumerable<ITask> tasks) => Tasks = tasks;
+        /// <param name="tasks">The task list.</param>
+        private RunTasks(ITask[] tasks) => Tasks = tasks;
 
         #endregion
 
@@ -25,7 +26,7 @@ namespace Boa.Constrictor.Screenplay
         /// <summary>
         /// The task list.
         /// </summary>
-        private IEnumerable<ITask> Tasks { get; }
+        private ITask[] Tasks { get; }
 
         #endregion
 
@@ -36,15 +37,13 @@ namespace Boa.Constrictor.Screenplay
         /// </summary>
         /// <param name="tasks">The task list.</param>
         /// <returns></returns>
-        public static RunTasks InOrder(IEnumerable<ITask> tasks) =>
-            new RunTasks(tasks);
+        public static RunTasks InOrder(IEnumerable<ITask> tasks) => new RunTasks(tasks.ToArray());
 
         /// <summary>
         /// Builder method.
         /// </summary>
         /// <param name="tasks">The task list.</param>
-        public static RunTasks InOrder(params ITask[] tasks) =>
-            new RunTasks(tasks);
+        public static RunTasks InOrder(params ITask[] tasks) => new RunTasks(tasks);
 
         #endregion
 
@@ -54,11 +53,7 @@ namespace Boa.Constrictor.Screenplay
         /// Runs the tasks in the order given by the list.
         /// </summary>
         /// <param name="actor"></param>
-        public void PerformAs(IActor actor)
-        {
-            foreach (ITask doTheNeedful in Tasks)
-                actor.AttemptsTo(doTheNeedful);
-        }
+        public void PerformAs(IActor actor) => actor.AttemptsTo(Tasks);
 
         /// <summary>
         /// Returns a description of the task.
