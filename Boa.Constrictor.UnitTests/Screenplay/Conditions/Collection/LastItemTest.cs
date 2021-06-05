@@ -10,32 +10,31 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         #region Tests
 
         [Test]
-        public void AndTheLastItemIsEqualToValue_WithLastItemEqual_ShouldBeTrue()
+        public void WhereTheLastItemIsEqualToValue_WithLastItemEqual_ShouldBeTrue()
         {
             int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndTheLastItem(IsEqualTo.Value(3)).Evaluate(array).Should().BeTrue();
-        }
-
-
-        [Test]
-        public void AndTheLastItemIsEqualToValue_WithLastItemNotEqual_ShouldBeFalse()
-        {
-            int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndTheLastItem(IsEqualTo.Value(2)).Evaluate(array).Should().BeFalse();
+            IsAnEnumerable<int>.WhereTheLastItem(IsEqualTo.Value(3)).Evaluate(array).Should().BeTrue();
         }
 
         [Test]
-        public void AndTheLastItemIsGreaterThanValue_WithLastItemGreater_ShouldBeTrue()
+        public void WhereTheLastItemIsEqualToValue_WithLastItemNotEqual_ShouldBeFalse()
         {
             int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndTheLastItem(IsGreaterThan.Value(2)).Evaluate(array).Should().BeTrue();
+            IsAnEnumerable<int>.WhereTheLastItem(IsEqualTo.Value(2)).Evaluate(array).Should().BeFalse();
         }
 
         [Test]
-        public void AndTheLastItemIsGreaterThanValue_WithLastItemNotGreater_ShouldBeFalse()
+        public void WhereTheLastItemIsGreaterThanValue_WithLastItemGreater_ShouldBeTrue()
         {
             int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndTheLastItem(IsGreaterThan.Value(4)).Evaluate(array).Should().BeFalse();
+            IsAnEnumerable<int>.WhereTheLastItem(IsGreaterThan.Value(2)).Evaluate(array).Should().BeTrue();
+        }
+
+        [Test]
+        public void WhereTheLastItemIsGreaterThanValue_WithLastItemNotGreater_ShouldBeFalse()
+        {
+            int[] array = { 1, 2, 3 };
+            IsAnEnumerable<int>.WhereTheLastItem(IsGreaterThan.Value(4)).Evaluate(array).Should().BeFalse();
         }
 
         #endregion

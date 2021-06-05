@@ -10,46 +10,46 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         #region Tests
 
         [Test]
-        public void AndAtLeastOneItemIsEqualToValue_WithOneItemEqual_ShouldBeTrue()
+        public void WhereAtLeastOneItemIsEqualToValue_WithOneItemEqual_ShouldBeTrue()
         {
             int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndAtLeastOneItem(IsEqualTo.Value(1)).Evaluate(array).Should().BeTrue();
+            IsAnEnumerable<int>.WhereAtLeastOneItem(IsEqualTo.Value(1)).Evaluate(array).Should().BeTrue();
         }
 
         [Test]
-        public void AndAtLeastOneItemIsEqualToValue_WithAllItemsEqual_ShouldBeTrue()
+        public void WhereAtLeastOneItemIsEqualToValue_WithAllItemsEqual_ShouldBeTrue()
         {
             int[] array = { 1, 1, 1 };
-            IsACollectionOfType<int>.AndAtLeastOneItem(IsEqualTo.Value(1)).Evaluate(array).Should().BeTrue();
+            IsAnEnumerable<int>.WhereAtLeastOneItem(IsEqualTo.Value(1)).Evaluate(array).Should().BeTrue();
         }
 
         [Test]
-        public void AndAtLeastOneItemIsEqualToValue_WithNoItemsEqual_ShouldBeFalse()
+        public void WhereAtLeastOneItemIsEqualToValue_WithNoItemsEqual_ShouldBeFalse()
         {
             int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndAtLeastOneItem(IsEqualTo.Value(4)).Evaluate(array).Should().BeFalse();
+            IsAnEnumerable<int>.WhereAtLeastOneItem(IsEqualTo.Value(4)).Evaluate(array).Should().BeFalse();
         }
 
 
         [Test]
-        public void AndAtLeastOneItemIsGreaterThanValue_WithOneItemGreater_ShouldBeTrue()
+        public void WhereAtLeastOneItemIsGreaterThanValue_WithOneItemGreater_ShouldBeTrue()
         {
             int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndAtLeastOneItem(IsGreaterThan.Value(2)).Evaluate(array).Should().BeTrue();
+            IsAnEnumerable<int>.WhereAtLeastOneItem(IsGreaterThan.Value(2)).Evaluate(array).Should().BeTrue();
         }
 
         [Test]
-        public void AndAtLeastOneItemIsGreaterThanValue_WithAllItemsGreater_ShouldBeTrue()
+        public void WhereAtLeastOneItemIsGreaterThanValue_WithAllItemsGreater_ShouldBeTrue()
         {
             int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndAtLeastOneItem(IsGreaterThan.Value(0)).Evaluate(array).Should().BeTrue();
+            IsAnEnumerable<int>.WhereAtLeastOneItem(IsGreaterThan.Value(0)).Evaluate(array).Should().BeTrue();
         }
 
         [Test]
-        public void AndAtLeastOneItemIsGreaterThanValue_WithNoItemsGreater_ShouldBeFalse()
+        public void WhereAtLeastOneItemIsGreaterThanValue_WithNoItemsGreater_ShouldBeFalse()
         {
             int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndAtLeastOneItem(IsGreaterThan.Value(3)).Evaluate(array).Should().BeFalse();
+            IsAnEnumerable<int>.WhereAtLeastOneItem(IsGreaterThan.Value(3)).Evaluate(array).Should().BeFalse();
         }
 
         #endregion

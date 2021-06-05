@@ -4,11 +4,11 @@ using System.Linq;
 namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
-    /// Condition to check if the collection item at a position satisfies another condition.
-    ///
-    /// Sample usage:
-    /// Actor.WaitsUntil(TextList.For(ResultPage.ResultLinks), IsAcollectionOfType{string}.AndTheItemAtPosition(0, IsEqualTo.Value(10)));
+    /// Condition to check if the enumerable item at a position satisfies another condition.
     /// </summary>
+    /// <example>
+    /// Actor.WaitsUntil(TextList.For(ResultPage.ResultLinks), IsAnEnumerable{string}.WhereTheItemAtPosition(0, IsEqualTo.Value(10)));
+    /// </example>
     public class ItemAtPosition<T> : ICondition<IEnumerable<T>>
     {
 
@@ -16,7 +16,7 @@ namespace Boa.Constrictor.Screenplay
 
         /// <summary>
         /// Internal constructor.
-        /// (Use the public builder method instead. <See cref="Boa.Constrictor.Screenplay.IsACollectionOfType{T}"></See> )
+        /// (Use the public builder method instead. <See cref="Boa.Constrictor.Screenplay.IsAnEnumerable{T}"></See> )
         /// </summary>
         /// <param name="index">The index of the item to evaluate.</param>
         /// <param name="condition">The condition to evaluate.</param>
@@ -44,24 +44,21 @@ namespace Boa.Constrictor.Screenplay
         #region Methods
 
         /// <summary>
-        /// Checks for a condition in the item at a position of a collection
+        /// Checks for a condition in the item at a position of an enumerable.
         /// </summary>
-        /// <param name="actual">The collection to evaluate.</param>
+        /// <param name="actual">The enumerable to evaluate.</param>
         /// <returns>boolean</returns>
-        public bool Evaluate(IEnumerable<T> actual)
-        {
-            if (actual.Count() <= Index || Index < 0) return false;
+        public bool Evaluate(IEnumerable<T> actual) {
+            if (actual.Count() <= Index || Index < 0) 
+                throw new ScreenplayException("The informed position is out of the range of the enumerable items!");
             return Condition.Evaluate(actual.ElementAt(Index));
         }
 
         /// <summary>
         ///     ToString override.
         /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            return $"Is a collection of type {typeof(T)} and the item at position {Index} {Condition}";
-        }
+        /// <returns>string</returns>
+        public override string ToString() => $"is an enumerable of type {typeof(T)} and the item at position {Index} {Condition}";
 
         #endregion
     }

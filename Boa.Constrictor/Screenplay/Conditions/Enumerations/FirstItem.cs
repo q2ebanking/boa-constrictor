@@ -4,18 +4,18 @@ using System.Linq;
 namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
-    /// Condition to check if the first item on a collection satisfies another condition.
-    ///
-    /// Sample usage:
-    /// Actor.WaitsUntil(TextList.For(ResultPage.ResultLinks), IsAcollectionOfType{string}.AndTheFirstItem(IsEqualTo.Value(link)));
+    /// Condition to check if the first item on an enumerable satisfies another.
     /// </summary>
+    /// <example>
+    /// Actor.WaitsUntil(TextList.For(ResultPage.ResultLinks), IsAnEnumerable{string}.WhereTheFirstItem(IsEqualTo.Value(link)));
+    /// </example>
     public class FirstItem<T> : ICondition<IEnumerable<T>>
     {
         #region Constructors
 
         /// <summary>
         /// Internal constructor.
-        /// (Use the public builder method instead. <See cref="Boa.Constrictor.Screenplay.IsACollectionOfType{T}"></See> )
+        /// (Use the public builder method instead. <See cref="Boa.Constrictor.Screenplay.IsAnEnumerable{T}"></See> )
         /// </summary>
         /// <param name="condition">The condition to evaluate.</param>
         internal FirstItem(ICondition<T> condition)
@@ -37,24 +37,17 @@ namespace Boa.Constrictor.Screenplay
         #region Methods
 
         /// <summary>
-        /// Checks for a condition in the first item of a collection
+        /// Checks for a condition in the first item of an enumerable.
         /// </summary>
-        /// <param name="actual">The collection to evaluate.</param>
+        /// <param name="actual">The enumerable to evaluate.</param>
         /// <returns>boolean</returns>
-        public bool Evaluate(IEnumerable<T> actual)
-        {
-
-            return Condition.Evaluate(actual.First());
-        }
+        public bool Evaluate(IEnumerable<T> actual) => Condition.Evaluate(actual.First());
 
         /// <summary>
         ///     ToString override.
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return $"Is a collection of type {typeof(T)} and the first item {Condition}";
-        }
+        public override string ToString() => $"is an enumerable of type {typeof(T)} and the first item {Condition}";
 
         #endregion
     }

@@ -1,6 +1,7 @@
 using Boa.Constrictor.Screenplay;
 using FluentAssertions;
 using NUnit.Framework;
+using System;
 
 namespace Boa.Constrictor.UnitTests.Screenplay
 {
@@ -10,60 +11,67 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         #region Tests
 
         [Test]
-        public void AndTheItemAtPositionIsEqualToValue_WithItemAtPositionEqual_ShouldBeTrue()
+        public void WhereTheItemAtPositionIsEqualToValue_WithItemAtPositionEqual_ShouldBeTrue()
         {
             int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndTheItemAtPosition(0, IsEqualTo.Value(1)).Evaluate(array).Should().BeTrue();
-        }
-
-
-        [Test]
-        public void AndTheItemAtPositionIsEqualToValue_WithItemAtPositionNotEqual_ShouldBeFalse()
-        {
-            int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndTheItemAtPosition(2, IsEqualTo.Value(2)).Evaluate(array).Should().BeFalse();
+            IsAnEnumerable<int>.WhereTheItemAtPosition(0, IsEqualTo.Value(1)).Evaluate(array).Should().BeTrue();
         }
 
         [Test]
-        public void AndTheItemAtPositionIsEqualToValue_WithNotExistentItemInPosition_ShouldBeFalse()
+        public void WhereTheItemAtPositionIsEqualToValue_WithItemAtPositionNotEqual_ShouldBeFalse()
         {
             int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndTheItemAtPosition(3, IsEqualTo.Value(3)).Evaluate(array).Should().BeFalse();
+            IsAnEnumerable<int>.WhereTheItemAtPosition(2, IsEqualTo.Value(2)).Evaluate(array).Should().BeFalse();
         }
 
         [Test]
-        public void AndTheItemAtPositionIsEqualToValue_WithNegativePosition_ShouldBeFalse()
+        public void WhereTheItemAtPositionIsEqualToValue_WithNotExistentItemInPosition_ShouldThrowException()
         {
             int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndTheItemAtPosition(-1, IsEqualTo.Value(1)).Evaluate(array).Should().BeFalse();
+            Action act = () => IsAnEnumerable<int>.WhereTheItemAtPosition(3, IsEqualTo.Value(3)).Evaluate(array);
+            act.Should().Throw<ScreenplayException>()
+                 .WithMessage("The informed position is out of the range of the enumerable items!");
         }
 
         [Test]
-        public void AndTheItemAtPositionIsEqualToValue_WithJustOneItemAndNotExistentItemInPosition_ShouldBeFalse()
+        public void WhereTheItemAtPositionIsEqualToValue_WithNegativePosition_ShouldThrowException()
+        {
+            int[] array = { 1, 2, 3 };
+            Action act = () => IsAnEnumerable<int>.WhereTheItemAtPosition(-1, IsEqualTo.Value(1)).Evaluate(array);
+            act.Should().Throw<ScreenplayException>()
+                 .WithMessage("The informed position is out of the range of the enumerable items!");
+        }
+
+        [Test]
+        public void WhereTheItemAtPositionIsEqualToValue_WithJustOneItemAndNotExistentItemInPosition_ShouldThrowException()
         {
             int[] array = { 1 };
-            IsACollectionOfType<int>.AndTheItemAtPosition(1, IsEqualTo.Value(1)).Evaluate(array).Should().BeFalse();
+            Action act = () => IsAnEnumerable<int>.WhereTheItemAtPosition(1, IsEqualTo.Value(1)).Evaluate(array);
+            act.Should().Throw<ScreenplayException>()
+                 .WithMessage("The informed position is out of the range of the enumerable items!");
         }
 
         [Test]
-        public void AndTheItemAtPositionIsGreaterThanValue_WithItemAtPositionGreater_ShouldBeTrue()
+        public void WhereTheItemAtPositionIsGreaterThanValue_WithItemAtPositionGreater_ShouldBeTrue()
         {
             int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndTheItemAtPosition(0, IsGreaterThan.Value(0)).Evaluate(array).Should().BeTrue();
+            IsAnEnumerable<int>.WhereTheItemAtPosition(0, IsGreaterThan.Value(0)).Evaluate(array).Should().BeTrue();
         }
 
         [Test]
-        public void AndTheItemAtPositionIsGreaterThanValue_WithItemAtPositionNotGreater_ShouldBeFalse()
+        public void WhereTheItemAtPositionIsGreaterThanValue_WithItemAtPositionNotGreater_ShouldBeFalse()
         {
             int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndTheItemAtPosition(1, IsGreaterThan.Value(2)).Evaluate(array).Should().BeFalse();
+            IsAnEnumerable<int>.WhereTheItemAtPosition(1, IsGreaterThan.Value(2)).Evaluate(array).Should().BeFalse();
         }
 
         [Test]
-        public void AndTheItemAtPositionIsGreaterThanValue_WithNotExistentItemInPosition_ShouldBeFalse()
+        public void WhereTheItemAtPositionIsGreaterThanValue_WithNotExistentItemInPosition_ShouldThrowException()
         {
             int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndTheItemAtPosition(3, IsGreaterThan.Value(2)).Evaluate(array).Should().BeFalse();
+            Action act = () => IsAnEnumerable<int>.WhereTheItemAtPosition(3, IsGreaterThan.Value(2)).Evaluate(array);
+            act.Should().Throw<ScreenplayException>()
+                 .WithMessage("The informed position is out of the range of the enumerable items!");
         }
 
         #endregion

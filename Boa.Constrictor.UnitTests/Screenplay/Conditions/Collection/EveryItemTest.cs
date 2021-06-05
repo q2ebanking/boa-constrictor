@@ -10,45 +10,45 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         #region Tests
 
         [Test]
-        public void AndEveryItemIsEqualToValue_WithOneItemEqual_ShouldBeFalse()
+        public void WhereEveryItemIsEqualToValue_WithOneItemEqual_ShouldBeFalse()
         {
             int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndEveryItem(IsEqualTo.Value(1)).Evaluate(array).Should().BeFalse();
+            IsAnEnumerable<int>.WhereEveryItem(IsEqualTo.Value(1)).Evaluate(array).Should().BeFalse();
         }
 
         [Test]
-        public void AndEveryItemIsEqualToValue_WithAllItemsEqual_ShouldBeTrue()
+        public void WhereEveryItemIsEqualToValue_WithAllItemsEqual_ShouldBeTrue()
         {
             int[] array = { 1, 1, 1 };
-            IsACollectionOfType<int>.AndEveryItem(IsEqualTo.Value(1)).Evaluate(array).Should().BeTrue();
+            IsAnEnumerable<int>.WhereEveryItem(IsEqualTo.Value(1)).Evaluate(array).Should().BeTrue();
         }
 
         [Test]
-        public void AndEveryItemIsEqualToValue_WithNoItemsEqual_ShouldBeFalse()
+        public void WhereEveryItemIsEqualToValue_WithNoItemsEqual_ShouldBeFalse()
         {
             int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndEveryItem(IsEqualTo.Value(4)).Evaluate(array).Should().BeFalse();
+            IsAnEnumerable<int>.WhereEveryItem(IsEqualTo.Value(4)).Evaluate(array).Should().BeFalse();
         }
 
         [Test]
-        public void AndEveryItemIsGreaterThanValue_WithOneItemGreater_ShouldBeFalse()
+        public void WhereEveryItemIsGreaterThanValue_WithOneItemGreater_ShouldBeFalse()
         {
             int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndEveryItem(IsGreaterThan.Value(2)).Evaluate(array).Should().BeFalse();
+            IsAnEnumerable<int>.WhereEveryItem(IsGreaterThan.Value(2)).Evaluate(array).Should().BeFalse();
         }
 
         [Test]
-        public void AndEveryItemIsGreaterThanValue_WithAllItemsGreater_ShouldBeTrue()
+        public void WhereEveryItemIsGreaterThanValue_WithAllItemsGreater_ShouldBeTrue()
         {
             int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndEveryItem(IsGreaterThan.Value(0)).Evaluate(array).Should().BeTrue();
+            IsAnEnumerable<int>.WhereEveryItem(IsGreaterThan.Value(0)).Evaluate(array).Should().BeTrue();
         }
 
         [Test]
-        public void AndEveryItemIsGreaterThanValue_WithNoItemsGreater_ShouldBeFalse()
+        public void WhereEveryItemIsGreaterThanValue_WithNoItemsGreater_ShouldBeFalse()
         {
             int[] array = { 1, 2, 3 };
-            IsACollectionOfType<int>.AndEveryItem(IsGreaterThan.Value(3)).Evaluate(array).Should().BeFalse();
+            IsAnEnumerable<int>.WhereEveryItem(IsGreaterThan.Value(3)).Evaluate(array).Should().BeFalse();
         }
 
         #endregion
