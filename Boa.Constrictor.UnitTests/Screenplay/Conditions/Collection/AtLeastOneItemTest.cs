@@ -30,7 +30,6 @@ namespace Boa.Constrictor.UnitTests.Screenplay
             IsAnEnumerable<int>.WhereAtLeastOneItem(IsEqualTo.Value(4)).Evaluate(array).Should().BeFalse();
         }
 
-
         [Test]
         public void WhereAtLeastOneItemIsGreaterThanValue_WithOneItemGreater_ShouldBeTrue()
         {

@@ -16,7 +16,6 @@ namespace Boa.Constrictor.UnitTests.Screenplay
             IsAnEnumerable<int>.WhereTheCount(IsEqualTo.Value(3)).Evaluate(array).Should().BeTrue();
         }
 
-
         [Test]
         public void WhereCountIsEqualToValue_WithHasSizeNotEqual_ShouldBeFalse()
         {
