@@ -97,6 +97,17 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         }
 
         [Test]
+        public void AttemptsToPerformMultipleTasks()
+        {
+            int performCount = 0;
+            var MockTask = new Mock<ITask>();
+            MockTask.Setup(x => x.PerformAs(It.IsAny<IActor>())).Callback((IActor actor) => performCount++).Verifiable();
+            ITask[] tasks = new ITask[] { MockTask.Object, MockTask.Object, MockTask.Object };
+            new Actor().AttemptsTo(tasks);
+            performCount.Should().Be(tasks.Length);
+        }
+
+        [Test]
         public void CallsTask()
         {
             bool performed = false;
