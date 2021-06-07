@@ -2,6 +2,7 @@ using Boa.Constrictor.Screenplay;
 using FluentAssertions;
 using NUnit.Framework;
 using System;
+using System.Linq;
 
 namespace Boa.Constrictor.UnitTests.Screenplay
 {
@@ -28,27 +29,30 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         public void WhereTheItemAtPositionIsEqualToValue_WithNotExistentItemInPosition_ShouldThrowException()
         {
             int[] array = { 1, 2, 3 };
-            Action act = () => IsAnEnumerable<int>.WhereTheItemAtPosition(3, IsEqualTo.Value(3)).Evaluate(array);
+            int index = 3;
+            Action act = () => IsAnEnumerable<int>.WhereTheItemAtPosition(index, IsEqualTo.Value(3)).Evaluate(array);
             act.Should().Throw<ScreenplayException>()
-                 .WithMessage("The informed position is out of the range of the enumerable items!");
+                 .WithMessage($"Index {index} is out of range for the IEnumerable<{typeof(int)}> with count {array.Count()}");
         }
 
         [Test]
         public void WhereTheItemAtPositionIsEqualToValue_WithNegativePosition_ShouldThrowException()
         {
             int[] array = { 1, 2, 3 };
-            Action act = () => IsAnEnumerable<int>.WhereTheItemAtPosition(-1, IsEqualTo.Value(1)).Evaluate(array);
+            int index = -1;
+            Action act = () => IsAnEnumerable<int>.WhereTheItemAtPosition(index, IsEqualTo.Value(1)).Evaluate(array);
             act.Should().Throw<ScreenplayException>()
-                 .WithMessage("The informed position is out of the range of the enumerable items!");
+                 .WithMessage($"Index {index} is out of range for the IEnumerable<{typeof(int)}> with count {array.Count()}");
         }
 
         [Test]
         public void WhereTheItemAtPositionIsEqualToValue_WithJustOneItemAndNotExistentItemInPosition_ShouldThrowException()
         {
             int[] array = { 1 };
-            Action act = () => IsAnEnumerable<int>.WhereTheItemAtPosition(1, IsEqualTo.Value(1)).Evaluate(array);
+            int index = 1;
+            Action act = () => IsAnEnumerable<int>.WhereTheItemAtPosition(index, IsEqualTo.Value(1)).Evaluate(array);
             act.Should().Throw<ScreenplayException>()
-                 .WithMessage("The informed position is out of the range of the enumerable items!");
+                 .WithMessage($"Index {index} is out of range for the IEnumerable<{typeof(int)}> with count {array.Count()}");
         }
 
         [Test]
@@ -69,9 +73,10 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         public void WhereTheItemAtPositionIsGreaterThanValue_WithNotExistentItemInPosition_ShouldThrowException()
         {
             int[] array = { 1, 2, 3 };
+            int index = 3;
             Action act = () => IsAnEnumerable<int>.WhereTheItemAtPosition(3, IsGreaterThan.Value(2)).Evaluate(array);
             act.Should().Throw<ScreenplayException>()
-                 .WithMessage("The informed position is out of the range of the enumerable items!");
+                 .WithMessage($"Index {index} is out of range for the IEnumerable<{typeof(int)}> with count {array.Count()}");
         }
 
         #endregion
