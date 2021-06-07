@@ -103,10 +103,8 @@ namespace Boa.Constrictor.Screenplay
         /// <param name="tasks">The tasks to perform.</param>
         public void AttemptsTo(params ITask[] tasks)
         {
-            foreach(ITask task in tasks)
-            {
-                AttemptsTo(task);
-            }
+            foreach (ITask doTheNeedful in tasks)
+                AttemptsTo(doTheNeedful);
         }
 
         /// <summary>
