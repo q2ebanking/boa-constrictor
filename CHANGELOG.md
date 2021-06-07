@@ -19,13 +19,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+(None)
+
+
+## [1.1.0] - 2021-06-05
+
 ### Added
 
-- Added overload for AttemptsTo that accepts multiple tasks
+- Added overloaded for `Actor.AttemptsTo(...)` that accepts multiple Tasks as `params`
+- Added Applitools webinar to doc site videos pages
 
 ### Changed
 
 - Updated AbstractComparison constructor to protected
+- Updated doc site Gemfile dependency versions
 
 
 ## [1.0.0] - 2021-05-24
