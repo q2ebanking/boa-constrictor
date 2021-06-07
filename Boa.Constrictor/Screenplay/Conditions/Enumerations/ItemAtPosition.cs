@@ -49,8 +49,8 @@ namespace Boa.Constrictor.Screenplay
         /// <param name="actual">The enumerable to evaluate.</param>
         /// <returns>boolean</returns>
         public bool Evaluate(IEnumerable<T> actual) {
-            if (actual.Count() <= Index || Index < 0) 
-                throw new ScreenplayException("The informed position is out of the range of the enumerable items!");
+            if (actual.Count() <= Index || Index < 0)
+                throw new ScreenplayException($"Index {Index} is out of range for the IEnumerable<{typeof(T)}> with count {actual.Count()}");
             return Condition.Evaluate(actual.ElementAt(Index));
         }
 
@@ -58,7 +58,7 @@ namespace Boa.Constrictor.Screenplay
         ///     ToString override.
         /// </summary>
         /// <returns>string</returns>
-        public override string ToString() => $"is an enumerable of type {typeof(T)} and the item at position {Index} {Condition}";
+        public override string ToString() => $"is an IEnumerable<{typeof(T)}> where the item at position {Index} {Condition}";
 
         #endregion
     }

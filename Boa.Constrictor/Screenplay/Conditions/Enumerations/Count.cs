@@ -47,7 +47,7 @@ namespace Boa.Constrictor.Screenplay
         ///     ToString override.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"is an enumerable of type {typeof(T)} and count {Condition}";
+        public override string ToString() => $"is an IEnumerable<{typeof(T)}> where count {Condition}";
 
         #endregion
     }
