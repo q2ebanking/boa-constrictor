@@ -74,7 +74,7 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         {
             int[] array = { 1, 2, 3 };
             int index = 3;
-            Action act = () => IsAnEnumerable<int>.WhereTheItemAtPosition(3, IsGreaterThan.Value(2)).Evaluate(array);
+            Action act = () => IsAnEnumerable<int>.WhereTheItemAtPosition(index, IsGreaterThan.Value(2)).Evaluate(array);
             act.Should().Throw<ScreenplayException>()
                  .WithMessage($"Index {index} is out of range for the IEnumerable<{typeof(int)}> with count {array.Count()}");
         }
