@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(None)
+- Added screenplay conditions to enumerations
 
 
 ## [1.1.0] - 2021-06-05
