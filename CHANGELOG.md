@@ -19,6 +19,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+(None)
+
+
+## [1.2.0] - 2021-06-10
+
 ### Added
 
 - Added new Conditions for `IEnumerable` objects
