@@ -19,7 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Added screenplay conditions to enumerations
+### Added
+
+- Added new Conditions for `IEnumerable` objects
+- Reorganized Condition folders
 
 
 ## [1.1.0] - 2021-06-05
