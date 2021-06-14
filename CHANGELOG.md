@@ -19,7 +19,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(None)
+### Added
+
+- Added webdriver tasks for selecting/deselecting Checkboxes/Radio buttons
+- Added webdriver task for right clicking a WebElement
+- Added webdriver task for double clicking a WebElement
+- Added webdriver task for dragging the mouse from one WebElement to another
 
 
 ## [1.2.0] - 2021-06-10
