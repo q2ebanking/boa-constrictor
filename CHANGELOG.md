@@ -22,13 +22,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (None)
 
 
-## [1.2.1-alpha] - 2021-07-14
+## [1.2.1-alpha2] - 2021-07-15
 
 ### Fixed
 
 - Gemfile: required `addressable >= 2.8.0` to fix security vulnerability
 - Removed execution of `codeql-analysis.yml` from cron and push
-- Removed `INCLUDE_SYMBOLS` from `nuget-push.yml` to fix NuGet publishing error
+- Updated `nuget-push.yml` to fix NuGet publishing error
   - See https://github.com/brandedoutcast/publish-nuget/pull/62#issuecomment-860327648
 
 
