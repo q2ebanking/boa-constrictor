@@ -12,13 +12,18 @@ jobs:
     name: Publish
     runs-on: windows-latest
     steps:
-    
+
       - name: Check out repository
         uses: actions/checkout@v2
-        
-      - name: Publish Package on Version Change
+
+      - name: Restore, build, and pack NuGet package
+        uses: Elskom/build-dotnet@main
+        with:
+          TEST: true
+
+      - name: Publish package on version change
         id: publish_nuget
-        uses: rohith/publish-nuget@v2
+        uses: Elskom/publish-nuget@main   #rohith/publish-nuget@v2
         with:
           # Filepath of the project to be packaged, relative to root of repository
           PROJECT_FILE_PATH: Boa.Constrictor/Boa.Constrictor.csproj
