@@ -27,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Gemfile: required `addressable >= 2.8.0` to fix security vulnerability
-- Removed execution of `codeql-analysis.yml` from cron and push
+- Removed execution of `codeql-analysis.yml` from cron
 - Updated `nuget-push.yml` to fix NuGet publishing error
   - See https://github.com/brandedoutcast/publish-nuget/pull/62#issuecomment-860327648
 
