@@ -29,7 +29,7 @@ jobs:
           PROJECT_FILE_PATH: Boa.Constrictor/Boa.Constrictor.csproj
           
           # Path to store all generated nuget packages, relative to root of repository
-          PACKAGE_PATH: artifacts/
+          PACKAGE_PATH: Boa.Constrictor/bin/Release
 
           # NuGet package id, used for version detection & defaults to project name
           PACKAGE_NAME: Boa.Constrictor
