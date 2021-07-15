@@ -43,6 +43,3 @@ jobs:
 
           # NuGet server uri hosting the packages, defaults to https://api.nuget.org
           NUGET_SOURCE: https://api.nuget.org
-
-          # Flag to toggle pushing symbols along with nuget package to the server, disabled by default
-          INCLUDE_SYMBOLS: true
