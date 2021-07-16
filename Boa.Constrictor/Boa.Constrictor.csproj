@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
-    <Version>1.2.1</Version>
+    <Version>1.2.2</Version>
     <Authors>Pandy Knight and the PrecisionLender SETs</Authors>
     <Company>PrecisionLender, a Q2 Company</Company>
     <Title>Boa Constrictor</Title>
@@ -23,7 +23,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Bcl.HashCode" Version="1.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="RestSharp" Version="106.11.7" />
+    <PackageReference Include="RestSharp" Version="106.12.0" />
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
     <None Include="../logos/symbol/no-margin/png/logo-symbol-black-120x148.png" Pack="true" PackagePath="$(PackageIcon)" />

@@ -22,6 +22,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (None)
 
 
+## [1.2.2] - 2021-07-15
+
+### Changed
+
+- Updated RestSharp package version to fix security vulnerability
+- Updated NUnit and other unit test package versions
+
+
 ## [1.2.1] - 2021-07-15
 
 ### Fixed
