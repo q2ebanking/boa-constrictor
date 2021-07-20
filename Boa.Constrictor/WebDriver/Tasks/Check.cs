@@ -17,10 +17,21 @@ namespace Boa.Constrictor.WebDriver
         /// (Use static builder methods to construct.)
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
-        private Check(IWebLocator locator) : base(locator) { }
+        /// <param name="checkState">flag indicating if the target element should be checked or unchecked</param>
+        private Check(IWebLocator locator, bool checkState) : base(locator)
+        {
+            CheckState = checkState;
+        }
 
         #endregion
-        
+
+        #region Properties
+        /// <summary>
+        /// Flag indicating if the target element should be checked or unchecked
+        /// </summary>
+        private bool CheckState { get; set; }
+        #endregion
+
         #region Builder Methods
 
         /// <summary>
@@ -28,7 +39,14 @@ namespace Boa.Constrictor.WebDriver
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
         /// <returns></returns>
-        public static Check On(IWebLocator locator) => new Check(locator);
+        public static Check On(IWebLocator locator) => new Check(locator, true);
+
+        /// <summary>
+        /// Constructs the task object.
+        /// </summary>
+        /// <param name="locator">The target Web element's locator.</param>
+        /// <returns></returns>
+        public static Check Off(IWebLocator locator) => new Check(locator, false);
 
         #endregion
 
@@ -43,9 +61,9 @@ namespace Boa.Constrictor.WebDriver
         public override void PerformAs(IActor actor, IWebDriver driver)
         {
             actor.WaitsUntil(Appearance.Of(Locator), IsEqualTo.True());
-            bool isSelected = actor.AsksFor(SelectedState.Of(Locator));
+            bool selectedState = actor.AsksFor(SelectedState.Of(Locator));
 
-            if (isSelected != true) actor.AttemptsTo(Click.On(Locator));
+            if (selectedState != CheckState) actor.AttemptsTo(Click.On(Locator));
         }
 
         #endregion
