@@ -25,7 +25,10 @@ namespace Boa.Constrictor.WebDriver
         #endregion
 
         #region Properties
-        private IWebLocator Target { get; set; }
+        /// <summary>
+        /// The target web element locator
+        /// </summary>
+        public IWebLocator Target { get; set; }
         #endregion
 
         #region Builder Methods

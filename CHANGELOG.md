@@ -21,10 +21,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added webdriver tasks for selecting/deselecting Checkboxes/Radio buttons
-- Added webdriver task for right clicking a WebElement
-- Added webdriver task for double clicking a WebElement
-- Added webdriver task for dragging the mouse from one WebElement to another
+- Added WebDriver task `RightClick.On(webElement)`
+- Added WebDriver task `DoubleClick.On(webElement)` 
+- Added WebDriver task `Check.On(webElement)` / `Check.Off(webElement)` for interacting with Checkboxes, Radio Buttons, etc.
+- Added WebDriver task `Drag.AndDrop(webElement)` for dragging the mouse from one WebElement to another
 
 
 ## [1.2.2] - 2021-07-15
