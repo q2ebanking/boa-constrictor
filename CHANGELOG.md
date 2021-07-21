@@ -19,7 +19,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(None)
+### Added
+
+- Added WebDriver task `RightClick.On(webElement)`
+- Added WebDriver task `DoubleClick.On(webElement)` 
+- Added WebDriver task `Check.On(webElement)` / `Check.Off(webElement)` for interacting with Checkboxes, Radio Buttons, etc.
+- Added WebDriver task `Drag.AndDrop(webElement)` for dragging the mouse from one WebElement to another
 
 
 ## [1.2.2] - 2021-07-15
