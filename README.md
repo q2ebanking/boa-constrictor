@@ -41,6 +41,6 @@ You can also read the doc pages locally under the [/docs](/docs) directory.
 
 #### Project
 
-* [NuGet Package](https://www.nuget.org/packages/Boa.Constrictor/)
+* [![Nuget](https://img.shields.io/nuget/v/Boa.Constrictor?label=NuGet%20Package)](https://www.nuget.org/packages/Boa.Constrictor/)
 * [License](LICENSE.md)
 * [Changelog](CHANGELOG.md)
