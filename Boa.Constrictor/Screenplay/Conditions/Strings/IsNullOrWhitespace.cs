@@ -1,6 +1,9 @@
 ﻿namespace Boa.Constrictor.Screenplay
 {
-    public class IsNullOrWhitespaceCondition : ICondition<string>
+    /// <summary>
+    /// Condition for check if a string is NULL or whitespace
+    /// </summary>
+    public class IsNullOrWhitespace : ICondition<string>
     {
         #region Constructors
 
@@ -8,7 +11,7 @@
         /// Private constructor.
         /// (Use the public builder method instead.)
         /// </summary>
-        private IsNullOrWhitespaceCondition()
+        private IsNullOrWhitespace()
         {
 
         }
@@ -21,7 +24,7 @@
         /// Public builder.
         /// </summary>
         /// <returns></returns>
-        public static IsNullOrWhitespaceCondition Value() => new IsNullOrWhitespaceCondition();
+        public static IsNullOrWhitespace Value() => new IsNullOrWhitespace();
 
         #endregion
 
@@ -32,10 +35,7 @@
         /// </summary>
         /// <param name="actual"></param>
         /// <returns></returns>
-        public bool Evaluate(string actual)
-        {
-            return string.IsNullOrWhiteSpace(actual);
-        }
+        public bool Evaluate(string actual) => string.IsNullOrWhiteSpace(actual);
 
         /// <summary>
         /// ToString override.

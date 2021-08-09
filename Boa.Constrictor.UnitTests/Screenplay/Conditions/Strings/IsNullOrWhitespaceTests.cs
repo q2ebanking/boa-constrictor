@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace Boa.Constrictor.UnitTests.Screenplay
 {
     [TestFixture]
-    public class IsNullOrWhitespaceConditionTests
+    public class IsNullOrWhitespaceTests
     {
         [TestCase(null)]
         [TestCase("")]
@@ -14,13 +14,13 @@ namespace Boa.Constrictor.UnitTests.Screenplay
 
         public void True(string actual)
         {
-            IsNullOrWhitespaceCondition.Value().Evaluate(actual).Should().BeTrue();
+            IsNullOrWhitespace.Value().Evaluate(actual).Should().BeTrue();
         }
 
         [TestCase("actualvalue")]
         public void False(string actual)
         {
-            IsNullOrWhitespaceCondition.Value().Evaluate(actual).Should().BeFalse();
+            IsNullOrWhitespace.Value().Evaluate(actual).Should().BeFalse();
         }
     }
 }
