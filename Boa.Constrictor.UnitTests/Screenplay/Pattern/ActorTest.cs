@@ -49,6 +49,17 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         }
 
         [Test]
+        public void CannotAddSameAbilityTwice()
+        {
+            Actor actor = new Actor();
+            IAbility one = new AbilityA();
+            IAbility two = new AbilityA();
+
+            actor.Can(one);
+            actor.Invoking(a => a.Can(two)).Should().Throw<System.ArgumentException>();
+        }
+
+        [Test]
         public void UsingAvailableAbility()
         {
             Actor actor = new Actor();
