@@ -22,6 +22,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (none)
 
 
+## [1.3.0] - 2021-09-20
+
+### Added
+
+- Added `SafeActions` for:
+  1. Running `Action` objects
+  2. Catching any exceptions
+  3. Throwing the exceptions later as a combined `SafeActionsException`
+- Added Screenplay support for running Tasks using `SafeActions`
+  1. The `RunSafeActions` Ability holds a `SafeActions` object
+  2. The `Safely` Task calls another task using the Ability
+
+
 ## [1.2.3] - 2021-08-09
 
 ### Added
