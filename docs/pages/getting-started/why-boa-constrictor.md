@@ -69,6 +69,14 @@ Boa Constrictor provides the boilerplate code for the Screenplay Pattern so test
 As a result, Boa Constrictor can scale safely and maintainably for very large projects.
 Read more about [why Screenplay interactions are better than page objects]({{ "/getting-started/page-objects/" | relative_url }}).
 
+Boa Constrictor is **not a toy limited to small-scale projects**.
+Sometimes, folks who are new to the Screenplay Pattern wrongly assume that it does not scale well.
+On the contrary, Screenplay scales *much* better than page objects for Web UI interactions
+because it better separates concerns, enforces clear design decisions, and causes less duplication.
+When the PrecisionLender team initially used page objects when they first started automating tests,
+but after about 100 tests, they replaced all page objects with Screenplay interactions.
+Now, the PrecisionLender team at Q2 runs up to 10K end-to-end tests *per day* using Boa Constrictor.
+
 Boa Constrictor is also **not a Serenity BDD clone**.
 [Serenity BDD](http://serenity-bdd.info/) is an open-source acceptance test automation framework.
 It strongly supports [Behavior-Driven Development](https://automationpanda.com/bdd/) techniques,
