@@ -69,8 +69,8 @@ Boa Constrictor provides the boilerplate code for the Screenplay Pattern so test
 As a result, Boa Constrictor can scale safely and maintainably for very large projects.
 Read more about [why Screenplay interactions are better than page objects]({{ "/getting-started/page-objects/" | relative_url }}).
 
-Boa Constrictor is **not a toy limited to small-scale projects**.
-Sometimes, folks who are new to the Screenplay Pattern wrongly assume that it does not scale well.
+Boa Constrictor is **not limited to small-scale projects**.
+Sometimes, folks who are new to the Screenplay Pattern wrongly assume that it is a toy project that does not scale well.
 On the contrary, Screenplay scales *much* better than page objects for Web UI interactions
 because it separates concerns better, enforces clearer design decisions, and causes less duplication.
 The PrecisionLender team initially used page objects when they first started automating tests,
