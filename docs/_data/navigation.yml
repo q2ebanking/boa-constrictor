@@ -58,10 +58,10 @@ user-guides:
       - title: "User Guides and Videos"
         url: /learning/user-guides-and-videos/
 
-#  - title: Testing
-#    children:
-#      - title: "Testing with NUnit"
-#      - title: "Testing with SpecFlow"
+  - title: Testing (coming soon)
+    children:
+      - title: "Testing with NUnit"
+      - title: "Testing with SpecFlow"
 #      - title: "Testing with xUnit.net"
 
 #  - title: Interactions
