@@ -134,10 +134,18 @@ Boa Constrictor's doc site address is
 
 The Boa Constrictor project treats documentation as code.
 The doc site is built using the files under the `/docs` directory.
-If you need to update the docs, simply edit the Markdown files together with your other code changes.
+You can make small updates to the docs by directly editing the Markdown files together with your other code changes.
 However, if you want to make deeper changes to the docs (such as theme changes),
-you will probably need to set up Ruby and Jekyll on your development machine to test changes locally.
+you should probably set up Ruby and Jekyll on your development machine to test changes locally.
 Either way, when changes are merged into the *main* branch, GitHub will generate and deploy the updated docs.
+
+Please consider adding new [user guides]({{ "/learning/user-guides/" | relative_url }})
+for new features and advanced tricks.
+Each user guide should be a concise article covering one concern with helpful example code.
+The collection of user guides together should provide comprehensive documentation
+in a way that can easily scale as the project grows.
+All user guides should be located under `/docs/pages/user-guides`,
+and they should be included for navigation in `/docs/_data/navigation.xml`.
 
 To learn more about developing static sites with GitHub Pages and Jekyll, 
 read the official [GitHub Pages guides](https://docs.github.com/en/github/working-with-github-pages).
