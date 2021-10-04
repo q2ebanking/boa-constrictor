@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added that Boa Constrictor is not a toy limited to small-scale projects to the "Why Use Boa Constrictor" doc page
+- Added user guide groundwork to the doc site
 
 
 ## [1.3.0] - 2021-09-20

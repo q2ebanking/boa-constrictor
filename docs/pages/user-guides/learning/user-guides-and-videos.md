@@ -1,11 +1,30 @@
 ﻿---
-title: Videos
+title: User Guides and Videos
 layout: single
-permalink: /getting-started/videos/
+permalink: /learning/user-guides-and-videos/
+sidebar:
+  nav: "user-guides"
 toc: true
 ---
 
-Check out the videos below to learn more about Boa Constrictor and the Screenplay Pattern.
+Check out the user guides linked from the sidebar to the left
+or the videos linked below to learn more about Boa Constrictor and the Screenplay Pattern.
+
+
+## User Guides
+
+The best way to start learning about Boa Constrictor and the Screenplay Pattern
+is by watching the videos linked below
+or taking the [tutorial]({{ "/tutorial/overview/" | relative_url }}).
+Those resources, however, do not cover *everything* you can do with Boa Constrictor.
+
+The **User Guides** provide additional documentation on Boa Constrictor's many facets.
+The sidebar to the left provides links to user guides for various topics,
+such as integrating Boa Constrictor with popular .NET test frameworks.
+Each user guide is written to concisely cover one concern.
+The collection of user guides together should provide comprehensive documentation
+in a way that can easily scale as the project grows.
+
 
 
 ## Introduction to Boa Constrictor
