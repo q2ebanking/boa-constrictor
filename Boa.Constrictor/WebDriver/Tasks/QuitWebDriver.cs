@@ -41,7 +41,7 @@ namespace Boa.Constrictor.WebDriver
         public override void PerformAs(IActor actor, IWebDriver driver) => driver.Quit();
 
         /// <summary>
-        /// Returns a description of the question.
+        /// Returns a description of the task.
         /// </summary>
         /// <returns></returns>
         public override string ToString() => "quit the WebDriver";

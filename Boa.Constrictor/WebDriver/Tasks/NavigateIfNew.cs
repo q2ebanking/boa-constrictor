@@ -114,7 +114,7 @@ namespace Boa.Constrictor.WebDriver
             HashCode.Combine(GetType(), Url, Acceptable.ToString(), AcceptAlerts);
 
         /// <summary>
-        /// Returns a description of the question.
+        /// Returns a description of the task.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
