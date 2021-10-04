@@ -13,7 +13,7 @@
       - title: "Screenplay vs. Page Objects"
         url: /getting-started/page-objects/
       - title: "User Guides and Videos"
-        url: /learning/user-guides/
+        url: /learning/user-guides-and-videos/
 
   - title: Tutorial
     children:
@@ -55,10 +55,8 @@ user-guides:
         url: /
       - title: "Tutorial"
         url: /tutorial/overview/
-      - title: "User Guides"
-        url: /learning/user-guides/
-      - title: "Videos"
-        url: /learning/videos/
+      - title: "User Guides and Videos"
+        url: /learning/user-guides-and-videos/
 
 #  - title: Testing
 #    children:
