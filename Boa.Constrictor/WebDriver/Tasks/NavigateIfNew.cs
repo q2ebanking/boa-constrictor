@@ -119,7 +119,7 @@ namespace Boa.Constrictor.WebDriver
         /// <returns></returns>
         public override string ToString()
         {
-            string message = $"Navigate browser to '{Url}' if not '{Acceptable}'";
+            string message = $"navigate browser to '{Url}' if not '{Acceptable}'";
 
             if (AcceptAlerts)
                 message += " and accept any alerts";

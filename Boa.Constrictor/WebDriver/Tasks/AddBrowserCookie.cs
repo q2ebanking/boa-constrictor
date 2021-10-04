@@ -93,7 +93,7 @@ namespace Boa.Constrictor.WebDriver
         /// Returns a description of the task.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"Add a cookie named {Cookie.Name} to the browser";
+        public override string ToString() => $"add a cookie named '{Cookie.Name}' to the browser";
 
         #endregion
     }

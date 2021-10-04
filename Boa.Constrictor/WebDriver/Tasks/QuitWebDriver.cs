@@ -44,7 +44,7 @@ namespace Boa.Constrictor.WebDriver
         /// Returns a description of the question.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"Quit the WebDriver";
+        public override string ToString() => "quit the WebDriver";
 
         #endregion
     }

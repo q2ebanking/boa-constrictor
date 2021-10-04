@@ -67,7 +67,7 @@ namespace Boa.Constrictor.WebDriver
         /// Returns a description of the task.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"Navigate browser to '{Url}'";
+        public override string ToString() => $"navigate browser to '{Url}'";
 
         #endregion
     }

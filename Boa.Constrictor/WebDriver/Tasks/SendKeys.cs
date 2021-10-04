@@ -225,14 +225,14 @@ namespace Boa.Constrictor.WebDriver
         public override string ToString()
         {
             string clearDesc = UseClearMethod ? "the 'Clear' method" : "backspaces";
-            string actionDesc = Clear ? $"Clear using {clearDesc}, then send" : "Send";
+            string actionDesc = Clear ? $"clear using {clearDesc}, then send" : "send";
             string keyDesc = Private ? "private keys" : $"keys '{Keystrokes}'";
             string fullDesc = $"{actionDesc} {keyDesc} to {Locator.Description}";
 
             if (FinalEnter)
                 fullDesc += ", then hit ENTER";
             if (FinalElement != null)
-                fullDesc += $", then click {FinalElement.Description}";
+                fullDesc += $", then click '{FinalElement.Description}'";
 
             return fullDesc;
         }
