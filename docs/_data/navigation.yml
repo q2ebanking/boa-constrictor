@@ -1,4 +1,4 @@
-﻿main:
+﻿main-docs:
 
   - title: Getting Started
     children:
@@ -13,7 +13,7 @@
       - title: "Screenplay vs. Page Objects"
         url: /getting-started/page-objects/
       - title: "User Guides and Videos"
-        url: /getting-started/videos/
+        url: /learning/user-guides/
 
   - title: Tutorial
     children:
@@ -47,7 +47,7 @@
         url: /project/backstory/
 
 
-usage:
+user-guides:
 
   - title: Learning
     children:
@@ -56,9 +56,9 @@ usage:
       - title: "Tutorial"
         url: /tutorial/overview/
       - title: "User Guides"
-        url: /
+        url: /learning/user-guides/
       - title: "Videos"
-        url: /getting-started/videos/
+        url: /learning/videos/
 
 #  - title: Testing
 #    children:

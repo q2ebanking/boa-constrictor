@@ -1,7 +1,9 @@
 ﻿---
 title: Videos
 layout: single
-permalink: /getting-started/videos/
+permalink: /learning/videos/
+sidebar:
+  nav: "user-guides"
 toc: true
 ---
 
