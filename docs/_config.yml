@@ -53,7 +53,7 @@ defaults:
       type: pages
     values:
       sidebar:
-        nav: "pages"
+        nav: "main"
       header:
         og_image: /assets/images/logo-og-image.png
 
