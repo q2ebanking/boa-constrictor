@@ -133,7 +133,7 @@
         /// <returns></returns>
         public override string ToString()
         {
-            string s = $"Wait until {Question} {Condition}";
+            string s = $"wait until {Question} {Condition}";
 
             if (ActualTimeout >= 0)
                 s += $" for up to {ActualTimeout}s";

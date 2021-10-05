@@ -187,7 +187,7 @@ namespace Boa.Constrictor.Screenplay
         /// <returns></returns>
         public override string ToString()
         {
-            string s = $"Wait until {ConditionList[0]}";
+            string s = $"wait until {ConditionList[0]}";
 
             for (int i = 1; i < ConditionList.Count; i++)
             {

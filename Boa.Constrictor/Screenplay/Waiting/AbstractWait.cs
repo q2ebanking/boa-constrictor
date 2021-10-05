@@ -146,7 +146,7 @@ namespace Boa.Constrictor.Screenplay
         /// <returns></returns>
         public override string ToString()
         {
-            string s = $"Wait until the condition is satisfied";
+            string s = $"wait until the condition is satisfied";
 
             if (ActualTimeout >= 0)
                 s += $" for up to {ActualTimeout}s";
