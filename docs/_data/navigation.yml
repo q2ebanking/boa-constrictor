@@ -1,4 +1,4 @@
-﻿pages:
+﻿main-docs:
 
   - title: Getting Started
     children:
@@ -12,8 +12,8 @@
         url: /getting-started/why-boa-constrictor/
       - title: "Screenplay vs. Page Objects"
         url: /getting-started/page-objects/
-      - title: "Videos"
-        url: /getting-started/videos/
+      - title: "User Guides and Videos"
+        url: /learning/user-guides-and-videos/
 
   - title: Tutorial
     children:
@@ -25,20 +25,6 @@
         url: /tutorial/part-2-web-ui-testing/
       - title: "Part 3 - REST API Testing"
         url: /tutorial/part-3-rest-api-testing/
-
-#  - title: Integrations
-#    children:
-#      - title: "SpecFlow"
-#      - title: "NUnit"
-
-#  - title: Guides
-#    children:
-#      - title: "Writing Custom Interactions"
-#      - title: "Waiting for Answers"
-#      - title: "Caching Answers"
-#      - title: "Logging Messages"
-#      - title: "Dumping Artifacts"
-#      - title: "Extending the Actor"
 
   - title: Contributing
     children:
@@ -59,3 +45,38 @@
         url: /project/requirements/
       - title: "Backstory"
         url: /project/backstory/
+
+
+user-guides:
+
+  - title: Learning
+    children:
+      - title: "Home"
+        url: /
+      - title: "Tutorial"
+        url: /tutorial/overview/
+      - title: "User Guides and Videos"
+        url: /learning/user-guides-and-videos/
+
+  - title: Testing
+    children:
+      - title: "Testing with NUnit"
+        url: /user-guides/testing-with-nunit/
+#      - title: "Testing with SpecFlow"
+#      - title: "Testing with xUnit.net"
+
+#  - title: Interactions
+#    children:
+#      - title: "Caching answers"
+#      - title: "Calling multiple REST APIs"
+#      - title: "Calling Tasks safely"
+#      - title: "Waiting for answers"
+#      - title: "Writing Actor extension methods"
+#      - title: "Writing custom Abilities"
+#      - title: "Writing custom Interactions"
+      
+#  - title: Artifacts
+#    children:
+#      - title: "Dumping artifacts"
+#      - title: "Generating test log reports"
+#      - title: "Logging messages"
