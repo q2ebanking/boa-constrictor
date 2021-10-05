@@ -74,7 +74,7 @@ namespace Boa.Constrictor.WebDriver
         public override string ToString()
         {
             var action = CheckState == true ? "on" : "off";
-            return $" check {action} {Locator.Description}";
+            return $"check {action} {Locator.Description}";
         }
 
         #endregion
