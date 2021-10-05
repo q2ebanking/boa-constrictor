@@ -62,8 +62,8 @@ user-guides:
     children:
       - title: "Testing with NUnit"
         url: /user-guides/testing-with-nunit/
-#      - title: "Testing with SpecFlow"
-#        url: /user-guides/testing-with-specflow/
+      - title: "Testing with SpecFlow"
+        url: /user-guides/testing-with-specflow/
 #      - title: "Testing with xUnit.net"
 #        url: /user-guides/testing-with-xunit-net/
 
