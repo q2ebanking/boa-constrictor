@@ -58,6 +58,13 @@ namespace Boa.Constrictor.WebDriver
             new Actions(driver).DragAndDrop(driver.FindElement(Locator.Query), driver.FindElement(Target.Query)).Perform();
         }
 
+        /// <summary>
+        /// Returns a description of the task.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() =>
+            $"drag the mouse from '{Locator.Description}' to {Target.Description}";
+
         #endregion
     }
 }
