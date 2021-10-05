@@ -66,7 +66,7 @@
         /// <returns></returns>
         public string GetAnswer()
         {
-            return Answer.ToString();
+            return Answer?.ToString();
         }
 
         /// <summary>

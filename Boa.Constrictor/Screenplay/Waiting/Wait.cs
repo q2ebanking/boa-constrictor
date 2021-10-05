@@ -5,7 +5,7 @@ namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Waits for a desired state.
-    /// The desired state is expressed using a question and an expected condition.
+    /// The desired state is expressed using pairs of questions and expected conditions.
     /// If the desired state does not happen within the time limit, then an exception is thrown.
     /// 
     /// If the actor has the SetTimeouts ability, then the ability will be used to calculate timeouts.
