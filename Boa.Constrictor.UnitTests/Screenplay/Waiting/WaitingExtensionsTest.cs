@@ -67,7 +67,7 @@ namespace Boa.Constrictor.UnitTests.Screenplay
             MockCondition.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(false);
 
             Actor.Invoking(actor => actor.WaitsUntil(MockQuestion.Object, MockCondition.Object, timeout: 0))
-                .Should().Throw<WaitingException<int>>(because: "the question should not satisfy the condition");
+                .Should().Throw<WaitingException>(because: "the question should not satisfy the condition");
         }
 
         #endregion

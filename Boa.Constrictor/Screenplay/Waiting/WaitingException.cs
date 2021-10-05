@@ -4,8 +4,7 @@
     /// This exception should be thrown when the Wait interaction fails to meet its expected condition.
     /// It provides attributes for the actual value, the question, and the condition.
     /// </summary>
-    /// <typeparam name="TAnswer">The type of the question's answer value.</typeparam>
-    public class WaitingException<TAnswer> : ScreenplayException
+    public class WaitingException : ScreenplayException
     {
         #region Constructors
 
@@ -15,11 +14,11 @@
         /// <param name="message">The exception message.</param>
         /// <param name="interaction">The waiting interaction.</param>
         /// <param name="actual">The actual value received after waiting.</param>
-        private WaitingException(string message, AbstractWait<TAnswer> interaction, TAnswer actual) :
+        private WaitingException(string message, AbstractWait interaction, string actual) :
             base(message)
         {
             Interaction = interaction;
-            ActualValue = actual;
+            Value = actual;
         }
 
         /// <summary>
@@ -27,7 +26,7 @@
         /// </summary>
         /// <param name="interaction">The waiting interaction.</param>
         /// <param name="actual">The actual value received after waiting.</param>
-        public WaitingException(AbstractWait<TAnswer> interaction, TAnswer actual) :
+        public WaitingException(AbstractWait interaction, string actual) :
             this($"{interaction} timed out yielding '{actual}'", interaction, actual)
         { }
 
@@ -38,12 +37,12 @@
         /// <summary>
         /// The actual value received after waiting.
         /// </summary>
-        public TAnswer ActualValue { get; }
+        public string Value { get; }
 
         /// <summary>
         /// The waiting interaction.
         /// </summary>
-        public AbstractWait<TAnswer> Interaction { get; }
+        public AbstractWait Interaction { get; }
 
         #endregion
     }

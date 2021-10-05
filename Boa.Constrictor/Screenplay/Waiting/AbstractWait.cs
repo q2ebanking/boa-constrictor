@@ -11,8 +11,7 @@ namespace Boa.Constrictor.Screenplay
     /// If the actor has the SetTimeouts ability, then the ability will be used to calculate timeouts.
     /// Otherwise, DefaultTimeout will be used.
     /// </summary>
-    /// <typeparam name="TAnswer">The type of the question's answer value.</typeparam>
-    public abstract class AbstractWait<TAnswer>
+    public abstract class AbstractWait
     {
         #region Constants
 
@@ -31,12 +30,8 @@ namespace Boa.Constrictor.Screenplay
         /// Private constructor.
         /// (Use static methods for public construction.)
         /// </summary>
-        /// <param name="question">The question upon whose answer to wait.</param>
-        /// <param name="condition">The expected condition for which to wait.</param>
-        protected AbstractWait(IQuestion<TAnswer> question, ICondition<TAnswer> condition)
+        protected AbstractWait()
         {
-            Question = question;
-            Condition = condition;
             TimeoutSeconds = null;
             AdditionalSeconds = 0;
             ActualTimeout = -1;
@@ -46,16 +41,6 @@ namespace Boa.Constrictor.Screenplay
         #endregion
 
         #region Properties
-
-        /// <summary>
-        /// The expected condition for which to wait.
-        /// </summary>
-        public ICondition<TAnswer> Condition { get; protected set; }
-
-        /// <summary>
-        /// The question upon whose answer to wait.
-        /// </summary>
-        public IQuestion<TAnswer> Question { get; protected set; }
 
         /// <summary>
         /// The timeout override in seconds.
@@ -71,7 +56,7 @@ namespace Boa.Constrictor.Screenplay
         /// <summary>
         /// The actual timeout used.
         /// </summary>
-        private int ActualTimeout { get; set; }
+        public int ActualTimeout { get; set; }
 
         /// <summary>
         /// If true, do not print log messages below "Warning" severity while waiting.
@@ -105,10 +90,10 @@ namespace Boa.Constrictor.Screenplay
         /// </summary>
         /// <param name="actor">The actor.</param>
         /// <returns></returns>
-        protected TAnswer WaitForValue(IActor actor)
+        protected void WaitForValue(IActor actor)
         {
             // Set variables
-            TAnswer actual = default(TAnswer);
+            //TAnswer actual = default(TAnswer);
             bool satisfied = false;
             ActualTimeout = CalculateTimeout(actor);
 
@@ -126,8 +111,7 @@ namespace Boa.Constrictor.Screenplay
                 // Repeatedly check if the condition is satisfied until the timeout is reached
                 do
                 {
-                    actual = actor.AsksFor(Question);
-                    satisfied = Condition.Evaluate(actual);
+                    satisfied = EvaluateCondition(actor);
                 }
                 while (!satisfied && timer.Elapsed.TotalSeconds < ActualTimeout);
             }
@@ -143,11 +127,20 @@ namespace Boa.Constrictor.Screenplay
 
             // Verify successful waiting
             if (!satisfied)
-                throw new WaitingException<TAnswer>(this, actual);
-
-            // Return the actual awaited value
-            return actual;
+                ThrowWaitException();
         }
+
+        /// <summary>
+        /// Evaluate the condition.
+        /// </summary>
+        /// <param name="actor">The actor.</param>
+        /// <returns></returns>
+        protected abstract bool EvaluateCondition(IActor actor);
+
+        /// <summary>
+        /// Throw the waiting exception if condition is not satisfied
+        /// </summary>
+        protected abstract void ThrowWaitException();
 
         /// <summary>
         /// Returns a description of the task.
@@ -155,7 +148,7 @@ namespace Boa.Constrictor.Screenplay
         /// <returns></returns>
         public override string ToString()
         {
-            string s = $"Wait until {Question} {Condition}";
+            string s = $"Wait until the condition is satisfied";
 
             if (ActualTimeout >= 0)
                 s += $" for up to {ActualTimeout}s";
