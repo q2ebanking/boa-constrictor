@@ -1,6 +1,5 @@
 ﻿using Boa.Constrictor.Screenplay;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 
 namespace Boa.Constrictor.WebDriver
 {
@@ -26,10 +25,12 @@ namespace Boa.Constrictor.WebDriver
         #endregion
 
         #region Properties
+
         /// <summary>
         /// Flag indicating if the target element should be checked or unchecked
         /// </summary>
         private bool CheckState { get; set; }
+
         #endregion
 
         #region Builder Methods
@@ -64,6 +65,16 @@ namespace Boa.Constrictor.WebDriver
             bool selectedState = actor.AsksFor(SelectedState.Of(Locator));
 
             if (selectedState != CheckState) actor.AttemptsTo(Click.On(Locator));
+        }
+
+        /// <summary>
+        /// Returns a description of the task.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            var action = CheckState == true ? "on" : "off";
+            return $"check {action} {Locator.Description}";
         }
 
         #endregion

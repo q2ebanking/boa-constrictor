@@ -78,15 +78,15 @@ namespace Boa.Constrictor.WebDriver
         /// Gets a unique hash code for this interaction.
         /// </summary>
         /// <returns></returns>
-        public override int GetHashCode() => 
+        public override int GetHashCode() =>
             HashCode.Combine(GetType(), Locator, AlignToTop);
 
         /// <summary>
         /// Returns a description of the task.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => 
-            $"Scroll to element {ToStringAdjective} '{Locator.Description}'";
+        public override string ToString() =>
+            $"scroll to element {ToStringAdjective} '{Locator.Description}'";
 
         #endregion
     }
