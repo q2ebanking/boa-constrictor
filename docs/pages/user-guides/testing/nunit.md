@@ -1,7 +1,7 @@
 ﻿---
 title: Testing with NUnit
 layout: single
-permalink: /user-guides/testing-with-nunit
+permalink: /user-guides/testing-with-nunit/
 sidebar:
   nav: "user-guides"
 toc: true
