@@ -47,6 +47,12 @@ namespace Boa.Constrictor.WebDriver
             driver.FindElement(Locator.Query).Submit();
         }
 
+        /// <summary>
+        /// Returns a description of the task.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => "submit a form";
+
         #endregion
     }
 }

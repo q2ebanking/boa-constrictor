@@ -219,20 +219,20 @@ namespace Boa.Constrictor.WebDriver
             HashCode.Combine(GetType(), Locator, Clear, FinalElement, FinalEnter, Keystrokes, Private, UseClearMethod);
 
         /// <summary>
-        /// Returns a description of the question.
+        /// Returns a description of the task.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
             string clearDesc = UseClearMethod ? "the 'Clear' method" : "backspaces";
-            string actionDesc = Clear ? $"Clear using {clearDesc}, then send" : "Send";
+            string actionDesc = Clear ? $"clear using {clearDesc}, then send" : "send";
             string keyDesc = Private ? "private keys" : $"keys '{Keystrokes}'";
             string fullDesc = $"{actionDesc} {keyDesc} to {Locator.Description}";
 
             if (FinalEnter)
                 fullDesc += ", then hit ENTER";
             if (FinalElement != null)
-                fullDesc += $", then click {FinalElement.Description}";
+                fullDesc += $", then click '{FinalElement.Description}'";
 
             return fullDesc;
         }

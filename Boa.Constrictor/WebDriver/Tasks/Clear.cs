@@ -43,6 +43,12 @@ namespace Boa.Constrictor.WebDriver
             driver.FindElement(Locator.Query).Clear();
         }
 
+        /// <summary>
+        /// Returns a description of the task.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => $"clear the text of '{Locator.Description}'";
+
         #endregion
     }
 }

@@ -45,6 +45,12 @@ namespace Boa.Constrictor.WebDriver
             new Actions(driver).MoveToElement(driver.FindElement(Locator.Query)).DoubleClick().Perform();
         }
 
+        /// <summary>
+        /// Returns a description of the task.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => $"double-click on '{Locator.Description}'";
+
         #endregion
     }
 }
