@@ -11,8 +11,7 @@ namespace Boa.Constrictor.Screenplay
     /// If the actor has the SetTimeouts ability, then the ability will be used to calculate timeouts.
     /// Otherwise, DefaultTimeout will be used.
     /// </summary>
-    /// <typeparam name="TAnswer">The type of the question's answer value.</typeparam>
-    public class Wait<TAnswer> : AbstractWait, ITask
+    public class Wait : AbstractWait, ITask
     {
         #region Properties
 
@@ -29,11 +28,10 @@ namespace Boa.Constrictor.Screenplay
         /// Private constructor.
         /// (Use static methods for public construction.)
         /// </summary>
-        /// <param name="question">The question upon whose answer to wait.</param>
-        /// <param name="condition">The expected condition for which to wait.</param>
-        private Wait(IQuestion<TAnswer> question, ICondition<TAnswer> condition) : base()
+        /// <param name="condition">The condition to wait upon until satisfied.</param>
+        private Wait(IConditionAdaptor condition) : base()
         {
-            ConditionList = new List<IConditionAdaptor> { new ConditionWrapper<TAnswer>(question, condition) };
+            ConditionList = new List<IConditionAdaptor> { condition };
         }
 
         #endregion
@@ -46,15 +44,18 @@ namespace Boa.Constrictor.Screenplay
         /// <param name="question">The question upon whose answer to wait.</param>
         /// <param name="condition">The expected condition for which to wait.</param>
         /// <returns></returns>
-        public static Wait<TAnswer> Until(IQuestion<TAnswer> question, ICondition<TAnswer> condition) =>
-            new Wait<TAnswer>(question, condition);
+        public static Wait Until<TAnswer>(IQuestion<TAnswer> question, ICondition<TAnswer> condition)
+        {
+            var wrapper = new ConditionWrapper<TAnswer>(question, condition);
+            return new Wait(wrapper);
+        }
 
         /// <summary>
         /// Sets an override value for timeout seconds.
         /// </summary>
         /// <param name="seconds">The new timeout in seconds.</param>
         /// <returns></returns>
-        public Wait<TAnswer> ForUpTo(int? seconds)
+        public Wait ForUpTo(int? seconds)
         {
             TimeoutSeconds = seconds;
             return this;
@@ -65,7 +66,7 @@ namespace Boa.Constrictor.Screenplay
         /// </summary>
         /// <param name="seconds">The seconds to add to the timeout.</param>
         /// <returns></returns>
-        public Wait<TAnswer> ForAnAdditional(int seconds)
+        public Wait ForAnAdditional(int seconds)
         {
             AdditionalSeconds = seconds;
             return this;
@@ -77,7 +78,7 @@ namespace Boa.Constrictor.Screenplay
         /// This may generate lots of spam.
         /// </summary>
         /// <returns></returns>
-        public Wait<TAnswer> ButDontSuppressLogs()
+        public Wait ButDontSuppressLogs()
         {
             SuppressLogs = false;
             return this;
@@ -86,13 +87,13 @@ namespace Boa.Constrictor.Screenplay
         /// <summary>
         /// Add a question and condition pair to the list of conditions to be evaluated with an And operator.
         /// </summary>
-        /// <typeparam name="TOtherAnswer"></typeparam>
+        /// <typeparam name="TAnswer"></typeparam>
         /// <param name="question"></param>
         /// <param name="condition"></param>
         /// <returns></returns>
-        public Wait<TAnswer> And<TOtherAnswer>(IQuestion<TOtherAnswer> question, ICondition<TOtherAnswer> condition)
+        public Wait And<TAnswer>(IQuestion<TAnswer> question, ICondition<TAnswer> condition)
         {
-            ConditionList.Add(new ConditionWrapper<TOtherAnswer>(question, condition, Operators.And));
+            ConditionList.Add(new ConditionWrapper<TAnswer>(question, condition, Operators.And));
 
             return this;
         }
@@ -100,13 +101,13 @@ namespace Boa.Constrictor.Screenplay
         /// <summary>
         /// Add a question and condition pair to the list of conditions to be evaluated with an Or operator.
         /// </summary>
-        /// <typeparam name="TOtherAnswer"></typeparam>
+        /// <typeparam name="TAnswer"></typeparam>
         /// <param name="question"></param>
         /// <param name="condition"></param>
         /// <returns></returns>
-        public Wait<TAnswer> Or<TOtherAnswer>(IQuestion<TOtherAnswer> question, ICondition<TOtherAnswer> condition)
+        public Wait Or<TAnswer>(IQuestion<TAnswer> question, ICondition<TAnswer> condition)
         {
-            ConditionList.Add(new ConditionWrapper<TOtherAnswer>(question, condition, Operators.Or));
+            ConditionList.Add(new ConditionWrapper<TAnswer>(question, condition, Operators.Or));
 
             return this;
         }
@@ -202,22 +203,5 @@ namespace Boa.Constrictor.Screenplay
         }
 
         #endregion
-    }
-
-    /// <summary>
-    /// Static builder class to help readability of fluent calls for Wait.
-    /// </summary>
-    public static class Wait
-    {
-        /// <summary>
-        /// Constructs a Wait task.
-        /// This variant allows "Wait.Until" calls to avoid generic type specification.
-        /// </summary>
-        /// <typeparam name="TValue">The value type.</typeparam>
-        /// <param name="question">The question upon whose answer to wait.</param>
-        /// <param name="condition">The expected condition for which to wait.</param>
-        /// <returns></returns>
-        public static Wait<TValue> Until<TValue>(IQuestion<TValue> question, ICondition<TValue> condition) =>
-            Wait<TValue>.Until(question, condition);
     }
 }

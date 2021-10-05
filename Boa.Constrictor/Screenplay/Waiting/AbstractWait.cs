@@ -92,7 +92,6 @@ namespace Boa.Constrictor.Screenplay
         protected void WaitForValue(IActor actor)
         {
             // Set variables
-            //TAnswer actual = default(TAnswer);
             bool satisfied = false;
             ActualTimeout = CalculateTimeout(actor);
 
