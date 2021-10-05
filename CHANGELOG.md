@@ -22,6 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added user guide groundwork to the doc site
+- Added documentation stating that Boa Constrictor is not limited to small-scale projects
+- Added user guide: "Testing with NUnit"
 
 
 ## [1.3.0] - 2021-09-20
