@@ -63,7 +63,7 @@ namespace Boa.Constrictor.WebDriver
         /// </summary>
         /// <returns></returns>
         public override string ToString() =>
-            $"drag the mouse from '{Locator.Description}' to {Target.Description}";
+            $"drag the mouse from '{Locator.Description}' to '{Target.Description}'";
 
         #endregion
     }
