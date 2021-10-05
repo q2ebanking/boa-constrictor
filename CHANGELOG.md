@@ -19,7 +19,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(none)
+### Added
+
+- Added user guide groundwork to the doc site
+- Added documentation stating that Boa Constrictor is not limited to small-scale projects
+- Added user guide: "Testing with NUnit"
+- Added ToString methods for Tasks that didn't have them
+
+### Changed
+- Standardized existing ToString methods for Tasks
 
 
 ## [1.3.0] - 2021-09-20

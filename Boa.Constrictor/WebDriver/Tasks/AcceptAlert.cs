@@ -89,7 +89,7 @@ namespace Boa.Constrictor.WebDriver
         public override string ToString()
         {
             string exists = RethrowNoAlert ? "that must exist" : "if it exists";
-            return $"Accept browser alert {exists}";
+            return $"accept browser alert {exists}";
         }
 
         #endregion

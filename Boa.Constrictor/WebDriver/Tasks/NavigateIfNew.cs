@@ -114,12 +114,12 @@ namespace Boa.Constrictor.WebDriver
             HashCode.Combine(GetType(), Url, Acceptable.ToString(), AcceptAlerts);
 
         /// <summary>
-        /// Returns a description of the question.
+        /// Returns a description of the task.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            string message = $"Navigate browser to '{Url}' if not '{Acceptable}'";
+            string message = $"navigate browser to '{Url}' if not '{Acceptable}'";
 
             if (AcceptAlerts)
                 message += " and accept any alerts";

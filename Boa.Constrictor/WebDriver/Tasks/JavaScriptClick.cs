@@ -43,6 +43,12 @@ namespace Boa.Constrictor.WebDriver
         public override void PerformAs(IActor actor, IWebDriver driver) =>
             actor.Calls(JavaScript.On(Locator, "arguments[0].click();"));
 
+        /// <summary>
+        /// Returns a description of the task.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => $"use JavaScript to click on '{Locator.Description}'";
+
         #endregion
     }
 }

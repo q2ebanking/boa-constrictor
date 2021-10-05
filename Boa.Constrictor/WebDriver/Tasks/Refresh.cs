@@ -42,7 +42,7 @@ namespace Boa.Constrictor.WebDriver
         /// Returns a description of the task.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"Refresh the Web page";
+        public override string ToString() => "refresh the web page";
 
         #endregion
     }

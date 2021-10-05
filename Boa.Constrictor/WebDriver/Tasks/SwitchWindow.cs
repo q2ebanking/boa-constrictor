@@ -66,7 +66,7 @@ namespace Boa.Constrictor.WebDriver
         /// Returns a description of the task.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"Switch browser window to '{Handle}'";
+        public override string ToString() => $"switch browser window to '{Handle}'";
 
         #endregion
     }

@@ -98,7 +98,8 @@ namespace Boa.Constrictor.WebDriver
         /// Returns a description of the task.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"Change the WebDriver instance to a new {NewDriver.GetType()}";
+        public override string ToString() =>
+            $"change the WebDriver instance to a new '{NewDriver.GetType()}'";
 
         #endregion
     }

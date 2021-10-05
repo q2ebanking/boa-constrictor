@@ -130,7 +130,7 @@ namespace Boa.Constrictor.WebDriver
         /// <returns></returns>
         public override string ToString()
         {
-            string message = $"Scroll container '{Locator.Description}' {ToStringAdjective} ";
+            string message = $"scroll container '{Locator.Description}' {ToStringAdjective} ";
 
             if (Top == null)
                 message += $"left = {Left}";

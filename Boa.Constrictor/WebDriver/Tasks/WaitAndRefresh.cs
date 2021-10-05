@@ -141,6 +141,22 @@ namespace Boa.Constrictor.WebDriver
         public override int GetHashCode() =>
             HashCode.Combine(GetType(), Locator, RefreshSeconds, TimeoutSeconds, AdditionalSeconds);
 
+        /// <summary>
+        /// Returns a description of the task.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            string message = $"wait for '{Locator.Description}' to appear";
+
+            if (TimeoutSeconds != null)
+                message += $" for up to {TimeoutSeconds + AdditionalSeconds}s";
+
+            message += " with a refresh if necessary";
+
+            return message;
+        }
+
         #endregion
     }
 }
