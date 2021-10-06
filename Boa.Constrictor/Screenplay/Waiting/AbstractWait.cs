@@ -182,7 +182,12 @@ namespace Boa.Constrictor.Screenplay
 
             // Verify successful waiting
             if (!satisfied)
-                throw new WaitingException(this, string.Join(", ", ConditionEvaluators.Select(c => c.Answer ?? "null")));
+            {
+                if (ConditionEvaluators.Count > 1)
+                    throw new WaitingException(this, ConditionEvaluators.Select(c => c.Answer).ToList());
+                else
+                    throw ConditionEvaluators[0].WaitingException(this);
+            }
         }
 
         /// <summary>

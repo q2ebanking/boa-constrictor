@@ -67,6 +67,16 @@
         }
 
         /// <summary>
+        /// Return waiting exception caused by interaction.
+        /// </summary>
+        /// <param name="interaction"></param>
+        /// <returns></returns>
+        WaitingException Throw(AbstractWait interaction)
+        {
+            return new WaitingException<TAnswer>(interaction, _answer);
+        }
+
+        /// <summary>
         /// Description of Question and Condition contents.
         /// </summary>
         /// <returns></returns>

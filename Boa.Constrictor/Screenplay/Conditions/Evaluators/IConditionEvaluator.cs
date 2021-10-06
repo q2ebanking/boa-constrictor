@@ -21,5 +21,12 @@
         /// <param name="actor"></param>
         /// <returns></returns>
         bool Evaluate(IActor actor);
+
+        /// <summary>
+        /// Return waiting exception caused by interaction.
+        /// </summary>
+        /// <param name="interaction"></param>
+        /// <returns></returns>
+        WaitingException WaitingException(AbstractWait interaction);
     }
 }
