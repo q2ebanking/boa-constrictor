@@ -19,8 +19,8 @@
         /// Private constructor.
         /// (Use static methods for public construction.)
         /// </summary>
-        /// <param name="condition">The condition to wait upon until satisfied.</param>
-        private Wait(IConditionEvaluator condition) : base(condition) { }
+        /// <param name="evaluator">The condition to wait upon until satisfied.</param>
+        private Wait(IConditionEvaluator evaluator) : base(evaluator) { }
 
         #endregion
 
@@ -34,8 +34,8 @@
         /// <returns></returns>
         public static Wait Until<TAnswer>(IQuestion<TAnswer> question, ICondition<TAnswer> condition)
         {
-            var wrapper = new ConditionEvaluator<TAnswer>(question, condition);
-            return new Wait(wrapper);
+            var evaluator = new ConditionEvaluator<TAnswer>(question, condition);
+            return new Wait(evaluator);
         }
 
         /// <summary>

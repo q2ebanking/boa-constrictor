@@ -23,7 +23,7 @@
         bool Evaluate(IActor actor);
 
         /// <summary>
-        /// Return waiting exception caused by interaction.
+        /// Return the WaitingException caused by interaction.
         /// </summary>
         /// <param name="interaction"></param>
         /// <returns></returns>

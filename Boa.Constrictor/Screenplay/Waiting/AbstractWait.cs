@@ -7,6 +7,7 @@ namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Waits for a desired state.
+    /// The desired state is expressed using a question and an expected condition or several pairs of questions and conditions.
     /// If the desired state does not happen within the time limit, then an exception is thrown.
     /// 
     /// If the actor has the SetTimeouts ability, then the ability will be used to calculate timeouts.
@@ -31,9 +32,10 @@ namespace Boa.Constrictor.Screenplay
         /// Private constructor.
         /// (Use static methods for public construction.)
         /// </summary>
-        protected AbstractWait(IConditionEvaluator condition)
+        /// <param name="evaluator"></param>
+        protected AbstractWait(IConditionEvaluator evaluator)
         {
-            ConditionEvaluators = new List<IConditionEvaluator> { condition };
+            ConditionEvaluators = new List<IConditionEvaluator> { evaluator };
             TimeoutSeconds = null;
             AdditionalSeconds = 0;
             ActualTimeout = -1;
@@ -63,7 +65,7 @@ namespace Boa.Constrictor.Screenplay
         /// <summary>
         /// The actual timeout used.
         /// </summary>
-        public int ActualTimeout { get; set; }
+        private int ActualTimeout { get; set; }
 
         /// <summary>
         /// If true, do not print log messages below "Warning" severity while waiting.
@@ -92,6 +94,9 @@ namespace Boa.Constrictor.Screenplay
 
         /// <summary>
         /// Evaluate the conditions.
+        /// If all conditions in a group return true,
+        /// this condition will be considered satisifed
+        /// and this method will return true.
         /// </summary>
         /// <param name="actor">The actor.</param>
         /// <returns></returns>
@@ -120,7 +125,10 @@ namespace Boa.Constrictor.Screenplay
         }
 
         /// <summary>
-        /// Separate sequential list of Conditions into groups of Conditions by Or operators.
+        /// Separate sequential list of Conditions into groups of Conditions.
+        /// Iterates over each condition. AND conditions are added to the current group.
+        /// OR conditions are added to a new group. This group is considered the current group
+        /// as new AND conditions are discovered until the next OR condition.
         /// </summary>
         /// <returns></returns>
         protected List<List<IConditionEvaluator>> ParseConditionGroups()

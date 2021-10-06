@@ -36,7 +36,7 @@
         #region Constructors
 
         /// <summary>
-        /// Constructor for the wrapper.
+        /// Constructor.
         /// </summary>
         /// <param name="question"></param>
         /// <param name="condition"></param>
@@ -67,7 +67,7 @@
         }
 
         /// <summary>
-        /// Return waiting exception caused by interaction.
+        /// Return the WaitingException caused by interaction.
         /// </summary>
         /// <param name="interaction"></param>
         /// <returns></returns>

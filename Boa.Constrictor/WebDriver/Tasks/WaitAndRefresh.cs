@@ -113,7 +113,7 @@ namespace Boa.Constrictor.WebDriver
                 // This page notoriously takes longer to load than others
                 actor.AttemptsTo(wait);
             }
-            catch (WaitingException)
+            catch (WaitingException<bool>)
             {
                 // If the button doesn't load, refresh the browser and retry
                 // That's what a human would do

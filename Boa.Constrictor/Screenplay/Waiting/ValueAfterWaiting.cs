@@ -17,8 +17,8 @@
         /// Private constructor.
         /// (Use static methods for public construction.)
         /// </summary>
-        /// <param name="condition">The expected condition for which to wait.</param>
-        private ValueAfterWaiting(IConditionEvaluator condition) : base(condition) { }
+        /// <param name="evaluator">The expected condition for which to wait.</param>
+        private ValueAfterWaiting(IConditionEvaluator evaluator) : base(evaluator) { }
 
         #endregion
 
@@ -32,8 +32,8 @@
         /// <returns></returns>
         public static ValueAfterWaiting<TAnswer> Until(IQuestion<TAnswer> question, ICondition<TAnswer> condition)
         {
-            var wrapper = new ConditionEvaluator<TAnswer>(question, condition);
-            return new ValueAfterWaiting<TAnswer>(wrapper);
+            var evaluator = new ConditionEvaluator<TAnswer>(question, condition);
+            return new ValueAfterWaiting<TAnswer>(evaluator);
         }
 
         /// <summary>

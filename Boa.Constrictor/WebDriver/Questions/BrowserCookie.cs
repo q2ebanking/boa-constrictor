@@ -59,7 +59,7 @@ namespace Boa.Constrictor.WebDriver
                 // Wait for the cookie to exist
                 actor.WaitsUntil(BrowserCookieExistence.Named(CookieName), IsEqualTo.True());
             }
-            catch (WaitingException e)
+            catch (WaitingException<bool> e)
             {
                 // Get the cookies that actually exist
                 var cookies = driver.Manage().Cookies.AllCookies;
