@@ -26,7 +26,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added documentation stating that Boa Constrictor is not limited to small-scale projects
 - Added user guide: "Testing with NUnit"
 - Added user guide: "Testing with SpecFlow"
-- Added ToString methods for Tasks that didn't have them
 - Added ability for `Wait` to handle multiple pairs of `IQuestion` and `ICondition` pairs using boolean operators
 
 ### Changed
