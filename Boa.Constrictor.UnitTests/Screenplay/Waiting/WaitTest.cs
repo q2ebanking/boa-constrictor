@@ -15,12 +15,14 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         #region Test Variables
 
         private IActor Actor { get; set; }
-        private Mock<IQuestion<int>> MockQuestionInt { get; set; }
-        private Mock<ICondition<int>> MockConditionInt { get; set; }
-        private Mock<IQuestion<bool>> MockQuestionBool { get; set; }
-        private Mock<ICondition<bool>> MockConditionBool { get; set; }
-        private Mock<IQuestion<string>> MockQuestionString { get; set; }
-        private Mock<ICondition<string>> MockConditionString { get; set; }
+        private Mock<IQuestion<int>> MockQuestionA { get; set; }
+        private Mock<ICondition<int>> MockConditionA { get; set; }
+        private Mock<IQuestion<bool>> MockQuestionB { get; set; }
+        private Mock<ICondition<bool>> MockConditionB { get; set; }
+        private Mock<IQuestion<string>> MockQuestionC { get; set; }
+        private Mock<ICondition<string>> MockConditionC { get; set; }
+        private Mock<IQuestion<int?>> MockQuestionD { get; set; }
+        private Mock<ICondition<int?>> MockConditionD { get; set; }
 
         #endregion
 
@@ -30,26 +32,329 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         public void SetUp()
         {
             Actor = new Actor();
-            MockQuestionInt = new Mock<IQuestion<int>>();
-            MockConditionInt = new Mock<ICondition<int>>();
-            MockQuestionBool = new Mock<IQuestion<bool>>();
-            MockConditionBool = new Mock<ICondition<bool>>();
-            MockQuestionString = new Mock<IQuestion<string>>();
-            MockConditionString = new Mock<ICondition<string>>();
+            MockQuestionA = new Mock<IQuestion<int>>();
+            MockConditionA = new Mock<ICondition<int>>();
+            MockQuestionB = new Mock<IQuestion<bool>>();
+            MockConditionB = new Mock<ICondition<bool>>();
+            MockQuestionC = new Mock<IQuestion<string>>();
+            MockConditionC = new Mock<ICondition<string>>();
+            MockQuestionD = new Mock<IQuestion<int?>>();
+            MockConditionD = new Mock<ICondition<int?>>();
         }
 
         #endregion
 
         #region Tests
 
-        [Test]
-        public void TestSuccessfulWait()
+        [TestCase(true, ExpectedResult = true)]
+        [TestCase(false, ExpectedResult = false)]
+        public bool TestSuccessfulWait(bool a)
         {
-            MockQuestionInt.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
-            MockConditionInt.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(true);
+            MockQuestionA.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
+            MockConditionA.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(a);
 
-            Actor.Invoking(actor => actor.AttemptsTo(Wait.Until(MockQuestionInt.Object, MockConditionInt.Object).ForUpTo(0)))
-                .Should().NotThrow(because: "the question should satisfy the condition");
+            bool waitWithoutException = true;
+
+            try
+            {
+                Actor.AttemptsTo(
+                    Wait.Until(MockQuestionA.Object, MockConditionA.Object)
+                    .ForUpTo(0));
+            }
+            catch (WaitingException)
+            {
+                waitWithoutException = false;
+            }
+
+            return waitWithoutException;
+        }
+
+        [TestCase(true, true, ExpectedResult = true)]
+        [TestCase(true, false, ExpectedResult = false)]
+        [TestCase(false, true, ExpectedResult = false)]
+        [TestCase(false, false, ExpectedResult = false)]
+        public bool TestWaitAnd(bool a, bool b)
+        {
+            MockQuestionA.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
+            MockConditionA.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(a);
+            MockQuestionB.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(false);
+            MockConditionB.Setup(x => x.Evaluate(It.IsAny<bool>())).Returns(b);
+
+            bool waitWithoutException = true;
+
+            try
+            {
+                Actor.AttemptsTo(
+                    Wait.Until(MockQuestionA.Object, MockConditionA.Object)
+                    .And(MockQuestionB.Object, MockConditionB.Object)
+                    .ForUpTo(0));
+            }
+            catch (WaitingException)
+            {
+                waitWithoutException = false;
+            }
+
+            return waitWithoutException;
+        }
+
+        [TestCase(true, true, ExpectedResult = true)]
+        [TestCase(true, false, ExpectedResult = true)]
+        [TestCase(false, true, ExpectedResult = true)]
+        [TestCase(false, false, ExpectedResult = false)]
+        public bool TestWaitOr(bool a, bool b)
+        {
+            MockQuestionA.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
+            MockConditionA.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(a);
+            MockQuestionB.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(false);
+            MockConditionB.Setup(x => x.Evaluate(It.IsAny<bool>())).Returns(b);
+
+            bool waitWithoutException = true;
+
+            try
+            {
+                Actor.AttemptsTo(
+                    Wait.Until(MockQuestionA.Object, MockConditionA.Object)
+                    .Or(MockQuestionB.Object, MockConditionB.Object)
+                    .ForUpTo(0));
+            }
+            catch (WaitingException)
+            {
+                waitWithoutException = false;
+            }
+
+            return waitWithoutException;
+        }
+
+        [TestCase(true, true, true, ExpectedResult = true)]
+        [TestCase(true, true, false, ExpectedResult = false)]
+        [TestCase(true, false, true, ExpectedResult = false)]
+        [TestCase(false, true, true, ExpectedResult = false)]
+        [TestCase(true, false, false, ExpectedResult = false)]
+        [TestCase(false, true, false, ExpectedResult = false)]
+        [TestCase(false, false, true, ExpectedResult = false)]
+        [TestCase(false, false, false, ExpectedResult = false)]
+        public bool TestWaitAndAnd(bool a, bool b, bool c)
+        {
+            MockQuestionA.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
+            MockConditionA.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(a);
+            MockQuestionB.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(false);
+            MockConditionB.Setup(x => x.Evaluate(It.IsAny<bool>())).Returns(b);
+            MockQuestionC.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns("title");
+            MockConditionC.Setup(x => x.Evaluate(It.IsAny<string>())).Returns(c);
+
+            bool waitWithoutException = true;
+
+            try
+            {
+                Actor.AttemptsTo(
+                    Wait.Until(MockQuestionA.Object, MockConditionA.Object)
+                    .And(MockQuestionB.Object, MockConditionB.Object)
+                    .And(MockQuestionC.Object, MockConditionC.Object)
+                    .ForUpTo(0));
+            }
+            catch (WaitingException)
+            {
+                waitWithoutException = false;
+            }
+
+            return waitWithoutException;
+        }
+
+        [TestCase(true, true, true, ExpectedResult = true)]
+        [TestCase(true, true, false, ExpectedResult = true)]
+        [TestCase(true, false, true, ExpectedResult = true)]
+        [TestCase(false, true, true, ExpectedResult = true)]
+        [TestCase(true, false, false, ExpectedResult = false)]
+        [TestCase(false, true, false, ExpectedResult = false)]
+        [TestCase(false, false, true, ExpectedResult = true)]
+        [TestCase(false, false, false, ExpectedResult = false)]
+        public bool TestWaitAndOr(bool a, bool b, bool c)
+        {
+            MockQuestionA.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
+            MockConditionA.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(a);
+            MockQuestionB.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(false);
+            MockConditionB.Setup(x => x.Evaluate(It.IsAny<bool>())).Returns(b);
+            MockQuestionC.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns("title");
+            MockConditionC.Setup(x => x.Evaluate(It.IsAny<string>())).Returns(c);
+
+            bool waitWithoutException = true;
+
+            try
+            {
+                Actor.AttemptsTo(
+                    Wait.Until(MockQuestionA.Object, MockConditionA.Object)
+                    .And(MockQuestionB.Object, MockConditionB.Object)
+                    .Or(MockQuestionC.Object, MockConditionC.Object)
+                    .ForUpTo(0));
+            }
+            catch (WaitingException)
+            {
+                waitWithoutException = false;
+            }
+
+            return waitWithoutException;
+        }
+
+        [TestCase(true, true, true, ExpectedResult = true)]
+        [TestCase(true, true, false, ExpectedResult = true)]
+        [TestCase(true, false, true, ExpectedResult = true)]
+        [TestCase(false, true, true, ExpectedResult = true)]
+        [TestCase(true, false, false, ExpectedResult = true)]
+        [TestCase(false, true, false, ExpectedResult = false)]
+        [TestCase(false, false, true, ExpectedResult = false)]
+        [TestCase(false, false, false, ExpectedResult = false)]
+        public bool TestWaitOrAnd(bool a, bool b, bool c)
+        {
+            MockQuestionA.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
+            MockConditionA.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(a);
+            MockQuestionB.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(false);
+            MockConditionB.Setup(x => x.Evaluate(It.IsAny<bool>())).Returns(b);
+            MockQuestionC.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns("title");
+            MockConditionC.Setup(x => x.Evaluate(It.IsAny<string>())).Returns(c);
+
+            bool waitWithoutException = true;
+
+            try
+            {
+                Actor.AttemptsTo(
+                    Wait.Until(MockQuestionA.Object, MockConditionA.Object)
+                    .Or(MockQuestionB.Object, MockConditionB.Object)
+                    .And(MockQuestionC.Object, MockConditionC.Object)
+                    .ForUpTo(0));
+            }
+            catch (WaitingException)
+            {
+                waitWithoutException = false;
+            }
+
+            return waitWithoutException;
+        }
+
+        [TestCase(true, true, true, ExpectedResult = true)]
+        [TestCase(true, true, false, ExpectedResult = true)]
+        [TestCase(true, false, true, ExpectedResult = true)]
+        [TestCase(false, true, true, ExpectedResult = true)]
+        [TestCase(true, false, false, ExpectedResult = true)]
+        [TestCase(false, true, false, ExpectedResult = true)]
+        [TestCase(false, false, true, ExpectedResult = true)]
+        [TestCase(false, false, false, ExpectedResult = false)]
+        public bool TestWaitOrOr(bool a, bool b, bool c)
+        {
+            MockQuestionA.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
+            MockConditionA.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(a);
+            MockQuestionB.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(false);
+            MockConditionB.Setup(x => x.Evaluate(It.IsAny<bool>())).Returns(b);
+            MockQuestionC.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns("title");
+            MockConditionC.Setup(x => x.Evaluate(It.IsAny<string>())).Returns(c);
+
+            bool waitWithoutException = true;
+
+            try
+            {
+                Actor.AttemptsTo(
+                    Wait.Until(MockQuestionA.Object, MockConditionA.Object)
+                    .Or(MockQuestionB.Object, MockConditionB.Object)
+                    .Or(MockQuestionC.Object, MockConditionC.Object)
+                    .ForUpTo(0));
+            }
+            catch (WaitingException)
+            {
+                waitWithoutException = false;
+            }
+
+            return waitWithoutException;
+        }
+
+        [TestCase(true, true, true, true, ExpectedResult = true)]
+        [TestCase(true, true, true, false, ExpectedResult = true)]
+        [TestCase(true, true, false, true, ExpectedResult = true)]
+        [TestCase(true, false, true, true, ExpectedResult = true)]
+        [TestCase(false, true, true, true, ExpectedResult = true)]
+        [TestCase(true, true, false, false, ExpectedResult = true)]
+        [TestCase(true, false, true, false, ExpectedResult = false)]
+        [TestCase(true, false, false, true, ExpectedResult = false)]
+        [TestCase(false, true, true, false, ExpectedResult = false)]
+        [TestCase(false, true, false, true, ExpectedResult = false)]
+        [TestCase(false, false, true, true, ExpectedResult = true)]
+        [TestCase(true, false, false, false, ExpectedResult = false)]
+        [TestCase(false, true, false, false, ExpectedResult = false)]
+        [TestCase(false, false, true, false, ExpectedResult = false)]
+        [TestCase(false, false, false, true, ExpectedResult = false)]
+        [TestCase(false, false, false, false, ExpectedResult = false)]
+        public bool TestWaitAndOrAnd(bool a, bool b, bool c, bool d)
+        {
+            MockQuestionA.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
+            MockConditionA.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(a);
+            MockQuestionB.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(false);
+            MockConditionB.Setup(x => x.Evaluate(It.IsAny<bool>())).Returns(b);
+            MockQuestionC.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns("title");
+            MockConditionC.Setup(x => x.Evaluate(It.IsAny<string>())).Returns(c);
+            MockQuestionD.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns<int?>(null);
+            MockConditionD.Setup(x => x.Evaluate(It.IsAny<int?>())).Returns(d);
+
+            bool waitWithoutException = true;
+
+            try
+            {
+                Actor.AttemptsTo(
+                    Wait.Until(MockQuestionA.Object, MockConditionA.Object)
+                    .And(MockQuestionB.Object, MockConditionB.Object)
+                    .Or(MockQuestionC.Object, MockConditionC.Object)
+                    .And(MockQuestionD.Object, MockConditionD.Object)
+                    .ForUpTo(0));
+            }
+            catch (WaitingException)
+            {
+                waitWithoutException = false;
+            }
+
+            return waitWithoutException;
+        }
+
+        [TestCase(true, true, true, true, ExpectedResult = true)]
+        [TestCase(true, true, true, false, ExpectedResult = true)]
+        [TestCase(true, true, false, true, ExpectedResult = true)]
+        [TestCase(true, false, true, true, ExpectedResult = true)]
+        [TestCase(false, true, true, true, ExpectedResult = true)]
+        [TestCase(true, true, false, false, ExpectedResult = true)]
+        [TestCase(true, false, true, false, ExpectedResult = true)]
+        [TestCase(true, false, false, true, ExpectedResult = true)]
+        [TestCase(false, true, true, false, ExpectedResult = true)]
+        [TestCase(false, true, false, true, ExpectedResult = true)]
+        [TestCase(false, false, true, true, ExpectedResult = true)]
+        [TestCase(true, false, false, false, ExpectedResult = true)]
+        [TestCase(false, true, false, false, ExpectedResult = false)]
+        [TestCase(false, false, true, false, ExpectedResult = false)]
+        [TestCase(false, false, false, true, ExpectedResult = true)]
+        [TestCase(false, false, false, false, ExpectedResult = false)]
+        public bool TestWaitOrAndOr(bool a, bool b, bool c, bool d)
+        {
+            MockQuestionA.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
+            MockConditionA.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(a);
+            MockQuestionB.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(false);
+            MockConditionB.Setup(x => x.Evaluate(It.IsAny<bool>())).Returns(b);
+            MockQuestionC.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns("title");
+            MockConditionC.Setup(x => x.Evaluate(It.IsAny<string>())).Returns(c);
+            MockQuestionD.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns<int?>(null);
+            MockConditionD.Setup(x => x.Evaluate(It.IsAny<int?>())).Returns(d);
+
+            bool waitWithoutException = true;
+
+            try
+            {
+                Actor.AttemptsTo(
+                    Wait.Until(MockQuestionA.Object, MockConditionA.Object)
+                    .Or(MockQuestionB.Object, MockConditionB.Object)
+                    .And(MockQuestionC.Object, MockConditionC.Object)
+                    .Or(MockQuestionD.Object, MockConditionD.Object)
+                    .ForUpTo(0));
+            }
+            catch (WaitingException)
+            {
+                waitWithoutException = false;
+            }
+
+            return waitWithoutException;
         }
 
         [Test]
@@ -58,131 +363,34 @@ namespace Boa.Constrictor.UnitTests.Screenplay
             const int limit = 5;
             int incrementer = 0;
 
-            MockQuestionInt.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(() => ++incrementer);
-            MockConditionInt.Setup(x => x.Evaluate(It.Is<int>(v => v < limit))).Returns(false);
-            MockConditionInt.Setup(x => x.Evaluate(It.Is<int>(v => v >= limit))).Returns(true);
+            MockQuestionA.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(() => ++incrementer);
+            MockConditionA.Setup(x => x.Evaluate(It.Is<int>(v => v < limit))).Returns(false);
+            MockConditionA.Setup(x => x.Evaluate(It.Is<int>(v => v >= limit))).Returns(true);
 
-            Actor.Invoking(actor => actor.AttemptsTo(Wait.Until(MockQuestionInt.Object, MockConditionInt.Object).ForUpTo(1)))
+            Actor.Invoking(actor => actor.AttemptsTo(Wait.Until(MockQuestionA.Object, MockConditionA.Object).ForUpTo(1)))
                 .Should().NotThrow(because: "the question should satisfy the condition");
 
             incrementer.Should().Be(limit, because: $"the question should be called {limit} times");
         }
 
         [Test]
-        public void TestFailedWait()
-        {
-            MockQuestionInt.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
-            MockConditionInt.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(false);
-
-            Actor.Invoking(actor => actor.AttemptsTo(Wait.Until(MockQuestionInt.Object, MockConditionInt.Object).ForUpTo(0)))
-                .Should().Throw<WaitingException<int>>(because: "the question should not satisfy the condition");
-        }
-
-        [Test]
-        public void TestSuccessfulWaitMultipleTypesAnd()
-        {
-            //success
-            MockQuestionInt.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
-            MockConditionInt.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(true);
-            //success
-            MockQuestionBool.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(false);
-            MockConditionBool.Setup(x => x.Evaluate(It.IsAny<bool>())).Returns(true);
-            //success
-            MockQuestionString.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns("title");
-            MockConditionString.Setup(x => x.Evaluate(It.IsAny<string>())).Returns(true);
-
-            Actor.Invoking(actor => actor.AttemptsTo(
-                Wait.Until(MockQuestionInt.Object, MockConditionInt.Object)
-                .And(MockQuestionBool.Object, MockConditionBool.Object)
-                .And(MockQuestionString.Object, MockConditionString.Object)
-                .ForUpTo(0)))
-                .Should().NotThrow(because: "the question should satisfy the condition");
-        }
-
-        [Test]
-        public void TestSuccessfulWaitMultipleTypesOr()
-        {
-            //fail
-            MockQuestionInt.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
-            MockConditionInt.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(false);
-            //fail
-            MockQuestionBool.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(false);
-            MockConditionBool.Setup(x => x.Evaluate(It.IsAny<bool>())).Returns(false);
-            //success
-            MockQuestionString.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns("title");
-            MockConditionString.Setup(x => x.Evaluate(It.IsAny<string>())).Returns(true);
-
-            Actor.Invoking(actor => actor.AttemptsTo(
-                Wait.Until(MockQuestionInt.Object, MockConditionInt.Object)
-                .And(MockQuestionBool.Object, MockConditionBool.Object)
-                .Or(MockQuestionString.Object, MockConditionString.Object)
-                .ForUpTo(0)))
-                .Should().NotThrow(because: "the question should satisfy the condition");
-        }
-
-        [Test]
-        public void TestFailedWaitMultipleTypesAnd()
-        {
-            //success
-            MockQuestionInt.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
-            MockConditionInt.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(true);
-            //fail
-            MockQuestionBool.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(false);
-            MockConditionBool.Setup(x => x.Evaluate(It.IsAny<bool>())).Returns(false);
-            //success
-            MockQuestionString.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns("title");
-            MockConditionString.Setup(x => x.Evaluate(It.IsAny<string>())).Returns(true);
-
-            Actor.Invoking(actor => actor.AttemptsTo(
-                Wait.Until(MockQuestionInt.Object, MockConditionInt.Object)
-                .And(MockQuestionBool.Object, MockConditionBool.Object)
-                .And(MockQuestionString.Object, MockConditionString.Object)
-                .ForUpTo(0)))
-                .Should().Throw<WaitingException>(because: "the question should not satisfy the condition");
-        }
-
-        [Test]
-        public void TestFailedWaitMultipleTypesOr()
-        {
-            //success
-            MockQuestionInt.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(1);
-            MockConditionInt.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(true);
-            //fail
-            MockQuestionBool.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(false);
-            MockConditionBool.Setup(x => x.Evaluate(It.IsAny<bool>())).Returns(false);
-            //fail
-            MockQuestionString.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns("title");
-            MockConditionString.Setup(x => x.Evaluate(It.IsAny<string>())).Returns(false);
-
-            Actor.Invoking(actor => actor.AttemptsTo(
-                Wait.Until(MockQuestionInt.Object, MockConditionInt.Object)
-                .And(MockQuestionBool.Object, MockConditionBool.Object)
-                .Or(MockQuestionString.Object, MockConditionString.Object)
-                .ForUpTo(0)))
-                .Should().Throw<WaitingException>(because: "the question should not satisfy the condition");
-        }
-
-        [Test]
-        public void TestSuccessfulWaitMultipleTypesAndAfterChange()
+        public void TestSuccessfulWaitAndAndAfterChange()
         {
             const int limit = 5;
             int incrementer = 0;
 
-            //success
-            MockQuestionInt.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(() => ++incrementer);
-            MockConditionInt.Setup(x => x.Evaluate(It.Is<int>(v => v < limit))).Returns(false);
-            MockConditionInt.Setup(x => x.Evaluate(It.Is<int>(v => v >= limit))).Returns(true);
-            //success
-            MockQuestionBool.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(false);
-            MockConditionBool.Setup(x => x.Evaluate(It.IsAny<bool>())).Returns(true);
-            //success
-            MockQuestionString.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns("title");
-            MockConditionString.Setup(x => x.Evaluate(It.IsAny<string>())).Returns(true);
+            MockQuestionA.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(() => ++incrementer);
+            MockConditionA.Setup(x => x.Evaluate(It.Is<int>(v => v < limit))).Returns(false);
+            MockConditionA.Setup(x => x.Evaluate(It.Is<int>(v => v >= limit))).Returns(true);
+            MockQuestionB.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(false);
+            MockConditionB.Setup(x => x.Evaluate(It.IsAny<bool>())).Returns(true);
+            MockQuestionC.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns("title");
+            MockConditionC.Setup(x => x.Evaluate(It.IsAny<string>())).Returns(true);
 
             Actor.Invoking(actor => actor.AttemptsTo(
-                Wait.Until(MockQuestionInt.Object, MockConditionInt.Object)
-                .And(MockQuestionBool.Object, MockConditionBool.Object)
-                .And(MockQuestionString.Object, MockConditionString.Object)
+                Wait.Until(MockQuestionA.Object, MockConditionA.Object)
+                .And(MockQuestionB.Object, MockConditionB.Object)
+                .And(MockQuestionC.Object, MockConditionC.Object)
                 .ForUpTo(1)))
                 .Should().NotThrow(because: "the question should satisfy the condition");
 
