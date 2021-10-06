@@ -71,7 +71,7 @@
         /// </summary>
         /// <param name="interaction"></param>
         /// <returns></returns>
-        WaitingException Throw(AbstractWait interaction)
+        public WaitingException WaitingException(AbstractWait interaction)
         {
             return new WaitingException<TAnswer>(interaction, _answer);
         }
