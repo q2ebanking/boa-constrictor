@@ -1,18 +1,19 @@
 ﻿using Boa.Constrictor.Logging;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Waits for a desired state.
-    /// The desired state is expressed using a question and an expected condition.
+    /// The desired state is expressed using a question and an expected condition or several pairs of questions and conditions.
     /// If the desired state does not happen within the time limit, then an exception is thrown.
     /// 
     /// If the actor has the SetTimeouts ability, then the ability will be used to calculate timeouts.
     /// Otherwise, DefaultTimeout will be used.
     /// </summary>
-    /// <typeparam name="TAnswer">The type of the question's answer value.</typeparam>
-    public abstract class AbstractWait<TAnswer>
+    public abstract class AbstractWait
     {
         #region Constants
 
@@ -31,12 +32,10 @@ namespace Boa.Constrictor.Screenplay
         /// Private constructor.
         /// (Use static methods for public construction.)
         /// </summary>
-        /// <param name="question">The question upon whose answer to wait.</param>
-        /// <param name="condition">The expected condition for which to wait.</param>
-        protected AbstractWait(IQuestion<TAnswer> question, ICondition<TAnswer> condition)
+        /// <param name="evaluator"></param>
+        protected AbstractWait(IConditionEvaluator evaluator)
         {
-            Question = question;
-            Condition = condition;
+            ConditionEvaluators = new List<IConditionEvaluator> { evaluator };
             TimeoutSeconds = null;
             AdditionalSeconds = 0;
             ActualTimeout = -1;
@@ -48,14 +47,9 @@ namespace Boa.Constrictor.Screenplay
         #region Properties
 
         /// <summary>
-        /// The expected condition for which to wait.
+        /// List of Conditions to evaluate.
         /// </summary>
-        public ICondition<TAnswer> Condition { get; protected set; }
-
-        /// <summary>
-        /// The question upon whose answer to wait.
-        /// </summary>
-        public IQuestion<TAnswer> Question { get; protected set; }
+        public List<IConditionEvaluator> ConditionEvaluators { get; protected set; }
 
         /// <summary>
         /// The timeout override in seconds.
@@ -99,16 +93,70 @@ namespace Boa.Constrictor.Screenplay
         }
 
         /// <summary>
+        /// Evaluate the conditions.
+        /// If all conditions in a group return true,
+        /// this condition will be considered satisifed
+        /// and this method will return true.
+        /// </summary>
+        /// <param name="actor">The actor.</param>
+        /// <returns></returns>
+        protected bool EvaluateCondition(IActor actor)
+        {
+            var groups = ParseConditionGroups();
+
+            foreach (var group in groups)
+            {
+                bool satisfied = true;
+
+                foreach (var condition in group)
+                {
+                    if (!condition.Evaluate(actor))
+                    {
+                        satisfied = false;
+                        break;
+                    }
+                }
+
+                if (satisfied)
+                    return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Separate sequential list of Conditions into groups of Conditions.
+        /// Iterates over each condition. AND conditions are added to the current group.
+        /// OR conditions are added to a new group. This group is considered the current group
+        /// as new AND conditions are discovered until the next OR condition.
+        /// </summary>
+        /// <returns></returns>
+        protected List<List<IConditionEvaluator>> ParseConditionGroups()
+        {
+            var groups = new List<List<IConditionEvaluator>>
+                { new List<IConditionEvaluator>() };
+
+            foreach (var pair in ConditionEvaluators)
+            {
+                if (pair.Operator == ConditionOperators.Or)
+                    groups.Add(new List<IConditionEvaluator>());
+
+                groups.Last().Add(pair);
+            }
+
+            return groups;
+        }
+
+        /// <summary>
         /// Waits until the question's answer value meets the condition.
         /// If the expected condition is not met within the time limit, then an exception is thrown.
         /// Returns the actual awaited value.
         /// </summary>
         /// <param name="actor">The actor.</param>
         /// <returns></returns>
-        protected TAnswer WaitForValue(IActor actor)
+        protected void WaitForValue(IActor actor)
         {
             // Set variables
-            TAnswer actual = default(TAnswer);
             bool satisfied = false;
             ActualTimeout = CalculateTimeout(actor);
 
@@ -118,7 +166,7 @@ namespace Boa.Constrictor.Screenplay
                 actor.Logger.LowestSeverity = LogSeverity.Warning;
 
             // Start the timer
-            Stopwatch timer = new Stopwatch();
+            var timer = new Stopwatch();
             timer.Start();
 
             try
@@ -126,8 +174,7 @@ namespace Boa.Constrictor.Screenplay
                 // Repeatedly check if the condition is satisfied until the timeout is reached
                 do
                 {
-                    actual = actor.AsksFor(Question);
-                    satisfied = Condition.Evaluate(actual);
+                    satisfied = EvaluateCondition(actor);
                 }
                 while (!satisfied && timer.Elapsed.TotalSeconds < ActualTimeout);
             }
@@ -143,10 +190,12 @@ namespace Boa.Constrictor.Screenplay
 
             // Verify successful waiting
             if (!satisfied)
-                throw new WaitingException<TAnswer>(this, actual);
-
-            // Return the actual awaited value
-            return actual;
+            {
+                if (ConditionEvaluators.Count > 1)
+                    throw new WaitingException(this, ConditionEvaluators.Select(c => c.Answer).ToList());
+                else
+                    throw ConditionEvaluators[0].WaitingException(this);
+            }
         }
 
         /// <summary>
@@ -155,7 +204,12 @@ namespace Boa.Constrictor.Screenplay
         /// <returns></returns>
         public override string ToString()
         {
-            string s = $"Wait until {Question} {Condition}";
+            string s = $"wait until {ConditionEvaluators[0]}";
+
+            for (int i = 1; i < ConditionEvaluators.Count; i++)
+            {
+                s += $" {ConditionEvaluators[i].Operator} {ConditionEvaluators[i]}";
+            }
 
             if (ActualTimeout >= 0)
                 s += $" for up to {ActualTimeout}s";

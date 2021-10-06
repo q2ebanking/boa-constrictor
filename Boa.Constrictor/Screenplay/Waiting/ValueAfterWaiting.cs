@@ -9,7 +9,7 @@
     /// Otherwise, DefaultTimeout will be used.
     /// </summary>
     /// <typeparam name="TAnswer">The type of the question's answer value.</typeparam>
-    public class ValueAfterWaiting<TAnswer> : AbstractWait<TAnswer>, IQuestion<TAnswer>
+    public class ValueAfterWaiting<TAnswer> : AbstractWait, IQuestion<TAnswer>
     {
         #region Constructors
 
@@ -17,11 +17,8 @@
         /// Private constructor.
         /// (Use static methods for public construction.)
         /// </summary>
-        /// <param name="question">The question upon whose answer to wait.</param>
-        /// <param name="condition">The expected condition for which to wait.</param>
-        private ValueAfterWaiting(IQuestion<TAnswer> question, ICondition<TAnswer> condition) :
-            base(question, condition)
-        { }
+        /// <param name="evaluator">The expected condition for which to wait.</param>
+        private ValueAfterWaiting(IConditionEvaluator evaluator) : base(evaluator) { }
 
         #endregion
 
@@ -33,8 +30,11 @@
         /// <param name="question">The question upon whose answer to wait.</param>
         /// <param name="condition">The expected condition for which to wait.</param>
         /// <returns></returns>
-        public static ValueAfterWaiting<TAnswer> Until(IQuestion<TAnswer> question, ICondition<TAnswer> condition) =>
-            new ValueAfterWaiting<TAnswer>(question, condition);
+        public static ValueAfterWaiting<TAnswer> Until(IQuestion<TAnswer> question, ICondition<TAnswer> condition)
+        {
+            var evaluator = new ConditionEvaluator<TAnswer>(question, condition);
+            return new ValueAfterWaiting<TAnswer>(evaluator);
+        }
 
         /// <summary>
         /// Sets an override value for timeout seconds.
@@ -81,7 +81,11 @@
         /// </summary>
         /// <param name="actor">The actor.</param>
         /// <returns></returns>
-        public TAnswer RequestAs(IActor actor) => WaitForValue(actor);
+        public TAnswer RequestAs(IActor actor)
+        {
+            WaitForValue(actor);
+            return (TAnswer)ConditionEvaluators[0].Answer;
+        }
 
         #endregion
     }
