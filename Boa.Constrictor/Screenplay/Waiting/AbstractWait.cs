@@ -1,5 +1,7 @@
 ﻿using Boa.Constrictor.Logging;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Boa.Constrictor.Screenplay
 {
@@ -29,8 +31,9 @@ namespace Boa.Constrictor.Screenplay
         /// Private constructor.
         /// (Use static methods for public construction.)
         /// </summary>
-        protected AbstractWait()
+        protected AbstractWait(IConditionEvaluator condition)
         {
+            ConditionEvaluators = new List<IConditionEvaluator> { condition };
             TimeoutSeconds = null;
             AdditionalSeconds = 0;
             ActualTimeout = -1;
@@ -40,6 +43,11 @@ namespace Boa.Constrictor.Screenplay
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// List of Conditions to evaluate.
+        /// </summary>
+        public List<IConditionEvaluator> ConditionEvaluators { get; protected set; }
 
         /// <summary>
         /// The timeout override in seconds.
@@ -83,6 +91,55 @@ namespace Boa.Constrictor.Screenplay
         }
 
         /// <summary>
+        /// Evaluate the conditions.
+        /// </summary>
+        /// <param name="actor">The actor.</param>
+        /// <returns></returns>
+        protected bool EvaluateCondition(IActor actor)
+        {
+            var groups = ParseConditionGroups();
+
+            foreach (var group in groups)
+            {
+                bool satisfied = true;
+
+                foreach (var condition in group)
+                {
+                    if (!condition.Evaluate(actor))
+                    {
+                        satisfied = false;
+                        break;
+                    }
+                }
+
+                if (satisfied)
+                    return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Separate sequential list of Conditions into groups of Conditions by Or operators.
+        /// </summary>
+        /// <returns></returns>
+        protected List<List<IConditionEvaluator>> ParseConditionGroups()
+        {
+            var groups = new List<List<IConditionEvaluator>>
+                { new List<IConditionEvaluator>() };
+
+            foreach (var pair in ConditionEvaluators)
+            {
+                if (pair.Operator == ConditionOperators.Or)
+                    groups.Add(new List<IConditionEvaluator>());
+
+                groups.Last().Add(pair);
+            }
+
+            return groups;
+        }
+
+        /// <summary>
         /// Waits until the question's answer value meets the condition.
         /// If the expected condition is not met within the time limit, then an exception is thrown.
         /// Returns the actual awaited value.
@@ -101,7 +158,7 @@ namespace Boa.Constrictor.Screenplay
                 actor.Logger.LowestSeverity = LogSeverity.Warning;
 
             // Start the timer
-            Stopwatch timer = new Stopwatch();
+            var timer = new Stopwatch();
             timer.Start();
 
             try
@@ -125,20 +182,8 @@ namespace Boa.Constrictor.Screenplay
 
             // Verify successful waiting
             if (!satisfied)
-                ThrowWaitException();
+                throw new WaitingException(this, string.Join(", ", ConditionEvaluators.Select(c => c.Answer ?? "null")));
         }
-
-        /// <summary>
-        /// Evaluate the condition.
-        /// </summary>
-        /// <param name="actor">The actor.</param>
-        /// <returns></returns>
-        protected abstract bool EvaluateCondition(IActor actor);
-
-        /// <summary>
-        /// Throw the waiting exception if condition is not satisfied
-        /// </summary>
-        protected abstract void ThrowWaitException();
 
         /// <summary>
         /// Returns a description of the task.
@@ -146,7 +191,12 @@ namespace Boa.Constrictor.Screenplay
         /// <returns></returns>
         public override string ToString()
         {
-            string s = $"wait until the condition is satisfied";
+            string s = $"wait until {ConditionEvaluators[0]}";
+
+            for (int i = 1; i < ConditionEvaluators.Count; i++)
+            {
+                s += $" {ConditionEvaluators[i].Operator} {ConditionEvaluators[i]}";
+            }
 
             if (ActualTimeout >= 0)
                 s += $" for up to {ActualTimeout}s";

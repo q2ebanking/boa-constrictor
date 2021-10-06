@@ -1,14 +1,19 @@
 ﻿namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
-    /// Adaptor interface for evaluating a condition.
+    /// Interface that represents the evaluation of a Condition and the related Answer.
     /// </summary>
-    public interface IConditionAdaptor
+    public interface IConditionEvaluator
     {
+        /// <summary>
+        /// The Answer to a Question.
+        /// </summary>
+        object Answer { get; }
+
         /// <summary>
         /// Boolean operator associated with the Condition.
         /// </summary>
-        Operators Operator { get; set; }
+        ConditionOperators Operator { get; }
 
         /// <summary>
         /// Evaluate the Condition.
@@ -16,11 +21,5 @@
         /// <param name="actor"></param>
         /// <returns></returns>
         bool Evaluate(IActor actor);
-
-        /// <summary>
-        /// Return the most recent Answer.
-        /// </summary>
-        /// <returns></returns>
-        string GetAnswer();
     }
 }

@@ -11,38 +11,14 @@
     /// <typeparam name="TAnswer">The type of the question's answer value.</typeparam>
     public class ValueAfterWaiting<TAnswer> : AbstractWait, IQuestion<TAnswer>
     {
-        #region Properties
-
-        /// <summary>
-        /// The answer to return upon waiting.
-        /// </summary>
-        private TAnswer Answer { get; set; }
-
-        /// <summary>
-        /// The expected condition for which to wait.
-        /// </summary>
-        private ICondition<TAnswer> Condition { get; set; }
-
-        /// <summary>
-        /// The question upon whose answer to wait.
-        /// </summary>
-        private IQuestion<TAnswer> Question { get; set; }
-
-        #endregion
-
         #region Constructors
 
         /// <summary>
         /// Private constructor.
         /// (Use static methods for public construction.)
         /// </summary>
-        /// <param name="question">The question upon whose answer to wait.</param>
         /// <param name="condition">The expected condition for which to wait.</param>
-        private ValueAfterWaiting(IQuestion<TAnswer> question, ICondition<TAnswer> condition) : base()
-        {
-            Condition = condition;
-            Question = question;
-        }
+        private ValueAfterWaiting(IConditionEvaluator condition) : base(condition) { }
 
         #endregion
 
@@ -54,8 +30,11 @@
         /// <param name="question">The question upon whose answer to wait.</param>
         /// <param name="condition">The expected condition for which to wait.</param>
         /// <returns></returns>
-        public static ValueAfterWaiting<TAnswer> Until(IQuestion<TAnswer> question, ICondition<TAnswer> condition) =>
-            new ValueAfterWaiting<TAnswer>(question, condition);
+        public static ValueAfterWaiting<TAnswer> Until(IQuestion<TAnswer> question, ICondition<TAnswer> condition)
+        {
+            var wrapper = new ConditionEvaluator<TAnswer>(question, condition);
+            return new ValueAfterWaiting<TAnswer>(wrapper);
+        }
 
         /// <summary>
         /// Sets an override value for timeout seconds.
@@ -105,42 +84,7 @@
         public TAnswer RequestAs(IActor actor)
         {
             WaitForValue(actor);
-            return Answer;
-        }
-
-        /// <summary>
-        /// Evaluate the condition.
-        /// </summary>
-        /// <param name="actor">The actor.</param>
-        /// <returns></returns>
-        protected override bool EvaluateCondition(IActor actor)
-        {
-            Answer = actor.AsksFor(Question);
-            return Condition.Evaluate(Answer);
-        }
-
-        /// <summary>
-        /// Throw the waiting exception if condition is not satisfied
-        /// </summary>
-        protected override void ThrowWaitException()
-        {
-            throw new WaitingException(this, Answer.ToString());
-        }
-
-        /// <summary>
-        /// Returns a description of the task.
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            string s = $"wait until {Question} {Condition}";
-
-            if (ActualTimeout >= 0)
-                s += $" for up to {ActualTimeout}s";
-            else if (TimeoutSeconds != null)
-                s += $" for up to {TimeoutSeconds + AdditionalSeconds}s";
-
-            return s;
+            return (TAnswer)ConditionEvaluators[0].Answer;
         }
 
         #endregion

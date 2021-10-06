@@ -1,32 +1,35 @@
 ﻿namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
-    /// This wraps a generic Question and Condition in a non-generic wrapper.
+    /// This contains a generic Question and Condition and exposes
+    /// the evaluation through the IConditionEvaluator interface.
     /// </summary>
     /// <typeparam name="TAnswer"></typeparam>
-    public class ConditionWrapper<TAnswer> : IConditionAdaptor
+    public class ConditionEvaluator<TAnswer> : IConditionEvaluator
     {
         #region Properties
 
         /// <summary>
-        /// The IQuestion.
+        /// The Answer to the Question
         /// </summary>
-        private readonly IQuestion<TAnswer> Question;
+        public object Answer => _answer;
 
         /// <summary>
-        /// The ICondition.
+        /// The Condition.
         /// </summary>
         private readonly ICondition<TAnswer> Condition;
 
         /// <summary>
-        /// The Answer.
+        /// The boolean operator associated with the pair of Question and Condition.
         /// </summary>
-        protected TAnswer Answer { get; set; } = default;
+        public ConditionOperators Operator { get; }
 
         /// <summary>
-        /// The boolean operator associated with the pair of question and condition.
+        /// The Question.
         /// </summary>
-        public Operators Operator { get; set; }
+        private readonly IQuestion<TAnswer> Question;
+
+        private TAnswer _answer;
 
         #endregion
 
@@ -38,7 +41,10 @@
         /// <param name="question"></param>
         /// <param name="condition"></param>
         /// <param name="boolOp"></param>
-        public ConditionWrapper(IQuestion<TAnswer> question, ICondition<TAnswer> condition, Operators boolOp = Operators.And)
+        public ConditionEvaluator(
+            IQuestion<TAnswer> question,
+            ICondition<TAnswer> condition,
+            ConditionOperators boolOp = ConditionOperators.And)
         {
             Question = question;
             Condition = condition;
@@ -56,17 +62,8 @@
         /// <returns></returns>
         public bool Evaluate(IActor actor)
         {
-            Answer = actor.AsksFor(Question);
-            return Condition.Evaluate(Answer);
-        }
-
-        /// <summary>
-        /// Return the most recent Answer.
-        /// </summary>
-        /// <returns></returns>
-        public string GetAnswer()
-        {
-            return Answer?.ToString();
+            _answer = actor.AsksFor(Question);
+            return Condition.Evaluate(_answer);
         }
 
         /// <summary>
