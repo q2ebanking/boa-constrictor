@@ -31,10 +31,10 @@ Steps to set up a SpecFlow test project include:
 
 1. Install the [SpecFlow extension for Visual Studio](https://docs.specflow.org/projects/specflow/en/latest/visualstudio/visual-studio-installation.html).
 2. Create a new [SpecFlow project in Visual Studio](https://docs.specflow.org/projects/specflow/en/latest/Installation/Project-and-Item-Templates.html).
-3. Install the following NuGet packages for the project:
-   - [Boa.Constrictor](https://www.nuget.org/packages/Boa.Constrictor/)
-   - [SpecFlow](https://www.nuget.org/packages/SpecFlow/)
+3. Install the [Boa.Constrictor](https://www.nuget.org/packages/Boa.Constrictor/) NuGet package into the project.
 
+The project will need the [SpecFlow](https://www.nuget.org/packages/SpecFlow/) NuGet package,
+but Visual Studio should automatically add it when creating a SpecFlow project.
 You may need to add other NuGet packages like
 [FluentAssertions](https://www.nuget.org/packages/FluentAssertions/) as well.
 
@@ -100,6 +100,8 @@ namespace Boa.Constrictor.Example
   [Binding]
   public sealed class DuckDuckGoHooks : Steps
   {
+    private IActor Actor { get; set; }
+
     [BeforeScenario(Order = 1)]
     public void InitializeScreenplay()
     {
