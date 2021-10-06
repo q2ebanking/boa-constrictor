@@ -62,21 +62,33 @@ user-guides:
     children:
       - title: "Testing with NUnit"
         url: /user-guides/testing-with-nunit/
-#      - title: "Testing with SpecFlow"
+      - title: "Testing with SpecFlow"
+        url: /user-guides/testing-with-specflow/
 #      - title: "Testing with xUnit.net"
+#        url: /user-guides/testing-with-xunit-net/
 
 #  - title: Interactions
 #    children:
 #      - title: "Caching answers"
+#        url: /user-guides/caching-answers/
 #      - title: "Calling multiple REST APIs"
+#        url: /user-guides/calling-multiple-rest-apis/
 #      - title: "Calling Tasks safely"
+#        url: /user-guides/calling-tasks-safely/
 #      - title: "Waiting for answers"
+#        url: /user-guides/waiting-for-answers/
 #      - title: "Writing Actor extension methods"
+#        url: /user-guides/writing-actor-extension-methods/
 #      - title: "Writing custom Abilities"
+#        url: /user-guides/writing-custom-abilities/
 #      - title: "Writing custom Interactions"
+#        url: /user-guides/writing-custom-interactions/
       
 #  - title: Artifacts
 #    children:
 #      - title: "Dumping artifacts"
+#        url: /user-guides/dumping-artifacts/
 #      - title: "Generating test log reports"
+#        url: /user-guides/generating-test-log-reports/
 #      - title: "Logging messages"
+#        url: /user-guides/logging-messages/
