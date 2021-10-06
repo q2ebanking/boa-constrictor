@@ -30,7 +30,7 @@ In brief:
 .NET Core projects are typically recommended over .NET Framework projects.
 The project will need the [NUnit](https://www.nuget.org/packages/NUnit/)
 and [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) NuGet packages,
-but Visual Studio should automatically add it when creating a SpecFlow project.
+but Visual Studio should automatically add them when creating an NUnit project.
 You may need to add other NuGet packages like
 [FluentAssertions](https://www.nuget.org/packages/FluentAssertions/) as well.
 
@@ -115,7 +115,6 @@ It safely quits the browser for Web UI test cleanup:
       Actor.AttemptsTo(QuitWebDriver.ForBrowser());
     }
 ```
-
 
 
 ## A complete NUnit test class
