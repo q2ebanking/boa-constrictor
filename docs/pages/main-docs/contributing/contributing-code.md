@@ -214,6 +214,9 @@ To release a new package, maintainers must:
 6. Verify the GitHub Action to publish the package completes successfully.
 7. Close the milestone in GitHub.
 
+Please also note that the solution's `README.md` and `LICENSE.md`must be written in *pure* Markdown
+(with no HTML) because NuGet.org publishes their contents to the package's NuGet page.
+
 
 ## 12. Understanding Different Roles
 
