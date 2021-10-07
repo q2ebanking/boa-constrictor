@@ -33,6 +33,7 @@ Steps to set up a SpecFlow test project include:
 2. Create a new [SpecFlow project in Visual Studio](https://docs.specflow.org/projects/specflow/en/latest/Installation/Project-and-Item-Templates.html).
 3. Install the [Boa.Constrictor](https://www.nuget.org/packages/Boa.Constrictor/) NuGet package into the project.
 
+.NET Core projects are typically recommended over .NET Framework projects.
 The project will need the [SpecFlow](https://www.nuget.org/packages/SpecFlow/) NuGet package,
 but Visual Studio should automatically add it when creating a SpecFlow project.
 You may need to add other NuGet packages like

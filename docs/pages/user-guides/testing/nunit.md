@@ -25,14 +25,14 @@ Full instructions for project setup are given by [Part 1 of the tutorial]({{ "/t
 In brief:
 
 1. Create a new NUnit test project in Visual Studio.
-   - .NET Core is recommended.
-2. Install the following NuGet packages for the project:
-   - [Boa.Constrictor](https://www.nuget.org/packages/Boa.Constrictor/)
-   - [NUnit](https://www.nuget.org/packages/NUnit/)
-   - [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/)
+2. Install the [Boa.Constrictor](https://www.nuget.org/packages/Boa.Constrictor/) NuGet packages into the project.
 
-You may also need to add other NuGet packages like
-[FluentAssertions](https://www.nuget.org/packages/FluentAssertions/).
+.NET Core projects are typically recommended over .NET Framework projects.
+The project will need the [NUnit](https://www.nuget.org/packages/NUnit/)
+and [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) NuGet packages,
+but Visual Studio should automatically add them when creating an NUnit project.
+You may need to add other NuGet packages like
+[FluentAssertions](https://www.nuget.org/packages/FluentAssertions/) as well.
 
 
 ## NUnit test classes
@@ -54,7 +54,7 @@ namespace Boa.Constrictor.Example
 {
   public class ScreenplayWebUiTest
   {
-    private IActor Actor;
+    private IActor Actor { get; set; }
 
     // ...
   }
@@ -117,7 +117,6 @@ It safely quits the browser for Web UI test cleanup:
 ```
 
 
-
 ## A complete NUnit test class
 
 The complete code for `ScreenplayWebUiTest` is below:
@@ -134,7 +133,7 @@ namespace Boa.Constrictor.Example
 {
   public class ScreenplayWebUiTest
   {
-    private IActor Actor;
+    private IActor Actor { get; set; }
 
     [SetUp]
     public void InitializeScreenplay()
