@@ -45,4 +45,7 @@ jobs:
           NUGET_SOURCE: https://api.nuget.org
 
           # Flag to toggle pushing symbols along with nuget package to the server, disabled by default
-          INCLUDE_SYMBOLS: true
+          # (The symbols package should no longer be needed because the project is configured with DebugType = "embedded")
+          # (Furthermore, including a NuGet package README breaks in .NET 5 when a symbols package is generated)
+          # (This GitHub Action will yield a failure when publishing a symbols package, too, even though the publishing succeeds)
+          INCLUDE_SYMBOLS: false

@@ -1,9 +1,7 @@
 
 ---
 
-<p align="center">
-<img src="logos/title/no-margin/png/logo-title-black-400x64.png" alt="Boa Constrictor Logo"/>
-</p>
+![Boa Constrictor Logo](https://raw.githubusercontent.com/q2ebanking/boa-constrictor/main/logos/title/no-margin/png/logo-title-black-400x64.png)
 
 ---
 
@@ -19,9 +17,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+(None.)
+
+
+## [1.4.1] - 2021-10-06
+
 ### Added
 
+- Added README to NuGet package
 - Added user guide: "Testing with xUnit.net"
+
+### Changed
+
+- Replaced symbols package with embedded debugging
 
 
 ## [1.4.0] - 2021-10-06

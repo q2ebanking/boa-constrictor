@@ -7,15 +7,15 @@
     <Company>PrecisionLender, a Q2 Company</Company>
     <Title>Boa Constrictor</Title>
     <Product>Boa Constrictor</Product>
-    <Description>Boa Constrictor is a C# implementation of the Screenplay Pattern that helps you make better interactions for better automation! Its primary use case is Web UI and REST API test automation.</Description>
+    <Description>Boa Constrictor is a C# implementation of the Screenplay Pattern that helps you make better interactions for better automation!</Description>
     <Copyright>Copyright © 2020-2021 Q2 Holdings Inc.</Copyright>
     <RepositoryUrl>https://github.com/q2ebanking/boa-constrictor</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <DebugType>embedded</DebugType>
     <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>Please read https://github.com/q2ebanking/boa-constrictor/blob/main/CHANGELOG.md for full release notes.</PackageReleaseNotes>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
@@ -26,8 +26,12 @@
     <PackageReference Include="RestSharp" Version="106.12.0" />
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <None Include="../logos/symbol/no-margin/png/logo-symbol-black-120x148.png" Pack="true" PackagePath="$(PackageIcon)" />
     <None Include="../LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)" />
+    <None Include="../README.md" Pack="true" PackagePath="$(PackageReadmeFile)" />
   </ItemGroup>
 
 </Project>
