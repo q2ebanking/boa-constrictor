@@ -5,7 +5,7 @@ using System;
 namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
-    /// Abstract class that makes it easier to write Questions that use the BrowseTheWeb ability.
+    /// Abstract class that makes it easier to write Questions that use the BrowseTheWeb Ability.
     /// </summary>
     /// <typeparam name="TAnswer">The answer type.</typeparam>
     public abstract class AbstractWebQuestion<TAnswer> : ICacheableQuestion<TAnswer>
@@ -16,7 +16,7 @@ namespace Boa.Constrictor.WebDriver
         /// Asks the Question and returns the answer.
         /// </summary>
         /// <param name="actor">The screenplay actor.</param>
-        /// <param name="driver">The WebDriver from the BrowseTheWeb ability.</param>
+        /// <param name="driver">The WebDriver from the BrowseTheWeb Ability.</param>
         /// <returns></returns>
         public abstract TAnswer RequestAs(IActor actor, IWebDriver driver);
 
@@ -26,7 +26,7 @@ namespace Boa.Constrictor.WebDriver
 
         /// <summary>
         /// Asks the Question and returns the answer.
-        /// Internally calls RequestAs with the WebDriver from the BrowseTheWeb ability.
+        /// Internally calls RequestAs with the WebDriver from the BrowseTheWeb Ability.
         /// </summary>
         /// <param name="actor">The screenplay actor.</param>
         /// <returns></returns>

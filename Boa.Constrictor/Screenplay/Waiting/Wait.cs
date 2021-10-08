@@ -8,7 +8,7 @@
     /// Additional Questions and expected conditions can be added using boolean operators (and, or).
     /// Conditions are evaluated sequentially in 'and' groups, separate by 'or'.
     /// 
-    /// If the actor has the SetTimeouts ability, then the ability will be used to calculate timeouts.
+    /// If the actor has the SetTimeouts Ability, then the Ability will be used to calculate timeouts.
     /// Otherwise, DefaultTimeout will be used.
     /// </summary>
     public class Wait : AbstractWait, ITask

@@ -5,8 +5,8 @@ namespace Boa.Constrictor.RestSharp
 {
     /// <summary>
     /// Calls the REST API given by the request and returns the array of bytes that make up the file data in the response.
-    /// Requires the applicable IRestSharpAbility ability.
-    /// Automatically dumps the downloaded file if the ability has a dumper.
+    /// Requires the applicable IRestSharpAbility Ability.
+    /// Automatically dumps the downloaded file if the Ability has a dumper.
     /// </summary>
     /// <typeparam name="TAbility">The RestSharp Ability type.</typeparam>
     public class RestApiDownload<TAbility> : AbstractRestQuestion<TAbility, byte[]>

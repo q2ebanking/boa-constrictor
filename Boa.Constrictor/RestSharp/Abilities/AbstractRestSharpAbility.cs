@@ -5,19 +5,19 @@ using System.Net;
 namespace Boa.Constrictor.RestSharp
 {
     /// <summary>
-    /// Abstract parent class for abilities that enable the actor to make REST API calls using RestSharp.
+    /// Abstract parent class for Abilities that enable the actor to make REST API calls using RestSharp.
     /// It constructs and holds one RestSharp client for the given base URL.
-    /// This ability also holds dumpers for requests/responses and downloaded files.
+    /// This Ability also holds dumpers for requests/responses and downloaded files.
     /// If dumpers are null, then no dumping is performed.
-    /// This ability also handles adding and retrieving cookies.
+    /// This Ability also handles adding and retrieving cookies.
     /// 
     /// To use more than one RestSharp client, create subclasses of this abstract class,
     /// or implement the IRestSharpAbility interface.
     /// Do not make subclasses of CallRestApi, or else static builders will break.
     /// The subclass will bear a unique type.
-    /// Then, the Actor can use that subclass as a new type of ability for lookup.
-    /// RestSharp interactions without type generics use the CallRestApi ability,
-    /// while interactions with type generics will use the given ability by type.
+    /// Then, the Actor can use that subclass as a new type of Ability for lookup.
+    /// RestSharp interactions without type generics use the CallRestApi Ability,
+    /// while interactions with type generics will use the given Ability by type.
     /// </summary>
     public class AbstractRestSharpAbility : IRestSharpAbility
     {
@@ -109,7 +109,7 @@ namespace Boa.Constrictor.RestSharp
         public Cookie GetCookie(string name) => Client.CookieContainer.GetCookies(Client.BaseUrl)[name];
 
         /// <summary>
-        /// Returns a description of this ability.
+        /// Returns a description of this Ability.
         /// </summary>
         /// <returns></returns>
         public override string ToString() => $"call REST API at: {Client.BaseUrl}";

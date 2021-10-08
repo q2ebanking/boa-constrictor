@@ -78,7 +78,7 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         {
             new Actor().Invoking(x => x.Using<AbilityA>()).Should()
                 .Throw<ScreenplayException>()
-                .WithMessage($"Screenplay actor '{Actor.DefaultName}' does not have the ability 'Boa.Constrictor.UnitTests.Screenplay.AbilityA'");
+                .WithMessage($"Screenplay actor '{Actor.DefaultName}' does not have the Ability 'Boa.Constrictor.UnitTests.Screenplay.AbilityA'");
         }
 
         [Test]

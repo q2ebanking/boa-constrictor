@@ -10,7 +10,7 @@ namespace Boa.Constrictor.Screenplay
     /// The desired state is expressed using a Question and an expected condition or several pairs of Questions and conditions.
     /// If the desired state does not happen within the time limit, then an exception is thrown.
     /// 
-    /// If the actor has the SetTimeouts ability, then the ability will be used to calculate timeouts.
+    /// If the actor has the SetTimeouts Ability, then the Ability will be used to calculate timeouts.
     /// Otherwise, DefaultTimeout will be used.
     /// </summary>
     public abstract class AbstractWait
@@ -20,7 +20,7 @@ namespace Boa.Constrictor.Screenplay
         /// <summary>
         /// The default timeout value.
         /// Use this if an override timeout value is not provided,
-        /// And if the actor does not have the SetTimeouts ability.
+        /// And if the actor does not have the SetTimeouts Ability.
         /// </summary>
         public const int DefaultTimeout = 30;
 
@@ -78,7 +78,7 @@ namespace Boa.Constrictor.Screenplay
         #region Protected Methods
 
         /// <summary>
-        /// If the actor has the SetTimeouts ability, then the ability will be used to calculate timeouts.
+        /// If the actor has the SetTimeouts Ability, then the Ability will be used to calculate timeouts.
         /// Otherwise, DefaultTimeout will be used.
         /// </summary>
         /// <param name="actor"></param>

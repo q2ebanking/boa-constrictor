@@ -40,7 +40,7 @@ namespace Boa.Constrictor.WebDriver
 
         /// <summary>
         /// Asks the Question and returns the answer.
-        /// Internally calls RequestAs with the WebDriver from the BrowseTheWeb ability.
+        /// Internally calls RequestAs with the WebDriver from the BrowseTheWeb Ability.
         /// Internally retries the interaction if StaleElementReferenceException happens.
         /// </summary>
         /// <param name="actor">The screenplay actor.</param>

@@ -35,7 +35,7 @@ namespace Boa.Constrictor.WebDriver
         /// Gets the latest window handle and switches to it.
         /// </summary>
         /// <param name="actor">The Screenplay actor.</param>
-        /// <param name="driver">The WebDriver from the BrowseTheWeb ability.</param>
+        /// <param name="driver">The WebDriver from the BrowseTheWeb Ability.</param>
         public override void PerformAs(IActor actor, IWebDriver driver)
         {
             string handle = actor.AsksFor(WindowHandle.Latest());

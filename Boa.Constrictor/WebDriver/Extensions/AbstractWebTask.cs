@@ -5,7 +5,7 @@ using System;
 namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
-    /// Abstract class that makes it easier to write Tasks that use the BrowseTheWeb ability.
+    /// Abstract class that makes it easier to write Tasks that use the BrowseTheWeb Ability.
     /// </summary>
     public abstract class AbstractWebTask : ITask
     {
@@ -15,7 +15,7 @@ namespace Boa.Constrictor.WebDriver
         /// Performs the Task.
         /// </summary>
         /// <param name="actor">The actor.</param>
-        /// <param name="driver">The WebDriver from the BrowseTheWeb ability.</param>
+        /// <param name="driver">The WebDriver from the BrowseTheWeb Ability.</param>
         public abstract void PerformAs(IActor actor, IWebDriver driver);
 
         #endregion
@@ -24,7 +24,7 @@ namespace Boa.Constrictor.WebDriver
 
         /// <summary>
         /// Performs the Task.
-        /// Internally calls PerformAs with the WebDriver from the BrowseTheWeb ability.
+        /// Internally calls PerformAs with the WebDriver from the BrowseTheWeb Ability.
         /// </summary>
         /// <param name="actor">The actor.</param>
         public virtual void PerformAs(IActor actor) => PerformAs(actor, actor.Using<BrowseTheWeb>().WebDriver);

@@ -9,7 +9,7 @@ namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
     /// Gets one of the WebDriver window handles.
-    /// Getting the latest handle requires the SetTimeouts ability.
+    /// Getting the latest handle requires the SetTimeouts Ability.
     /// </summary>
     public class WindowHandle : AbstractWebQuestion<string>
     {
@@ -102,7 +102,7 @@ namespace Boa.Constrictor.WebDriver
         /// <returns></returns>
         private string GetLatestHandle(IActor actor)
         {
-            // Get abilities
+            // Get Abilities
             BrowseTheWeb browseAbility = actor.Using<BrowseTheWeb>();
             SetTimeouts timeoutAbility = actor.Using<SetTimeouts>();
 

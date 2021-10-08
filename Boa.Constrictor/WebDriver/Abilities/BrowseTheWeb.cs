@@ -54,7 +54,7 @@ namespace Boa.Constrictor.WebDriver
         #region Methods
 
         /// <summary>
-        /// Returns a description of this ability.
+        /// Returns a description of this Ability.
         /// </summary>
         /// <returns></returns>
         public override string ToString() => $"browse the Web with {WebDriver}";

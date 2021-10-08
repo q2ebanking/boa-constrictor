@@ -4,7 +4,7 @@ namespace Boa.Constrictor.Safety
 {
     /// <summary>
     /// Runs Tasks safely using SafeActions.
-    /// Actor must have the RunSafeActions ability.
+    /// Actor must have the RunSafeActions Ability.
     /// </summary>
     public class Safely : ITask
     {
