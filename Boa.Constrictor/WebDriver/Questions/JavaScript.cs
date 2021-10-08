@@ -51,7 +51,7 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the question without a target element.
+        /// Constructs the Question without a target element.
         /// </summary>
         /// <param name="script">The JavaScript code to execute.</param>
         /// <param name="args">Arguments for the JavaScript code to execute.</param>
@@ -60,7 +60,7 @@ namespace Boa.Constrictor.WebDriver
             new JavaScript<TValue>(null, script, args);
 
         /// <summary>
-        /// Constructs the question with a target element.
+        /// Constructs the Question with a target element.
         /// </summary>
         /// <param name="locator">The Web element locator.</param>
         /// <param name="script">The JavaScript code to execute.</param>
@@ -147,7 +147,7 @@ namespace Boa.Constrictor.WebDriver
         }
 
         /// <summary>
-        /// Returns a description of the question.
+        /// Returns a description of the Question.
         /// The script and the arguments will be printed during execution.
         /// </summary>
         /// <returns></returns>
@@ -162,7 +162,7 @@ namespace Boa.Constrictor.WebDriver
     public static class JavaScript
     {
         /// <summary>
-        /// Constructs a JavaScript question.
+        /// Constructs a JavaScript Question.
         /// This variant allows "JavaScript.InBrowser" calls to avoid generic type specification.
         /// </summary>
         /// <param name="script">The JavaScript code to execute.</param>
@@ -172,7 +172,7 @@ namespace Boa.Constrictor.WebDriver
             JavaScript<object>.OnPage(script, args);
 
         /// <summary>
-        /// Constructs a JavaScript question.
+        /// Constructs a JavaScript Question.
         /// This variant allows "JavaScript.On" calls to avoid generic type specification.
         /// </summary>
         /// <param name="locator">The Web element locator.</param>

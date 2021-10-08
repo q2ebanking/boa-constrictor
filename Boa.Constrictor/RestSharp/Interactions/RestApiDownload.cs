@@ -25,7 +25,7 @@ namespace Boa.Constrictor.RestSharp
 
         /// <summary>
         /// Internal constructor.
-        /// (Use the Rest class to construct the question.)
+        /// (Use the Rest class to construct the Question.)
         /// </summary>
         /// <param name="request">The REST request to call.</param>
         /// <param name="fileExtension">The extension for the file to download.</param>
@@ -52,7 +52,7 @@ namespace Boa.Constrictor.RestSharp
         public override byte[] RequestAs(IActor actor) => CallDownload(actor, FileExtension);
 
         /// <summary>
-        /// Returns a description of the question.
+        /// Returns a description of the Question.
         /// </summary>
         /// <returns></returns>
         public override string ToString() => $"REST API download using {typeof(TAbility)}: {Request.Method} '{Request.Resource}'";

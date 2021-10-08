@@ -17,7 +17,7 @@ namespace Boa.Constrictor.RestSharp
 
         /// <summary>
         /// Internal constructor.
-        /// (Use the Rest class to construct the question.)
+        /// (Use the Rest class to construct the Question.)
         /// </summary>
         /// <param name="request">The REST request to call.</param>
         internal RestApiCall(IRestRequest request) : base(request) { }
@@ -58,7 +58,7 @@ namespace Boa.Constrictor.RestSharp
 
         /// <summary>
         /// Internal constructor.
-        /// (Use the Rest class to construct the question.)
+        /// (Use the Rest class to construct the Question.)
         /// </summary>
         /// <param name="request">The REST request to call.</param>
         internal RestApiCall(IRestRequest request) : base(request) { }

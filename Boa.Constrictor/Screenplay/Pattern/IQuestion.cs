@@ -8,7 +8,7 @@
     public interface IQuestion<TAnswer> : IInteraction
     {
         /// <summary>
-        /// Asks the question and returns an answer.
+        /// Asks the Question and returns an answer.
         /// </summary>
         /// <param name="actor">The actor.</param>
         /// <returns></returns>

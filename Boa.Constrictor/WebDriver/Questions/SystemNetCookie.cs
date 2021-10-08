@@ -43,7 +43,7 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the question.
+        /// Constructs the Question.
         /// </summary>
         /// <param name="cookieName">The name of the desired cookie.</param>
         /// <returns></returns>
@@ -111,14 +111,14 @@ namespace Boa.Constrictor.WebDriver
             Expiration == cookie.Expiration;
 
         /// <summary>
-        /// Returns a description of the question.
+        /// Returns a description of the Question.
         /// The script and the arguments will be printed during execution.
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode() => HashCode.Combine(CookieName, Expiration);
 
         /// <summary>
-        /// Returns a description of the question.
+        /// Returns a description of the Question.
         /// </summary>
         /// <returns></returns>
         public override string ToString() => $"System.Net.Cookie named '{CookieName}'";

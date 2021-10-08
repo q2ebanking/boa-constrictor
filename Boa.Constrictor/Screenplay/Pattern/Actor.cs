@@ -6,7 +6,7 @@ namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// A screenplay actor that implements IActor.
-    /// An actor can perform Tasks and ask questions based on his/her abilities.
+    /// An actor can perform Tasks and ask Questions based on his/her abilities.
     /// </summary>
     public class Actor : IActor
     {
@@ -59,11 +59,11 @@ namespace Boa.Constrictor.Screenplay
         #region IActor Methods
 
         /// <summary>
-        /// Asks a question and returns the answer value.
-        /// The actor must have the abilities needed by the question.
+        /// Asks a Question and returns the answer value.
+        /// The actor must have the abilities needed by the Question.
         /// </summary>
         /// <typeparam name="TAnswer">The answer type.</typeparam>
-        /// <param name="question">The question to ask.</param>
+        /// <param name="question">The Question to ask.</param>
         /// <returns></returns>
         public TAnswer AsksFor<TAnswer>(IQuestion<TAnswer> question)
         {
@@ -77,7 +77,7 @@ namespace Boa.Constrictor.Screenplay
         /// Alias for "AsksFor".
         /// </summary>
         /// <typeparam name="TAnswer">The answer type.</typeparam>
-        /// <param name="question">The question to ask.</param>
+        /// <param name="question">The Question to ask.</param>
         /// <returns></returns>
         public TAnswer AskingFor<TAnswer>(IQuestion<TAnswer> question)
         {
@@ -108,11 +108,11 @@ namespace Boa.Constrictor.Screenplay
         }
 
         /// <summary>
-        /// Asks a question and returns the answer value.
-        /// The actor must have the abilities needed by the question.
+        /// Asks a Question and returns the answer value.
+        /// The actor must have the abilities needed by the Question.
         /// </summary>
         /// <typeparam name="TAnswer">The answer type.</typeparam>
-        /// <param name="question">The question to ask.</param>
+        /// <param name="question">The Question to ask.</param>
         public TAnswer Calls<TAnswer>(IQuestion<TAnswer> question)
         {
             Logger.Info($"{this} calls {question}");

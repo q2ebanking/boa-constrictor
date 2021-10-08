@@ -23,7 +23,7 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the question.
+        /// Constructs the Question.
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
         /// <param name="named">The attribute name.</param>
@@ -66,7 +66,7 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Constructs a HtmlAttribute question for the "id" attribute.
+        /// Constructs a HtmlAttribute Question for the "id" attribute.
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
         /// <returns></returns>
@@ -92,7 +92,7 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Constructs a HtmlAttribute question for the "value" attribute.
+        /// Constructs a HtmlAttribute Question for the "value" attribute.
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
         /// <returns></returns>

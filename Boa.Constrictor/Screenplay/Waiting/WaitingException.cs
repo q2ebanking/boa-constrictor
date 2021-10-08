@@ -4,7 +4,7 @@ namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// This exception should be thrown when the Wait interaction fails to meet its expected condition.
-    /// It provides attributes for the values, the question, and the condition.
+    /// It provides attributes for the values, the Question, and the condition.
     /// </summary>
     public class WaitingException : ScreenplayException
     {
@@ -51,7 +51,7 @@ namespace Boa.Constrictor.Screenplay
 
     /// <summary>
     /// This exception should be thrown when the Wait interaction fails to meet its expected condition.
-    /// It provides attributes for the actual value, the question, and the condition.
+    /// It provides attributes for the actual value, the Question, and the condition.
     /// </summary>
     /// <typeparam name="TAnswer"></typeparam>
     public class WaitingException<TAnswer> : WaitingException

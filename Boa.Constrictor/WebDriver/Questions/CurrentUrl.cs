@@ -21,7 +21,7 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the question.
+        /// Constructs the Question.
         /// </summary>
         /// <returns></returns>
         public static CurrentUrl FromBrowser() => new CurrentUrl();
@@ -39,7 +39,7 @@ namespace Boa.Constrictor.WebDriver
         public override string RequestAs(IActor actor, IWebDriver driver) => driver.Url;
 
         /// <summary>
-        /// Returns a description of the question.
+        /// Returns a description of the Question.
         /// </summary>
         /// <returns></returns>
         public override string ToString() => $"Current browser URL";

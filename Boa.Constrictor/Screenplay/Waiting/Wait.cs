@@ -2,10 +2,10 @@
 {
     /// <summary>
     /// Waits for a desired state.
-    /// The desired state is expressed using pairs of questions and expected conditions.
+    /// The desired state is expressed using pairs of Questions and expected conditions.
     /// If the desired state does not happen within the time limit, then an exception is thrown.
     /// 
-    /// Additional questions and expected conditions can be added using boolean operators (and, or).
+    /// Additional Questions and expected conditions can be added using boolean operators (and, or).
     /// Conditions are evaluated sequentially in 'and' groups, separate by 'or'.
     /// 
     /// If the actor has the SetTimeouts ability, then the ability will be used to calculate timeouts.
@@ -27,9 +27,9 @@
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the question.
+        /// Constructs the Question.
         /// </summary>
-        /// <param name="question">The question upon whose answer to wait.</param>
+        /// <param name="question">The Question upon whose answer to wait.</param>
         /// <param name="condition">The expected condition for which to wait.</param>
         /// <returns></returns>
         public static Wait Until<TAnswer>(IQuestion<TAnswer> question, ICondition<TAnswer> condition)
@@ -39,7 +39,7 @@
         }
 
         /// <summary>
-        /// Add a question and condition pair to the list of conditions to be evaluated with an And operator.
+        /// Add a Question and condition pair to the list of conditions to be evaluated with an And operator.
         /// </summary>
         /// <typeparam name="TAnswer"></typeparam>
         /// <param name="question"></param>
@@ -53,7 +53,7 @@
         }
 
         /// <summary>
-        /// Add a question and condition pair to the list of conditions to be evaluated with an Or operator.
+        /// Add a Question and condition pair to the list of conditions to be evaluated with an Or operator.
         /// </summary>
         /// <typeparam name="TAnswer"></typeparam>
         /// <param name="question"></param>
@@ -105,7 +105,7 @@
         #region Methods
 
         /// <summary>
-        /// Waits until the question's answer value meets the condition.
+        /// Waits until the Question's answer value meets the condition.
         /// If the expected condition is not met within the time limit, then an exception is thrown.
         /// </summary>
         /// <param name="actor">The actor.</param>

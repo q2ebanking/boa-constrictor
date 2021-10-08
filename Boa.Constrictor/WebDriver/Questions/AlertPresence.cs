@@ -21,7 +21,7 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the question.
+        /// Constructs the Question.
         /// </summary>
         /// <returns></returns>
         public static AlertPresence InBrowser() => new AlertPresence();
@@ -52,7 +52,7 @@ namespace Boa.Constrictor.WebDriver
         }
 
         /// <summary>
-        /// Returns a description of the question.
+        /// Returns a description of the Question.
         /// </summary>
         /// <returns></returns>
         public override string ToString() => "Browser alert presence";
