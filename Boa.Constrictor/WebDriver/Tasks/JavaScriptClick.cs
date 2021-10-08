@@ -38,7 +38,7 @@ namespace Boa.Constrictor.WebDriver
         /// Clicks the web element.
         /// Use browser actions instead of direct click (due to IE).
         /// </summary>
-        /// <param name="actor">The screenplay actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         public override void PerformAs(IActor actor, IWebDriver driver) =>
             actor.Calls(JavaScript.On(Locator, "arguments[0].click();"));

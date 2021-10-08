@@ -43,7 +43,7 @@ namespace Boa.Constrictor.WebDriver
         /// Furthermore, if StaleElementReferenceException happens, this returns false.
         /// https://docs.seleniumhq.org/exceptions/stale_element_reference.jsp
         /// </summary>
-        /// <param name="actor">The actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         /// <returns></returns>
         public override bool RequestAs(IActor actor, IWebDriver driver)

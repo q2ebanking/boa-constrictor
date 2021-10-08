@@ -37,7 +37,7 @@ namespace Boa.Constrictor.WebDriver
         /// Gets the total number of elements found on the page by the locator.
         /// Don't wait because count should be immediate.
         /// </summary>
-        /// <param name="actor">The actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         /// <returns></returns>
         public override int RequestAs(IActor actor, IWebDriver driver) =>

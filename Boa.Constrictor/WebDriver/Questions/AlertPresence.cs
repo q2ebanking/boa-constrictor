@@ -34,7 +34,7 @@ namespace Boa.Constrictor.WebDriver
         /// Gets the presence of an alert in the browser.
         /// Returns true if an alert is there; false otherwise.
         /// </summary>
-        /// <param name="actor">The actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         /// <returns></returns>
         public override bool RequestAs(IActor actor, IWebDriver driver)

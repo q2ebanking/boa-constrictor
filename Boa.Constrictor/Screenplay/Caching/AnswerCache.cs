@@ -47,7 +47,7 @@ namespace Boa.Constrictor.Screenplay
         /// </summary>
         /// <typeparam name="TAnswer">The answer type.</typeparam>
         /// <param name="question">The Question.</param>
-        /// <param name="actor">The Actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <returns></returns>
         public TAnswer Get<TAnswer>(ICacheableQuestion<TAnswer> question, IActor actor)
         {

@@ -1,7 +1,7 @@
 ﻿namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
-    /// Enables the actor to use default timeout values.
+    /// Enables the Actor to use default timeout values.
     /// The "standard" timeout is the amount of time to wait by default.
     /// This may be overridden by individual calls.
     /// The "extra" timeout will be added to every timeout, even when the standard timeout is overridden.
@@ -57,7 +57,7 @@
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the ability.
+        /// Constructs the Ability.
         /// </summary>
         /// <param name="standardSeconds">The standard timeout value in seconds.</param>
         /// <param name="extraSeconds">The extra timeout value in seconds.</param>
@@ -66,7 +66,7 @@
             new SetTimeouts(standardSeconds, extraSeconds);
 
         /// <summary>
-        /// Constructs the ability using default values.
+        /// Constructs the Ability using default values.
         /// </summary>
         /// <returns></returns>
         public static SetTimeouts ToDefaultValues() =>
@@ -87,7 +87,7 @@
             (overrideSeconds ?? StandardSeconds) + ExtraSeconds;
 
         /// <summary>
-        /// Returns a description of this ability.
+        /// Returns a description of this Ability.
         /// </summary>
         /// <returns></returns>
         public override string ToString() =>

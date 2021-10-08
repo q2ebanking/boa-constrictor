@@ -49,7 +49,7 @@ namespace Boa.Constrictor.WebDriver
         /// Waits for the cookie to be added to the browser if it is not there.
         /// Internally calls Wait for waiting.
         /// </summary>
-        /// <param name="actor">The actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         /// <returns></returns>
         public override Cookie RequestAs(IActor actor, IWebDriver driver)

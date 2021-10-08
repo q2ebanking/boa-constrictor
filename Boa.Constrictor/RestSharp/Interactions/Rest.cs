@@ -3,7 +3,7 @@
 namespace Boa.Constrictor.RestSharp
 {
     /// <summary>
-    /// Provides fluent builder methods for RestSharp interactions that use the default RestSharp ability.
+    /// Provides fluent builder methods for RestSharp interactions that use the default RestSharp Ability.
     /// </summary>
     public static class Rest
     {
@@ -38,7 +38,7 @@ namespace Boa.Constrictor.RestSharp
     }
 
     /// <summary>
-    /// Provides fluent builder methods for RestSharp interactions that use type-specific RestSharp abilities.
+    /// Provides fluent builder methods for RestSharp interactions that use type-specific RestSharp Abilities.
     /// </summary>
     public static class Rest<TAbility>
         where TAbility : IRestSharpAbility

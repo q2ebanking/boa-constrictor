@@ -23,7 +23,7 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         {
             Actor actor = new Actor();
             actor.Name.Should().Be(Actor.DefaultName);
-            actor.ToString().Should().Be($"Screenplay actor '{Actor.DefaultName}'");
+            actor.ToString().Should().Be($"Screenplay Actor '{Actor.DefaultName}'");
         }
 
         [Test]
@@ -31,7 +31,7 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         {
             Actor actor = new Actor("Joe");
             actor.Name.Should().Be("Joe");
-            actor.ToString().Should().Be("Screenplay actor 'Joe'");
+            actor.ToString().Should().Be("Screenplay Actor 'Joe'");
         }
 
         [Test]
@@ -78,7 +78,7 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         {
             new Actor().Invoking(x => x.Using<AbilityA>()).Should()
                 .Throw<ScreenplayException>()
-                .WithMessage($"Screenplay actor '{Actor.DefaultName}' does not have the ability 'Boa.Constrictor.UnitTests.Screenplay.AbilityA'");
+                .WithMessage($"Screenplay Actor '{Actor.DefaultName}' does not have the Ability 'Boa.Constrictor.UnitTests.Screenplay.AbilityA'");
         }
 
         [Test]

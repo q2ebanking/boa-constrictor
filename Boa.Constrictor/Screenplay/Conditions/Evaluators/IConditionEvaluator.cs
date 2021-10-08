@@ -18,7 +18,7 @@
         /// <summary>
         /// Evaluate the Condition.
         /// </summary>
-        /// <param name="actor"></param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <returns></returns>
         bool Evaluate(IActor actor);
 

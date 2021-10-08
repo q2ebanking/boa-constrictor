@@ -14,7 +14,7 @@ namespace Boa.Constrictor.WebDriver
         /// <summary>
         /// Finds all Web elements on the page matching the provided locator and gets a value from each.
         /// </summary>
-        /// <param name="actor">The Screenplay actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The Selenium web driver.</param>
         /// <param name="locator">Locator used to find Web elements.</param>
         /// <param name="getValue">The method used to obtain the desired value from each Web element.</param>

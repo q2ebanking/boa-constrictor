@@ -20,7 +20,7 @@
         private CacheAnswers(AnswerCache cache) => Cache = cache;
 
         /// <summary>
-        /// Builder method for this ability.
+        /// Builder method for this Ability.
         /// </summary>
         /// <param name="cache">The answer cache.</param>
         /// <returns></returns>

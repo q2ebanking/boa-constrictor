@@ -97,7 +97,7 @@ namespace Boa.Constrictor.WebDriver
         /// <summary>
         /// Scrolls directly to an element using JavaScript.
         /// </summary>
-        /// <param name="actor">The screenplay actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         public override void PerformAs(IActor actor, IWebDriver driver)
         {
