@@ -22,7 +22,7 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the task object.
+        /// Constructs the Task object.
         /// </summary>
         /// <returns></returns>
         public static QuitWebDriver ForBrowser() => new QuitWebDriver();
@@ -41,7 +41,7 @@ namespace Boa.Constrictor.WebDriver
         public override void PerformAs(IActor actor, IWebDriver driver) => driver.Quit();
 
         /// <summary>
-        /// Returns a description of the task.
+        /// Returns a description of the Task.
         /// </summary>
         /// <returns></returns>
         public override string ToString() => "quit the WebDriver";

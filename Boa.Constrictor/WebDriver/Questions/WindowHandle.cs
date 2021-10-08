@@ -60,32 +60,32 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the question to get the first handle.
+        /// Constructs the Question to get the first handle.
         /// </summary>
         /// <returns></returns>
         public static WindowHandle First() => new WindowHandle(Index_First);
 
         /// <summary>
-        /// Constructs the question to get the last handle.
+        /// Constructs the Question to get the last handle.
         /// </summary>
         /// <returns></returns>
         public static WindowHandle Last() => new WindowHandle(Index_Last);
 
         /// <summary>
-        /// Constructs the question to get the current handle.
+        /// Constructs the Question to get the current handle.
         /// </summary>
         /// <returns></returns>
         public static WindowHandle Current() => new WindowHandle(Index_Current);
 
         /// <summary>
-        /// Constructs the question to get the latest handle.
+        /// Constructs the Question to get the latest handle.
         /// If more than one handle are new, navigates to the first one in the list.
         /// </summary>
         /// <returns></returns>
         public static WindowHandle Latest() => new WindowHandle(Index_Latest);
 
         /// <summary>
-        /// Constructs the question to get the handle at the given index.
+        /// Constructs the Question to get the handle at the given index.
         /// </summary>
         /// <param name="index">The index of the desired window handle.</param>
         /// <returns></returns>
@@ -176,7 +176,7 @@ namespace Boa.Constrictor.WebDriver
         public override bool Equals(object obj) => obj is WindowHandle handle && Index == handle.Index;
 
         /// <summary>
-        /// Returns a description of the question.
+        /// Returns a description of the Question.
         /// The script and the arguments will be printed during execution.
         /// </summary>
         /// <returns></returns>

@@ -7,7 +7,7 @@ namespace Boa.Constrictor.UnitTests.Screenplay
 {
     /// <summary>
     /// These tests for WaitingExtensions are very rudimentary.
-    /// They simply verify if exceptions are thrown when questions do and do not satisfy the condition for waiting.
+    /// They simply verify if exceptions are thrown when Questions do and do not satisfy the condition for waiting.
     /// </summary>
     [TestFixture]
     public class WaitingExtensionsTest
@@ -41,7 +41,7 @@ namespace Boa.Constrictor.UnitTests.Screenplay
             MockCondition.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(true);
 
             Actor.WaitsUntil(MockQuestion.Object, MockCondition.Object, timeout: 0)
-                .Should().Be(1, because: "waiting should return the question's final answer");
+                .Should().Be(1, because: "waiting should return the Question's final answer");
         }
 
         [Test]
@@ -55,9 +55,9 @@ namespace Boa.Constrictor.UnitTests.Screenplay
             MockCondition.Setup(x => x.Evaluate(It.Is<int>(v => v >= limit))).Returns(true);
 
             Actor.WaitsUntil(MockQuestion.Object, MockCondition.Object, timeout: 1)
-                .Should().Be(limit, because: "waiting should return the question's final answer");
+                .Should().Be(limit, because: "waiting should return the Question's final answer");
 
-            incrementer.Should().Be(limit, because: $"the question should be called {limit} times");
+            incrementer.Should().Be(limit, because: $"the Question should be called {limit} times");
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace Boa.Constrictor.UnitTests.Screenplay
             MockCondition.Setup(x => x.Evaluate(It.IsAny<int>())).Returns(false);
 
             Actor.Invoking(actor => actor.WaitsUntil(MockQuestion.Object, MockCondition.Object, timeout: 0))
-                .Should().Throw<WaitingException<int>>(because: "the question should not satisfy the condition");
+                .Should().Throw<WaitingException<int>>(because: "the Question should not satisfy the condition");
         }
 
         #endregion

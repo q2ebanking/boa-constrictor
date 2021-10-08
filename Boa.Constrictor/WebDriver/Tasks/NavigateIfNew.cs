@@ -6,7 +6,7 @@ namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
     /// Sometimes, the browser is already at the desired page, and it would be wasteful to reload.
-    /// This task will navigate the browser to a new URL only if the browser is not already acceptable.
+    /// This Task will navigate the browser to a new URL only if the browser is not already acceptable.
     /// A regex for acceptable URLs is used because there could be more than one acceptable URL.
     /// By default, alerts are automatically accepted, but that can be overridden.
     /// </summary>
@@ -51,7 +51,7 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the task object.
+        /// Constructs the Task object.
         /// </summary>
         /// <param name="url">The target URL.</param>
         /// <param name="ifNot">The regex for acceptable URLs. If null, use the target URL.</param>
@@ -60,7 +60,7 @@ namespace Boa.Constrictor.WebDriver
             new NavigateIfNew(url, ifNot);
 
         /// <summary>
-        /// Sets the task to forcibly accept any alerts that appear.
+        /// Sets the Task to forcibly accept any alerts that appear.
         /// </summary>
         /// <param name="accept">Flag indicating if alerts should be accepted.</param>
         /// <returns></returns>
@@ -114,7 +114,7 @@ namespace Boa.Constrictor.WebDriver
             HashCode.Combine(GetType(), Url, Acceptable.ToString(), AcceptAlerts);
 
         /// <summary>
-        /// Returns a description of the task.
+        /// Returns a description of the Task.
         /// </summary>
         /// <returns></returns>
         public override string ToString()

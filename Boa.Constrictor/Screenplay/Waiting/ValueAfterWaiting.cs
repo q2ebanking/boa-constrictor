@@ -2,13 +2,13 @@
 {
     /// <summary>
     /// Waits for a desired state.
-    /// The desired state is expressed using a question and an expected condition.
+    /// The desired state is expressed using a Question and an expected condition.
     /// If the desired state does not happen within the time limit, then an exception is thrown.
     /// 
     /// If the actor has the SetTimeouts ability, then the ability will be used to calculate timeouts.
     /// Otherwise, DefaultTimeout will be used.
     /// </summary>
-    /// <typeparam name="TAnswer">The type of the question's answer value.</typeparam>
+    /// <typeparam name="TAnswer">The type of the Question's answer value.</typeparam>
     public class ValueAfterWaiting<TAnswer> : AbstractWait, IQuestion<TAnswer>
     {
         #region Constructors
@@ -25,9 +25,9 @@
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the question.
+        /// Constructs the Question.
         /// </summary>
-        /// <param name="question">The question upon whose answer to wait.</param>
+        /// <param name="question">The Question upon whose answer to wait.</param>
         /// <param name="condition">The expected condition for which to wait.</param>
         /// <returns></returns>
         public static ValueAfterWaiting<TAnswer> Until(IQuestion<TAnswer> question, ICondition<TAnswer> condition)
@@ -75,7 +75,7 @@
         #region Methods
 
         /// <summary>
-        /// Waits until the question's answer value meets the condition.
+        /// Waits until the Question's answer value meets the condition.
         /// If the expected condition is not met within the time limit, then an exception is thrown.
         /// Returns the actual value after waiting.
         /// </summary>
@@ -96,11 +96,11 @@
     public static class ValueAfterWaiting
     {
         /// <summary>
-        /// Constructs a ValueAfterWaiting question.
+        /// Constructs a ValueAfterWaiting Question.
         /// This variant allows "ValueAfterWaiting.Until" calls to avoid generic type specification.
         /// </summary>
         /// <typeparam name="TValue">The value type.</typeparam>
-        /// <param name="question">The question upon whose answer to wait.</param>
+        /// <param name="question">The Question upon whose answer to wait.</param>
         /// <param name="condition">The expected condition for which to wait.</param>
         /// <returns></returns>
         public static ValueAfterWaiting<TValue> Until<TValue>(IQuestion<TValue> question, ICondition<TValue> condition) =>

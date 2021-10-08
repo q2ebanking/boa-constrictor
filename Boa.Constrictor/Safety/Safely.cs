@@ -11,7 +11,7 @@ namespace Boa.Constrictor.Safety
         #region Properties
 
         /// <summary>
-        /// The task to run safely.
+        /// The Task to run safely.
         /// </summary>
         private ITask Task { get; set; }
 
@@ -23,7 +23,7 @@ namespace Boa.Constrictor.Safety
         /// Private constructor.
         /// (Use the static methods for public construction.)
         /// </summary>
-        /// <param name="task">The task to run safely.</param>
+        /// <param name="task">The Task to run safely.</param>
         private Safely(ITask task) => Task = task;
 
         #endregion
@@ -31,9 +31,9 @@ namespace Boa.Constrictor.Safety
         #region Builder Methods
 
         /// <summary>
-        /// Constructs this task.
+        /// Constructs this Task.
         /// </summary>
-        /// <param name="task">The task to run safely.</param>
+        /// <param name="task">The Task to run safely.</param>
         /// <returns></returns>
         public static Safely Run(ITask task) => new Safely(task);
 
@@ -42,7 +42,7 @@ namespace Boa.Constrictor.Safety
         #region Methods
 
         /// <summary>
-        /// Runs the task safely.
+        /// Runs the Task safely.
         /// </summary>
         /// <param name="actor"></param>
         public void PerformAs(IActor actor)

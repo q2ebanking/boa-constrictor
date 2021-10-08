@@ -3,7 +3,7 @@
 namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
-    /// Abstract class for any Web questions that use a Web element locator and a property name.
+    /// Abstract class for any Web Questions that use a Web element locator and a property name.
     /// </summary>
     public abstract class AbstractWebPropertyQuestion<TAnswer> : AbstractWebLocatorQuestion<TAnswer>
     {
@@ -52,7 +52,7 @@ namespace Boa.Constrictor.WebDriver
             HashCode.Combine(GetType(), Locator, PropertyName);
 
         /// <summary>
-        /// Returns a description of the property question.
+        /// Returns a description of the property Question.
         /// </summary>
         /// <returns></returns>
         public override string ToString() =>

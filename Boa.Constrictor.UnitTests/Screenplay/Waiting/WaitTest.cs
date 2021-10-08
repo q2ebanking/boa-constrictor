@@ -6,8 +6,8 @@ using NUnit.Framework;
 namespace Boa.Constrictor.UnitTests.Screenplay
 {
     /// <summary>
-    /// These tests for the Wait task are very rudimentary.
-    /// They simply verify if exceptions are thrown when questions do and do not satisfy the condition for waiting.
+    /// These tests for the Wait Task are very rudimentary.
+    /// They simply verify if exceptions are thrown when Questions do and do not satisfy the condition for waiting.
     /// </summary>
     [TestFixture]
     public class WaitTest
@@ -368,9 +368,9 @@ namespace Boa.Constrictor.UnitTests.Screenplay
             MockConditionA.Setup(x => x.Evaluate(It.Is<int>(v => v >= limit))).Returns(true);
 
             Actor.Invoking(actor => actor.AttemptsTo(Wait.Until(MockQuestionA.Object, MockConditionA.Object).ForUpTo(1)))
-                .Should().NotThrow(because: "the question should satisfy the condition");
+                .Should().NotThrow(because: "the Question should satisfy the condition");
 
-            incrementer.Should().Be(limit, because: $"the question should be called {limit} times");
+            incrementer.Should().Be(limit, because: $"the Question should be called {limit} times");
         }
 
         [Test]
@@ -392,9 +392,9 @@ namespace Boa.Constrictor.UnitTests.Screenplay
                 .And(MockQuestionB.Object, MockConditionB.Object)
                 .And(MockQuestionC.Object, MockConditionC.Object)
                 .ForUpTo(1)))
-                .Should().NotThrow(because: "the question should satisfy the condition");
+                .Should().NotThrow(because: "the Question should satisfy the condition");
 
-            incrementer.Should().Be(limit, because: $"the question should be called {limit} times");
+            incrementer.Should().Be(limit, because: $"the Question should be called {limit} times");
         }
 
         #endregion

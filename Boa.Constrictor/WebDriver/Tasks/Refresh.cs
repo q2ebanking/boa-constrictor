@@ -21,7 +21,7 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Creates the task.
+        /// Creates the Task.
         /// </summary>
         /// <returns></returns>
         public static Refresh Browser() => new Refresh();
@@ -39,7 +39,7 @@ namespace Boa.Constrictor.WebDriver
             driver.Navigate().Refresh();
 
         /// <summary>
-        /// Returns a description of the task.
+        /// Returns a description of the Task.
         /// </summary>
         /// <returns></returns>
         public override string ToString() => "refresh the web page";

@@ -23,7 +23,7 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the question.
+        /// Constructs the Question.
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
         /// <param name="named">The property name.</param>

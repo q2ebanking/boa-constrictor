@@ -95,7 +95,7 @@ namespace Boa.Constrictor.WebDriver
         }
 
         /// <summary>
-        /// Returns a description of the task.
+        /// Returns a description of the Task.
         /// </summary>
         /// <returns></returns>
         public override string ToString() =>

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
-    /// This is an abstract superclass for any Web questions that use a Web element locator.
+    /// This is an abstract superclass for any Web Questions that use a Web element locator.
     /// </summary>
     /// <typeparam name="TAnswer"></typeparam>
     public abstract class AbstractWebLocatorQuestion<TAnswer> : AbstractWebQuestion<TAnswer>, IWebLocatorUser
@@ -39,7 +39,7 @@ namespace Boa.Constrictor.WebDriver
         #region Methods
 
         /// <summary>
-        /// Asks the question and returns the answer.
+        /// Asks the Question and returns the answer.
         /// Internally calls RequestAs with the WebDriver from the BrowseTheWeb ability.
         /// Internally retries the interaction if StaleElementReferenceException happens.
         /// </summary>
@@ -69,7 +69,7 @@ namespace Boa.Constrictor.WebDriver
             HashCode.Combine(GetType(), Locator);
 
         /// <summary>
-        /// Returns a description of the question.
+        /// Returns a description of the Question.
         /// </summary>
         /// <returns></returns>
         public override string ToString() =>

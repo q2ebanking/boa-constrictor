@@ -62,7 +62,7 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the question object.
+        /// Constructs the Question object.
         /// </summary>
         /// <param name="outputDir">The output directory.</param>
         /// <param name="fileName">The file name (without the extension).</param>
@@ -146,7 +146,7 @@ namespace Boa.Constrictor.WebDriver
             HashCode.Combine(GetType(), FileName, Format, OutputDir);
 
         /// <summary>
-        /// Returns a description of the question.
+        /// Returns a description of the Question.
         /// </summary>
         /// <returns></returns>
         public override string ToString() => $"Current browser screenshot";

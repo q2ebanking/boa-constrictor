@@ -5,14 +5,14 @@ using System;
 namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
-    /// Abstract class that makes it easier to write tasks that use the BrowseTheWeb ability.
+    /// Abstract class that makes it easier to write Tasks that use the BrowseTheWeb ability.
     /// </summary>
     public abstract class AbstractWebTask : ITask
     {
         #region Abstract Methods
 
         /// <summary>
-        /// Performs the task.
+        /// Performs the Task.
         /// </summary>
         /// <param name="actor">The actor.</param>
         /// <param name="driver">The WebDriver from the BrowseTheWeb ability.</param>
@@ -23,7 +23,7 @@ namespace Boa.Constrictor.WebDriver
         #region Methods
 
         /// <summary>
-        /// Performs the task.
+        /// Performs the Task.
         /// Internally calls PerformAs with the WebDriver from the BrowseTheWeb ability.
         /// </summary>
         /// <param name="actor">The actor.</param>
@@ -43,7 +43,7 @@ namespace Boa.Constrictor.WebDriver
         public override int GetHashCode() => HashCode.Combine(GetType());
 
         /// <summary>
-        /// Returns a description of the task.
+        /// Returns a description of the Task.
         /// </summary>
         /// <returns></returns>
         public override string ToString() => GetType().Name;

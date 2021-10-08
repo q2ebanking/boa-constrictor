@@ -4,7 +4,7 @@ namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// A Screenplay actor.
-    /// An actor can perform tasks and ask questions based on his/her abilities.
+    /// An actor can perform Tasks and ask Questions based on his/her abilities.
     /// </summary>
     public interface IActor
     {
@@ -25,11 +25,11 @@ namespace Boa.Constrictor.Screenplay
         #region Methods
 
         /// <summary>
-        /// Asks a question and returns the answer value.
-        /// The actor must have the abilities needed by the question.
+        /// Asks a Question and returns the answer value.
+        /// The actor must have the abilities needed by the Question.
         /// </summary>
         /// <typeparam name="TAnswer">The answer type.</typeparam>
-        /// <param name="question">The question to ask.</param>
+        /// <param name="question">The Question to ask.</param>
         /// <returns></returns>
         TAnswer AsksFor<TAnswer>(IQuestion<TAnswer> question);
 
@@ -37,38 +37,38 @@ namespace Boa.Constrictor.Screenplay
         /// Alias for "AsksFor".
         /// </summary>
         /// <typeparam name="TAnswer">The answer type.</typeparam>
-        /// <param name="question">The question to ask.</param>
+        /// <param name="question">The Question to ask.</param>
         /// <returns></returns>
         TAnswer AskingFor<TAnswer>(IQuestion<TAnswer> question);
 
         /// <summary>
-        /// Performs a task.
-        /// The actor must have the abilities needed by the task.
+        /// Performs a Task.
+        /// The actor must have the abilities needed by the Task.
         /// </summary>
-        /// <param name="task">The task to perform.</param>
+        /// <param name="task">The Task to perform.</param>
         void AttemptsTo(ITask task);
 
         /// <summary>
-        /// Performs multiple tasks
-        /// The actor must have the abilities needed by the task(s).
+        /// Performs multiple Tasks
+        /// The actor must have the abilities needed by the Task(s).
         /// </summary>
-        /// <param name="tasks">The tasks to perform.</param>
+        /// <param name="tasks">The Tasks to perform.</param>
         void AttemptsTo(params ITask[] tasks);
 
         /// <summary>
-        /// Asks a question and returns the answer value.
-        /// The actor must have the abilities needed by the question.
+        /// Asks a Question and returns the answer value.
+        /// The actor must have the abilities needed by the Question.
         /// </summary>
         /// <typeparam name="TAnswer">The answer type.</typeparam>
-        /// <param name="question">The question to ask.</param>
+        /// <param name="question">The Question to ask.</param>
         /// <returns></returns>
         TAnswer Calls<TAnswer>(IQuestion<TAnswer> question);
 
         /// <summary>
-        /// Performs a task.
-        /// The actor must have the abilities needed by the task.
+        /// Performs a Task.
+        /// The actor must have the abilities needed by the Task.
         /// </summary>
-        /// <param name="task">The task to perform.</param>
+        /// <param name="task">The Task to perform.</param>
         void Calls(ITask task);
 
         /// <summary>

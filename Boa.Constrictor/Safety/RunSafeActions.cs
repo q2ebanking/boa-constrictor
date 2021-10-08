@@ -44,7 +44,7 @@ namespace Boa.Constrictor.Safety
         /// Returns a description of this ability.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => "run tasks safely";
+        public override string ToString() => "run Tasks safely";
 
         #endregion
     }

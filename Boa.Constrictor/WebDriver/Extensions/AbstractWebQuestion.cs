@@ -5,7 +5,7 @@ using System;
 namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
-    /// Abstract class that makes it easier to write questions that use the BrowseTheWeb ability.
+    /// Abstract class that makes it easier to write Questions that use the BrowseTheWeb ability.
     /// </summary>
     /// <typeparam name="TAnswer">The answer type.</typeparam>
     public abstract class AbstractWebQuestion<TAnswer> : ICacheableQuestion<TAnswer>
@@ -13,7 +13,7 @@ namespace Boa.Constrictor.WebDriver
         #region Abstract Methods
 
         /// <summary>
-        /// Asks the question and returns the answer.
+        /// Asks the Question and returns the answer.
         /// </summary>
         /// <param name="actor">The screenplay actor.</param>
         /// <param name="driver">The WebDriver from the BrowseTheWeb ability.</param>
@@ -25,7 +25,7 @@ namespace Boa.Constrictor.WebDriver
         #region Methods
 
         /// <summary>
-        /// Asks the question and returns the answer.
+        /// Asks the Question and returns the answer.
         /// Internally calls RequestAs with the WebDriver from the BrowseTheWeb ability.
         /// </summary>
         /// <param name="actor">The screenplay actor.</param>
@@ -46,7 +46,7 @@ namespace Boa.Constrictor.WebDriver
         public override int GetHashCode() => HashCode.Combine(GetType());
 
         /// <summary>
-        /// Returns a description of the question.
+        /// Returns a description of the Question.
         /// </summary>
         /// <returns></returns>
         public override string ToString() => GetType().Name;

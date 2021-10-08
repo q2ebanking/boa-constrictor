@@ -10,7 +10,7 @@ namespace Boa.Constrictor.RestSharp
     /// Provides protected methods for calling requests and downloads.
     /// </summary>
     /// <typeparam name="TAbility">The RestSharp Ability type.</typeparam>
-    /// <typeparam name="TAnswer">The answer type for the question.</typeparam>
+    /// <typeparam name="TAnswer">The answer type for the Question.</typeparam>
     public abstract class AbstractRestQuestion<TAbility, TAnswer> : IQuestion<TAnswer>
         where TAbility : IRestSharpAbility
     {
@@ -43,7 +43,7 @@ namespace Boa.Constrictor.RestSharp
         protected abstract IRestResponse Execute(IRestClient client);
 
         /// <summary>
-        /// Calls the question.
+        /// Calls the Question.
         /// </summary>
         /// <param name="actor">The Screenplay actor.</param>
         /// <returns></returns>
@@ -145,7 +145,7 @@ namespace Boa.Constrictor.RestSharp
         }
 
         /// <summary>
-        /// Returns a description of the question.
+        /// Returns a description of the Question.
         /// </summary>
         /// <returns></returns>
         public override string ToString() => $"REST API using {typeof(TAbility)}: {Request.Method} '{Request.Resource}'";

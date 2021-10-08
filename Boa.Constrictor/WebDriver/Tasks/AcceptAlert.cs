@@ -32,14 +32,14 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the task object.
+        /// Constructs the Task object.
         /// Will rethrow NoAlertPresentException.
         /// </summary>
         /// <returns></returns>
         public static AcceptAlert ThatMustExist() => new AcceptAlert(true);
 
         /// <summary>
-        /// Constructs the task object.
+        /// Constructs the Task object.
         /// Will bury NoAlertPresentException quietly.
         /// </summary>
         /// <returns></returns>
@@ -83,7 +83,7 @@ namespace Boa.Constrictor.WebDriver
         public override int GetHashCode() => HashCode.Combine(GetType(), RethrowNoAlert);
 
         /// <summary>
-        /// Returns a description of the task.
+        /// Returns a description of the Task.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
