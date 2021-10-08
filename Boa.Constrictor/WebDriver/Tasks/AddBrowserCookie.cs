@@ -33,7 +33,7 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Creates the task.
+        /// Creates the Task.
         /// </summary>
         /// <param name="cookie">The cookie to add to the WebDriver.</param>
         /// <returns></returns>
@@ -41,7 +41,7 @@ namespace Boa.Constrictor.WebDriver
             new AddBrowserCookie(cookie);
 
         /// <summary>
-        /// Creates the task.
+        /// Creates the Task.
         /// </summary>
         /// <param name="name">The cookie name.</param>
         /// <param name="value">The cookie value.</param>
@@ -50,7 +50,7 @@ namespace Boa.Constrictor.WebDriver
             Named(new OpenQA.Selenium.Cookie(name, value));
 
         /// <summary>
-        /// Creates the task.
+        /// Creates the Task.
         /// </summary>
         /// <param name="cookie">The cookie to add to the WebDriver.</param>
         /// <returns></returns>
@@ -90,7 +90,7 @@ namespace Boa.Constrictor.WebDriver
         public override int GetHashCode() => HashCode.Combine(GetType(), Cookie);
 
         /// <summary>
-        /// Returns a description of the task.
+        /// Returns a description of the Task.
         /// </summary>
         /// <returns></returns>
         public override string ToString() => $"add a cookie named '{Cookie.Name}' to the browser";

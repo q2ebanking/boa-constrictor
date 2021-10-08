@@ -36,14 +36,14 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the task object.
+        /// Constructs the Task object.
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
         /// <returns></returns>
         public static Check On(IWebLocator locator) => new Check(locator, true);
 
         /// <summary>
-        /// Constructs the task object.
+        /// Constructs the Task object.
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
         /// <returns></returns>
@@ -68,7 +68,7 @@ namespace Boa.Constrictor.WebDriver
         }
 
         /// <summary>
-        /// Returns a description of the task.
+        /// Returns a description of the Task.
         /// </summary>
         /// <returns></returns>
         public override string ToString()

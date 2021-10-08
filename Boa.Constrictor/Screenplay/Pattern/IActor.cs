@@ -4,7 +4,7 @@ namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// A Screenplay actor.
-    /// An actor can perform tasks and ask questions based on his/her abilities.
+    /// An actor can perform Tasks and ask questions based on his/her abilities.
     /// </summary>
     public interface IActor
     {
@@ -42,17 +42,17 @@ namespace Boa.Constrictor.Screenplay
         TAnswer AskingFor<TAnswer>(IQuestion<TAnswer> question);
 
         /// <summary>
-        /// Performs a task.
-        /// The actor must have the abilities needed by the task.
+        /// Performs a Task.
+        /// The actor must have the abilities needed by the Task.
         /// </summary>
-        /// <param name="task">The task to perform.</param>
+        /// <param name="task">The Task to perform.</param>
         void AttemptsTo(ITask task);
 
         /// <summary>
-        /// Performs multiple tasks
-        /// The actor must have the abilities needed by the task(s).
+        /// Performs multiple Tasks
+        /// The actor must have the abilities needed by the Task(s).
         /// </summary>
-        /// <param name="tasks">The tasks to perform.</param>
+        /// <param name="tasks">The Tasks to perform.</param>
         void AttemptsTo(params ITask[] tasks);
 
         /// <summary>
@@ -65,10 +65,10 @@ namespace Boa.Constrictor.Screenplay
         TAnswer Calls<TAnswer>(IQuestion<TAnswer> question);
 
         /// <summary>
-        /// Performs a task.
-        /// The actor must have the abilities needed by the task.
+        /// Performs a Task.
+        /// The actor must have the abilities needed by the Task.
         /// </summary>
-        /// <param name="task">The task to perform.</param>
+        /// <param name="task">The Task to perform.</param>
         void Calls(ITask task);
 
         /// <summary>

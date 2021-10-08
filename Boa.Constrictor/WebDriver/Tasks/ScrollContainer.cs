@@ -55,7 +55,7 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the task object to scroll top and left.
+        /// Constructs the Task object to scroll top and left.
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
         /// <param name="top">The target top scroll pixel value.</param>
@@ -65,7 +65,7 @@ namespace Boa.Constrictor.WebDriver
             new ScrollContainer(locator, top: top, left: left);
 
         /// <summary>
-        /// Constructs the task object to scroll top only.
+        /// Constructs the Task object to scroll top only.
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
         /// <param name="top">The target top scroll pixel value.</param>
@@ -74,7 +74,7 @@ namespace Boa.Constrictor.WebDriver
             new ScrollContainer(locator, top: top, left: null);
 
         /// <summary>
-        /// Constructs the task object to scroll left only.
+        /// Constructs the Task object to scroll left only.
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
         /// <param name="left">The target left scroll pixel value.</param>
@@ -83,7 +83,7 @@ namespace Boa.Constrictor.WebDriver
             new ScrollContainer(locator, top: null, left: left);
 
         /// <summary>
-        /// Constructs the task object to scroll to the origin.
+        /// Constructs the Task object to scroll to the origin.
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
         /// <returns></returns>
@@ -125,7 +125,7 @@ namespace Boa.Constrictor.WebDriver
             HashCode.Combine(base.GetHashCode(), Locator, $"Top {Top}", $"Left {Left}");
 
         /// <summary>
-        /// Returns a description of the task.
+        /// Returns a description of the Task.
         /// </summary>
         /// <returns></returns>
         public override string ToString()

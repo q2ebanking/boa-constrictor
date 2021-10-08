@@ -73,7 +73,7 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the task object.
+        /// Constructs the Task object.
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
         /// <param name="keystrokes">The keystrokes (e.g., text) to send.</param>
@@ -219,7 +219,7 @@ namespace Boa.Constrictor.WebDriver
             HashCode.Combine(GetType(), Locator, Clear, FinalElement, FinalEnter, Keystrokes, Private, UseClearMethod);
 
         /// <summary>
-        /// Returns a description of the task.
+        /// Returns a description of the Task.
         /// </summary>
         /// <returns></returns>
         public override string ToString()

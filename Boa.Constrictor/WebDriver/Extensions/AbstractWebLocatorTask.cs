@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
-    /// Abstract class for any Web tasks that use a Web element locator.
+    /// Abstract class for any Web Tasks that use a Web element locator.
     /// </summary>
     public abstract class AbstractWebLocatorTask : AbstractWebTask, IWebLocatorUser
     {
@@ -38,7 +38,7 @@ namespace Boa.Constrictor.WebDriver
         #region Methods
 
         /// <summary>
-        /// Attempts the task.
+        /// Attempts the Task.
         /// Internally calls RequestAs with the WebDriver from the BrowseTheWeb ability.
         /// Internally retries the interaction if StaleElementReferenceException happens.
         /// </summary>
@@ -71,7 +71,7 @@ namespace Boa.Constrictor.WebDriver
             HashCode.Combine(GetType(), Locator);
 
         /// <summary>
-        /// Returns a description of the task.
+        /// Returns a description of the Task.
         /// </summary>
         /// <returns></returns>
         public override string ToString() =>

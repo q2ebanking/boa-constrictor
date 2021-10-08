@@ -33,7 +33,7 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the task object for the given window handle.
+        /// Constructs the Task object for the given window handle.
         /// </summary>
         /// <param name="handle">The window handle.</param>
         /// <returns></returns>
@@ -63,7 +63,7 @@ namespace Boa.Constrictor.WebDriver
         public override int GetHashCode() => HashCode.Combine(GetType(), Handle);
 
         /// <summary>
-        /// Returns a description of the task.
+        /// Returns a description of the Task.
         /// </summary>
         /// <returns></returns>
         public override string ToString() => $"switch browser window to '{Handle}'";

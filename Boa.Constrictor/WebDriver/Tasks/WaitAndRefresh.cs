@@ -51,7 +51,7 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the task.
+        /// Constructs the Task.
         /// </summary>
         /// <param name="locator">The locator for whose appearance to wait.</param>
         /// <returns></returns>
@@ -142,7 +142,7 @@ namespace Boa.Constrictor.WebDriver
             HashCode.Combine(GetType(), Locator, RefreshSeconds, TimeoutSeconds, AdditionalSeconds);
 
         /// <summary>
-        /// Returns a description of the task.
+        /// Returns a description of the Task.
         /// </summary>
         /// <returns></returns>
         public override string ToString()

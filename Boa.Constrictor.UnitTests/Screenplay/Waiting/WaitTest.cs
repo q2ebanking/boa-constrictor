@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace Boa.Constrictor.UnitTests.Screenplay
 {
     /// <summary>
-    /// These tests for the Wait task are very rudimentary.
+    /// These tests for the Wait Task are very rudimentary.
     /// They simply verify if exceptions are thrown when questions do and do not satisfy the condition for waiting.
     /// </summary>
     [TestFixture]

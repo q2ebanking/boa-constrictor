@@ -64,7 +64,7 @@ namespace Boa.Constrictor.WebDriver
         #region Builder Methods
 
         /// <summary>
-        /// Constructs the task object to select by index.
+        /// Constructs the Task object to select by index.
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
         /// <param name="index">The index of the option to select.</param>
@@ -73,7 +73,7 @@ namespace Boa.Constrictor.WebDriver
             new Select(locator, index: index);
 
         /// <summary>
-        /// Constructs the task object to select by text.
+        /// Constructs the Task object to select by text.
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
         /// <param name="text">The text of the option to select.</param>
@@ -83,7 +83,7 @@ namespace Boa.Constrictor.WebDriver
             new Select(locator, text: text, partialMatch: partialMatch);
 
         /// <summary>
-        /// Constructs the task object to select by value.
+        /// Constructs the Task object to select by value.
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
         /// <param name="value">The value of the option to select.</param>
@@ -114,7 +114,7 @@ namespace Boa.Constrictor.WebDriver
                 select.SelectByValue(Value);
             else
                 throw new BrowserInteractionException(
-                    $"No select method (index, text, or value) provided for Select task");
+                    $"No select method (index, text, or value) provided for Select Task");
         }
 
         /// <summary>
