@@ -98,7 +98,7 @@ namespace Boa.Constrictor.WebDriver
         /// <summary>
         /// Selects an option by text in a select element.
         /// </summary>
-        /// <param name="actor">The screenplay actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         public override void PerformAs(IActor actor, IWebDriver driver)
         {

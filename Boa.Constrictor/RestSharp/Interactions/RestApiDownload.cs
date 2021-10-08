@@ -47,7 +47,7 @@ namespace Boa.Constrictor.RestSharp
         /// Calls the REST request and returns the downloaded file data as a byte array.
         /// Throws a RestApiDownloadException if the request's response code is a client or server error or response status is a transport error.
         /// </summary>
-        /// <param name="actor">The Screenplay actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <returns></returns>
         public override byte[] RequestAs(IActor actor) => CallDownload(actor, FileExtension);
 

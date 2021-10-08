@@ -5,7 +5,7 @@
     /// The desired state is expressed using a Question and an expected condition.
     /// If the desired state does not happen within the time limit, then an exception is thrown.
     /// 
-    /// If the actor has the SetTimeouts Ability, then the Ability will be used to calculate timeouts.
+    /// If the Actor has the SetTimeouts Ability, then the Ability will be used to calculate timeouts.
     /// Otherwise, DefaultTimeout will be used.
     /// </summary>
     /// <typeparam name="TAnswer">The type of the Question's answer value.</typeparam>
@@ -79,7 +79,7 @@
         /// If the expected condition is not met within the time limit, then an exception is thrown.
         /// Returns the actual value after waiting.
         /// </summary>
-        /// <param name="actor">The actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <returns></returns>
         public TAnswer RequestAs(IActor actor)
         {

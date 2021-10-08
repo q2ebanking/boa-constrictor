@@ -44,7 +44,7 @@ namespace Boa.Constrictor.Safety
         /// <summary>
         /// Runs the Task safely.
         /// </summary>
-        /// <param name="actor"></param>
+        /// <param name="actor">The Screenplay Actor.</param>
         public void PerformAs(IActor actor)
         {
             void action() => actor.AttemptsTo(Task);

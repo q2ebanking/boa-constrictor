@@ -33,7 +33,7 @@ namespace Boa.Constrictor.WebDriver
         /// <summary>
         /// Refreshes the browser.
         /// </summary>
-        /// <param name="actor">The Screenplay actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         public override void PerformAs(IActor actor, IWebDriver driver) =>
             driver.Navigate().Refresh();

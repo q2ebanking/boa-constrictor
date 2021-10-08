@@ -15,7 +15,7 @@ namespace Boa.Constrictor.WebDriver
         /// <summary>
         /// Asks the Question and returns the answer.
         /// </summary>
-        /// <param name="actor">The screenplay actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver from the BrowseTheWeb Ability.</param>
         /// <returns></returns>
         public abstract TAnswer RequestAs(IActor actor, IWebDriver driver);
@@ -28,7 +28,7 @@ namespace Boa.Constrictor.WebDriver
         /// Asks the Question and returns the answer.
         /// Internally calls RequestAs with the WebDriver from the BrowseTheWeb Ability.
         /// </summary>
-        /// <param name="actor">The screenplay actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <returns></returns>
         public virtual TAnswer RequestAs(IActor actor) => RequestAs(actor, actor.Using<BrowseTheWeb>().WebDriver);
 

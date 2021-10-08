@@ -36,7 +36,7 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// Calls the REST request and returns the response.
         /// </summary>
-        /// <param name="actor">The Screenplay actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <returns></returns>
         public override IRestResponse RequestAs(IActor actor) => CallRequest(actor);
 
@@ -77,7 +77,7 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// Calls the REST request and returns the response with deserialized data.
         /// </summary>
-        /// <param name="actor">The Screenplay actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <returns></returns>
         public override IRestResponse<TData> RequestAs(IActor actor) => (IRestResponse<TData>)CallRequest(actor);
 

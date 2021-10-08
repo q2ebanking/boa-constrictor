@@ -42,7 +42,7 @@ namespace Boa.Constrictor.WebDriver
         /// Internally calls RequestAs with the WebDriver from the BrowseTheWeb Ability.
         /// Internally retries the interaction if StaleElementReferenceException happens.
         /// </summary>
-        /// <param name="actor">The screenplay actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         public override void PerformAs(IActor actor)
         {
             bool attempt()

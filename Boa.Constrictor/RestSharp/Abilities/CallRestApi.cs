@@ -5,7 +5,7 @@ namespace Boa.Constrictor.RestSharp
 {
     /// <summary>
     /// The "default" RestSharp Ability.
-    /// Enables the actor to make REST API calls using RestSharp.
+    /// Enables the Actor to make REST API calls using RestSharp.
     /// It constructs and holds one RestSharp client for the given base URL.
     /// This Ability also holds dumpers for requests/responses and downloaded files.
     /// If dumpers are null, then no dumping is performed.

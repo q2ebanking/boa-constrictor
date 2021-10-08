@@ -38,7 +38,7 @@ namespace Boa.Constrictor.WebDriver
         /// <summary>
         /// Gets web elements' CSS values by property name.
         /// </summary>
-        /// <param name="actor">The actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         /// <returns></returns>
         public override IEnumerable<string> RequestAs(IActor actor, IWebDriver driver) =>

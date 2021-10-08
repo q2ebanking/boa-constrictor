@@ -8,7 +8,7 @@
     /// Additional Questions and expected conditions can be added using boolean operators (and, or).
     /// Conditions are evaluated sequentially in 'and' groups, separate by 'or'.
     /// 
-    /// If the actor has the SetTimeouts Ability, then the Ability will be used to calculate timeouts.
+    /// If the Actor has the SetTimeouts Ability, then the Ability will be used to calculate timeouts.
     /// Otherwise, DefaultTimeout will be used.
     /// </summary>
     public class Wait : AbstractWait, ITask
@@ -108,7 +108,7 @@
         /// Waits until the Question's answer value meets the condition.
         /// If the expected condition is not met within the time limit, then an exception is thrown.
         /// </summary>
-        /// <param name="actor">The actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <returns></returns>
         public void PerformAs(IActor actor) => WaitForValue(actor);
 

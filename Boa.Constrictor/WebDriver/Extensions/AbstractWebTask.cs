@@ -14,7 +14,7 @@ namespace Boa.Constrictor.WebDriver
         /// <summary>
         /// Performs the Task.
         /// </summary>
-        /// <param name="actor">The actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver from the BrowseTheWeb Ability.</param>
         public abstract void PerformAs(IActor actor, IWebDriver driver);
 
@@ -26,7 +26,7 @@ namespace Boa.Constrictor.WebDriver
         /// Performs the Task.
         /// Internally calls PerformAs with the WebDriver from the BrowseTheWeb Ability.
         /// </summary>
-        /// <param name="actor">The actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         public virtual void PerformAs(IActor actor) => PerformAs(actor, actor.Using<BrowseTheWeb>().WebDriver);
 
         /// <summary>

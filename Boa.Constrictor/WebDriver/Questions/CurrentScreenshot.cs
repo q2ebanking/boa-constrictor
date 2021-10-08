@@ -91,7 +91,7 @@ namespace Boa.Constrictor.WebDriver
         /// Returns the path to the screenshot file.
         /// The file name will include a timestamp and the thread name if not explicitly provided.
         /// </summary>
-        /// <param name="actor">The actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         /// <returns></returns>
         public override string RequestAs(IActor actor, IWebDriver driver)

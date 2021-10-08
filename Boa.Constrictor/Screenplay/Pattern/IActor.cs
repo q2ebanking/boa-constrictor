@@ -3,8 +3,8 @@
 namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
-    /// A Screenplay actor.
-    /// An actor can perform Tasks and ask Questions based on his/her Abilities.
+    /// A Screenplay Actor.
+    /// An Actor can perform Tasks and ask Questions based on his/her Abilities.
     /// </summary>
     public interface IActor
     {
@@ -16,7 +16,7 @@ namespace Boa.Constrictor.Screenplay
         ILogger Logger { get; }
 
         /// <summary>
-        /// The name of the actor.
+        /// The name of the Actor.
         /// </summary>
         string Name { get; }
 
@@ -26,7 +26,7 @@ namespace Boa.Constrictor.Screenplay
 
         /// <summary>
         /// Asks a Question and returns the answer value.
-        /// The actor must have the Abilities needed by the Question.
+        /// The Actor must have the Abilities needed by the Question.
         /// </summary>
         /// <typeparam name="TAnswer">The answer type.</typeparam>
         /// <param name="question">The Question to ask.</param>
@@ -43,21 +43,21 @@ namespace Boa.Constrictor.Screenplay
 
         /// <summary>
         /// Performs a Task.
-        /// The actor must have the Abilities needed by the Task.
+        /// The Actor must have the Abilities needed by the Task.
         /// </summary>
         /// <param name="task">The Task to perform.</param>
         void AttemptsTo(ITask task);
 
         /// <summary>
         /// Performs multiple Tasks
-        /// The actor must have the Abilities needed by the Task(s).
+        /// The Actor must have the Abilities needed by the Task(s).
         /// </summary>
         /// <param name="tasks">The Tasks to perform.</param>
         void AttemptsTo(params ITask[] tasks);
 
         /// <summary>
         /// Asks a Question and returns the answer value.
-        /// The actor must have the Abilities needed by the Question.
+        /// The Actor must have the Abilities needed by the Question.
         /// </summary>
         /// <typeparam name="TAnswer">The answer type.</typeparam>
         /// <param name="question">The Question to ask.</param>
@@ -66,7 +66,7 @@ namespace Boa.Constrictor.Screenplay
 
         /// <summary>
         /// Performs a Task.
-        /// The actor must have the Abilities needed by the Task.
+        /// The Actor must have the Abilities needed by the Task.
         /// </summary>
         /// <param name="task">The Task to perform.</param>
         void Calls(ITask task);
@@ -78,14 +78,14 @@ namespace Boa.Constrictor.Screenplay
         void Can(IAbility ability);
 
         /// <summary>
-        /// Checks if the actor has the Ability.
+        /// Checks if the Actor has the Ability.
         /// </summary>
         /// <typeparam name="TAbility">The Ability type.</typeparam>
         /// <returns></returns>
         bool HasAbilityTo<TAbility>() where TAbility : IAbility;
 
         /// <summary>
-        /// Gets one of the actor's Abilities by type so that it may be used.
+        /// Gets one of the Actor's Abilities by type so that it may be used.
         /// </summary>
         /// <typeparam name="TAbility">The Ability type.</typeparam>
         /// <returns></returns>

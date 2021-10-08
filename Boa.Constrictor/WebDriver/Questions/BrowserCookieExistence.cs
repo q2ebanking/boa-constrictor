@@ -45,7 +45,7 @@ namespace Boa.Constrictor.WebDriver
         /// <summary>
         /// Checks if the browser cookie exists.
         /// </summary>
-        /// <param name="actor">The actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         /// <returns></returns>
         public override bool RequestAs(IActor actor, IWebDriver driver)

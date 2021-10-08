@@ -1,7 +1,7 @@
 ﻿namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
-    /// Enables the actor to use default timeout values.
+    /// Enables the Actor to use default timeout values.
     /// The "standard" timeout is the amount of time to wait by default.
     /// This may be overridden by individual calls.
     /// The "extra" timeout will be added to every timeout, even when the standard timeout is overridden.

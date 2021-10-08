@@ -57,7 +57,7 @@ namespace Boa.Constrictor.WebDriver
         /// Checks an element if not already selected
         /// Useful for checkboxes or radio buttons
         /// </summary>
-        /// <param name="actor">The screenplay actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         public override void PerformAs(IActor actor, IWebDriver driver)
         {
