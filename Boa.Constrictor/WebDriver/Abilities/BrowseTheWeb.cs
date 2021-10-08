@@ -6,7 +6,7 @@ using System.Linq;
 namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
-    /// Enables the actor to use a Web browser via Selenium WebDriver.
+    /// Enables the Actor to use a Web browser via Selenium WebDriver.
     /// </summary>
     public class BrowseTheWeb : IAbility
     {
@@ -54,7 +54,7 @@ namespace Boa.Constrictor.WebDriver
         #region Methods
 
         /// <summary>
-        /// Returns a description of this ability.
+        /// Returns a description of this Ability.
         /// </summary>
         /// <returns></returns>
         public override string ToString() => $"browse the Web with {WebDriver}";

@@ -13,7 +13,7 @@
         /// Use this extension method only when explicitly caching answers.
         /// </summary>
         /// <typeparam name="TAnswer">The answer type.</typeparam>
-        /// <param name="actor">The Actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="question">The Question.</param>
         /// <returns></returns>
         public static TAnswer GetsCached<TAnswer>(this IActor actor, ICacheableQuestion<TAnswer> question) =>
@@ -27,7 +27,7 @@
         /// Use this extension method only when explicitly caching answers.
         /// </summary>
         /// <typeparam name="TAnswer">The answer type.</typeparam>
-        /// <param name="actor">The Actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="question">The Question.</param>
         /// <returns></returns>
         public static TAnswer Discovers<TAnswer>(this IActor actor, ICacheableQuestion<TAnswer> question) =>

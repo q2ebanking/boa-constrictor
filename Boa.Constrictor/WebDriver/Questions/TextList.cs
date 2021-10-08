@@ -36,7 +36,7 @@ namespace Boa.Constrictor.WebDriver
         /// <summary>
         /// Gets the Web element's text.
         /// </summary>
-        /// <param name="actor">The actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         /// <returns></returns>
         public override IEnumerable<string> RequestAs(IActor actor, IWebDriver driver) =>

@@ -58,7 +58,7 @@
         /// <summary>
         /// Evalutes the Condition against the Question's answer.
         /// </summary>
-        /// <param name="actor"></param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <returns></returns>
         public bool Evaluate(IActor actor)
         {

@@ -30,7 +30,7 @@ namespace Boa.Constrictor.Safety
         #region Builder Methods
 
         /// <summary>
-        /// Constructs this ability.
+        /// Constructs this Ability.
         /// </summary>
         /// <param name="safe">The SafeActions object.</param>
         /// <returns></returns>
@@ -41,7 +41,7 @@ namespace Boa.Constrictor.Safety
         #region Methods
 
         /// <summary>
-        /// Returns a description of this ability.
+        /// Returns a description of this Ability.
         /// </summary>
         /// <returns></returns>
         public override string ToString() => "run Tasks safely";

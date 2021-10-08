@@ -77,7 +77,7 @@ namespace Boa.Constrictor.WebDriver
         /// <summary>
         /// Navigates the browser to the target URL if necessary.
         /// </summary>
-        /// <param name="actor">The screenplay actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         public void PerformAs(IActor actor)
         {
             string currentUrl = actor.AsksFor(CurrentUrl.FromBrowser());

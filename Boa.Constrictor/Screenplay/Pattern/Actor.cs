@@ -5,15 +5,15 @@ using System.Collections.Generic;
 namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
-    /// A screenplay actor that implements IActor.
-    /// An actor can perform Tasks and ask Questions based on his/her abilities.
+    /// A screenplay Actor that implements IActor.
+    /// An Actor can perform Tasks and ask Questions based on his/her Abilities.
     /// </summary>
     public class Actor : IActor
     {
         #region Constants
 
         /// <summary>
-        /// The default name to use if no actor name is provided.
+        /// The default name to use if no Actor name is provided.
         /// </summary>
         public const string DefaultName = "Screenplayer";
 
@@ -23,9 +23,9 @@ namespace Boa.Constrictor.Screenplay
 
         /// <summary>
         /// Constructor.
-        /// Initializes the abilities to be empty.
+        /// Initializes the Abilities to be empty.
         /// </summary>
-        /// <param name="name">The name of the actor. If null, use DefaultName.</param>
+        /// <param name="name">The name of the Actor. If null, use DefaultName.</param>
         /// <param name="logger">The logger. If null, use a NoOpLogger.</param>
         public Actor(string name = null, ILogger logger = null)
         {
@@ -39,7 +39,7 @@ namespace Boa.Constrictor.Screenplay
         #region Properties
 
         /// <summary>
-        /// The collection of abilities.
+        /// The collection of Abilities.
         /// Abilities are resolved by type name.
         /// </summary>
         private IDictionary<Type, IAbility> Abilities { get; set; }
@@ -50,7 +50,7 @@ namespace Boa.Constrictor.Screenplay
         public ILogger Logger { get; }
 
         /// <summary>
-        /// The name of the actor.
+        /// The name of the Actor.
         /// </summary>
         public string Name { get; }
 
@@ -60,7 +60,7 @@ namespace Boa.Constrictor.Screenplay
 
         /// <summary>
         /// Asks a Question and returns the answer value.
-        /// The actor must have the abilities needed by the Question.
+        /// The Actor must have the Abilities needed by the Question.
         /// </summary>
         /// <typeparam name="TAnswer">The answer type.</typeparam>
         /// <param name="question">The Question to ask.</param>
@@ -86,7 +86,7 @@ namespace Boa.Constrictor.Screenplay
 
         /// <summary>
         /// Performs a Task.
-        /// The actor must have the abilities needed by the Task.
+        /// The Actor must have the Abilities needed by the Task.
         /// </summary>
         /// <param name="task">The Task to perform.</param>
         public void AttemptsTo(ITask task)
@@ -98,7 +98,7 @@ namespace Boa.Constrictor.Screenplay
 
         /// <summary>
         /// Performs multiple Tasks
-        /// The actor must have the abilities needed by the Task(s).
+        /// The Actor must have the Abilities needed by the Task(s).
         /// </summary>
         /// <param name="tasks">The Tasks to perform.</param>
         public void AttemptsTo(params ITask[] tasks)
@@ -109,7 +109,7 @@ namespace Boa.Constrictor.Screenplay
 
         /// <summary>
         /// Asks a Question and returns the answer value.
-        /// The actor must have the abilities needed by the Question.
+        /// The Actor must have the Abilities needed by the Question.
         /// </summary>
         /// <typeparam name="TAnswer">The answer type.</typeparam>
         /// <param name="question">The Question to ask.</param>
@@ -123,7 +123,7 @@ namespace Boa.Constrictor.Screenplay
 
         /// <summary>
         /// Performs a Task.
-        /// The actor must have the abilities needed by the Task.
+        /// The Actor must have the Abilities needed by the Task.
         /// </summary>
         /// <param name="task">The Task to perform.</param>
         public void Calls(ITask task)
@@ -134,19 +134,19 @@ namespace Boa.Constrictor.Screenplay
         }
 
         /// <summary>
-        /// Adds an ability.
+        /// Adds an Ability.
         /// </summary>
-        /// <param name="ability">The ability to add.</param>
+        /// <param name="ability">The Ability to add.</param>
         public void Can(IAbility ability)
         {
-            Logger.Info($"Adding ability for {this} to {ability}");
+            Logger.Info($"Adding Ability for {this} to {ability}");
             Abilities.Add(ability.GetType(), ability);
         }
 
         /// <summary>
-        /// Checks if the actor has the ability.
+        /// Checks if the Actor has the Ability.
         /// </summary>
-        /// <typeparam name="TAbility">The ability type.</typeparam>
+        /// <typeparam name="TAbility">The Ability type.</typeparam>
         /// <returns></returns>
         public bool HasAbilityTo<TAbility>() where TAbility : IAbility
         {
@@ -154,16 +154,16 @@ namespace Boa.Constrictor.Screenplay
         }
 
         /// <summary>
-        /// Gets one of the actor's abilities by type so that it may be used.
+        /// Gets one of the Actor's Abilities by type so that it may be used.
         /// </summary>
-        /// <typeparam name="TAbility">The ability type.</typeparam>
+        /// <typeparam name="TAbility">The Ability type.</typeparam>
         /// <returns></returns>
         public TAbility Using<TAbility>() where TAbility : IAbility
         {
             Type t = typeof(TAbility);
 
             if (!Abilities.ContainsKey(t))
-                throw new ScreenplayException($"{this} does not have the ability '{t}'");
+                throw new ScreenplayException($"{this} does not have the Ability '{t}'");
 
             return (TAbility)Abilities[t];
         }
@@ -173,12 +173,12 @@ namespace Boa.Constrictor.Screenplay
         #region Other Methods
 
         /// <summary>
-        /// Returns the name of this screenplay actor.
+        /// Returns the name of this screenplay Actor.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            return $"Screenplay actor '{Name}'";
+            return $"Screenplay Actor '{Name}'";
         }
 
         #endregion

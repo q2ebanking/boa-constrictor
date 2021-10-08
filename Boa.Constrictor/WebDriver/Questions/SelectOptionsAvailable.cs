@@ -38,7 +38,7 @@ namespace Boa.Constrictor.WebDriver
         /// <summary>
         /// Gets the text of a select Web element's selected option.
         /// </summary>
-        /// <param name="actor">The actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         /// <returns></returns>
         public override IList<string> RequestAs(IActor actor, IWebDriver driver)

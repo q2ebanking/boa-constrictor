@@ -9,7 +9,7 @@ namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
     /// Gets one of the WebDriver window handles.
-    /// Getting the latest handle requires the SetTimeouts ability.
+    /// Getting the latest handle requires the SetTimeouts Ability.
     /// </summary>
     public class WindowHandle : AbstractWebQuestion<string>
     {
@@ -98,11 +98,11 @@ namespace Boa.Constrictor.WebDriver
         /// <summary>
         /// Attempts to get the latest window handle.
         /// </summary>
-        /// <param name="actor">The actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <returns></returns>
         private string GetLatestHandle(IActor actor)
         {
-            // Get abilities
+            // Get Abilities
             BrowseTheWeb browseAbility = actor.Using<BrowseTheWeb>();
             SetTimeouts timeoutAbility = actor.Using<SetTimeouts>();
 
@@ -148,7 +148,7 @@ namespace Boa.Constrictor.WebDriver
         /// Gets the desired WebDriver window handles.
         /// Throws a BrowserInteractionException if the index is out of bounds.
         /// </summary>
-        /// <param name="actor">The actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         /// <returns></returns>
         public override string RequestAs(IActor actor, IWebDriver driver)

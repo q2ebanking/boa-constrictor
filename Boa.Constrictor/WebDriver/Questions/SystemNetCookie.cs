@@ -81,7 +81,7 @@ namespace Boa.Constrictor.WebDriver
         /// Optionally reset the cookie's expiration.
         /// Warning: The cookie's expiration will be wrong.
         /// </summary>
-        /// <param name="actor">The actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <returns></returns>
         public System.Net.Cookie RequestAs(IActor actor)
         {

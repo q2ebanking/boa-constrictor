@@ -52,7 +52,7 @@ namespace Boa.Constrictor.Screenplay
         /// <summary>
         /// Runs the Tasks in the order given by the list.
         /// </summary>
-        /// <param name="actor"></param>
+        /// <param name="actor">The Screenplay Actor.</param>
         public void PerformAs(IActor actor) => actor.AttemptsTo(Tasks);
 
         /// <summary>

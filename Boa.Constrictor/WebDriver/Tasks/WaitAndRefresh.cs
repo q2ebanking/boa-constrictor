@@ -99,7 +99,7 @@ namespace Boa.Constrictor.WebDriver
         /// Waits for an element to appear and refreshes the browser if it doesn't appear within the refresh timeout.
         /// Internally calls Wait.
         /// </summary>
-        /// <param name="actor">The actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         public override void PerformAs(IActor actor, IWebDriver driver)
         {

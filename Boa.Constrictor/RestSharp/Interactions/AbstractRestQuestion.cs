@@ -45,7 +45,7 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// Calls the Question.
         /// </summary>
-        /// <param name="actor">The Screenplay actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <returns></returns>
         public abstract TAnswer RequestAs(IActor actor);
 
@@ -57,7 +57,7 @@ namespace Boa.Constrictor.RestSharp
         /// Calls the REST request and returns the downloaded file byte array.
         /// Throws a RestApiDownloadException if the request's response code is a client or server error or response status is a transport error.
         /// </summary>
-        /// <param name="actor">The Screenplay actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="fileExtension">The extension for the file to download.</param>
         /// <returns></returns>
         protected byte[] CallDownload(IActor actor, string fileExtension)
@@ -105,7 +105,7 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// Calls the REST request and returns the response.
         /// </summary>
-        /// <param name="actor">The Screenplay actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <returns></returns>
         protected IRestResponse CallRequest(IActor actor)
         {

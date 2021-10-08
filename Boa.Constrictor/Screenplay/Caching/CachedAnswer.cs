@@ -35,7 +35,7 @@
         /// If the answer is cached, this returns that value.
         /// If the answer is not cached, this calls the Question, caches the answer, and returns the value.
         /// </summary>
-        /// <param name="actor">The Actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <returns></returns>
         public TAnswer RequestAs(IActor actor) =>
             actor.Using<CacheAnswers>().Cache.Get(Question, actor);

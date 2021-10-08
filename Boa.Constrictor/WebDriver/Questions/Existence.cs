@@ -41,7 +41,7 @@ namespace Boa.Constrictor.WebDriver
         /// Note that an element can exist without being displayed.
         /// Warning: This method does NOT wait for the element to exist first!
         /// </summary>
-        /// <param name="actor">The actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         /// <returns></returns>
         public override bool RequestAs(IActor actor, IWebDriver driver) =>

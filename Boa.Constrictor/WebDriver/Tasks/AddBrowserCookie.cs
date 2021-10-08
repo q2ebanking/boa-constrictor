@@ -65,7 +65,7 @@ namespace Boa.Constrictor.WebDriver
         /// Adds the cookie to the WebDriver.
         /// Sometimes, adding the cookie fails, so keep retrying until it works.
         /// </summary>
-        /// <param name="actor">The Screenplay actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         public override void PerformAs(IActor actor, IWebDriver driver)
         {

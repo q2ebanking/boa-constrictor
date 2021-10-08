@@ -35,7 +35,7 @@ namespace Boa.Constrictor.WebDriver
         /// <summary>
         /// Returns true if the element is selected; otherwise false.
         /// </summary>
-        /// <param name="actor">The actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         /// <returns></returns>
         public override bool RequestAs(IActor actor, IWebDriver driver)

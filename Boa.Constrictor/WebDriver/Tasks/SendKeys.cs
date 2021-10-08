@@ -147,7 +147,7 @@ namespace Boa.Constrictor.WebDriver
         /// By default, the element will be cleared first, and keystrokes will not be kept private for logging.
         /// Use builder methods to change those defaults.
         /// </summary>
-        /// <param name="actor">The screenplay actor.</param>
+        /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
         public override void PerformAs(IActor actor, IWebDriver driver)
         {
