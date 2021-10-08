@@ -42,7 +42,7 @@ namespace Boa.Constrictor.WebDriver
         /// Returns a description of the Question.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"Current browser URL";
+        public override string ToString() => "current browser URL";
 
         #endregion
     }
