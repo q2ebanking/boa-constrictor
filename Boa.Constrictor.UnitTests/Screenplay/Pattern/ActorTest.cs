@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
+using System.Threading.Tasks;
 
 namespace Boa.Constrictor.UnitTests.Screenplay
 {
@@ -90,11 +91,29 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         }
 
         [Test]
+        public async Task AsksForAsync()
+        {
+            var MockQuestion = new Mock<IQuestionAsync<bool>>();
+            MockQuestion.Setup(x => x.RequestAsAsync(It.IsAny<IActor>())).ReturnsAsync(true);
+            bool answer = await new Actor().AsksForAsync(MockQuestion.Object);
+            answer.Should().BeTrue();
+        }
+
+        [Test]
         public void AskingFor()
         {
             var MockQuestion = new Mock<IQuestion<bool>>();
             MockQuestion.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(true);
             new Actor().AskingFor(MockQuestion.Object).Should().BeTrue();
+        }
+
+        [Test]
+        public async Task AskingForAsync()
+        {
+            var MockQuestion = new Mock<IQuestionAsync<bool>>();
+            MockQuestion.Setup(x => x.RequestAsAsync(It.IsAny<IActor>())).ReturnsAsync(true);
+            bool answer = await new Actor().AskingForAsync(MockQuestion.Object);
+            answer.Should().BeTrue();
         }
 
         [Test]
@@ -104,6 +123,16 @@ namespace Boa.Constrictor.UnitTests.Screenplay
             var MockTask = new Mock<ITask>();
             MockTask.Setup(x => x.PerformAs(It.IsAny<IActor>())).Callback((IActor actor) => performed = true).Verifiable();
             new Actor().AttemptsTo(MockTask.Object);
+            performed.Should().BeTrue();
+        }
+
+        [Test]
+        public async Task AttemptsToAsync()
+        {
+            bool performed = false;
+            var MockTask = new Mock<ITaskAsync>();
+            MockTask.Setup(x => x.PerformAsAsync(It.IsAny<IActor>())).Callback((IActor actor) => performed = true);
+            await new Actor().AttemptsToAsync(MockTask.Object);
             performed.Should().BeTrue();
         }
 
@@ -129,6 +158,23 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         }
 
         [Test]
+        public void CallsQuestion()
+        {
+            var MockQuestion = new Mock<IQuestion<bool>>();
+            MockQuestion.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(true);
+            new Actor().Calls(MockQuestion.Object).Should().BeTrue();
+        }
+
+        [Test]
+        public async Task CallsQuestionAsync()
+        {
+            var MockQuestion = new Mock<IQuestionAsync<bool>>();
+            MockQuestion.Setup(x => x.RequestAsAsync(It.IsAny<IActor>())).ReturnsAsync(true);
+            bool answer = await new Actor().CallsAsync(MockQuestion.Object);
+            answer.Should().BeTrue();
+        }
+
+        [Test]
         public void CallsTask()
         {
             bool performed = false;
@@ -139,11 +185,13 @@ namespace Boa.Constrictor.UnitTests.Screenplay
         }
 
         [Test]
-        public void CallsQuestion()
+        public async Task CallsTaskAsync()
         {
-            var MockQuestion = new Mock<IQuestion<bool>>();
-            MockQuestion.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns(true);
-            new Actor().Calls(MockQuestion.Object).Should().BeTrue();
+            bool performed = false;
+            var MockTask = new Mock<ITaskAsync>();
+            MockTask.Setup(x => x.PerformAsAsync(It.IsAny<IActor>())).Callback((IActor actor) => performed = true);
+            await new Actor().CallsAsync(MockTask.Object);
+            performed.Should().BeTrue();
         }
 
     }
