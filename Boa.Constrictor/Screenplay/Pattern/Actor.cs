@@ -1,6 +1,7 @@
 ﻿using Boa.Constrictor.Logging;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Boa.Constrictor.Screenplay
 {
@@ -56,6 +57,68 @@ namespace Boa.Constrictor.Screenplay
 
         #endregion
 
+        #region Private Methods
+
+        /// <summary>
+        /// Calls a Question synchronously.
+        /// </summary>
+        /// <typeparam name="TAnswer">The answer type.</typeparam>
+        /// <param name="question">The Question to ask.</param>
+        /// <param name="enterPhrase">The phrase to print before calling.</param>
+        /// <param name="exitPhrase">The phrase to print after calling.</param>
+        /// <returns></returns>
+        private TAnswer CallQuestion<TAnswer>(IQuestion<TAnswer> question, string enterPhrase, string exitPhrase)
+        {
+            Logger.Info($"{this} {enterPhrase} {question}");
+            TAnswer answer = question.RequestAs(this);
+            Logger.Info($"{question} {exitPhrase} {answer}");
+            return answer;
+        }
+
+        /// <summary>
+        /// Calls a Question asynchronously.
+        /// </summary>
+        /// <typeparam name="TAnswer">The answer type.</typeparam>
+        /// <param name="question">The Question to ask.</param>
+        /// <param name="enterPhrase">The phrase to print before calling.</param>
+        /// <param name="exitPhrase">The phrase to print after calling.</param>
+        /// <returns></returns>
+        private async Task<TAnswer> CallQuestionAsync<TAnswer>(IQuestionAsync<TAnswer> question, string enterPhrase, string exitPhrase)
+        {
+            Logger.Info($"{this} {enterPhrase} {question}");
+            TAnswer answer = await question.RequestAsAsync(this);
+            Logger.Info($"{question} {exitPhrase} {answer}");
+            return answer;
+        }
+
+        /// <summary>
+        /// Calls a Task synchronously.
+        /// </summary>
+        /// <param name="task">The Task to perform.</param>
+        /// <param name="enterPhrase">The phrase to print before calling.</param>
+        /// <param name="exitPhrase">The phrase to print after calling.</param>
+        public void CallTask(ITask task, string enterPhrase, string exitPhrase)
+        {
+            Logger.Info($"{this} {enterPhrase} {task}");
+            task.PerformAs(this);
+            Logger.Info($"{this} {exitPhrase} {task}");
+        }
+
+        /// <summary>
+        /// Calls a Task asynchronously.
+        /// </summary>
+        /// <param name="task">The Task to perform.</param>
+        /// <param name="enterPhrase">The phrase to print before calling.</param>
+        /// <param name="exitPhrase">The phrase to print after calling.</param>
+        public async Task CallTaskAsync(ITaskAsync task, string enterPhrase, string exitPhrase)
+        {
+            Logger.Info($"{this} {enterPhrase} {task}");
+            await task.PerformAsAsync(this);
+            Logger.Info($"{this} {exitPhrase} {task}");
+        }
+
+        #endregion
+
         #region IActor Methods
 
         /// <summary>
@@ -67,21 +130,43 @@ namespace Boa.Constrictor.Screenplay
         /// <returns></returns>
         public TAnswer AsksFor<TAnswer>(IQuestion<TAnswer> question)
         {
-            Logger.Info($"{this} asks for {question}");
-            TAnswer answer = question.RequestAs(this);
-            Logger.Info($"{question} was {answer}");
-            return answer;
+            return CallQuestion(question, "asks for", "was");
         }
 
         /// <summary>
-        /// Alias for "AsksFor".
+        /// Asks a Question and returns the answer value asynchronously.
+        /// The Actor must have the Abilities needed by the Question.
+        /// </summary>
+        /// <typeparam name="TAnswer">The answer type.</typeparam>
+        /// <param name="question">The Question to ask.</param>
+        /// <returns></returns>
+        public async Task<TAnswer> AsksForAsync<TAnswer>(IQuestionAsync<TAnswer> question)
+        {
+            return await CallQuestionAsync(question, "asks for", "was");
+        }
+
+        /// <summary>
+        /// Asks a Question and returns the answer value.
+        /// The Actor must have the Abilities needed by the Question.
         /// </summary>
         /// <typeparam name="TAnswer">The answer type.</typeparam>
         /// <param name="question">The Question to ask.</param>
         /// <returns></returns>
         public TAnswer AskingFor<TAnswer>(IQuestion<TAnswer> question)
         {
-            return AsksFor(question);
+            return CallQuestion(question, "asking for", "was");
+        }
+
+        /// <summary>
+        /// Asks a Question and returns the answer value asynchronously.
+        /// The Actor must have the Abilities needed by the Question.
+        /// </summary>
+        /// <typeparam name="TAnswer">The answer type.</typeparam>
+        /// <param name="question">The Question to ask.</param>
+        /// <returns></returns>
+        public async Task<TAnswer> AskingForAsync<TAnswer>(IQuestionAsync<TAnswer> question)
+        {
+            return await CallQuestionAsync(question, "asking for", "was");
         }
 
         /// <summary>
@@ -91,9 +176,17 @@ namespace Boa.Constrictor.Screenplay
         /// <param name="task">The Task to perform.</param>
         public void AttemptsTo(ITask task)
         {
-            Logger.Info($"{this} attempts to {task}");
-            task.PerformAs(this);
-            Logger.Info($"{this} successfully did {task}");
+            CallTask(task, "attempts to", "successfully did");
+        }
+
+        /// <summary>
+        /// Performs a Task asynchronously.
+        /// The Actor must have the Abilities needed by the Task.
+        /// </summary>
+        /// <param name="task">The Task to perform.</param>
+        public async Task AttemptsToAsync(ITaskAsync task)
+        {
+            await CallTaskAsync(task, "attempts to", "successfully did");
         }
 
         /// <summary>
@@ -115,10 +208,18 @@ namespace Boa.Constrictor.Screenplay
         /// <param name="question">The Question to ask.</param>
         public TAnswer Calls<TAnswer>(IQuestion<TAnswer> question)
         {
-            Logger.Info($"{this} calls {question}");
-            TAnswer answer = question.RequestAs(this);
-            Logger.Info($"{question} return \"{answer}\"");
-            return answer;
+            return CallQuestion(question, "calls", "returned:");
+        }
+
+        /// <summary>
+        /// Asks a Question and returns the answer value asynchronously.
+        /// The Actor must have the Abilities needed by the Question.
+        /// </summary>
+        /// <typeparam name="TAnswer">The answer type.</typeparam>
+        /// <param name="question">The Question to ask.</param>
+        public async Task<TAnswer> CallsAsync<TAnswer>(IQuestionAsync<TAnswer> question)
+        {
+            return await CallQuestionAsync(question, "calls", "returned:");
         }
 
         /// <summary>
@@ -128,9 +229,17 @@ namespace Boa.Constrictor.Screenplay
         /// <param name="task">The Task to perform.</param>
         public void Calls(ITask task)
         {
-            Logger.Info($"{this} calls {task}");
-            task.PerformAs(this);
-            Logger.Info($"{this} successfully called {task}");
+            CallTask(task, "calls", "successfully called");
+        }
+
+        /// <summary>
+        /// Performs a Task asynchronously.
+        /// The Actor must have the Abilities needed by the Task.
+        /// </summary>
+        /// <param name="task">The Task to perform.</param>
+        public async Task CallsAsync(ITaskAsync task)
+        {
+            await CallTaskAsync(task, "calls", "successfully called");
         }
 
         /// <summary>

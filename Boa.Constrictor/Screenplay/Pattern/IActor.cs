@@ -1,4 +1,5 @@
 ﻿using Boa.Constrictor.Logging;
+using System.Threading.Tasks;
 
 namespace Boa.Constrictor.Screenplay
 {
@@ -32,6 +33,15 @@ namespace Boa.Constrictor.Screenplay
         /// <param name="question">The Question to ask.</param>
         /// <returns></returns>
         TAnswer AsksFor<TAnswer>(IQuestion<TAnswer> question);
+        
+        /// <summary>
+        /// Asks a Question and returns the answer value asynchronously.
+        /// The Actor must have the Abilities needed by the Question.
+        /// </summary>
+        /// <typeparam name="TAnswer">The answer type.</typeparam>
+        /// <param name="question">The Question to ask.</param>
+        /// <returns></returns>
+        Task<TAnswer> AsksForAsync<TAnswer>(IQuestionAsync<TAnswer> question);
 
         /// <summary>
         /// Alias for "AsksFor".
@@ -42,11 +52,26 @@ namespace Boa.Constrictor.Screenplay
         TAnswer AskingFor<TAnswer>(IQuestion<TAnswer> question);
 
         /// <summary>
+        /// Alias for "AsksFor".
+        /// </summary>
+        /// <typeparam name="TAnswer">The answer type.</typeparam>
+        /// <param name="question">The Question to ask.</param>
+        /// <returns></returns>
+        Task<TAnswer> AskingForAsync<TAnswer>(IQuestionAsync<TAnswer> question);
+
+        /// <summary>
         /// Performs a Task.
         /// The Actor must have the Abilities needed by the Task.
         /// </summary>
         /// <param name="task">The Task to perform.</param>
         void AttemptsTo(ITask task);
+        
+        /// <summary>
+        /// Performs a Task asynchronously.
+        /// The Actor must have the Abilities needed by the Task.
+        /// </summary>
+        /// <param name="task">The Task to perform.</param>
+        Task AttemptsToAsync(ITaskAsync task);
 
         /// <summary>
         /// Performs multiple Tasks
@@ -65,11 +90,27 @@ namespace Boa.Constrictor.Screenplay
         TAnswer Calls<TAnswer>(IQuestion<TAnswer> question);
 
         /// <summary>
+        /// Asks a Question and returns the answer value asynchronously.
+        /// The Actor must have the Abilities needed by the Question.
+        /// </summary>
+        /// <typeparam name="TAnswer">The answer type.</typeparam>
+        /// <param name="question">The Question to ask.</param>
+        /// <returns></returns>
+        Task<TAnswer> CallsAsync<TAnswer>(IQuestionAsync<TAnswer> question);
+
+        /// <summary>
         /// Performs a Task.
         /// The Actor must have the Abilities needed by the Task.
         /// </summary>
         /// <param name="task">The Task to perform.</param>
         void Calls(ITask task);
+
+        /// <summary>
+        /// Performs a Task asynchronously.
+        /// The Actor must have the Abilities needed by the Task.
+        /// </summary>
+        /// <param name="task">The Task to perform.</param>
+        Task CallsAsync(ITaskAsync task);
 
         /// <summary>
         /// Adds an Ability.
