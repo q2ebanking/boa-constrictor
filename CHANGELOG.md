@@ -17,6 +17,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [Experimental] Added async programming to Boa Constrictor
+  - Interactions have async versions:
+    - `IInteractionAsync`
+    - `IQuestionAsync`
+    - `ITaskAsync`
+  - `IActor` has "Async" methods to call async Interactions
+
 ### Changed
 
 - Reformatted task and question when they're referring to interactions
