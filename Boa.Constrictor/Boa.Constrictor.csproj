@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
-    <Version>1.4.1</Version>
+    <Version>1.5.0</Version>
     <Authors>Pandy Knight and the PrecisionLender SETs</Authors>
     <Company>PrecisionLender, a Q2 Company</Company>
     <Title>Boa Constrictor</Title>
