@@ -34,7 +34,7 @@ Ankh.NoLoad
 .vscode/
 
 #GitHub Actions
-.github/
+
 
 #MonoDevelop
 *.pidb
