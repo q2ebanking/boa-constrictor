@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Reformatted task and question when they're referring to interactions
 - Reformatted actor and ability when they're referring to Screenplay items
+- Updated Selenium to the latest release
 
 ### Fixed
 
