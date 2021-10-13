@@ -104,8 +104,7 @@ namespace Boa.Constrictor.WebDriver
         /// Returns a description of the Question.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() =>
-            $"Browser cookie named '{CookieName}'";
+        public override string ToString() => $"browser cookie named '{CookieName}'";
 
         #endregion
     }

@@ -45,7 +45,14 @@ namespace Boa.Constrictor.WebDriver
             actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
             return driver.FindElement(Locator.Query).GetAttribute(PropertyName);
         }
-        
+
+        /// <summary>
+        /// Returns a description of the Question.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() =>
+            $"HTML attribute of '{PropertyName}' for '{Locator.Description}'";
+
         #endregion
     }
 

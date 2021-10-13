@@ -45,6 +45,12 @@ namespace Boa.Constrictor.WebDriver
             return classes.Split();
         }
 
+        /// <summary>
+        /// Returns a description of the Question.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => $"list of CSS classes for '{Locator.Description}'";
+
         #endregion
     }
 }

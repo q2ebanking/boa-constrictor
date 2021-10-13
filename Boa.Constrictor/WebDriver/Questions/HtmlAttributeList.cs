@@ -44,6 +44,13 @@ namespace Boa.Constrictor.WebDriver
         public override IEnumerable<string> RequestAs(IActor actor, IWebDriver driver) =>
             ElementLists.GetValues(actor, driver, Locator, e => e.GetAttribute(PropertyName));
 
+        /// <summary>
+        /// Returns a description of the Question.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() =>
+            $"list of HTML attributes of '{PropertyName}' for '{Locator.Description}'";
+
         #endregion
     }
 
