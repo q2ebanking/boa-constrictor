@@ -68,6 +68,12 @@ namespace Boa.Constrictor.WebDriver
             return appearance;
         }
 
+        /// <summary>
+        /// Returns a description of the Question.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => $"appearance of '{Locator.Description}'";
+
         #endregion
     }
 }

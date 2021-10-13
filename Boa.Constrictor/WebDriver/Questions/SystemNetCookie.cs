@@ -102,7 +102,7 @@ namespace Boa.Constrictor.WebDriver
         }
 
         /// <summary>
-        /// Gets a unique hash code for this interaction.
+        /// Checks if this interaction is equal to another interaction.
         /// </summary>
         /// <returns></returns>
         public override bool Equals(object obj) =>
@@ -111,8 +111,7 @@ namespace Boa.Constrictor.WebDriver
             Expiration == cookie.Expiration;
 
         /// <summary>
-        /// Returns a description of the Question.
-        /// The script and the arguments will be printed during execution.
+        /// Gets a unique hash code for this interaction.
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode() => HashCode.Combine(CookieName, Expiration);
@@ -121,7 +120,15 @@ namespace Boa.Constrictor.WebDriver
         /// Returns a description of the Question.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"System.Net.Cookie named '{CookieName}'";
+        public override string ToString()
+        {
+            string message = $"System.Net.Cookie named '{CookieName}'";
+
+            if (Expiration != null)
+                message += $" and reset expiration to '{Expiration}'";
+
+            return message;
+        }
 
         #endregion
     }

@@ -170,17 +170,22 @@ namespace Boa.Constrictor.WebDriver
         }
 
         /// <summary>
-        /// Gets a unique hash code for this interaction.
+        /// Checks if this interaction is equal to another interaction.
         /// </summary>
         /// <returns></returns>
         public override bool Equals(object obj) => obj is WindowHandle handle && Index == handle.Index;
 
         /// <summary>
-        /// Returns a description of the Question.
-        /// The script and the arguments will be printed during execution.
+        /// Gets a unique hash code for this interaction.
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode() => HashCode.Combine(GetType(), Index);
+
+        /// <summary>
+        /// Returns a description of the Question.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => $"window handle at index '{Index}'";
 
         #endregion
     }

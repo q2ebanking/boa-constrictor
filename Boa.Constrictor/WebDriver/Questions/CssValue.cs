@@ -46,7 +46,14 @@ namespace Boa.Constrictor.WebDriver
             actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
             return driver.FindElement(Locator.Query).GetCssValue(PropertyName);
         }
-        
+
+        /// <summary>
+        /// Returns a description of the Question.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() =>
+            $"CSS value of '{PropertyName}' for '{Locator.Description}'";
+
         #endregion
     }
 }

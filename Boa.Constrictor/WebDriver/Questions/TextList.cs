@@ -42,6 +42,12 @@ namespace Boa.Constrictor.WebDriver
         public override IEnumerable<string> RequestAs(IActor actor, IWebDriver driver) =>
             ElementLists.GetValues(actor, driver, Locator, e => e.Text);
 
+        /// <summary>
+        /// Returns a description of the Question.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => $"text list of '{Locator.Description}'";
+
         #endregion
     }
 }
