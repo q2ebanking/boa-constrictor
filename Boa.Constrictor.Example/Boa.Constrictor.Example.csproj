@@ -12,8 +12,8 @@
     <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
     <PackageReference Include="RestSharp" Version="106.12.0" />
-    <PackageReference Include="Selenium.Support" Version="3.141.0" />
-    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+    <PackageReference Include="Selenium.Support" Version="4.0.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
