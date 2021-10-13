@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - `IQuestionAsync`
     - `ITaskAsync`
   - `IActor` has "Async" methods to call async Interactions
+- Added additional badges from Shields.io to the README.md
 
 ### Changed
 
