@@ -43,7 +43,7 @@ namespace Boa.Constrictor.WebDriver
         /// <param name="locator">The target Web element's locator.</param>
         /// <param name="filePath">The path of the file to upload.</param>
         /// <returns></returns>
-        public static UploadFile On(IWebLocator locator, string filePath) => new UploadFile(locator, filePath);
+        public static UploadFile Through(IWebLocator locator, string filePath) => new UploadFile(locator, filePath);
 
         #endregion
 
@@ -82,12 +82,8 @@ namespace Boa.Constrictor.WebDriver
         /// Returns a description of the Task.
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            string message = $"Upload a file using {Locator.Description}";
-
-            return message;
-        }
+        public override string ToString() =>
+            $"Upload a file using {Locator.Description}";
 
         #endregion
     }
