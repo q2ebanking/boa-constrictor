@@ -48,34 +48,18 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "docs", "docs\", "{20E9F298-
 		SlnRelativePath = "docs\"
 	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "logos", "logos\", "{BBA3A9E1-2F9C-4335-93E9-79CEBE68CFFE}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_65097"
-		Debug.AspNetCompiler.PhysicalPath = "logos\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_65097\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_65097"
-		Release.AspNetCompiler.PhysicalPath = "logos\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_65097\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "65097"
-		SlnRelativePath = "logos\"
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Talk", "Talk", "{7D4EA7FB-C573-48DD-BB07-5C1217543815}"
 	ProjectSection(SolutionItems) = preProject
 		talk\talk-script.docx = talk\talk-script.docx
 		talk\talk-slides.pptx = talk\talk-slides.pptx
 	EndProjectSection
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "logos", "logos\logos.shproj", "{1D0939E4-3AAB-4EFB-9645-660D08E57699}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		logos\logos.projitems*{1d0939e4-3aab-4efb-9645-660d08e57699}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -95,8 +79,6 @@ Global
 		{2EDE1932-D1D3-45DD-80C6-6E08A3F96942}.Release|Any CPU.Build.0 = Release|Any CPU
 		{20E9F298-0AEF-4BC2-838F-28B188851B6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{20E9F298-0AEF-4BC2-838F-28B188851B6C}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{BBA3A9E1-2F9C-4335-93E9-79CEBE68CFFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BBA3A9E1-2F9C-4335-93E9-79CEBE68CFFE}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

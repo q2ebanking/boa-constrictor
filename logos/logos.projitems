@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>1d0939e4-3aab-4efb-9645-660d08e57699</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>logos</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)medallion\classic\eps\logo-medallion-classic-black.eps" />
+    <None Include="$(MSBuildThisFileDirectory)medallion\classic\eps\logo-medallion-classic-white.eps" />
+    <None Include="$(MSBuildThisFileDirectory)medallion\classic\svg\logo-medallion-classic-black.svg" />
+    <None Include="$(MSBuildThisFileDirectory)medallion\classic\svg\logo-medallion-classic-white.svg" />
+    <None Include="$(MSBuildThisFileDirectory)medallion\ring\eps\logo-medallion-ring-black.eps" />
+    <None Include="$(MSBuildThisFileDirectory)medallion\ring\eps\logo-medallion-ring-white.eps" />
+    <None Include="$(MSBuildThisFileDirectory)medallion\ring\svg\logo-medallion-ring-black.svg" />
+    <None Include="$(MSBuildThisFileDirectory)medallion\ring\svg\logo-medallion-ring-white.svg" />
+    <None Include="$(MSBuildThisFileDirectory)powerpoint-master.pptx" />
+    <None Include="$(MSBuildThisFileDirectory)spec-sheet.pdf" />
+    <None Include="$(MSBuildThisFileDirectory)symbol\margin\svg\logo-symbol-margin-black.svg" />
+    <None Include="$(MSBuildThisFileDirectory)symbol\margin\svg\logo-symbol-margin-white.svg" />
+    <None Include="$(MSBuildThisFileDirectory)symbol\no-margin\eps\logo-symbol-black.eps" />
+    <None Include="$(MSBuildThisFileDirectory)symbol\no-margin\eps\logo-symbol-white.eps" />
+    <None Include="$(MSBuildThisFileDirectory)symbol\no-margin\svg\logo-symbol-black.svg" />
+    <None Include="$(MSBuildThisFileDirectory)symbol\no-margin\svg\logo-symbol-white.svg" />
+    <None Include="$(MSBuildThisFileDirectory)title\margin\svg\logo-title-margin-black.svg" />
+    <None Include="$(MSBuildThisFileDirectory)title\margin\svg\logo-title-margin-white.svg" />
+    <None Include="$(MSBuildThisFileDirectory)title\no-margin\eps\logo-title-black.eps" />
+    <None Include="$(MSBuildThisFileDirectory)title\no-margin\eps\logo-title-white.eps" />
+    <None Include="$(MSBuildThisFileDirectory)title\no-margin\svg\logo-title-black.svg" />
+    <None Include="$(MSBuildThisFileDirectory)title\no-margin\svg\logo-title-white.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)medallion\classic\png\logo-medallion-classic-black-144x144.png" />
+    <Content Include="$(MSBuildThisFileDirectory)medallion\classic\png\logo-medallion-classic-black-288x288.png" />
+    <Content Include="$(MSBuildThisFileDirectory)medallion\classic\png\logo-medallion-classic-black-432x432.png" />
+    <Content Include="$(MSBuildThisFileDirectory)medallion\classic\png\logo-medallion-classic-black-576x576.png" />
+    <Content Include="$(MSBuildThisFileDirectory)medallion\classic\png\logo-medallion-classic-white-144x144.png" />
+    <Content Include="$(MSBuildThisFileDirectory)medallion\classic\png\logo-medallion-classic-white-288x288.png" />
+    <Content Include="$(MSBuildThisFileDirectory)medallion\classic\png\logo-medallion-classic-white-432x432.png" />
+    <Content Include="$(MSBuildThisFileDirectory)medallion\classic\png\logo-medallion-classic-white-576x576.png" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\margin\jpg\logo-symbol-margin-black-104x116.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\margin\jpg\logo-symbol-margin-black-154x174.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\margin\jpg\logo-symbol-margin-black-52x58.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\margin\png\logo-symbol-margin-black-104x116.png" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\margin\png\logo-symbol-margin-black-206x232.png" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\margin\png\logo-symbol-margin-black-26x29.png" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\margin\png\logo-symbol-margin-black-52x58.png" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\margin\png\logo-symbol-margin-white-104x116.png" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\margin\png\logo-symbol-margin-white-206x232.png" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\margin\png\logo-symbol-margin-white-26x29.png" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\margin\png\logo-symbol-margin-white-52x58.png" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\no-margin\png\logo-symbol-black-120x148.png" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\no-margin\png\logo-symbol-black-15x19.png" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\no-margin\png\logo-symbol-black-30x38.png" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\no-margin\png\logo-symbol-black-60x74.png" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\no-margin\png\logo-symbol-black-90x112.png" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\no-margin\png\logo-symbol-white-120x148.png" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\no-margin\png\logo-symbol-white-15x19.png" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\no-margin\png\logo-symbol-white-30x38.png" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\no-margin\png\logo-symbol-white-60x74.png" />
+    <Content Include="$(MSBuildThisFileDirectory)symbol\no-margin\png\logo-symbol-white-90x112.png" />
+    <Content Include="$(MSBuildThisFileDirectory)title\margin\jpg\logo-title-margin-black-242x58.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)title\margin\jpg\logo-title-margin-black-482x116.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)title\margin\jpg\logo-title-margin-black-724x124.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)title\margin\png\logo-title-margin-black-121x29.png" />
+    <Content Include="$(MSBuildThisFileDirectory)title\margin\png\logo-title-margin-black-242x58.png" />
+    <Content Include="$(MSBuildThisFileDirectory)title\margin\png\logo-title-margin-black-482x116.png" />
+    <Content Include="$(MSBuildThisFileDirectory)title\margin\png\logo-title-margin-black-964x232.png" />
+    <Content Include="$(MSBuildThisFileDirectory)title\margin\png\logo-title-margin-white-121x29.png" />
+    <Content Include="$(MSBuildThisFileDirectory)title\margin\png\logo-title-margin-white-242x58.png" />
+    <Content Include="$(MSBuildThisFileDirectory)title\margin\png\logo-title-margin-white-482x116.png" />
+    <Content Include="$(MSBuildThisFileDirectory)title\margin\png\logo-title-margin-white-964x232.png" />
+    <Content Include="$(MSBuildThisFileDirectory)title\no-margin\png\logo-title-black-100x16.png" />
+    <Content Include="$(MSBuildThisFileDirectory)title\no-margin\png\logo-title-black-200x32.png" />
+    <Content Include="$(MSBuildThisFileDirectory)title\no-margin\png\logo-title-black-400x64.png" />
+    <Content Include="$(MSBuildThisFileDirectory)title\no-margin\png\logo-title-black-600x96.png" />
+    <Content Include="$(MSBuildThisFileDirectory)title\no-margin\png\logo-title-black-800x128.png" />
+    <Content Include="$(MSBuildThisFileDirectory)title\no-margin\png\logo-title-white-100x16.png" />
+    <Content Include="$(MSBuildThisFileDirectory)title\no-margin\png\logo-title-white-200x32.png" />
+    <Content Include="$(MSBuildThisFileDirectory)title\no-margin\png\logo-title-white-400x64.png" />
+    <Content Include="$(MSBuildThisFileDirectory)title\no-margin\png\logo-title-white-600x96.png" />
+    <Content Include="$(MSBuildThisFileDirectory)title\no-margin\png\logo-title-white-800x128.png" />
+  </ItemGroup>
+</Project>
