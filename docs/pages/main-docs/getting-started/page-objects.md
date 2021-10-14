@@ -167,7 +167,8 @@ public class AnyPage
 ```
 
 The code will be the same for any other click method, too.
-This is copy paste, and it happens frequently in page objects.
+This is [copypasta](https://en.wikipedia.org/wiki/Copypasta),
+and it happens frequently in page objects.
 Page objects can grow to be thousands of lines long due to duplicative methods like this.
 
 
