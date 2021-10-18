@@ -67,6 +67,13 @@ namespace Boa.Constrictor.RestSharp
                 restApiDownload.FileExtension == FileExtension
         }
 
+        /// <summary>
+        /// Gets a unique hash code for this interaction.
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode() =>
+            HashCode.Combine(GetType(), FileExtension);
+
         #endregion
     }
 }
