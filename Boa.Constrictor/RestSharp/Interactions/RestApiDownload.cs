@@ -57,7 +57,7 @@ namespace Boa.Constrictor.RestSharp
         /// <returns></returns>
         public override string ToString() => $"REST API download using {typeof(TAbility)}: {Request.Method} '{Request.Resource}'";
 
-         /// <summary>
+        /// <summary>
         /// Checks if this interaction is equal to another interaction.
         /// </summary>
         /// <param name="obj">The other object.</param>
