@@ -55,7 +55,7 @@ namespace Boa.Constrictor.WebDriver
         /// Returns a description of the Question.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => "Browser alert presence";
+        public override string ToString() => "browser alert presence";
 
         #endregion
     }

@@ -149,7 +149,7 @@ namespace Boa.Constrictor.WebDriver
         /// Returns a description of the Question.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"Current browser screenshot";
+        public override string ToString() => "current browser screenshot";
 
         #endregion
     }

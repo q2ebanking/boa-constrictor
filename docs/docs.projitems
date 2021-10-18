@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>0a420e7b-171f-4a46-acb0-24c36fc84c33</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>docs</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)assets\css\main.scss" />
+    <None Include="$(MSBuildThisFileDirectory)assets\images\logo-symbol-black.svg" />
+    <None Include="$(MSBuildThisFileDirectory)Gemfile" />
+    <None Include="$(MSBuildThisFileDirectory)Gemfile.lock" />
+    <None Include="$(MSBuildThisFileDirectory)index.md" />
+    <None Include="$(MSBuildThisFileDirectory)pages\main-docs\contributing\code-of-conduct.md" />
+    <None Include="$(MSBuildThisFileDirectory)pages\main-docs\contributing\contributing-code.md" />
+    <None Include="$(MSBuildThisFileDirectory)pages\main-docs\getting-started\page-objects.md" />
+    <None Include="$(MSBuildThisFileDirectory)pages\main-docs\getting-started\quickstart.md" />
+    <None Include="$(MSBuildThisFileDirectory)pages\main-docs\getting-started\screenplay.md" />
+    <None Include="$(MSBuildThisFileDirectory)pages\main-docs\getting-started\why-boa-constrictor.md" />
+    <None Include="$(MSBuildThisFileDirectory)pages\main-docs\project\backstory.md" />
+    <None Include="$(MSBuildThisFileDirectory)pages\main-docs\project\requirements.md" />
+    <None Include="$(MSBuildThisFileDirectory)pages\main-docs\tutorial\overview.md" />
+    <None Include="$(MSBuildThisFileDirectory)pages\main-docs\tutorial\part-1-setup.md" />
+    <None Include="$(MSBuildThisFileDirectory)pages\main-docs\tutorial\part-2-web-ui-testing.md" />
+    <None Include="$(MSBuildThisFileDirectory)pages\main-docs\tutorial\part-3-rest-api-testing.md" />
+    <None Include="$(MSBuildThisFileDirectory)pages\user-guides\learning\user-guides-and-videos.md" />
+    <None Include="$(MSBuildThisFileDirectory)pages\user-guides\testing\nunit.md" />
+    <None Include="$(MSBuildThisFileDirectory)pages\user-guides\testing\specflow.md" />
+    <None Include="$(MSBuildThisFileDirectory)pages\user-guides\testing\xunit-net.md" />
+    <None Include="$(MSBuildThisFileDirectory)_config.yml" />
+    <None Include="$(MSBuildThisFileDirectory)_data\navigation.yml" />
+    <None Include="$(MSBuildThisFileDirectory)_site\assets\images\logo-symbol-black.svg" />
+    <None Include="$(MSBuildThisFileDirectory)_site\assets\js\lunr\lunr-en.js" />
+    <None Include="$(MSBuildThisFileDirectory)_site\assets\js\lunr\lunr-gr.js" />
+    <None Include="$(MSBuildThisFileDirectory)_site\assets\js\lunr\lunr-store.js" />
+    <None Include="$(MSBuildThisFileDirectory)_site\assets\js\lunr\lunr.js" />
+    <None Include="$(MSBuildThisFileDirectory)_site\assets\js\lunr\lunr.min.js" />
+    <None Include="$(MSBuildThisFileDirectory)_site\assets\js\main.min.js" />
+    <None Include="$(MSBuildThisFileDirectory)_site\assets\js\plugins\gumshoe.js" />
+    <None Include="$(MSBuildThisFileDirectory)_site\assets\js\plugins\jquery.ba-throttle-debounce.js" />
+    <None Include="$(MSBuildThisFileDirectory)_site\assets\js\plugins\jquery.fitvids.js" />
+    <None Include="$(MSBuildThisFileDirectory)_site\assets\js\plugins\jquery.greedy-navigation.js" />
+    <None Include="$(MSBuildThisFileDirectory)_site\assets\js\plugins\jquery.magnific-popup.js" />
+    <None Include="$(MSBuildThisFileDirectory)_site\assets\js\plugins\smooth-scroll.js" />
+    <None Include="$(MSBuildThisFileDirectory)_site\assets\js\vendor\jquery\jquery-3.5.1.js" />
+    <None Include="$(MSBuildThisFileDirectory)_site\assets\js\_main.js" />
+    <None Include="$(MSBuildThisFileDirectory)_site\pages\main-docs\contributing\code-of-conduct.md" />
+    <None Include="$(MSBuildThisFileDirectory)_site\pages\main-docs\contributing\contributing-code.md" />
+    <None Include="$(MSBuildThisFileDirectory)_site\pages\main-docs\getting-started\page-objects.md" />
+    <None Include="$(MSBuildThisFileDirectory)_site\pages\main-docs\getting-started\quickstart.md" />
+    <None Include="$(MSBuildThisFileDirectory)_site\pages\main-docs\getting-started\screenplay.md" />
+    <None Include="$(MSBuildThisFileDirectory)_site\pages\main-docs\getting-started\why-boa-constrictor.md" />
+    <None Include="$(MSBuildThisFileDirectory)_site\pages\main-docs\project\backstory.md" />
+    <None Include="$(MSBuildThisFileDirectory)_site\pages\main-docs\project\requirements.md" />
+    <None Include="$(MSBuildThisFileDirectory)_site\pages\main-docs\tutorial\overview.md" />
+    <None Include="$(MSBuildThisFileDirectory)_site\pages\main-docs\tutorial\part-1-setup.md" />
+    <None Include="$(MSBuildThisFileDirectory)_site\pages\main-docs\tutorial\part-2-web-ui-testing.md" />
+    <None Include="$(MSBuildThisFileDirectory)_site\pages\main-docs\tutorial\part-3-rest-api-testing.md" />
+    <None Include="$(MSBuildThisFileDirectory)_site\pages\user-guides\learning\user-guides-and-videos.md" />
+    <None Include="$(MSBuildThisFileDirectory)_site\pages\user-guides\testing\nunit.md" />
+    <None Include="$(MSBuildThisFileDirectory)_site\pages\user-guides\testing\specflow.md" />
+    <None Include="$(MSBuildThisFileDirectory)_site\pages\user-guides\testing\xunit-net.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)404.html" />
+    <Content Include="$(MSBuildThisFileDirectory)assets\images\blue-ball-192x192.png" />
+    <Content Include="$(MSBuildThisFileDirectory)assets\images\example-dog-image.png" />
+    <Content Include="$(MSBuildThisFileDirectory)assets\images\logo-og-image.png" />
+    <Content Include="$(MSBuildThisFileDirectory)assets\images\logo-symbol-black-120x148.png" />
+    <Content Include="$(MSBuildThisFileDirectory)assets\images\logo-title-white-200x32.png" />
+    <Content Include="$(MSBuildThisFileDirectory)assets\images\screenplay-visual.png" />
+    <Content Include="$(MSBuildThisFileDirectory)assets\images\vs-create-new-project.png" />
+    <Content Include="$(MSBuildThisFileDirectory)assets\images\vs-install-nuget-packages.png" />
+    <Content Include="$(MSBuildThisFileDirectory)assets\images\vs-manage-nuget-packages.png" />
+    <Content Include="$(MSBuildThisFileDirectory)assets\images\vs-name-project.png" />
+    <Content Include="$(MSBuildThisFileDirectory)assets\images\vs-remove-auto-generated-class.png" />
+    <Content Include="$(MSBuildThisFileDirectory)assets\images\vs-select-project-type.png" />
+    <Content Include="$(MSBuildThisFileDirectory)_includes\footer.html" />
+    <Content Include="$(MSBuildThisFileDirectory)_includes\head\custom.html" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\404.html" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\assets\css\main.css" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\assets\images\blue-ball-192x192.png" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\assets\images\example-dog-image.png" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\assets\images\logo-og-image.png" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\assets\images\logo-symbol-black-120x148.png" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\assets\images\logo-title-white-200x32.png" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\assets\images\screenplay-visual.png" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\assets\images\vs-create-new-project.png" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\assets\images\vs-install-nuget-packages.png" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\assets\images\vs-manage-nuget-packages.png" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\assets\images\vs-name-project.png" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\assets\images\vs-remove-auto-generated-class.png" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\assets\images\vs-select-project-type.png" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\contributing\code-of-conduct\index.html" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\contributing\contributing-code\index.html" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\feed.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\getting-started\page-objects\index.html" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\getting-started\quickstart\index.html" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\getting-started\screenplay\index.html" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\getting-started\why-boa-constrictor\index.html" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\index.html" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\learning\user-guides-and-videos\index.html" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\project\backstory\index.html" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\project\requirements\index.html" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\tutorial\overview\index.html" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\tutorial\part-1-setup\index.html" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\tutorial\part-2-web-ui-testing\index.html" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\tutorial\part-3-rest-api-testing\index.html" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\user-guides\testing-with-nunit\index.html" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\user-guides\testing-with-specflow\index.html" />
+    <Content Include="$(MSBuildThisFileDirectory)_site\user-guides\testing-with-xunit-net\index.html" />
+  </ItemGroup>
+</Project>

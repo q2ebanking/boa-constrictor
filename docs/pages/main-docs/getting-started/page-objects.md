@@ -83,8 +83,8 @@ driver.Quit();
 These waits are necessary to make the code correct, but they cause new problems.
 First, they cause duplicate code because Web element locators are used multiple times.
 Notice how the locator `By.Id("search_form_input_homepage")` is written twice.
-Second, raw calls with explicit waits makes code more cryptic and less intuitive.
-It is difficult to understand what this code does as a glance.
+Second, raw calls with explicit waits make code more cryptic and less intuitive.
+It is difficult to understand what this code does at a glance.
 
 
 ## Phase 3: Page Objects
@@ -145,7 +145,7 @@ Suppose a page object needs a method to click an element using a locator named `
 The logic would be similar to the search page's `Search` method -
 wait for the element to exist, and then click it.
 But what about clicking another element named `OtherButton`?
-There would be two very similiar methods:
+There would be two very similar methods:
 
 ```csharp
 public class AnyPage
@@ -167,7 +167,8 @@ public class AnyPage
 ```
 
 The code will be the same for any other click method, too.
-This is copy pasta, and it happens frequently in page objects.
+This is [copypasta](https://en.wikipedia.org/wiki/Copypasta),
+and it happens frequently in page objects.
 Page objects can grow to be thousands of lines long due to duplicative methods like this.
 
 

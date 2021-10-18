@@ -42,7 +42,13 @@ namespace Boa.Constrictor.WebDriver
         /// <returns></returns>
         public override string RequestAs(IActor actor, IWebDriver driver) =>
             actor.Calls(JavaScript<string>.On(Locator, "return arguments[0].textContent;")).ToString();
-        
+
+        /// <summary>
+        /// Returns a description of the Question.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => $"JavaScript text for '{Locator.Description}'";
+
         #endregion
     }
 }

@@ -44,6 +44,12 @@ namespace Boa.Constrictor.WebDriver
             return driver.FindElement(Locator.Query).Selected;
         }
 
+        /// <summary>
+        /// Returns a description of the Question.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => $"selected state of '{Locator.Description}'";
+
         #endregion
     }
 }
