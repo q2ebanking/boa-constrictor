@@ -57,6 +57,16 @@ namespace Boa.Constrictor.RestSharp
         /// <returns></returns>
         public override string ToString() => $"REST API download using {typeof(TAbility)}: {Request.Method} '{Request.Resource}'";
 
+         /// <summary>
+        /// Checks if this interaction is equal to another interaction.
+        /// </summary>
+        /// <param name="obj">The other object.</param>
+        public override bool Equals(object obj)
+        {
+            bool same = obj is RestApiDownload<TAbility> restApiDownload &&
+                restApiDownload.FileExtension == FileExtension
+        }
+
         #endregion
     }
 }
