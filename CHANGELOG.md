@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added `UploadFile` WebDriver Task
-- Added 'code-of-conduct.md' file
+- Added `code-of-conduct.md` file
 
 ### Changed
 
