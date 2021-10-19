@@ -69,26 +69,26 @@ user-guides:
 
   - title: Interactions
     children:
-#      - title: "Caching answers"
+#      - title: "Caching Answers"
 #        url: /user-guides/caching-answers/
-#      - title: "Calling multiple REST APIs"
+#      - title: "Calling Multiple REST APIs"
 #        url: /user-guides/calling-multiple-rest-apis/
       - title: "Calling Tasks Safely"
         url: /user-guides/calling-tasks-safely/
-#      - title: "Waiting for answers"
+#      - title: "Waiting for Answers"
 #        url: /user-guides/waiting-for-answers/
-#      - title: "Writing Actor extension methods"
+#      - title: "Writing Actor Extension Methods"
 #        url: /user-guides/writing-actor-extension-methods/
-#      - title: "Writing custom Abilities"
+#      - title: "Writing Custom Abilities"
 #        url: /user-guides/writing-custom-abilities/
-#      - title: "Writing custom Interactions"
+#      - title: "Writing Custom Interactions"
 #        url: /user-guides/writing-custom-interactions/
       
 #  - title: Artifacts
 #    children:
-#      - title: "Dumping artifacts"
+#      - title: "Dumping Artifacts"
 #        url: /user-guides/dumping-artifacts/
-#      - title: "Generating test log reports"
+#      - title: "Generating Test Log Reports"
 #        url: /user-guides/generating-test-log-reports/
-#      - title: "Logging messages"
+#      - title: "Logging Messages"
 #        url: /user-guides/logging-messages/
