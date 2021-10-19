@@ -67,14 +67,14 @@ user-guides:
       - title: "Testing with xUnit.net"
         url: /user-guides/testing-with-xunit-net/
 
-#  - title: Interactions
-#    children:
+  - title: Interactions
+    children:
 #      - title: "Caching answers"
 #        url: /user-guides/caching-answers/
 #      - title: "Calling multiple REST APIs"
 #        url: /user-guides/calling-multiple-rest-apis/
-#      - title: "Calling Tasks safely"
-#        url: /user-guides/calling-tasks-safely/
+      - title: "Calling Tasks Safely"
+        url: /user-guides/calling-tasks-safely/
 #      - title: "Waiting for answers"
 #        url: /user-guides/waiting-for-answers/
 #      - title: "Writing Actor extension methods"
