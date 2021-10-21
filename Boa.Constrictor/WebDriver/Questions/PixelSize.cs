@@ -45,6 +45,12 @@ namespace Boa.Constrictor.WebDriver
             return driver.FindElement(Locator.Query).Size;
         }
 
+        /// <summary>
+        /// Returns a description of the Question.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => $"pixel size of '{Locator.Description}'";
+
         #endregion
     }
 }

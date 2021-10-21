@@ -151,7 +151,7 @@ namespace Boa.Constrictor.WebDriver
         /// The script and the arguments will be printed during execution.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"JavaScript in browser";
+        public override string ToString() => "JavaScript in browser";
 
         #endregion
     }

@@ -19,6 +19,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added `UploadFile` WebDriver Task
+- Added user guide: "Calling Tasks Safely"
+
+### Changed
+
+- Updated Fluent Assertions dependency to 6.1.0
+- Restructured projects for `docs`, `logos`, and `talk`
+
+
+## [1.5.0] - 2021-10-13
+
+### Added
+
 - [Experimental] Added async programming to Boa Constrictor
   - Interactions have async versions:
     - `IInteractionAsync`
@@ -26,15 +39,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - `ITaskAsync`
   - `IActor` has "Async" methods to call async Interactions
 - Added GitHub issue forms and PR templates
+- Added additional badges from Shields.io to the README.md
+- Added ToString methods for Questions that didn't have them
 
 ### Changed
 
 - Reformatted task and question when they're referring to interactions
 - Reformatted actor and ability when they're referring to Screenplay items
+- Updated Selenium WebDriver packages to 4.0
+- Standardized existing ToString methods for Questions
 
 ### Fixed
 
 - Fixed CodeQL warnings in GitHub Action
+- Fixed some Question summary descriptions
 
 
 ## [1.4.1] - 2021-10-06

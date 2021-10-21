@@ -42,7 +42,7 @@ namespace Boa.Constrictor.WebDriver
         /// Returns a description of the Question.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"Web page title";
+        public override string ToString() => "web page title";
 
         #endregion
     }

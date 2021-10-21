@@ -47,6 +47,12 @@ namespace Boa.Constrictor.WebDriver
         public override bool RequestAs(IActor actor, IWebDriver driver) =>
             driver.FindElements(Locator.Query).Count > 0;
 
+        /// <summary>
+        /// Returns a description of the Question.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => $"existence of '{Locator.Description}'";
+
         #endregion
     }
 }

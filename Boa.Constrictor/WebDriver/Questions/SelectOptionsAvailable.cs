@@ -7,7 +7,7 @@ using System.Linq;
 namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
-    /// Gets the text of a select Web element's selected option.
+    /// Gets the text list of a select Web element's options.
     /// </summary>
     public class SelectOptionsAvailable : AbstractWebLocatorQuestion<IList<string>>
     {
@@ -36,7 +36,7 @@ namespace Boa.Constrictor.WebDriver
         #region Methods
 
         /// <summary>
-        /// Gets the text of a select Web element's selected option.
+        /// Gets the text list of a select Web element's options.
         /// </summary>
         /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
@@ -46,6 +46,13 @@ namespace Boa.Constrictor.WebDriver
             actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
             return new SelectElement(driver.FindElement(Locator.Query)).Options.Select(o => o.Text).ToList();
         }
+
+        /// <summary>
+        /// Returns a description of the Question.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() =>
+            $"text list of select options for '{Locator.Description}'";
 
         #endregion
     }

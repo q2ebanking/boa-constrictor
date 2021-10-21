@@ -73,8 +73,7 @@ namespace Boa.Constrictor.WebDriver
         /// Returns a description of the Question.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => 
-            $"Existence of browser cookie named '{CookieName}'";
+        public override string ToString() => $"existence of browser cookie named '{CookieName}'";
 
         #endregion
     }
