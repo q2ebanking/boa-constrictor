@@ -15,7 +15,7 @@ This tutorial has two parts:
 
 1. [Part 1 - Setup]({{ "/tutorial/part-1-setup/" | relative_url }})
 2. [Part 2 - Web UI Testing]({{ "/tutorial/part-2-web-ui-testing/" | relative_url }})
-2. [Part 3 - REST API Testing]({{ "/tutorial/part-3-rest-api-testing/" | relative_url }})
+3. [Part 3 - REST API Testing]({{ "/tutorial/part-3-rest-api-testing/" | relative_url }})
 
 In the tutorial, you will build a small test project using [NUnit](https://nunit.org/).
 Inside, you will create a simple Web UI test case that performs a search using [DuckDuckGo](https://duckduckgo.com/).

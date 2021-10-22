@@ -23,7 +23,7 @@ Page objects also did not provide a pattern for handling service API calls.
 
 Pandy wanted to solve these problems by switching from page objects to the
 [Screenplay Pattern]({{ "/getting-started/screenplay/" | relative_url }}).
-Unfortunately, at that time, there were no major Screenplay inplementations in C#.
+Unfortunately, at that time, there were no major Screenplay implementations in C#.
 The most popular test framework using the Screenplay Pattern was
 [Serenity BDD](http://www.serenity-bdd.info/#/),
 which supports Java and JavaScript.
