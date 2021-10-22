@@ -40,6 +40,32 @@ namespace Boa.Constrictor.RestSharp
         /// <returns></returns>
         public override IRestResponse RequestAs(IActor actor) => CallRequest(actor);
 
+        /// <summary>
+        /// Checks if this restApiCall is equal to another restApiCall.
+        /// </summary>
+        /// <param name="obj">The other object.</param>
+        public override bool Equals(object obj)
+        {
+            bool same = obj is RestApiCall<TAbility> restApiCall &&
+                restApiCall.request.AlwaysMultipartFormData == obj.request.AlwaysMultipartFormData &&
+                restApiCall.request.JsonSerializer == obj.request.JsonSerializer &&
+                restApiCall.request.XmlSerializer == pbj.request.XmlSerializer &&
+                restApiCall.request.AdvancedResponseWriter == obj.request.AdvancedResponseWriter &&
+                restApiCall.request.ResponseWriter == obj.request.ResponseWriter &&
+                restApiCall.request.Method == obj.request.Method &&
+                restApiCall.request.Resource == obj.request.Resource &&
+                restApiCall.request.RequestFormat == obj.request.RequestFormat &&
+                restApiCall.request.RootElement == obj.request.RootElement &&
+                restApiCall.request.DateFormat == obj.request.DateFormat &&
+                restApiCall.request.XmlNamespace == obj.request.XmlNamespac &&
+                restApiCall.request.Credentials == obj.request.Credentials &&
+                restApiCall.request.Timeout == obj.request.Timeout &&
+                restApiCall.request.ReadWriteTimeout == obj.request.ReadWriteTimeout &&
+                restApiCall.request.Attempts == obj.request.Attempts &&
+                restApiCall.request.UseDefaultCredentials == obj.request.UseDefaultCredentials
+                
+            return same
+        }
         #endregion
     }
 
