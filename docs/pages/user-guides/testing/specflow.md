@@ -78,7 +78,7 @@ analogously to how an [NUnit `[SetUp]`]({{ "/user-guides/testing-with-nunit/#scr
 Before-scenario hooks must be located in binding classes and bear the `[BeforeScenario]` attribute.
 Binding classes may have multiple hooks, and hooks may optionally be assigned an order for execution.
 
-As a recommended practice, each Specflow test project should have a binding class for project-wide hooks.
+As a recommended practice, each SpecFlow test project should have a binding class for project-wide hooks.
 For Boa Constrictor, this binding class should have a before-scenario hook to
 construct an Actor for each test,
 add Abilities to the Actor,
@@ -123,7 +123,7 @@ namespace Boa.Constrictor.Example
 Whenever a Gherkin scenario runs, SpecFlow "glues" each Gherkin step to its associated step definition.
 Each step definition method has an annotation with the step type (`Given`, `When`, or `Then`)
 and a regular expression to match the step text.
-With Boa Constrictor, eacn step definition should be only a few lines of Screenplay interactions, like
+With Boa Constrictor, each step definition should be only a few lines of Screenplay interactions, like
 `Actor.AttemptsTo(...)`, `Actor.AsksFor(...)`, and `Actor.WaitsUntil(...)`.
 
 Below is a binding class named `DuckDuckGoSteps`
