@@ -94,9 +94,14 @@ namespace Boa.Constrictor.RestSharp
         /// <returns></returns>
         public override int GetHashCode()
         {
-            int hash = 17;
-            
-            return hash;
+            HashCode.Combine(
+                GetType(), 
+                request.AlwaysMultipartFormData, 
+                request.Method,
+                request.Body,
+                request.Timeout,
+                request.Attempts,
+                request.RootElement)
         }
 
     /// <summary>
