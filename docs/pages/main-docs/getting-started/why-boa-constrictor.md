@@ -66,7 +66,7 @@ Page objects are more of a "convention" than a true design pattern.
 Boa Constrictor's [Screenplay Pattern](https://www.infoq.com/articles/Beyond-Page-Objects-Test-Automation-Serenity-Screenplay/)
 applies [SOLID](https://en.wikipedia.org/wiki/SOLID) design principles to modeling behaviors under test.
 Boa Constrictor provides the boilerplate code for the Screenplay Pattern so testers can readily use it.
-As a result, Boa Constrictor can scale safely and maintainably for very large projects.
+As a result, Boa Constrictor can scale safely and remain maintainable for very large projects.
 Read more about [why Screenplay interactions are better than page objects]({{ "/getting-started/page-objects/" | relative_url }}).
 
 Boa Constrictor is **not limited to small-scale projects**.
