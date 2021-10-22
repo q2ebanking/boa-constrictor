@@ -62,12 +62,42 @@ namespace Boa.Constrictor.RestSharp
                 restApiCall.request.Timeout == obj.request.Timeout &&
                 restApiCall.request.ReadWriteTimeout == obj.request.ReadWriteTimeout &&
                 restApiCall.request.Attempts == obj.request.Attempts &&
-                restApiCall.request.UseDefaultCredentials == obj.request.UseDefaultCredentials
-                
+                restApiCall.request.UseDefaultCredentials == obj.request.UseDefaultCredentials &&
+                restApiCall.request.OnBeforeRequest == obj.request.OnBeforeRequest &&
+                restApiCall.request.Body == obj.request.Body &&
+                restApiCall.request.AllowedDecompressionMethods.length == obj.request.AllowedDecompressionMethods.length &&
+                restApiCall.request.Files.length == obj.request.Files.length &&
+                restApiCall.request.Parameters.length == obj.request.Parameters.length
+
+            if (same) {
+                for(int i = 0; i < restApiCall.request.AllowedDecompressionMethods.length; i++) {
+                    same = same && restApiCall.request.AllowedDecompressionMethods[i].Equals(obj.request.AllowedDecompressionMethods[i])
+                }
+
+                for(int i = 0; i < restApiCall.request.Files.length; i++) {
+                    same = same && restApiCall.request.Files[i].Equals(obj.request.Files[i])
+                }
+
+                for(int i = 0; i < restApiCall.request.Parameters.length; i++) {
+                    same = same && restApiCall.request.Parameters[i].Equals(obj.request.Parameters[i])
+                }
+            }
+
             return same
         }
         #endregion
     }
+
+     /// <summary>
+        /// Gets a unique hash code for this RestApiCall.
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            int hash = 17;
+            
+            return hash;
+        }
 
     /// <summary>
     /// Calls the REST API given by the request spec and returns the response.
