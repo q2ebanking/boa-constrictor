@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added `UploadFile` WebDriver Task
 - Added user guide: "Calling Tasks Safely"
-- Added user guide: "Calling multiple REST APIs"
+- Added user guide: "Calling Multiple REST APIs"
 
 ### Changed
 

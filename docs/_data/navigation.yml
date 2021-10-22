@@ -71,8 +71,8 @@ user-guides:
     children:
 #      - title: "Caching Answers"
 #        url: /user-guides/caching-answers/
-#      - title: "Calling Multiple REST APIs"
-#        url: /user-guides/calling-multiple-rest-apis/
+      - title: "Calling Multiple REST APIs"
+       url: /user-guides/calling-multiple-rest-apis/
       - title: "Calling Tasks Safely"
         url: /user-guides/calling-tasks-safely/
 #      - title: "Waiting for Answers"

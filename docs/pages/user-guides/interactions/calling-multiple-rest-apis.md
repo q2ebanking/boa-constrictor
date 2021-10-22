@@ -1,5 +1,5 @@
 ---
-title: Calling multiple REST APIs
+title: Calling Multiple REST APIs
 layout: single
 permalink: /user-guides/calling-multiple-rest-apis/
 sidebar:
