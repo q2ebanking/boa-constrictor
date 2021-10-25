@@ -61,11 +61,10 @@ namespace Boa.Constrictor.RestSharp
         /// Checks if this restApiDownload is equal to another restApiDownload.
         /// </summary>
         /// <param name="obj">The other object.</param>
-        public override bool Equals(object obj)
-        {
-            bool same = obj is RestApiDownload<TAbility> restApiDownload &&
-                restApiDownload.FileExtension == FileExtension
-        }
+        public override bool Equals(object obj) =>
+            obj is RestApiDownload<TAbility> restApiDownload &&
+            restApiDownload.FileExtension == FileExtension
+        
 
         /// <summary>
         /// Gets a unique hash code for this restApiDownload.
