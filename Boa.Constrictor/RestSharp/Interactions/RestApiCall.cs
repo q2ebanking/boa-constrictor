@@ -57,7 +57,7 @@ namespace Boa.Constrictor.RestSharp
                 restApiCall.request.RequestFormat == obj.request.RequestFormat &&
                 restApiCall.request.RootElement == obj.request.RootElement &&
                 restApiCall.request.DateFormat == obj.request.DateFormat &&
-                restApiCall.request.XmlNamespace == obj.request.XmlNamespac &&
+                restApiCall.request.XmlNamespace == obj.request.XmlNamespace &&
                 restApiCall.request.Credentials == obj.request.Credentials &&
                 restApiCall.request.Timeout == obj.request.Timeout &&
                 restApiCall.request.ReadWriteTimeout == obj.request.ReadWriteTimeout &&
