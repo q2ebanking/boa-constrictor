@@ -10,7 +10,7 @@ namespace Boa.Constrictor.RestSharp
     /// </summary>
     /// <typeparam name="TAbility">The RestSharp Ability type.</typeparam>
     public class RestApiDownload<TAbility> : AbstractRestQuestion<TAbility, byte[]>
-        where TAbility: IRestSharpAbility
+        where TAbility: IRestSharpAbility,  ICacheableQuestion<byte[]>
     {
         #region Properties
 
