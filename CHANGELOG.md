@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added `UploadFile` WebDriver Task
 - Added user guide: "Calling Tasks Safely"
+- Added GitHub issue forms and PR templates
 
 ### Changed
 
@@ -38,7 +39,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - `IQuestionAsync`
     - `ITaskAsync`
   - `IActor` has "Async" methods to call async Interactions
-- Added GitHub issue forms and PR templates
 - Added additional badges from Shields.io to the README.md
 - Added ToString methods for Questions that didn't have them
 

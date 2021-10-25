@@ -30,6 +30,7 @@ Fixes # (issue)
 
 ## Checklist:
 
+- [ ] I have updated the changelog as per the [project's contribution guidelines](https://q2ebanking.github.io/boa-constrictor/contributing/contributing-code/#7-making-code-changes)
 - [ ] My code follows the style guidelines of this project
 - [ ] I have performed a self-review of my own code
 - [ ] I have commented my code, particularly in hard-to-understand areas
