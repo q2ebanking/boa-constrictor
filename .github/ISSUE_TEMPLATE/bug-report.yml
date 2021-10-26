@@ -17,7 +17,7 @@ body:
     label: Expected behavior
     description: A description of what you expected to happen.
   validations:
-    required: false
+    required: true
 - type: textarea
   attributes:
     label: Steps to reproduce
@@ -29,17 +29,39 @@ body:
       4. See error
     render: markdown
   validations:
-    required: false
-- type: textarea
+    required: true
+- type: input
   attributes:
-    label: Environment
-    description: Information about the environment in which this issue occurs.
-    render: markdown
+    label: Boa Constrictor version
+    description: The Boa Constrictor version exhibiting the problem.
   validations:
     required: false
+- type: dropdown
+  attributes:
+    label: Browsers
+    description: The browsers exhibiting the problem.
+    multiple: true
+    options:
+      - Apple Safari
+      - Google Chrome
+      - Microsoft Edge
+      - Microsoft Internet Explorer
+      - Mozilla Firefox
+      - Opera
+      - Other
+- type: dropdown
+  attributes:
+    label: Operating systems
+    description: The operating systems exhibiting the problem.
+    multiple: true
+    options:
+      - Linux
+      - macOS
+      - Windows
+      - Other
 - type: textarea
   attributes:
     label: Additional information
-    description: Please share anything that will give us more context about the issue you are encountering.
+    description: Please share anything that will give us more context about the issue you encountered.
   validations:
     required: false
