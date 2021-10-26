@@ -5,7 +5,7 @@ labels: [enhancement]
 body:
 - type: markdown
   attributes:
-    value: Thanks for suggesting something new for Boa Constrictor!
+    value: Thanks for suggesting improvements to Boa Constrictor!
 - type: textarea
   attributes:
     label: Description
