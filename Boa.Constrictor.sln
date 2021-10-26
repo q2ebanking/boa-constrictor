@@ -33,6 +33,21 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "docs", "docs\docs.shproj", 
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "talk", "talk\talk.shproj", "{D414FA59-B55C-4C53-B314-2BCAFAFC94AD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Issue Templates", "Issue Templates", "{E616491A-032B-476A-817E-C2E4B6A1A3B2}"
+	ProjectSection(SolutionItems) = preProject
+		.github\ISSUE_TEMPLATE\bug-report.yml = .github\ISSUE_TEMPLATE\bug-report.yml
+		.github\ISSUE_TEMPLATE\documentation-improvement.yml = .github\ISSUE_TEMPLATE\documentation-improvement.yml
+		.github\ISSUE_TEMPLATE\feature-request.yml = .github\ISSUE_TEMPLATE\feature-request.yml
+		.github\ISSUE_TEMPLATE\general-question.yml = .github\ISSUE_TEMPLATE\general-question.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pull Request Templates", "Pull Request Templates", "{E6A6D52D-F4A4-4FBA-9249-48BE7EB16951}"
+	ProjectSection(SolutionItems) = preProject
+		.github\PULL_REQUEST_TEMPLATE\PULL_REQUEST_TEMPLATE.md = .github\PULL_REQUEST_TEMPLATE\PULL_REQUEST_TEMPLATE.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub Files", "GitHub Files", "{93076CA0-CFD9-4B35-9EEA-AC77ABF88F83}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		docs\docs.projitems*{0a420e7b-171f-4a46-acb0-24c36fc84c33}*SharedItemsImports = 13
@@ -59,6 +74,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E9EBE814-0E65-48CA-8689-A76B4CAA27C8} = {93076CA0-CFD9-4B35-9EEA-AC77ABF88F83}
+		{E616491A-032B-476A-817E-C2E4B6A1A3B2} = {93076CA0-CFD9-4B35-9EEA-AC77ABF88F83}
+		{E6A6D52D-F4A4-4FBA-9249-48BE7EB16951} = {93076CA0-CFD9-4B35-9EEA-AC77ABF88F83}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B7D2C1D8-A5F6-4638-8C77-30344F2746A1}
