@@ -1,41 +1,43 @@
 name: 📖 Documentation improvement
 description: Suggest improvements to our documentation
 title: "[DOCS]: "
-labels: [Documentation] 
+labels: [documentation] 
 body:
 - type: markdown
   attributes:
-    value: |
-      Thanks for taking the time to fill out this documentation improvement request!
-- type: checkboxes
+    value: Thanks for submitting this documentation improvement request!
+- type: dropdown
   attributes:
-    label: Is there an existing issue for this?
-    description: Please search to see if an issue realated to this already exists.
+    label: Type of improvement
+    multiple: false
     options:
-    - label: I have searched the existing issues
-      required: true
+    - Add a new page or user guide
+    - Fix typos
+    - Improve explanations
+    - Improve root-level Markdown files
 - type: textarea
   attributes:
-    label: Documentation Link 
-    description: Add a link to the page which needs improvement (if relevant)
-  validations:
-    required: false
-- type: textarea
-  attributes:
-    label: Describe the problem
-    description: Is the documentation missing? Or is it confusing? Why is it confusing?
+    label: Description
+    description: What should we improve about the documentation?
   validations:
     required: true
 - type: textarea
   attributes:
-    label: Describe the improvement
-    description: A clear and concise description of the improvement.  
+    label: Documentation links 
+    description: If applicable, please provide direct links to the pages.
   validations:
     required: false
 - type: textarea
   attributes:
     label: Anything else?
-    description: |
-      Links? References? Anything that will give us more context about the issue you are encountering!
+    description: Please share anything that will give us more context about this request.
   validations:
     required: false
+- type: checkboxes
+  attributes:
+    label: Commitments
+    options:
+      - label: I agree to follow Boa Constrictor's [Code of Conduct](https://q2ebanking.github.io/boa-constrictor/contributing/code-of-conduct/).
+        required: true
+      - label: I want to work on this issue myself.
+        required: false

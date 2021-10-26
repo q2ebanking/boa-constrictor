@@ -1,40 +1,35 @@
 name: 🚀 Feature request
-description: Suggest an idea for Boa Constrictor
+description: Suggest an idea or an enhancement for Boa Constrictor
 title: "[FEATURE]: "
+labels: [enhancement]
 body:
 - type: markdown
   attributes:
-    value: |
-      Thanks for taking the time to request a feature for Boa Constrictor!
-- type: checkboxes
-  attributes:
-    label: Is there an existing issue for this?
-    description: Please search to see if an issue related to this feature request already exists.
-    options:
-    - label: I have searched the existing issues
-      required: true
+    value: Thanks for suggesting a new feature for Boa Constrictor!
 - type: textarea
   attributes:
-    label: Is your feature request related to a problem? Please describe.
-    description: A clear and concise description of what the problem is.
-    placeholder: I wish I could use Boa Constrictor to do [...]
+    label: Description
+    description: What is your idea? Please be thorough. Give examples.
+    placeholder: I wish I could use Boa Constrictor to [...]
   validations:
     required: true
 - type: textarea
   attributes:
-    label: Describe the solution you'd like
-    description: A clear and concise description of what you want to happen.
-  validations:
-    required: false
-- type: textarea
-  attributes:
-    label: Describe alternatives you've considered
-    description: A clear and concise description of any alternative solutions or features you've considered.
+    label: Alternatives
+    description: What alternatives have you considered to your proposed idea?
   validations:
     required: false
 - type: textarea
   attributes:
     label: Anything else?
-    description: Add any other context, code examples, or references to existing implementations about the feature request here.
+    description: Please share anything that will give us more context about this request.
   validations:
     required: false
+- type: checkboxes
+  attributes:
+    label: Commitments
+    options:
+      - label: I agree to follow Boa Constrictor's [Code of Conduct](https://q2ebanking.github.io/boa-constrictor/contributing/code-of-conduct/).
+        required: true
+      - label: I want to work on this issue myself.
+        required: false
