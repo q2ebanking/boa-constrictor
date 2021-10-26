@@ -1,11 +1,11 @@
 name: 🚀 Feature request
-description: Suggest an idea or an enhancement for Boa Constrictor
+description: Suggest an idea, an enhancement, or a new feature for Boa Constrictor
 title: "[FEATURE]: "
 labels: [enhancement]
 body:
 - type: markdown
   attributes:
-    value: Thanks for suggesting a new feature for Boa Constrictor!
+    value: Thanks for suggesting something new for Boa Constrictor!
 - type: textarea
   attributes:
     label: Description
