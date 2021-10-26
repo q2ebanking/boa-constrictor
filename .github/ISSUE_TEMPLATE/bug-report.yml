@@ -1,5 +1,5 @@
 name: 🐞 Bug report
-description: Report a bug you discovered in Boa Constrictor
+description: Report a bug discovered in Boa Constrictor
 title: "[BUG]: "
 labels: [bug] 
 body:
