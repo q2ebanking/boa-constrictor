@@ -1,22 +1,16 @@
 name: 🤔 General question
 description: Ask a general question about Boa Constrictor
 title: "[QUESTION]: "
+labels: [question] 
 body:
-- type: checkboxes
-  attributes:
-    label: Is there an existing issue for this?
-    description: Please search to see if an issue related to this already exists.
-    options:
-    - label: I have searched the existing issues
-      required: true
 - type: textarea
   attributes:
     label: What is your question?
   validations:
-    required: false
-- type: textarea
+    required: true
+- type: checkboxes
   attributes:
-    label: Anything else?
-    description: Add any other context, code examples, or references about the question?
-  validations:
-    required: false
+    label: Commitments
+    options:
+      - label: I agree to follow Boa Constrictor's [Code of Conduct](https://q2ebanking.github.io/boa-constrictor/contributing/code-of-conduct/).
+        required: true
