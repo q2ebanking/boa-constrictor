@@ -31,5 +31,5 @@ body:
     options:
       - label: I agree to follow Boa Constrictor's [Code of Conduct](https://q2ebanking.github.io/boa-constrictor/contributing/code-of-conduct/).
         required: true
-      - label: I want to work on this issue myself.
+      - label: I want to work on this issue myself. (This is voluntary, not required.)
         required: false
