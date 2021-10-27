@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added `UploadFile` WebDriver Task
 - Added user guide: "Calling Tasks Safely"
-- Added GitHub templates for issues and pull requests
+- Added and refined GitHub templates for issues and pull requests
 
 ### Changed
 
