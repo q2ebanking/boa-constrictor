@@ -1,0 +1,16 @@
+name: 🤔 General question
+description: Ask a general question about Boa Constrictor
+title: "[QUESTION]: "
+labels: [question] 
+body:
+- type: textarea
+  attributes:
+    label: What is your question?
+  validations:
+    required: true
+- type: checkboxes
+  attributes:
+    label: Commitments
+    options:
+      - label: I agree to follow Boa Constrictor's [Code of Conduct](https://q2ebanking.github.io/boa-constrictor/contributing/code-of-conduct/).
+        required: true

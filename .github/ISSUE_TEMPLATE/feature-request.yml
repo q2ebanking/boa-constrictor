@@ -1,0 +1,35 @@
+name: 🚀 Feature request
+description: Suggest an idea, an enhancement, or a new feature for Boa Constrictor
+title: "[FEATURE]: "
+labels: [enhancement]
+body:
+- type: markdown
+  attributes:
+    value: Thanks for suggesting improvements to Boa Constrictor!
+- type: textarea
+  attributes:
+    label: Description
+    description: What is your idea? Please be thorough. Give examples.
+    placeholder: I wish I could use Boa Constrictor to [...]
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Alternatives
+    description: What alternatives have you considered to your proposed idea?
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Anything else?
+    description: Please share anything that will give us more context about this request.
+  validations:
+    required: false
+- type: checkboxes
+  attributes:
+    label: Commitments
+    options:
+      - label: I agree to follow Boa Constrictor's [Code of Conduct](https://q2ebanking.github.io/boa-constrictor/contributing/code-of-conduct/).
+        required: true
+      - label: I want to work on this issue myself.
+        required: false
