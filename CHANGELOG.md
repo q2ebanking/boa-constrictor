@@ -23,7 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added user guide: "Calling Tasks Safely"
 - Added and refined GitHub templates for issues and pull requests
 - Added user guide: "Writing Actor Extension Methods"
-- Reformatted section titles in testing guides
+- Added user guide: "Caching Answers"
+- Reformatted section titles in Testing user guides
 - Added supression for RestSharp 'Parameter is Obsolete' warnings
 - Added ICacheableQuestion interface implementation to RestApiDownload (Equals and GetHashCode)
 
