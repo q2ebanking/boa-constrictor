@@ -47,9 +47,9 @@ namespace Boa.Constrictor.UnitTests.RestSharp
                 new Parameter("p2", "goodbye", ParameterType.Cookie),
             };
 
-            #pragma warning restore 0618
-
             var body = new RequestBody("json", "body", "value");
+            
+            #pragma warning restore 0618
 
             var clientMock = new Mock<IRestClient>();
             clientMock.Setup(x => x.BaseUrl).Returns(clientUri);

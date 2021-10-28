@@ -4,9 +4,9 @@ using OpenQA.Selenium;
 namespace Boa.Constrictor.WebDriver
 {
     /// <summary>
-    /// Gets a web element's JavaScript property value.
+    /// Gets a web element's DOM property value.
     /// </summary>
-    public class JavaScriptProperty : AbstractWebPropertyQuestion<string>
+    public class DomProperty : AbstractWebPropertyQuestion<string>
     {
         #region Constructors
 
@@ -16,7 +16,7 @@ namespace Boa.Constrictor.WebDriver
         /// </summary>
         /// <param name="locator">The target Web element's locator.</param>
         /// <param name="propertyName">The property name.</param>
-        private JavaScriptProperty(IWebLocator locator, string propertyName) : base(locator, propertyName) { }
+        private DomProperty(IWebLocator locator, string propertyName) : base(locator, propertyName) { }
 
         #endregion
         
@@ -28,14 +28,14 @@ namespace Boa.Constrictor.WebDriver
         /// <param name="locator">The target Web element's locator.</param>
         /// <param name="named">The property name.</param>
         /// <returns></returns>
-        public static JavaScriptProperty Of(IWebLocator locator, string named) => new JavaScriptProperty(locator, named);
+        public static DomProperty Of(IWebLocator locator, string named) => new DomProperty(locator, named);
 
         #endregion
 
         #region Methods
 
         /// <summary>
-        /// Gets a web element's JavaScript property value.
+        /// Gets a web element's DOM property value.
         /// </summary>
         /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>
@@ -43,7 +43,7 @@ namespace Boa.Constrictor.WebDriver
         public override string RequestAs(IActor actor, IWebDriver driver)
         {
             actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
-            return driver.FindElement(Locator.Query).GetProperty(PropertyName);
+            return driver.FindElement(Locator.Query).GetDomProperty(PropertyName);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Boa.Constrictor.WebDriver
         /// </summary>
         /// <returns></returns>
         public override string ToString() =>
-            $"JavaScript of '{PropertyName}' for '{Locator.Description}'";
+            $"DOM property '{PropertyName}' for '{Locator.Description}'";
 
         #endregion
     }
