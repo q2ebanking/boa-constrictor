@@ -9,8 +9,8 @@ namespace Boa.Constrictor.RestSharp
     /// Automatically dumps the downloaded file if the Ability has a dumper.
     /// </summary>
     /// <typeparam name="TAbility">The RestSharp Ability type.</typeparam>
-    public class RestApiDownload<TAbility> : AbstractRestQuestion<TAbility, byte[]>
-        where TAbility: IRestSharpAbility,  ICacheableQuestion<byte[]>
+    public class RestApiDownload<TAbility> : AbstractRestQuestion<TAbility, byte[]>, ICacheableQuestion<byte[]>
+        where TAbility: IRestSharpAbility
     {
         #region Properties
 
