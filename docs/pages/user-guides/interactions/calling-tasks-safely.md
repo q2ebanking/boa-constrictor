@@ -73,9 +73,3 @@ catch (SafeActionsException ex)
     }
 }
 ```
-
-
-## Conclusion
-
-The methods in `Boa.Constrictor.Safety` enable Tasks to be run safely using the Screenplay Pattern.
-All failing interactions can be caught and handled systematically.
