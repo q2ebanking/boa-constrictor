@@ -25,6 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added user guide: "Writing Actor Extension Methods"
 - Reformatted section titles in testing guides
 - Added supression for RestSharp 'Parameter is Obsolete' warnings
+- Added ICacheableQuestion interface implementation to RestApiDownload (Equals and GetHashCode)
+
 
 ### Changed
 
