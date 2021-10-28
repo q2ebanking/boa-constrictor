@@ -169,7 +169,7 @@ public class AnyPage
 The code will be the same for any other click method, too.
 This is [copypasta](https://en.wikipedia.org/wiki/Copypasta),
 and it happens frequently in page objects.
-Page objects can grow to be thousands of lines long due to duplicative methods like this.
+Page objects can grow to be thousands of lines long due to duplicate methods like this.
 
 
 ## Phase 4: Page Object Inheritance

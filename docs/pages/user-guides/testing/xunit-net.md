@@ -19,7 +19,7 @@ as the test case from the [tutorial]({{ "/tutorial/overview/" | relative_url }})
 a Web UI test for DuckDuckGo searches.
 
 
-## xUnit.net test projects
+## xUnit.net Test Projects
 
 Boa Constrictor can integrate with any xUnit.net test project.
 If you are new to xUnit.net, read [xUnit.net's official documentation](https://xunit.net/#documentation)
@@ -37,7 +37,7 @@ You may need to add other NuGet packages like
 [FluentAssertions](https://www.nuget.org/packages/FluentAssertions/) as well.
 
 
-## xUnit.net test classes
+## xUnit.net Test Classes
 
 xUnit.net test classes should have all the appropriate `using` statements for the namespaces they need.
 They should also have an instance variable for the Screenplay Actor object.
@@ -62,7 +62,7 @@ namespace Boa.Constrictor.Example
 ```
 
 
-## Screenplay setup
+## Screenplay Setup
 
 xUnit.net test classes do not have "set up" methods like
 [NUnit's `[SetUp]` methods]({{ "/user-guides/testing-with-nunit/#screenplay-setup-methods" | relative_url }}).
@@ -81,7 +81,7 @@ constructs an Actor and gives it the Ability to browse the web with ChromeDriver
 ```
 
 
-## Screenplay test case
+## Screenplay Test Case
 
 In xUnit.net test classes, methods with the `[Fact]` or `[Theory]` attributes are individual test cases.
 With Boa Constrictor, most test cases should be a series of Screenplay interactions, like
@@ -110,7 +110,7 @@ You can use [FluentAssertions](https://www.nuget.org/packages/FluentAssertions/)
 ```
 
 
-## Screenplay cleanup
+## Screenplay Cleanup
 
 Cleanup procedures are not required for all types of tests, but they are required for WebDriver-based tests.
 xUnit.net test classes must implement the `System.IDisposable` interface to handle test case cleanup:
@@ -130,7 +130,7 @@ The code below safely quits the browser for Web UI test cleanup:
 ```
 
 
-## A complete xUnit.net test class
+## A Complete xUnit.net Test Class
 
 The complete code for `DuckDuckGoTest` is below:
 

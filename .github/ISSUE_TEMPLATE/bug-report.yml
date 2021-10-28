@@ -1,0 +1,75 @@
+name: 🐞 Bug report
+description: Report a bug discovered in Boa Constrictor
+title: "[BUG]: "
+labels: [bug] 
+body:
+- type: markdown
+  attributes:
+    value: Thanks for submitting this bug report!
+- type: textarea
+  attributes:
+    label: The problem
+    description: What is the problem you are experiencing? Please be thorough. Include logs, screenshots, etc.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Expected behavior
+    description: What *should* happen for correct behavior?
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Steps to reproduce
+    description: A thorough procedure to reproduce this issue.
+    placeholder: |
+      1. Go to '...'
+      2. Click on '....'
+      3. Scroll down to '....'
+      4. See error
+    render: markdown
+  validations:
+    required: true
+- type: input
+  attributes:
+    label: Boa Constrictor version
+    description: The Boa Constrictor version exhibiting the problem.
+  validations:
+    required: false
+- type: dropdown
+  attributes:
+    label: Browsers
+    description: The browsers exhibiting the problem.
+    multiple: true
+    options:
+      - Apple Safari
+      - Google Chrome
+      - Microsoft Edge
+      - Microsoft Internet Explorer
+      - Mozilla Firefox
+      - Opera
+      - Other
+- type: dropdown
+  attributes:
+    label: Operating systems
+    description: The operating systems exhibiting the problem.
+    multiple: true
+    options:
+      - Linux
+      - macOS
+      - Windows
+      - Other
+- type: textarea
+  attributes:
+    label: Anything else?
+    description: Please share anything that will give us more context about the issue you encountered.
+  validations:
+    required: false
+- type: checkboxes
+  attributes:
+    label: Commitments
+    options:
+      - label: I agree to follow Boa Constrictor's [Code of Conduct](https://q2ebanking.github.io/boa-constrictor/contributing/code-of-conduct/).
+        required: true
+      - label: I want to work on this issue myself. (This is voluntary, not required.)
+        required: false
