@@ -85,8 +85,8 @@ namespace Boa.Constrictor.RestSharp
 
     //         return same
     //     }
-    //     #endregion
-    // }
+         #endregion
+     }
 
     //  /// <summary>
     //     /// Gets a unique hash code for this RestApiCall.
