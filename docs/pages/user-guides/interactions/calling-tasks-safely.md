@@ -32,7 +32,7 @@ actor.Can(RunSafeActions.Using(safeActions));
 ```
 
 
-## Running a Task safely
+## Running a Task Safely
 
 Now that the Actor has the Ability to run safe actions, you can attempt to call a Task, wrapping the call in the
 `Safely.Run` method:
@@ -45,7 +45,7 @@ If `UnsafeTask.ThatThrows` throws an exception, it will be caught by `Safely.Run
 exception will be added to the list of failures in `SafeActions`.
 
 
-## Handling failures
+## Handling Failures
 
 In addition to handling exceptions as they occur, you can also throw an aggregate exception containing all exceptions that
 were caught by `Safely.Run`. The aggregate exception message concatenates the messages of all exceptions it contains. It

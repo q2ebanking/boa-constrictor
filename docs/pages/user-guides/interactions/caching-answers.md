@@ -16,31 +16,31 @@ Boa Constrictor's support for answer caching spares programmers
 from implementing their own mechanisms for storing and sharing answers.
 
 
-## Writing cacheable Questions
+## Writing Cacheable Questions
 
 TBD
 
 
-## Creating an answer cache
+## Creating an Answer Cache
 
 TBD
 
 
-## Enabling Actors to cache answers
+## Enabling Actors to Cache Answers
 
 TBD
 
 
-## Caching answers when asking Questions
+## Caching Answers When Asking Questions
 
 TBD
 
 
-## Bypassing the answer cache
+## Bypassing the Answer Cache
 
 TBD
 
 
-## Resetting the answer cache
+## Resetting the Answer Cache
 
 TBD
