@@ -26,6 +26,7 @@
     <None Include="$(MSBuildThisFileDirectory)pages\main-docs\tutorial\part-1-setup.md" />
     <None Include="$(MSBuildThisFileDirectory)pages\main-docs\tutorial\part-2-web-ui-testing.md" />
     <None Include="$(MSBuildThisFileDirectory)pages\main-docs\tutorial\part-3-rest-api-testing.md" />
+    <None Include="$(MSBuildThisFileDirectory)pages\user-guides\interactions\calling-tasks-safely.md" />
     <None Include="$(MSBuildThisFileDirectory)pages\user-guides\learning\user-guides-and-videos.md" />
     <None Include="$(MSBuildThisFileDirectory)pages\user-guides\testing\nunit.md" />
     <None Include="$(MSBuildThisFileDirectory)pages\user-guides\testing\specflow.md" />
