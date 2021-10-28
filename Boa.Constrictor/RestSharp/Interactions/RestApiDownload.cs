@@ -1,5 +1,6 @@
 ﻿using Boa.Constrictor.Screenplay;
 using RestSharp;
+using System;
 
 namespace Boa.Constrictor.RestSharp
 {
@@ -9,7 +10,7 @@ namespace Boa.Constrictor.RestSharp
     /// Automatically dumps the downloaded file if the Ability has a dumper.
     /// </summary>
     /// <typeparam name="TAbility">The RestSharp Ability type.</typeparam>
-    public class RestApiDownload<TAbility> : AbstractRestQuestion<TAbility, byte[]>
+    public class RestApiDownload<TAbility> : AbstractRestQuestion<TAbility, byte[]>, ICacheableQuestion<byte[]>
         where TAbility: IRestSharpAbility
     {
         #region Properties
@@ -56,6 +57,21 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <returns></returns>
         public override string ToString() => $"REST API download using {typeof(TAbility)}: {Request.Method} '{Request.Resource}'";
+
+        /// <summary>
+        /// Checks if this restApiDownload is equal to another restApiDownload.
+        /// </summary>
+        /// <param name="obj">The other object.</param>
+        public override bool Equals(object obj) =>
+            obj is RestApiDownload<TAbility> restApiDownload &&
+            restApiDownload.FileExtension == FileExtension;
+
+        /// <summary>
+        /// Gets a unique hash code for this restApiDownload.
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode() =>
+            HashCode.Combine(GetType(), FileExtension);
 
         #endregion
     }
