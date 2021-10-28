@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Boa.Constrictor.UnitTests.WebDriver
 {
-    public class BrowserCookieTests : BaseWebQuestionTest
+    public class BrowserCookieTest : BaseWebQuestionTest
     {
         #region Tests
 

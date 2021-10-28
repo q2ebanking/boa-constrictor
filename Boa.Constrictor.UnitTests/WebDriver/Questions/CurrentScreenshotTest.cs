@@ -7,7 +7,7 @@ using System.IO;
 
 namespace Boa.Constrictor.UnitTests.WebDriver
 {
-    public class CurrentScreenshotTests : BaseWebQuestionTest
+    public class CurrentScreenshotTest : BaseWebQuestionTest
     {
         #region Test Variables
 

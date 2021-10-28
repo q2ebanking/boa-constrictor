@@ -55,12 +55,12 @@ namespace Boa.Constrictor.Screenplay
         /// The timeout override in seconds.
         /// If null, use the standard timeout value.
         /// </summary>
-        public int? TimeoutSeconds { get; set; }
+        public int? TimeoutSeconds { get; protected set; }
 
         /// <summary>
         /// An additional amount to add to the timeout.
         /// </summary>
-        public int AdditionalSeconds { get; set; }
+        public int AdditionalSeconds { get; protected set; }
 
         /// <summary>
         /// The actual timeout used.

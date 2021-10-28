@@ -2,9 +2,9 @@
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace Boa.Constrictor.UnitTests.WebDriver.Questions
+namespace Boa.Constrictor.UnitTests.WebDriver
 {
-    public class CurrentUrlTests : BaseWebQuestionTest
+    public class CurrentUrlTest : BaseWebQuestionTest
     {
         #region Tests
 

@@ -7,8 +7,7 @@ using System.Linq;
 
 namespace Boa.Constrictor.UnitTests.WebDriver
 {
-    [TestFixture]
-    public class WindowHandleTests : BaseWebQuestionTest
+    public class WindowHandleTest : BaseWebQuestionTest
     {
         #region Test Variables
 

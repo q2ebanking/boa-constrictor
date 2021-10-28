@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace Boa.Constrictor.UnitTests.WebDriver
 {
-    public class TitleTests : BaseWebQuestionTest
+    public class TitleTest : BaseWebQuestionTest
     {
         #region Tests
 
