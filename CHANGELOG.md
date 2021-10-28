@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added user guide: "Caching Answers"
 - Reformatted section titles in Testing user guides
 - Added supression for RestSharp 'Parameter is Obsolete' warnings
+- Added ICacheableQuestion interface implementation to RestApiDownload (Equals and GetHashCode)
+
 
 ### Changed
 
