@@ -69,8 +69,8 @@ user-guides:
 
   - title: Interactions
     children:
-#      - title: "Caching Answers"
-#        url: /user-guides/caching-answers/
+      - title: "Caching Answers"
+        url: /user-guides/caching-answers/
 #      - title: "Calling Multiple REST APIs"
 #        url: /user-guides/calling-multiple-rest-apis/
       - title: "Calling Tasks Safely"
