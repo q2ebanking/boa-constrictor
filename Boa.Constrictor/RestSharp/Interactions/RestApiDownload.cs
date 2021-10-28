@@ -1,5 +1,6 @@
 ﻿using Boa.Constrictor.Screenplay;
 using RestSharp;
+using System;
 
 namespace Boa.Constrictor.RestSharp
 {
