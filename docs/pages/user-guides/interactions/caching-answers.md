@@ -18,7 +18,45 @@ from implementing their own mechanisms for storing and sharing answers.
 
 ## Writing Cacheable Questions
 
-TBD
+Not all Questions are inherently cacheable.
+Questions must implement the `ICacheableQuestion<TAnswer>` interface, where `TAnswer` is the answer type.
+
+```csharp
+namespace Boa.Constrictor.Screenplay
+{
+    public interface ICacheableQuestion<TAnswer> : IQuestion<TAnswer>
+    {
+        bool Equals(object obj);
+        int GetHashCode();
+    }
+}
+```
+
+Cacheable Questions must implement the standard `Equals` and `GetHashCode` methods.
+These should be implemented the same way as they would be for any other C# object.
+Typically, all properties and instance variables for a Question should be included
+in the implementations of `Equals` and `GetHashCode` methods.
+For example, here is how to implement them for a Question that gets a browser cookie by name:
+
+```csharp
+public class BrowserCookie : ICacheableQuestion<TAnswer>
+{
+    private string CookieName { get; set; }
+
+    // ... other code ...
+
+    public override bool Equals(object obj) =>
+        obj is BrowserCookie cookie &&
+        CookieName == cookie.CookieName;
+
+    public override int GetHashCode() =>
+        HashCode.Combine(GetType(), CookieName);
+}
+```
+
+The `Equals` method must return true only for equivalent Questions.
+The `GetHashCode` method must return a unique hash code based on the Question's properties and variables.
+Otherwise, answer caching might have collisions, which could return incorrect answers for Questions.
 
 
 ## Creating an Answer Cache
