@@ -67,7 +67,7 @@ namespace Boa.Constrictor.Screenplay
         /// <param name="enterPhrase">The phrase to print before calling.</param>
         /// <param name="exitPhrase">The phrase to print after calling.</param>
         /// <returns></returns>
-        private TAnswer CallQuestion<TAnswer>(IQuestion<TAnswer> question, string enterPhrase, string exitPhrase)
+        protected virtual TAnswer CallQuestion<TAnswer>(IQuestion<TAnswer> question, string enterPhrase, string exitPhrase)
         {
             Logger.Info($"{this} {enterPhrase} {question}");
             TAnswer answer = question.RequestAs(this);
