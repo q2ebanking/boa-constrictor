@@ -48,7 +48,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
             ImagesToDelete.Add(image);
             image.Should().Match(Path + "\\Screenshot*.png");
             Logger.Messages.Should().ContainMatch("*Set the screenshot file name to 'Screenshot*");
-            File.Exists(image);
+            File.Exists(image).Should().BeTrue();
         }
 
         [Test]
@@ -58,7 +58,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
             ImagesToDelete.Add(image);
             image.Should().Match(Path + "\\webpage*.png");
             Logger.Messages.Should().ContainMatch($"*Screenshots: {Path}\\webpage*.png");
-            File.Exists(image);
+            File.Exists(image).Should().BeTrue();
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
             Logger.Messages.Should().ContainMatch($"*Screenshots: {Path}\\webpage*.png");
             Logger.Messages.Should().ContainMatch("*Screenshot file name 'webpage.png' should not be given an extension");
             Logger.Messages.Should().ContainMatch("*Removing the extension from the name");
-            File.Exists(image);
+            File.Exists(image).Should().BeTrue();
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
             ImagesToDelete.Add(image);
             image.Should().Match(Path + "\\webpage*.jpeg");
             Logger.Messages.Should().ContainMatch($"*Screenshots: {Path}\\webpage*.jpeg");
-            File.Exists(image);
+            File.Exists(image).Should().BeTrue();
         }
 
         [Test]
@@ -90,7 +90,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
             ImagesToDelete.Add(image);
             image.Should().Match(Path + "\\Screenshot*.bmp");
             Logger.Messages.Should().ContainMatch($"*Screenshots: {Path}\\Screenshot*.bmp");
-            File.Exists(image);
+            File.Exists(image).Should().BeTrue();
         }
 
         #endregion
