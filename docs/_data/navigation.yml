@@ -77,8 +77,8 @@ user-guides:
         url: /user-guides/calling-tasks-safely/
 #      - title: "Waiting for Answers"
 #        url: /user-guides/waiting-for-answers/
-#      - title: "Writing Actor Extension Methods"
-#        url: /user-guides/writing-actor-extension-methods/
+      - title: "Writing Actor Extension Methods"
+        url: /user-guides/writing-actor-extension-methods/
 #      - title: "Writing Custom Abilities"
 #        url: /user-guides/writing-custom-abilities/
 #      - title: "Writing Custom Interactions"
