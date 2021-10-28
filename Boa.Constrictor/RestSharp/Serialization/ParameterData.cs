@@ -30,6 +30,8 @@ namespace Boa.Constrictor.RestSharp
 
         #region Class Methods
 
+        #pragma warning disable 0618
+
         /// <summary>
         /// Converts a list of parameters to a serializable object.
         /// </summary>
@@ -42,6 +44,8 @@ namespace Boa.Constrictor.RestSharp
                 Value = p.Value,
                 Type = p.Type.ToString()
             }).ToList();
+
+        #pragma warning restore 0618
 
         #endregion
     }

@@ -20,11 +20,15 @@ namespace Boa.Constrictor.UnitTests.RestSharp
             var errorMessage = "error";
             var content = "got some cool stuff";
 
+            #pragma warning disable 0618
+
             var parameters = new List<Parameter>()
             {
                 new Parameter("p1", "hello", ParameterType.HttpHeader),
                 new Parameter("p2", "goodbye", ParameterType.Cookie),
             };
+
+            #pragma warning restore 0618
 
             var responseMock = new Mock<IRestResponse>();
             responseMock.Setup(x => x.ResponseUri).Returns(clientUri);
