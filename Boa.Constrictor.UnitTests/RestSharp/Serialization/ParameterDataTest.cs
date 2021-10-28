@@ -6,6 +6,8 @@ using System.Collections.Generic;
 
 namespace Boa.Constrictor.UnitTests.RestSharp
 {
+    #pragma warning disable 0618
+
     [TestFixture]
     public class ParameterDataTest
     {
@@ -34,4 +36,7 @@ namespace Boa.Constrictor.UnitTests.RestSharp
             ParameterData.GetParameterDataList(new List<Parameter>()).Should().BeEmpty();
         }
     }
+
+    #pragma warning restore 0618
+
 }
