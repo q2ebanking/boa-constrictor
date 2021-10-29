@@ -3,13 +3,10 @@ using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.WebDriver;
 using Moq;
 using NUnit.Framework;
-using OpenQA.Selenium;
 using System.Collections.Generic;
 
 namespace Boa.Constrictor.UnitTests.WebDriver
 {
-    public interface ITestWebDriver : IWebDriver, ITakesScreenshot { }
-
     [TestFixture]
     public class BaseWebQuestionTest
     {
@@ -24,7 +21,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         #region Setup
 
         [SetUp]
-        public void Setup()
+        public void SetUpActor()
         {
             Actor = new Actor(logger:new ListLogger());
             WebDriver = new Mock<ITestWebDriver>();
