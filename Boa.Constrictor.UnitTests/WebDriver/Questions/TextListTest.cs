@@ -54,7 +54,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         {
             WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement>().AsReadOnly());
 
-            Actor.Invoking(x => x.AsksFor(TextList.For(Locator))).Should().Throw<WaitingException>();
+            Actor.Invoking(x => x.AsksFor(TextList.For(Locator))).Should().Throw<WaitingException<bool>>();
         }
 
         #endregion

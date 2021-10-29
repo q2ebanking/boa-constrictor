@@ -1,4 +1,5 @@
-﻿using Boa.Constrictor.WebDriver;
+﻿using Boa.Constrictor.Screenplay;
+using Boa.Constrictor.WebDriver;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -16,19 +17,17 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         {
             var element = new Mock<IWebElement>();
             WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement> { element.Object }.AsReadOnly());
-            WebDriver.SetupGet(x => x.FindElement(It.IsAny<By>()).TagName).Returns("the tag name");
+            WebDriver.SetupGet(x => x.FindElement(It.IsAny<By>()).TagName).Returns("body");
 
-            Actor.AsksFor(TagName.Of(Locator)).Should().Be("the tag name");
+            Actor.AsksFor(TagName.Of(Locator)).Should().Be("body");
         }
 
         [Test]
-        public void TestTagNotExist()
+        public void TestElementDoesNotExist()
         {
-            var element = new Mock<IWebElement>();
-            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement> { element.Object }.AsReadOnly());
-            WebDriver.SetupGet(x => x.FindElement(It.IsAny<By>()).TagName).Returns(default(string));
+            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement>().AsReadOnly());
 
-            Actor.AsksFor(TagName.Of(Locator)).Should().Be(null);
+            Actor.Invoking(x => x.AsksFor(TagName.Of(Locator))).Should().Throw<WaitingException<bool>>();
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using Boa.Constrictor.WebDriver;
+﻿using Boa.Constrictor.Screenplay;
+using Boa.Constrictor.WebDriver;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -64,6 +65,14 @@ namespace Boa.Constrictor.UnitTests.WebDriver
             WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement> { element.Object }.AsReadOnly());
 
             Actor.Invoking(x => x.AsksFor(SelectedOptionText.Of(Locator))).Should().Throw<NoSuchElementException>();
+        }
+
+        [Test]
+        public void TestElementDoesNotExist()
+        {
+            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement>().AsReadOnly());
+
+            Actor.Invoking(x => x.AsksFor(SelectedOptionText.Of(Locator))).Should().Throw<WaitingException<bool>>();
         }
 
         #endregion

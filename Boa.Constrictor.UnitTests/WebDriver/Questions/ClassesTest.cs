@@ -4,6 +4,7 @@ using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 
 namespace Boa.Constrictor.UnitTests.WebDriver
@@ -23,12 +24,34 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         }
 
         [Test]
-        public void TestZeroClass()
+        public void TestZeroElement()
         {
             WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement>().AsReadOnly());
             WebDriver.Setup(x => x.FindElement(It.IsAny<By>()).GetAttribute(It.IsAny<string>())).Returns(string.Empty);
 
             Actor.Invoking(x => x.AsksFor(Classes.Of(Locator))).Should().Throw<WaitingException<bool>>();
+        }
+
+        [Test]
+        public void TestEmptyClass()
+        {
+            var element = new Mock<IWebElement>();
+            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement> { element.Object }.AsReadOnly());
+            WebDriver.Setup(x => x.FindElement(It.IsAny<By>()).GetAttribute(It.IsAny<string>())).Returns(string.Empty);
+
+            var test = Actor.AsksFor(Classes.Of(Locator));
+            Actor.AsksFor(Classes.Of(Locator)).Should().BeEquivalentTo(new string[] { string.Empty });
+        }
+
+        [Test]
+        public void TestZeroClass()
+        {
+            var element = new Mock<IWebElement>();
+            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement> { element.Object }.AsReadOnly());
+            WebDriver.Setup(x => x.FindElement(It.IsAny<By>()).GetAttribute(It.IsAny<string>())).Returns<string>(null);
+
+            var test = Actor.AsksFor(Classes.Of(Locator));
+            Actor.AsksFor(Classes.Of(Locator)).Should().BeEquivalentTo(Array.Empty<string>());
         }
 
         [Test]

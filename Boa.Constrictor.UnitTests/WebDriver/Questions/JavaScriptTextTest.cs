@@ -1,4 +1,5 @@
-﻿using Boa.Constrictor.WebDriver;
+﻿using Boa.Constrictor.Screenplay;
+using Boa.Constrictor.WebDriver;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -12,7 +13,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         #region Tests
 
         [Test]
-        public void TestStringScriptWithLocator()
+        public void TestScriptText()
         {
             var element = new Mock<IWebElement>();
             WebDriver.Setup(x => x.FindElement(It.IsAny<By>())).Returns(element.Object);
@@ -24,6 +25,14 @@ namespace Boa.Constrictor.UnitTests.WebDriver
             Logger.Messages.Should().ContainMatch("*return arguments[0].textContent;");
             Logger.Messages.Should().ContainMatch("*JavaScript code arguments:");
             Logger.Messages.Should().ContainMatch("*IWebElement*");
+        }
+
+        [Test]
+        public void TestScriptWithLocatorDoesNotExist()
+        {
+            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement>().AsReadOnly());
+
+            Actor.Invoking(x => x.Calls(JavaScriptText.Of(Locator))).Should().Throw<WaitingException<bool>>();
         }
 
         #endregion

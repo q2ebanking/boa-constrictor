@@ -1,4 +1,5 @@
-﻿using Boa.Constrictor.WebDriver;
+﻿using Boa.Constrictor.Screenplay;
+using Boa.Constrictor.WebDriver;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -22,6 +23,13 @@ namespace Boa.Constrictor.UnitTests.WebDriver
             var point = Actor.AsksFor(Location.Of(Locator));
             point.X.Should().Be(1);
             point.Y.Should().Be(2);
+        }
+
+        [Test]
+        public void TestLocatorDoesNotExist()
+        {
+            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement>().AsReadOnly());
+            Actor.Invoking(x => x.AsksFor(Location.Of(Locator))).Should().Throw<WaitingException<bool>>();
         }
 
         #endregion

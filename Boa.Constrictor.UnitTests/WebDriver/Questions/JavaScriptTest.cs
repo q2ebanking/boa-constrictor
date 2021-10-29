@@ -1,4 +1,5 @@
-﻿using Boa.Constrictor.WebDriver;
+﻿using Boa.Constrictor.Screenplay;
+using Boa.Constrictor.WebDriver;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -24,6 +25,14 @@ namespace Boa.Constrictor.UnitTests.WebDriver
             Logger.Messages.Should().ContainMatch("*execute some js");
             Logger.Messages.Should().ContainMatch("*JavaScript code arguments:");
             Logger.Messages.Should().ContainMatch("*IWebElement*");
+        }
+
+        [Test]
+        public void TestScriptWithLocatorDoesNotExist()
+        {
+            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement>().AsReadOnly());
+
+            Actor.Invoking(x => x.Calls(JavaScript<string>.On(Locator, "execute some js"))).Should().Throw<WaitingException<bool>>();
         }
 
         [Test]

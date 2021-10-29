@@ -1,5 +1,6 @@
 ﻿using Boa.Constrictor.Screenplay;
 using OpenQA.Selenium;
+using System;
 
 namespace Boa.Constrictor.WebDriver
 {
@@ -42,7 +43,7 @@ namespace Boa.Constrictor.WebDriver
         {
             actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
             string classes = driver.FindElement(Locator.Query).GetAttribute("class");
-            return classes.Split();
+            return classes == null ? Array.Empty<string>() : classes.Split();
         }
 
         /// <summary>

@@ -21,7 +21,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         }
 
         [Test]
-        public void TestZeroElement()
+        public void TestZeroElements()
         {
             WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement>().AsReadOnly());
 

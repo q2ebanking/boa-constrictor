@@ -15,7 +15,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         {
             WebDriver.SetupGet(x => x.FindElement(It.IsAny<By>()).Displayed).Returns(true);
 
-            Actor.AsksFor(Appearance.Of(new WebLocator("test", By.Name("title")))).Should().BeTrue();
+            Actor.AsksFor(Appearance.Of(Locator)).Should().BeTrue();
         }
 
         [Test]
@@ -23,7 +23,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         {
             WebDriver.SetupGet(x => x.FindElement(It.IsAny<By>()).Displayed).Throws(new StaleElementReferenceException("element is stale"));
 
-            Actor.AsksFor(Appearance.Of(new WebLocator("test", By.Name("title")))).Should().BeFalse();
+            Actor.AsksFor(Appearance.Of(Locator)).Should().BeFalse();
             Logger.Messages.Should().ContainMatch("*element is stale*");
         }
 
@@ -32,7 +32,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         {
             WebDriver.SetupGet(x => x.FindElement(It.IsAny<By>()).Displayed).Throws(new NoSuchElementException());
 
-            Actor.AsksFor(Appearance.Of(new WebLocator("test", By.Name("title")))).Should().BeFalse();
+            Actor.AsksFor(Appearance.Of(Locator)).Should().BeFalse();
         }
 
         #endregion

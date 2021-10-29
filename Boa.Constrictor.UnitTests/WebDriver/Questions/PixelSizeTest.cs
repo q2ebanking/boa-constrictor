@@ -1,4 +1,5 @@
-﻿using Boa.Constrictor.WebDriver;
+﻿using Boa.Constrictor.Screenplay;
+using Boa.Constrictor.WebDriver;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -17,11 +18,19 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         {
             var element = new Mock<IWebElement>();
             WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement> { element.Object }.AsReadOnly());
-            WebDriver.SetupGet(x => x.FindElement(It.IsAny<By>()).Size).Returns(new Size(1, 2));
+            WebDriver.SetupGet(x => x.FindElement(It.IsAny<By>()).Size).Returns(new Size(100, 200));
 
             var point = Actor.AsksFor(PixelSize.Of(Locator));
-            point.Width.Should().Be(1);
-            point.Height.Should().Be(2);
+            point.Width.Should().Be(100);
+            point.Height.Should().Be(200);
+        }
+
+        [Test]
+        public void TestElementDoesNotExist()
+        {
+            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement>().AsReadOnly());
+
+            Actor.Invoking(x => x.AsksFor(PixelSize.Of(Locator))).Should().Throw<WaitingException<bool>>();
         }
 
         #endregion
