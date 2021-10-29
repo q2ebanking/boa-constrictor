@@ -36,7 +36,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated Fluent Assertions dependency to 6.1.0
 - Restructured projects for `docs`, `logos`, and `talk`
 - Renamed `JavaScriptProperty` to `DomProperty`
+
+
+### Fixed
+
 - `Classes` Question will return empty array if class attribute returns null
+
 
 
 ## [1.5.0] - 2021-10-13
