@@ -18,7 +18,7 @@ The example code matches the `ScreenplayWebUiTest` class in the `Boa.Constrictor
 (which is also part of the tutorial).
 
 
-## NUnit test projects
+## NUnit Test Projects
 
 Boa Constrictor can integrate with any NUnit test project.
 Full instructions for project setup are given by [Part 1 of the tutorial]({{ "/tutorial/part-1-setup/" | relative_url }}).
@@ -35,7 +35,7 @@ You may need to add other NuGet packages like
 [FluentAssertions](https://www.nuget.org/packages/FluentAssertions/) as well.
 
 
-## NUnit test classes
+## NUnit Test Classes
 
 NUnit test classes should have all the appropriate `using` statements for the namespaces they need.
 They should also have an instance variable for the Screenplay Actor object.
@@ -62,7 +62,7 @@ namespace Boa.Constrictor.Example
 ```
 
 
-## Screenplay SetUp methods
+## Screenplay SetUp Methods
 
 In NUnit test classes, methods with the `[SetUp]` attribute run before each test case to "set up" the test.
 Each test should have its own Actor with its own set of Abilities to preserve test case independence.
@@ -80,7 +80,7 @@ It constructs an Actor and gives it the Ability to browse the web with ChromeDri
 ```
 
 
-## Screenplay Test methods
+## Screenplay Test Methods
 
 In NUnit test classes, methods with the `[Test]` or `[TestCase]` attributes are individual test cases.
 With Boa Constrictor, most test cases should be a series of Screenplay interactions, like
@@ -100,7 +100,7 @@ Below is a test case method for the example `ScreenplayWebUiTest` class:
 ```
 
 
-## Screenplay TearDown methods
+## Screenplay TearDown Methods
 
 In NUnit test classes, methods with the `[TearDown]` attribute run after each test case to "tear down" (or "clean up") the test.
 Cleanup procedures are not required for all types of tests, but they are required for WebDriver-based tests.
@@ -117,7 +117,7 @@ It safely quits the browser for Web UI test cleanup:
 ```
 
 
-## A complete NUnit test class
+## A Complete NUnit Test Class
 
 The complete code for `ScreenplayWebUiTest` is below:
 

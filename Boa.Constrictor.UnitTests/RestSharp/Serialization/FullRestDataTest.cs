@@ -20,7 +20,12 @@ namespace Boa.Constrictor.UnitTests.RestSharp
         private HttpStatusCode StatusCode;
         private string ErrorMessage;
         private string Content;
+
+        #pragma warning disable 0618
+
         private List<Parameter> Parameters;
+
+        #pragma warning restore 0618
 
         private Cookie Cookie;
         private CookieContainer Container;
@@ -43,11 +48,15 @@ namespace Boa.Constrictor.UnitTests.RestSharp
             ErrorMessage = "error";
             Content = "got some cool stuff";
 
+            #pragma warning disable 0618
+
             Parameters = new List<Parameter>()
             {
                 new Parameter("a", "a", ParameterType.HttpHeader),
                 new Parameter("b", "b", ParameterType.Cookie),
             };
+
+            #pragma warning restore 0618
 
             Cookie = new Cookie("name", "value");
             Container = new CookieContainer();
