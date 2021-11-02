@@ -18,7 +18,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
 
         #endregion
 
-        #region Setup
+        #region SetUp
 
         [SetUp]
         public void SetUpActor()

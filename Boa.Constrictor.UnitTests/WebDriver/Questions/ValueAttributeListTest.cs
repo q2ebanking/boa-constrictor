@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Boa.Constrictor.UnitTests.WebDriver
 {
-    public class TextListTest : BaseWebLocatorQuestionTest
+    public class ValueAttributeListTest : BaseWebLocatorQuestionTest
     {
         #region Tests
 
@@ -17,36 +17,36 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         public void TestSingleElement()
         {
             var element = new Mock<IWebElement>();
-            element.SetupGet(x => x.Text).Returns("apple");
+            element.Setup(x => x.GetAttribute(It.IsAny<string>())).Returns("a");
             WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement> { element.Object }.AsReadOnly());
 
-            var list = Actor.AsksFor(TextList.For(Locator)).ToList();
+            List<string> list = Actor.AsksFor(ValueAttributeList.For(Locator)).ToList();
             list.Count.Should().Be(1);
-            list[0].Should().Be("apple");
+            list[0].Should().Be("a");
         }
 
         [Test]
         public void TestMultipleElements()
         {
             var elementOne = new Mock<IWebElement>();
-            elementOne.SetupGet(x => x.Text).Returns("apple");
+            elementOne.Setup(x => x.GetAttribute(It.IsAny<string>())).Returns("a");
             var elementTwo = new Mock<IWebElement>();
-            elementTwo.SetupGet(x => x.Text).Returns("bee");
+            elementTwo.Setup(x => x.GetAttribute(It.IsAny<string>())).Returns("b");
             var elementThree = new Mock<IWebElement>();
-            elementThree.SetupGet(x => x.Text).Returns("cat");
+            elementThree.Setup(x => x.GetAttribute(It.IsAny<string>())).Returns("c");
             WebDriver.Setup(x => x.FindElements(It.IsAny<By>()))
-                .Returns(new List<IWebElement> 
-                { 
+                .Returns(new List<IWebElement>
+                {
                     elementOne.Object,
                     elementTwo.Object,
                     elementThree.Object
                 }.AsReadOnly());
 
-            var list = Actor.AsksFor(TextList.For(Locator)).ToList();
+            var list = Actor.AsksFor(ValueAttributeList.For(Locator)).ToList();
             list.Count.Should().Be(3);
-            list[0].Should().Be("apple");
-            list[1].Should().Be("bee");
-            list[2].Should().Be("cat");
+            list[0].Should().Be("a");
+            list[1].Should().Be("b");
+            list[2].Should().Be("c");
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         {
             SetUpFindElementsReturnsEmpty();
 
-            Actor.Invoking(x => x.AsksFor(TextList.For(Locator))).Should().Throw<WaitingException<bool>>();
+            Actor.Invoking(x => x.AsksFor(ValueAttributeList.For(Locator))).Should().Throw<WaitingException<bool>>();
         }
 
         #endregion

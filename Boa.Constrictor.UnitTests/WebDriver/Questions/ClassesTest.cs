@@ -16,17 +16,15 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         [Test]
         public void TestOneClass()
         {
-            var element = new Mock<IWebElement>();
-            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement> { element.Object }.AsReadOnly());
             WebDriver.Setup(x => x.FindElement(It.IsAny<By>()).GetAttribute(It.IsAny<string>())).Returns("test");
 
             Actor.AsksFor(Classes.Of(Locator)).Should().BeEquivalentTo(new string[] { "test" });
         }
 
         [Test]
-        public void TestZeroElement()
+        public void TestZeroElements()
         {
-            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement>().AsReadOnly());
+            SetUpFindElementsReturnsEmpty();
             WebDriver.Setup(x => x.FindElement(It.IsAny<By>()).GetAttribute(It.IsAny<string>())).Returns(string.Empty);
 
             Actor.Invoking(x => x.AsksFor(Classes.Of(Locator))).Should().Throw<WaitingException<bool>>();
@@ -35,8 +33,6 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         [Test]
         public void TestEmptyClass()
         {
-            var element = new Mock<IWebElement>();
-            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement> { element.Object }.AsReadOnly());
             WebDriver.Setup(x => x.FindElement(It.IsAny<By>()).GetAttribute(It.IsAny<string>())).Returns(string.Empty);
 
             var test = Actor.AsksFor(Classes.Of(Locator));
@@ -46,8 +42,6 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         [Test]
         public void TestZeroClass()
         {
-            var element = new Mock<IWebElement>();
-            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement> { element.Object }.AsReadOnly());
             WebDriver.Setup(x => x.FindElement(It.IsAny<By>()).GetAttribute(It.IsAny<string>())).Returns<string>(null);
 
             var test = Actor.AsksFor(Classes.Of(Locator));
