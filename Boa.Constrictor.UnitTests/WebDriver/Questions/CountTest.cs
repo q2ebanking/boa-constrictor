@@ -14,16 +14,13 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         [Test]
         public void TestOneElement()
         {
-            var element = new Mock<IWebElement>();
-            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement> { element.Object }.AsReadOnly());
-
             Actor.AsksFor(Count.Of(Locator)).Should().Be(1);
         }
 
         [Test]
         public void TestZeroElements()
         {
-            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement>().AsReadOnly());
+            SetUpFindElementsReturnsEmpty();
 
             Actor.AsksFor(Count.Of(Locator)).Should().Be(0);
         }

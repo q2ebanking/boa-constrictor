@@ -15,9 +15,6 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         [Test]
         public void TestScriptText()
         {
-            var element = new Mock<IWebElement>();
-            WebDriver.Setup(x => x.FindElement(It.IsAny<By>())).Returns(element.Object);
-            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement> { element.Object }.AsReadOnly());
             WebDriver.Setup(x => x.ExecuteScript(It.IsAny<string>(), It.IsAny<object[]>())).Returns("textContent");
 
             Actor.Calls(JavaScriptText.Of(Locator)).Should().Be("textContent");
@@ -30,7 +27,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         [Test]
         public void TestScriptWithLocatorDoesNotExist()
         {
-            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement>().AsReadOnly());
+            SetUpFindElementsReturnsEmpty();
 
             Actor.Invoking(x => x.Calls(JavaScriptText.Of(Locator))).Should().Throw<WaitingException<bool>>();
         }

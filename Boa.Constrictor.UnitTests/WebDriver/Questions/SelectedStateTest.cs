@@ -15,8 +15,6 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         [Test]
         public void TestElementSelected()
         {
-            var element = new Mock<IWebElement>();
-            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement> { element.Object }.AsReadOnly());
             WebDriver.SetupGet(x => x.FindElement(It.IsAny<By>()).Selected).Returns(true);
 
             Actor.AsksFor(SelectedState.Of(Locator)).Should().BeTrue();
@@ -25,7 +23,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         [Test]
         public void TestElementDoesNotExist()
         {
-            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement>().AsReadOnly());
+            SetUpFindElementsReturnsEmpty();
 
             Actor.Invoking(x => x.AsksFor(SelectedState.Of(Locator))).Should().Throw<WaitingException<bool>>();
         }
@@ -33,8 +31,6 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         [Test]
         public void TestElementNotSelected()
         {
-            var element = new Mock<IWebElement>();
-            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement> { element.Object }.AsReadOnly());
             WebDriver.SetupGet(x => x.FindElement(It.IsAny<By>()).Selected).Returns(false);
 
             Actor.AsksFor(SelectedState.Of(Locator)).Should().BeFalse();
