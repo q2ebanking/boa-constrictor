@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Boa.Constrictor.UnitTests.WebDriver
 {
-    public class TextListTest : BaseWebLocatorQuestionTest
+    public class CssValueListTest : BaseWebLocatorQuestionTest
     {
         #region Tests
 
@@ -17,36 +17,36 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         public void TestSingleElement()
         {
             var element = new Mock<IWebElement>();
-            element.SetupGet(x => x.Text).Returns("apple");
+            element.Setup(x => x.GetCssValue(It.IsAny<string>())).Returns("red");
             WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement> { element.Object }.AsReadOnly());
 
-            var list = Actor.AsksFor(TextList.For(Locator)).ToList();
+            var list = Actor.AsksFor(CssValueList.For(Locator, "color")).ToList();
             list.Count.Should().Be(1);
-            list[0].Should().Be("apple");
+            list[0].Should().Be("red");
         }
 
         [Test]
         public void TestMultipleElements()
         {
             var elementOne = new Mock<IWebElement>();
-            elementOne.SetupGet(x => x.Text).Returns("apple");
+            elementOne.Setup(x => x.GetCssValue(It.IsAny<string>())).Returns("red");
             var elementTwo = new Mock<IWebElement>();
-            elementTwo.SetupGet(x => x.Text).Returns("bee");
+            elementTwo.Setup(x => x.GetCssValue(It.IsAny<string>())).Returns("green");
             var elementThree = new Mock<IWebElement>();
-            elementThree.SetupGet(x => x.Text).Returns("cat");
+            elementThree.Setup(x => x.GetCssValue(It.IsAny<string>())).Returns("blue");
             WebDriver.Setup(x => x.FindElements(It.IsAny<By>()))
-                .Returns(new List<IWebElement> 
-                { 
+                .Returns(new List<IWebElement>
+                {
                     elementOne.Object,
                     elementTwo.Object,
                     elementThree.Object
                 }.AsReadOnly());
 
-            var list = Actor.AsksFor(TextList.For(Locator)).ToList();
+            var list = Actor.AsksFor(CssValueList.For(Locator, "color")).ToList();
             list.Count.Should().Be(3);
-            list[0].Should().Be("apple");
-            list[1].Should().Be("bee");
-            list[2].Should().Be("cat");
+            list[0].Should().Be("red");
+            list[1].Should().Be("green");
+            list[2].Should().Be("blue");
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         {
             SetUpFindElementsReturnsEmpty();
 
-            Actor.Invoking(x => x.AsksFor(TextList.For(Locator))).Should().Throw<WaitingException<bool>>();
+            Actor.Invoking(x => x.AsksFor(CssValueList.For(Locator, "color"))).Should().Throw<WaitingException<bool>>();
         }
 
         #endregion

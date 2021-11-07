@@ -16,8 +16,6 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         [Test]
         public void TestPointLocation()
         {
-            var element = new Mock<IWebElement>();
-            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement> { element.Object }.AsReadOnly());
             WebDriver.SetupGet(x => x.FindElement(It.IsAny<By>()).Location).Returns(new Point(1, 2));
 
             var point = Actor.AsksFor(Location.Of(Locator));
@@ -28,7 +26,8 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         [Test]
         public void TestLocatorDoesNotExist()
         {
-            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement>().AsReadOnly());
+            SetUpFindElementsReturnsEmpty();
+
             Actor.Invoking(x => x.AsksFor(Location.Of(Locator))).Should().Throw<WaitingException<bool>>();
         }
 

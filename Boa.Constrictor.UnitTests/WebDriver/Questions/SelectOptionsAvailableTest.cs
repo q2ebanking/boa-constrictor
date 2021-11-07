@@ -79,7 +79,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         [Test]
         public void TestElementDoesNotExist()
         {
-            WebDriver.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement>().AsReadOnly());
+            SetUpFindElementsReturnsEmpty();
 
             Actor.Invoking(x => x.AsksFor(SelectOptionsAvailable.For(Locator))).Should().Throw<WaitingException<bool>>();
         }
