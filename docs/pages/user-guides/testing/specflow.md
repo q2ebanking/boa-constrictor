@@ -22,7 +22,7 @@ as the test case from the [tutorial]({{ "/tutorial/overview/" | relative_url }})
 a Web UI test for DuckDuckGo searches.
 
 
-## SpecFlow test projects
+## SpecFlow Test Projects
 
 Boa Constrictor can integrate with any SpecFlow test project.
 If you are new to SpecFlow, read [SpecFlow's official documentation](https://docs.specflow.org/projects/specflow/en/latest/)
@@ -48,7 +48,7 @@ To [install SpecFlow+ Runner](https://docs.specflow.org/projects/specflow-runner
 you will need to register a (free) SpecFlow account.
 
 
-## Gherkin feature files
+## Gherkin Feature Files
 
 In SpecFlow, all tests are written in [Gherkin](https://docs.specflow.org/projects/specflow/en/latest/Gherkin/Gherkin-Reference.html)
 and saved in `.feature` files.
@@ -67,7 +67,7 @@ Feature: DuckDuckGo web search
 ```
 
 
-## Before-scenario hooks
+## Before-Scenario Hooks
 
 In SpecFlow, all automation code is located in "step definition" or "binding" classes.
 These classes require SpecFlow's `[Binding]` attribute, and they may also be child classes of the `Steps` class.
@@ -117,7 +117,7 @@ namespace Boa.Constrictor.Example
 ```
 
 
-## Step definition methods
+## Step Definition Methods
 
 "Step definitions" are special methods that execute Gherkin steps from feature files.
 Whenever a Gherkin scenario runs, SpecFlow "glues" each Gherkin step to its associated step definition.
@@ -177,7 +177,7 @@ namespace Boa.Constrictor.Example
 ```
 
 
-## After-scenario hooks
+## After-Scenario Hooks
 
 After-scenario hooks are analogous to 
 [NUnit `[TearDown]`]({{ "/user-guides/testing-with-nunit/#screenplay-teardown-methods" | relative_url }}) methods:
