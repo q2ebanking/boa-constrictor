@@ -36,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added ICacheableQuestion interface implementation to RestApiDownload (Equals and GetHashCode)
 - Added unit tests for Question that derive from `AbstractWebQuestion`
 - Added unit tests for Question that derive from `AbstractWebLocatorQuestion`
+- Added utility for wrapping logging of long messages with name `MessagesWrapper`.
 
 ### Changed
 
