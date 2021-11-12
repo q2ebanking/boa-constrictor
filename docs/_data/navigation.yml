@@ -32,8 +32,8 @@
         url: /contributing/code-of-conduct/
       - title: "Contributing Code"
         url: /contributing/contributing-code/
-      - title: "Opening Issues"
-        url: /contributing/contributing-code/#2-opening-issues
+      - title: "Discord Server"
+        url: https://discord.gg/pP3dXzYQ82
 
   - title: Project
     children:
@@ -57,6 +57,8 @@ user-guides:
         url: /tutorial/overview/
       - title: "User Guides and Videos"
         url: /learning/user-guides-and-videos/
+      - title: "Discord Server"
+        url: https://discord.gg/pP3dXzYQ82
 
   - title: Testing
     children:
