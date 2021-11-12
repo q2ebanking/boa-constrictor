@@ -17,7 +17,7 @@ such as opening issues, adding comments, and creating pull requests for code cha
 Start by reading this guide, reading the
 [Code of Conduct]({{ "/contributing/code-of-conduct/" | relative_url }}),
 and perusing open issues to see where you can help.
-You can also contact [Pandy Knight](https://twitter.com/AutomationPanda) for help.
+You can also join our [Discord server](https://discord.gg/pP3dXzYQ82) to ask for help.
 {: .notice--warning}
 
 

@@ -59,12 +59,15 @@ defaults:
 
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/AutomationPanda"
+    - label: "Discord"
+      icon: "fab fa-fw fa-discord"
+      url: "https://discord.gg/pP3dXzYQ82"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/q2ebanking/boa-constrictor/"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/AutomationPanda"
 
 github: [metadata]
 

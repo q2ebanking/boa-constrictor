@@ -19,8 +19,8 @@
 It helps you make *better interactions* for *better automation*!
 It is implemented in C#, and its primary use case is Web UI and REST API test automation.
 
-Please visit https://q2ebanking.github.io/boa-constrictor/ for full documentation.
-You can also read the doc pages locally under the `/docs` directory.
+Join our [Discord server](https://discord.gg/pP3dXzYQ82)
+to collaborate with the Boa Constrictor community!
 
 
 #### Documentation
@@ -48,6 +48,7 @@ You can also read the doc pages locally under the `/docs` directory.
 
 * [Contributing Code](https://q2ebanking.github.io/boa-constrictor/contributing/contributing-code/)
 * [Code of Conduct](https://q2ebanking.github.io/boa-constrictor/contributing/code-of-conduct/)
+* [Discord server](https://discord.gg/pP3dXzYQ82)
 
 
 #### Project
