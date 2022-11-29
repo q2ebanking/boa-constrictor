@@ -17,6 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+(none)
+
+
+## [2.0.1] - 2022-11-28
+
 ### Added
 
 - Added unit tests for Question that derive from `AbstractWebPropertyQuestion`
