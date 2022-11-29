@@ -11,7 +11,7 @@ namespace Boa.Constrictor.UnitTests.WebDriver
     {
         #region Test Variables
 
-        private static readonly string Path = TestContext.CurrentContext.WorkDirectory;
+        private static readonly string Dir = TestContext.CurrentContext.WorkDirectory;
         private readonly ConcurrentBag<string> ImagesToDelete = new();
 
         #endregion
@@ -44,9 +44,9 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         [Test]
         public void TestSaveFileToDirNoName()
         {
-            var image = Actor.AsksFor(CurrentScreenshot.SavedTo(Path));
+            var image = Actor.AsksFor(CurrentScreenshot.SavedTo(Dir));
             ImagesToDelete.Add(image);
-            image.Should().Match(Path + "\\Screenshot*.png");
+            image.Should().Match(Dir + Path.DirectorySeparatorChar + "Screenshot*.png");
             Logger.Messages.Should().ContainMatch("*Set the screenshot file name to 'Screenshot*");
             File.Exists(image).Should().BeTrue();
         }
@@ -54,20 +54,20 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         [Test]
         public void TestSaveFileToDirWithName()
         {
-            var image = Actor.AsksFor(CurrentScreenshot.SavedTo(Path, "webpage"));
+            var image = Actor.AsksFor(CurrentScreenshot.SavedTo(Dir, "webpage"));
             ImagesToDelete.Add(image);
-            image.Should().Match(Path + "\\webpage*.png");
-            Logger.Messages.Should().ContainMatch($"*Screenshots: {Path}\\webpage*.png");
+            image.Should().Match(Dir + Path.DirectorySeparatorChar + "webpage*.png");
+            Logger.Messages.Should().ContainMatch($"*Screenshots: {Dir}{Path.DirectorySeparatorChar}webpage*.png");
             File.Exists(image).Should().BeTrue();
         }
 
         [Test]
         public void TestSaveFileWithExtension()
         {
-            var image = Actor.AsksFor(CurrentScreenshot.SavedTo(Path, "webpage.png"));
+            var image = Actor.AsksFor(CurrentScreenshot.SavedTo(Dir, "webpage.png"));
             ImagesToDelete.Add(image);
-            image.Should().Match(Path + "\\webpage*.png");
-            Logger.Messages.Should().ContainMatch($"*Screenshots: {Path}\\webpage*.png");
+            image.Should().Match(Dir + Path.DirectorySeparatorChar + "webpage*.png");
+            Logger.Messages.Should().ContainMatch($"*Screenshots: {Dir}{Path.DirectorySeparatorChar}webpage*.png");
             Logger.Messages.Should().ContainMatch("*Screenshot file name 'webpage.png' should not be given an extension");
             Logger.Messages.Should().ContainMatch("*Removing the extension from the name");
             File.Exists(image).Should().BeTrue();
@@ -76,20 +76,20 @@ namespace Boa.Constrictor.UnitTests.WebDriver
         [Test]
         public void TestSaveFileWithJpegFormat()
         {
-            var image = Actor.AsksFor(CurrentScreenshot.SavedTo(Path, "webpage").UsingFormat(ScreenshotImageFormat.Jpeg));
+            var image = Actor.AsksFor(CurrentScreenshot.SavedTo(Dir, "webpage").UsingFormat(ScreenshotImageFormat.Jpeg));
             ImagesToDelete.Add(image);
-            image.Should().Match(Path + "\\webpage*.jpeg");
-            Logger.Messages.Should().ContainMatch($"*Screenshots: {Path}\\webpage*.jpeg");
+            image.Should().Match(Dir + Path.DirectorySeparatorChar + "webpage*.jpeg");
+            Logger.Messages.Should().ContainMatch($"*Screenshots: {Dir}{Path.DirectorySeparatorChar}webpage*.jpeg");
             File.Exists(image).Should().BeTrue();
         }
 
         [Test]
         public void TestSaveFileWithBmpFormatNoName()
         {
-            var image = Actor.AsksFor(CurrentScreenshot.SavedTo(Path).UsingFormat(ScreenshotImageFormat.Bmp));
+            var image = Actor.AsksFor(CurrentScreenshot.SavedTo(Dir).UsingFormat(ScreenshotImageFormat.Bmp));
             ImagesToDelete.Add(image);
-            image.Should().Match(Path + "\\Screenshot*.bmp");
-            Logger.Messages.Should().ContainMatch($"*Screenshots: {Path}\\Screenshot*.bmp");
+            image.Should().Match(Dir + Path.DirectorySeparatorChar + "Screenshot*.bmp");
+            Logger.Messages.Should().ContainMatch($"*Screenshots: {Dir}{Path.DirectorySeparatorChar}Screenshot*.bmp");
             File.Exists(image).Should().BeTrue();
         }
 

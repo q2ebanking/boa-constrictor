@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added unit tests for Question that derive from `AbstractWebPropertyQuestion`
 - Added [Discord server](https://discord.gg/pP3dXzYQ82) invitation links to README and docs
+- Fixed `CurrentScreenshotTest` tests to run on non-Windows systems
 
 
 ## [2.0.0] - 2021-11-02
