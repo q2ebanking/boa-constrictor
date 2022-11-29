@@ -14,13 +14,13 @@ jobs:
     steps:
 
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Run unit tests
         run: dotnet test Boa.Constrictor.UnitTests/Boa.Constrictor.UnitTests.csproj --logger "trx;LogFileName=UnitTestResults.trx"
 
       - name: Archive unit test results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: unit-test-results
           path: Boa.Constrictor.UnitTests/TestResults/UnitTestResults.trx

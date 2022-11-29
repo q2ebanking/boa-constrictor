@@ -11,7 +11,7 @@ namespace Boa.Constrictor.Utilities
         /// <summary>
         /// Wraps long lines of messages with provided limit of text to display as wrapped line.
         /// </summary>
-        /// <param name="message">The Message on which word wrap will apply.</param>
+        /// <param name="text">The Message on which word wrap will apply.</param>
         /// <param name="limit">The limit of characters to be applied.</param>
         /// <returns></returns>
         public static List<string> GetWrappedMessage(string text, int limit)
