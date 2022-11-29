@@ -20,6 +20,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (none)
 
 
+## [2.0.2] - 2022-11-29
+
+### Added
+
+- Added .NET 7.0 target to `Boa.Constrictor` project
+
+## Changed
+
+- Changed target framework for the unit tests and example projects to .NET 7
+- Updated Selenium Webdriver to 4.6
+
+
 ## [2.0.1] - 2022-11-28
 
 ### Added
