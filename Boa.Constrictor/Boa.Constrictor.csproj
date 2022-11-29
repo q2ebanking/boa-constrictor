@@ -24,8 +24,8 @@
     <PackageReference Include="Microsoft.Bcl.HashCode" Version="1.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="RestSharp" Version="106.12.0" />
-    <PackageReference Include="Selenium.Support" Version="4.0.0" />
-    <PackageReference Include="Selenium.WebDriver" Version="4.0.0" />
+    <PackageReference Include="Selenium.Support" Version="4.1.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.1.0" />
   </ItemGroup>
   
   <ItemGroup>

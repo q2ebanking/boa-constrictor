@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added unit tests for Question that derive from `AbstractWebPropertyQuestion`
 - Added [Discord server](https://discord.gg/pP3dXzYQ82) invitation links to README and docs
+- Bumped Selenium to 4.1.
 - Fixed `CurrentScreenshotTest` tests to run on non-Windows systems
 - Updated GitHub Action versions
 
