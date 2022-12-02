@@ -1,4 +1,4 @@
-# Builds and publishes the Boa.Constrictor package to NuGet.org whenever versions change.
+# Builds and publishes the Boa Constrictor packages to NuGet.org whenever versions change.
 # The NuGet key is currently Andy Knight's NuGet account.
 
 name: Publish Boa Constrictor NuGet Packages
