@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFrameworks>net5.0;net7.0;netstandard2.0</TargetFrameworks>
-    <Version>2.0.2</Version>
+    <Version>3.0.0-alpha1</Version>
     <Authors>Pandy Knight and the PrecisionLender SETs</Authors>
-    <Company>PrecisionLender, a Q2 Company</Company>
+    <Company>Q2</Company>
     <Title>Boa Constrictor</Title>
     <Product>Boa Constrictor</Product>
     <Description>Boa Constrictor is a C# implementation of the Screenplay Pattern that helps you make better interactions for better automation!</Description>
