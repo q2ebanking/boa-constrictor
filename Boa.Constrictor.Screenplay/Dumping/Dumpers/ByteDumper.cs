@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Boa.Constrictor.Dumping
+namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Dumps byte data to a file in a dump directory.

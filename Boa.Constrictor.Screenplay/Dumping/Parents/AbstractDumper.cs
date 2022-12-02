@@ -1,7 +1,7 @@
 ﻿using Boa.Constrictor.Utilities;
 using System.IO;
 
-namespace Boa.Constrictor.Dumping
+namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Parent class for dumpers.

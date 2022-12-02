@@ -939,8 +939,8 @@ This Ability should dump both requests and downloads.
 Change `CallDogImagesApi.cs` to the following code:
 
 ```csharp
-using Boa.Constrictor.Dumping;
 using Boa.Constrictor.RestSharp;
+using Boa.Constrictor.Screenplay;
 using RestSharp;
 using System.IO;
 

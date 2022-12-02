@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Boa.Constrictor.Dumping
+namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Dumps an HTML report that combines all test logs.

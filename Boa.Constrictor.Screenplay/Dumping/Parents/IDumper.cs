@@ -1,4 +1,4 @@
-﻿namespace Boa.Constrictor.Dumping
+﻿namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// A dumping interface for the Screenplay Pattern.

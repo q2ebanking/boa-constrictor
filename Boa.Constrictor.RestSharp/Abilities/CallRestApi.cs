@@ -1,4 +1,4 @@
-﻿using Boa.Constrictor.Dumping;
+﻿using Boa.Constrictor.Screenplay;
 using RestSharp;
 
 namespace Boa.Constrictor.RestSharp

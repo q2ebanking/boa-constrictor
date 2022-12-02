@@ -1,4 +1,4 @@
-﻿using Boa.Constrictor.Dumping;
+﻿using Boa.Constrictor.Screenplay;
 using FluentAssertions;
 using Newtonsoft.Json;
 using NUnit.Framework;

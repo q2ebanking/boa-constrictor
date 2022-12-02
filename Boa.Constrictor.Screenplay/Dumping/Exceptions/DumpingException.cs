@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Boa.Constrictor.Dumping
+namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Should be used for any dumping exceptions.

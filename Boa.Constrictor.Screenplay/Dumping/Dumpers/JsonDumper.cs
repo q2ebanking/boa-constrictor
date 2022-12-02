@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
 
-namespace Boa.Constrictor.Dumping
+namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Dumps JSON data to a file in a dump directory.
