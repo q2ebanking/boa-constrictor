@@ -17,7 +17,6 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Publish Boa.Constrictor.Screenplay package
-        id: publish_nuget
         uses: rohith/publish-nuget@v2
         with:
           # Filepath of the project to be packaged, relative to root of repository
@@ -50,8 +49,7 @@ jobs:
           # (This GitHub Action will yield a failure when publishing a symbols package, too, even though the publishing succeeds)
           INCLUDE_SYMBOLS: false
 
-      - name: Publish package on version change
-        id: publish_nuget
+      - name: Publish Boa.Constrictor.Selenium package
         uses: rohith/publish-nuget@v2
         with:
           # Filepath of the project to be packaged, relative to root of repository
@@ -84,8 +82,7 @@ jobs:
           # (This GitHub Action will yield a failure when publishing a symbols package, too, even though the publishing succeeds)
           INCLUDE_SYMBOLS: false
 
-      - name: Publish package on version change
-        id: publish_nuget
+      - name: Publish Boa.Constrictor.RestSharp package
         uses: rohith/publish-nuget@v2
         with:
           # Filepath of the project to be packaged, relative to root of repository
@@ -118,8 +115,7 @@ jobs:
           # (This GitHub Action will yield a failure when publishing a symbols package, too, even though the publishing succeeds)
           INCLUDE_SYMBOLS: false
 
-      - name: Publish package on version change
-        id: publish_nuget
+      - name: Publish Boa.Constrictor package
         uses: rohith/publish-nuget@v2
         with:
           # Filepath of the project to be packaged, relative to root of repository
