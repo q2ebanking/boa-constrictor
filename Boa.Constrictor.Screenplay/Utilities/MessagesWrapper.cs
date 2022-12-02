@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Boa.Constrictor.Utilities
+namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Provides methods for wrapping long messages string.

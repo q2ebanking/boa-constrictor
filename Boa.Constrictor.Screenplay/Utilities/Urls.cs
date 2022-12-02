@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Boa.Constrictor.Utilities
+namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Provides methods for handling URLs.

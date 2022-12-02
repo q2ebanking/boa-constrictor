@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Threading;
 
-namespace Boa.Constrictor.Utilities
+namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Provides static methods for handling names.

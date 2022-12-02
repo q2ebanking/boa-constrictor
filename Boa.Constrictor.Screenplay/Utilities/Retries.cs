@@ -1,8 +1,7 @@
-﻿using Boa.Constrictor.Screenplay;
-using System;
+﻿using System;
 using System.Threading;
 
-namespace Boa.Constrictor.Utilities
+namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Provides helper methods to retry actions.

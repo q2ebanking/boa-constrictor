@@ -1,5 +1,4 @@
-﻿using Boa.Constrictor.Utilities;
-using System.IO;
+﻿using System.IO;
 
 namespace Boa.Constrictor.Screenplay
 {
