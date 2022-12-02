@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Abstract class for any Web Tasks that use a Web element locator.

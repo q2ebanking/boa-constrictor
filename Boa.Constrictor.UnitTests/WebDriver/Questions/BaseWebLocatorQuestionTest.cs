@@ -1,4 +1,4 @@
-﻿using Boa.Constrictor.WebDriver;
+﻿using Boa.Constrictor.Selenium;
 using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;

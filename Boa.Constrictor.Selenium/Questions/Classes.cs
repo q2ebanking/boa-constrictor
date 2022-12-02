@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using System;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Gets the list of the Web element's CSS classes.

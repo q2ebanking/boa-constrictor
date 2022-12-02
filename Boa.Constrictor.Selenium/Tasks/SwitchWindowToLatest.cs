@@ -1,7 +1,7 @@
 ﻿using Boa.Constrictor.Screenplay;
 using OpenQA.Selenium;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Safely switches to the newest tab in the browser.

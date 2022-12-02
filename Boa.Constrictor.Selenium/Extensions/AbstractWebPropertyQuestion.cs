@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Abstract class for any Web Questions that use a Web element locator and a property name.

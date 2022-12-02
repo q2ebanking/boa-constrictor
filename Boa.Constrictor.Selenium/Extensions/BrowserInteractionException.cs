@@ -1,7 +1,7 @@
 ﻿using Boa.Constrictor.Screenplay;
 using System;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Should be used for any Screenplay WebDriver interaction exceptions.

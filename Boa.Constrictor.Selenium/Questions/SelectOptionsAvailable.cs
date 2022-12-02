@@ -4,7 +4,7 @@ using OpenQA.Selenium.Support.UI;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Gets the text list of a select Web element's options.

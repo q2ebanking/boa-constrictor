@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// This is an abstract superclass for any Web Questions that use a Web element locator.

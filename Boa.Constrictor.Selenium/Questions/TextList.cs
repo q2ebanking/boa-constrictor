@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using System.Collections.Generic;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Gets a list of Web elements' text values.

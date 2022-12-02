@@ -1,5 +1,5 @@
 ﻿using Boa.Constrictor.Screenplay;
-using Boa.Constrictor.WebDriver;
+using Boa.Constrictor.Selenium;
 
 namespace Boa.Constrictor.Example
 {

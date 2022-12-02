@@ -5,7 +5,7 @@ using OpenQA.Selenium;
 using System;
 using System.IO;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Captures a screenshot of the current Web browser and return its path.

@@ -36,7 +36,7 @@ Write Screenplay calls:
 ```csharp
 using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
-using Boa.Constrictor.WebDriver;
+using Boa.Constrictor.Selenium;
 using OpenQA.Selenium.Chrome;
 
 // Set up the Screenplay actor
@@ -61,9 +61,9 @@ actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
 With locator classes:
 
 ```csharp
-using Boa.Constrictor.WebDriver;
+using Boa.Constrictor.Selenium;
 using OpenQA.Selenium;
-using static Boa.Constrictor.WebDriver.WebLocator;
+using static Boa.Constrictor.Selenium.WebLocator;
 
 public static class SearchPage
 {
@@ -90,7 +90,7 @@ And a custom `SearchDuckDuckGo` task:
 
 ```csharp
 using Boa.Constrictor.Screenplay;
-using Boa.Constrictor.WebDriver;
+using Boa.Constrictor.Selenium;
 
 public class SearchDuckDuckGo : ITask
 {
