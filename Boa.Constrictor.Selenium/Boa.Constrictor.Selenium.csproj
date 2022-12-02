@@ -31,7 +31,11 @@
     <PackageReference Include="Selenium.WebDriver" Version="4.6.0" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Release'">
+    <PackageReference Include="Boa.Constrictor.Screenplay" Version="3.0.0-alpha1" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
     <ProjectReference Include="..\Boa.Constrictor.Screenplay\Boa.Constrictor.Screenplay.csproj" />
   </ItemGroup>
 
