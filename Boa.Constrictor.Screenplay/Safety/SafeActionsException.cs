@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Boa.Constrictor.Safety
+namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// This exception occurs when safe actions have failures.

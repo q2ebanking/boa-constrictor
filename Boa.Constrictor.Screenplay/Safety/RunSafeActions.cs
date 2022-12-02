@@ -1,6 +1,4 @@
-﻿using Boa.Constrictor.Screenplay;
-
-namespace Boa.Constrictor.Safety
+﻿namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// This Ability enables Actors to run Tasks using SafeActions.

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Boa.Constrictor.Safety
+namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// "Safe" actions are a sequence of Action calls that should be executed despite any exceptions.

@@ -1,6 +1,6 @@
 ﻿using Boa.Constrictor.Screenplay;
 
-namespace Boa.Constrictor.Safety
+namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Runs Tasks safely using SafeActions.
