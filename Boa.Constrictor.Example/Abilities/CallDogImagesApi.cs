@@ -1,5 +1,5 @@
-﻿using Boa.Constrictor.Dumping;
-using Boa.Constrictor.RestSharp;
+﻿using Boa.Constrictor.RestSharp;
+using Boa.Constrictor.Screenplay;
 using RestSharp;
 using System.IO;
 

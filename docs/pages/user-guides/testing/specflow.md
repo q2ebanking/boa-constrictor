@@ -90,9 +90,8 @@ with a before-scenario hook to create and inject the Actor.
 The hook is set with `(Order = 1)` to make sure it runs before any other before-scenario hooks:
 
 ```csharp
-using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
-using Boa.Constrictor.WebDriver;
+using Boa.Constrictor.Selenium;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
@@ -135,7 +134,7 @@ come from the [`Boa.Constrictor.Example`](https://github.com/q2ebanking/boa-cons
 
 ```csharp
 using Boa.Constrictor.Screenplay;
-using Boa.Constrictor.WebDriver;
+using Boa.Constrictor.Selenium;
 using TechTalk.SpecFlow;
 
 namespace Boa.Constrictor.Example

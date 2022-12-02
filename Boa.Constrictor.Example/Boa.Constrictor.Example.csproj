@@ -14,7 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Boa.Constrictor\Boa.Constrictor.csproj" />
+    <ProjectReference Include="..\Boa.Constrictor.RestSharp\Boa.Constrictor.RestSharp.csproj" />
+    <ProjectReference Include="..\Boa.Constrictor.Screenplay\Boa.Constrictor.Screenplay.csproj" />
+    <ProjectReference Include="..\Boa.Constrictor.Selenium\Boa.Constrictor.Selenium.csproj" />
   </ItemGroup>
 
 </Project>

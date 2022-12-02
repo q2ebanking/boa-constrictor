@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30225.117
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project Files", "Project Files", "{7AEFAF69-D35F-4A70-9152-687C7486280F}"
 	ProjectSection(SolutionItems) = preProject
@@ -48,12 +48,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pull Request Templates", "P
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub Files", "GitHub Files", "{93076CA0-CFD9-4B35-9EEA-AC77ABF88F83}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boa.Constrictor.Selenium", "Boa.Constrictor.Selenium\Boa.Constrictor.Selenium.csproj", "{CB6F58FD-6DEC-4E02-8479-714685B31C0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boa.Constrictor.RestSharp", "Boa.Constrictor.RestSharp\Boa.Constrictor.RestSharp.csproj", "{C1FC00F0-C2B6-4B0F-B64B-A4C777131408}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boa.Constrictor.Screenplay", "Boa.Constrictor.Screenplay\Boa.Constrictor.Screenplay.csproj", "{A6C7DD7A-A99A-4C55-B7E5-1B03EAEE7C7C}"
+EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		docs\docs.projitems*{0a420e7b-171f-4a46-acb0-24c36fc84c33}*SharedItemsImports = 13
-		logos\logos.projitems*{1d0939e4-3aab-4efb-9645-660d08e57699}*SharedItemsImports = 13
-		talk\talk.projitems*{d414fa59-b55c-4c53-b314-2bcafafc94ad}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -71,6 +72,18 @@ Global
 		{2EDE1932-D1D3-45DD-80C6-6E08A3F96942}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EDE1932-D1D3-45DD-80C6-6E08A3F96942}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EDE1932-D1D3-45DD-80C6-6E08A3F96942}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB6F58FD-6DEC-4E02-8479-714685B31C0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB6F58FD-6DEC-4E02-8479-714685B31C0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB6F58FD-6DEC-4E02-8479-714685B31C0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB6F58FD-6DEC-4E02-8479-714685B31C0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1FC00F0-C2B6-4B0F-B64B-A4C777131408}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1FC00F0-C2B6-4B0F-B64B-A4C777131408}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1FC00F0-C2B6-4B0F-B64B-A4C777131408}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1FC00F0-C2B6-4B0F-B64B-A4C777131408}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6C7DD7A-A99A-4C55-B7E5-1B03EAEE7C7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6C7DD7A-A99A-4C55-B7E5-1B03EAEE7C7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6C7DD7A-A99A-4C55-B7E5-1B03EAEE7C7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6C7DD7A-A99A-4C55-B7E5-1B03EAEE7C7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,5 +95,10 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B7D2C1D8-A5F6-4638-8C77-30344F2746A1}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		docs\docs.projitems*{0a420e7b-171f-4a46-acb0-24c36fc84c33}*SharedItemsImports = 13
+		logos\logos.projitems*{1d0939e4-3aab-4efb-9645-660d08e57699}*SharedItemsImports = 13
+		talk\talk.projitems*{d414fa59-b55c-4c53-b314-2bcafafc94ad}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

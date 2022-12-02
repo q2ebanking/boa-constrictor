@@ -83,7 +83,6 @@ Most test cases need only one Actor.
 To create an actor, add the following import statements to `ScreenplayWebUiTest`:
 
 ```csharp
-using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
 ```
 
@@ -102,7 +101,7 @@ The `Actor` class optionally takes two arguments:
 | *logger* | Send log messages from Screenplay calls to a target destination. |
    
 Loggers must implement the `ILogger` interface.
-They are part of the `Boa.Constrictor.Logging` namespace.
+They are part of the `Boa.Constrictor.Screenplay` namespace.
 `ConsoleLogger` is a class that will log messages to the system console.
 You can define your own custom loggers by implementing `ILogger`.
 You can also combine multiple loggers together using `TeeLogger`.
@@ -121,7 +120,7 @@ For example, an Actor needs a Selenium WebDriver instance in order to click elem
 Add the following imports to `ScreenplayWebUiTest`:
 
 ```csharp
-using Boa.Constrictor.WebDriver;
+using Boa.Constrictor.Selenium;
 using OpenQA.Selenium.Chrome;
 ```
 
@@ -159,7 +158,7 @@ public interface IAbility
 It simply provides a type system for Abilities.
 You can implement your own Abilities using this interface.
 
-The `BrowseTheWeb` Ability is part of the `Boa.Constrictor.WebDriver` namespace.
+The `BrowseTheWeb` Ability is part of the `Boa.Constrictor.Selenium` namespace.
 It looks like this:
 
 ```csharp
@@ -212,9 +211,9 @@ Each page should have its own class.
 Create a file named `SearchPage.cs` and add the following code:
 
 ```csharp
-using Boa.Constrictor.WebDriver;
+using Boa.Constrictor.Selenium;
 using OpenQA.Selenium;
-using static Boa.Constrictor.WebDriver.WebLocator;
+using static Boa.Constrictor.Selenium.WebLocator;
 
 namespace Boa.Constrictor.Example
 {
@@ -252,7 +251,7 @@ A locator has two properties:
 | *Description* | Describes the element in plain language. It will be used for logging. |
 | *Query* | Finds the element on the page. Boa Constrictor uses Selenium WebDriver's `By` queries. Learn more about locator queries by reading [Web Element Locators for Test Automation](https://automationpanda.com/2019/01/15/web-element-locators-for-test-automation/). |
 
-For convenience, locators can be constructed using the `Boa.Constrictor.WebDriver.WebLocator.L` static builder method.
+For convenience, locators can be constructed using the `Boa.Constrictor.Selenium.WebLocator.L` static builder method.
 Since `SearchPage` uses a static import for this method, it can use the short `L` method call.
 
 Furthermore, notice that `SearchInput` uses the `=>` operator instead of the `=` operator for defining the locator.
@@ -266,9 +265,9 @@ Fresh fetches avoid stale element exceptions.
 In addition to `SearchPage.cs`, create a file named `ResultPage.cs` with the following code:
 
 ```csharp
-using Boa.Constrictor.WebDriver;
+using Boa.Constrictor.Selenium;
 using OpenQA.Selenium;
-using static Boa.Constrictor.WebDriver.WebLocator;
+using static Boa.Constrictor.Selenium.WebLocator;
 
 namespace Boa.Constrictor.Example
 {
@@ -291,7 +290,7 @@ Examples of Tasks include clicking an element, refreshing the browser, and loadi
 These interactions all "do" something rather than "get" something.
 
 The test case's first step should load the DuckDuckGo search page.
-Boa Constrictor provides a Task named `Navigate` under the `Boa.Constrictor.WebDriver` namespace for loading a Web page using a target URL.
+Boa Constrictor provides a Task named `Navigate` under the `Boa.Constrictor.Selenium` namespace for loading a Web page using a target URL.
 
 Add this line to `TestDuckDuckGoWebSearch`:
 
@@ -331,7 +330,7 @@ public interface ITask : IInteraction
 A Task's main logic is in its `PerformAs` method.
 The method's return type is `void` because Tasks don't return anything.
 
-Boa Constrictor provides several WebDriver-based Interactions under the `Boa.Constrictor.WebDriver` namespace.
+Boa Constrictor provides several WebDriver-based Interactions under the `Boa.Constrictor.Selenium` namespace.
 The `Navigate` Task is one of them.
 You do not need to create it in the tutorial project.
 Below is a simplified version of the `Navigate` Task's code:
@@ -418,7 +417,7 @@ public interface IQuestion<TAnswer> : IInteraction
 Questions are generic in their return value type.
 The main logic is in the `RequestAs` method, which returns a type-appropriate answer.
 
-The `ValueAttribute` Question is one of several WebDriver-based Questions available under the `Boa.Constrictor.WebDriver` namespace.
+The `ValueAttribute` Question is one of several WebDriver-based Questions available under the `Boa.Constrictor.Selenium` namespace.
 Below is a simplified version of its code:
 
 ```csharp
@@ -524,7 +523,7 @@ Create a new file named `SearchDuckDuckGo.cs` and add the following code:
 
 ```csharp
 using Boa.Constrictor.Screenplay;
-using Boa.Constrictor.WebDriver;
+using Boa.Constrictor.Selenium;
 
 namespace Boa.Constrictor.Example
 {
@@ -687,9 +686,8 @@ However, it should be refactored a bit for better setup and cleanup.
 Rewrite `ScreenplayWebUiTest` with the following code:
 
 ```csharp
-using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
-using Boa.Constrictor.WebDriver;
+using Boa.Constrictor.Selenium;
 using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;

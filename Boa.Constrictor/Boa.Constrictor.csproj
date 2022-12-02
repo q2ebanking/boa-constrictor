@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFrameworks>net5.0;net7.0;netstandard2.0</TargetFrameworks>
-    <Version>2.0.2</Version>
+    <Version>3.0.0-alpha1</Version>
     <Authors>Pandy Knight and the PrecisionLender SETs</Authors>
-    <Company>PrecisionLender, a Q2 Company</Company>
+    <Company>Q2</Company>
     <Title>Boa Constrictor</Title>
     <Product>Boa Constrictor</Product>
     <Description>Boa Constrictor is a C# implementation of the Screenplay Pattern that helps you make better interactions for better automation!</Description>
@@ -21,17 +21,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Bcl.HashCode" Version="1.1.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="RestSharp" Version="106.12.0" />
-    <PackageReference Include="Selenium.Support" Version="4.6.0" />
-    <PackageReference Include="Selenium.WebDriver" Version="4.6.0" />
-  </ItemGroup>
-  
-  <ItemGroup>
     <None Include="../logos/symbol/no-margin/png/logo-symbol-black-120x148.png" Pack="true" PackagePath="$(PackageIcon)" />
     <None Include="../LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)" />
     <None Include="../README.md" Pack="true" PackagePath="$(PackageReadmeFile)" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Release'">
+    <PackageReference Include="Boa.Constrictor.RestSharp" Version="3.0.0-alpha1" />
+    <PackageReference Include="Boa.Constrictor.Screenplay" Version="3.0.0-alpha1" />
+    <PackageReference Include="Boa.Constrictor.Selenium" Version="3.0.0-alpha1" />
   </ItemGroup>
 
 </Project>

@@ -7,7 +7,7 @@ sidebar:
 toc: true
 ---
 
-The `Boa.Constrictor.Safety` namespace contains several methods for calling Tasks safely using the Screenplay Pattern.
+The `Boa.Constrictor.Screenplay` namespace contains several methods for calling Tasks safely using the Screenplay Pattern.
 "Safe" actions are actions that should be executed despite any exceptions.
 If an action causes an exception, then the exception should be caught and stored for the future.
 This allows all actions to be attempted before aborting.
@@ -21,9 +21,7 @@ You can optionally add an exception handler here.
 Below is an example of a `SafeActions` Ability that logs exceptions to the console.
 
 ```csharp
-using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
-using Boa.Constrictor.Safety;
 
 var actor = new Actor(logger: new ConsoleLogger());
 var safeActions = new SafeActions((ex) =>

@@ -1,6 +1,6 @@
-﻿using Boa.Constrictor.WebDriver;
+﻿using Boa.Constrictor.Selenium;
 using OpenQA.Selenium;
-using static Boa.Constrictor.WebDriver.WebLocator;
+using static Boa.Constrictor.Selenium.WebLocator;
 
 namespace Boa.Constrictor.Example
 {

@@ -1,5 +1,4 @@
-﻿using Boa.Constrictor.Dumping;
-using Boa.Constrictor.Logging;
+﻿using Boa.Constrictor.Screenplay;
 using FluentAssertions;
 using NUnit.Framework;
 using System.Collections.Generic;
