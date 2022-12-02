@@ -33,9 +33,6 @@ Ankh.NoLoad
 .vs/
 .vscode/
 
-#GitHub Actions
-.github/
-
 #MonoDevelop
 *.pidb
 *.userprefs
