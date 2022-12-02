@@ -1,7 +1,7 @@
 # Builds and publishes the Boa Constrictor packages to NuGet.org whenever versions change.
 # The NuGet key is currently Andy Knight's NuGet account.
 
-name: Publish Boa Constrictor NuGet Packages
+name: Publish the main NuGet packages
 
 on:
   push:
@@ -96,40 +96,6 @@ jobs:
           
           # Filepath with version info, relative to root of repository & defaults to PROJECT_FILE_PATH
           VERSION_FILE_PATH: Boa.Constrictor.RestSharp/Boa.Constrictor.RestSharp.csproj
-
-          # Regex pattern to extract version info in a capturing group
-          VERSION_REGEX: ^\s*<Version>(.*)<\/Version>\s*$
-          
-          # Flag to toggle git tagging, enabled by default
-          TAG_COMMIT: true
-
-          # Format of the git tag, [*] gets replaced with actual version
-          TAG_FORMAT: v*
-
-          # API key to authenticate with NuGet server
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
-
-          # NuGet server uri hosting the packages, defaults to https://api.nuget.org
-          NUGET_SOURCE: https://api.nuget.org
-
-          # Flag to toggle pushing symbols along with nuget package to the server, disabled by default
-          # (The symbols package should no longer be needed because the project is configured with DebugType = "embedded")
-          # (Furthermore, including a NuGet package README breaks in .NET 5 when a symbols package is generated)
-          # (This GitHub Action will yield a failure when publishing a symbols package, too, even though the publishing succeeds)
-          INCLUDE_SYMBOLS: false
-
-      - name: Publish Boa.Constrictor package
-        if: always()
-        uses: rohith/publish-nuget@v2
-        with:
-          # Filepath of the project to be packaged, relative to root of repository
-          PROJECT_FILE_PATH: Boa.Constrictor/Boa.Constrictor.csproj
-          
-          # NuGet package id, used for version detection & defaults to project name
-          PACKAGE_NAME: Boa.Constrictor
-          
-          # Filepath with version info, relative to root of repository & defaults to PROJECT_FILE_PATH
-          VERSION_FILE_PATH: Boa.Constrictor/Boa.Constrictor.csproj
 
           # Regex pattern to extract version info in a capturing group
           VERSION_REGEX: ^\s*<Version>(.*)<\/Version>\s*$

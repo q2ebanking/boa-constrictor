@@ -1,7 +1,7 @@
 # Runs the NUnit unit tests located in the Boa.Constrictor.UnitTests project.
 # Warning: Does not run the example tests in the Boa.Constrictor.Example project.
 
-name: Boa Constrictor Unit Tests
+name: Run all unit tests
 
 on:
   pull_request:
