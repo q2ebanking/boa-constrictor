@@ -83,7 +83,6 @@ Most test cases need only one Actor.
 To create an actor, add the following import statements to `ScreenplayWebUiTest`:
 
 ```csharp
-using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
 ```
 
@@ -102,7 +101,7 @@ The `Actor` class optionally takes two arguments:
 | *logger* | Send log messages from Screenplay calls to a target destination. |
    
 Loggers must implement the `ILogger` interface.
-They are part of the `Boa.Constrictor.Logging` namespace.
+They are part of the `Boa.Constrictor.Screenplay` namespace.
 `ConsoleLogger` is a class that will log messages to the system console.
 You can define your own custom loggers by implementing `ILogger`.
 You can also combine multiple loggers together using `TeeLogger`.
@@ -687,7 +686,6 @@ However, it should be refactored a bit for better setup and cleanup.
 Rewrite `ScreenplayWebUiTest` with the following code:
 
 ```csharp
-using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Selenium;
 using FluentAssertions;

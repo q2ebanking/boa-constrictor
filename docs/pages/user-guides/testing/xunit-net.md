@@ -45,7 +45,6 @@ They should also have an instance variable for the Screenplay Actor object.
 Below is a class stub for the example test class named `DuckDuckGoTest`:
 
 ```csharp
-using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -135,7 +134,6 @@ The code below safely quits the browser for Web UI test cleanup:
 The complete code for `DuckDuckGoTest` is below:
 
 ```csharp
-using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Selenium;
 using OpenQA.Selenium.Chrome;

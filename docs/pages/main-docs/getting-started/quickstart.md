@@ -34,7 +34,6 @@ Here's how to automate a [DuckDuckGo](https://www.duckduckgo.com/) search in Chr
 Write Screenplay calls:
 
 ```csharp
-using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Selenium;
 using OpenQA.Selenium.Chrome;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Boa.Constrictor.Logging
+namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Prints messages to System.Console.

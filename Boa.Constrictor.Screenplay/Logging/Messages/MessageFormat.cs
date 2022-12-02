@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Boa.Constrictor.Logging
+namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Provides static methods for formatting log messages.

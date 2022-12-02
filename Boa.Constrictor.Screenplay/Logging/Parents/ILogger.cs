@@ -1,4 +1,4 @@
-﻿namespace Boa.Constrictor.Logging
+﻿namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// A logging interface for the Screenplay Pattern.

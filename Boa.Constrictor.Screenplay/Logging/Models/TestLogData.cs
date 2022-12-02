@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Boa.Constrictor.Logging
+namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Models data for one test case.

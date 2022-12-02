@@ -37,7 +37,6 @@ create a new file in the `Tests` directory named `ScreenplayRestApiBasicTest.cs`
 Add the following code to the file:
 
 ```csharp
-using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
 using NUnit.Framework;
 
@@ -387,7 +386,6 @@ Create a class named `ScreenplayRestApiAdvancedTest.cs` under the `Tests` folder
 and add the following code:
 
 ```csharp
-using Boa.Constrictor.Logging;
 using Boa.Constrictor.RestSharp;
 using Boa.Constrictor.Screenplay;
 using FluentAssertions;

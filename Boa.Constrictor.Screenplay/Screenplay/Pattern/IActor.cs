@@ -1,5 +1,4 @@
-﻿using Boa.Constrictor.Logging;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Boa.Constrictor.Screenplay
 {

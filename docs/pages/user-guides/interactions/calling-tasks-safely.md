@@ -21,7 +21,6 @@ You can optionally add an exception handler here.
 Below is an example of a `SafeActions` Ability that logs exceptions to the console.
 
 ```csharp
-using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Safety;
 

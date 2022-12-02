@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace Boa.Constrictor.Logging
+namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Sends one message to multiple loggers.

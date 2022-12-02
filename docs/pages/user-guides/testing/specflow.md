@@ -90,7 +90,6 @@ with a before-scenario hook to create and inject the Actor.
 The hook is set with `(Order = 1)` to make sure it runs before any other before-scenario hooks:
 
 ```csharp
-using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Selenium;
 using OpenQA.Selenium;

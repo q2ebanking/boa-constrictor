@@ -1,4 +1,4 @@
-﻿namespace Boa.Constrictor.Logging
+﻿namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Provides string constants for logging artifacts.

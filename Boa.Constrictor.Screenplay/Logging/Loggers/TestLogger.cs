@@ -1,6 +1,4 @@
-﻿using Boa.Constrictor.Screenplay;
-
-namespace Boa.Constrictor.Logging
+﻿namespace Boa.Constrictor.Screenplay
 {
     /// <summary>
     /// Logs messages to a JSON log file for one test case.

@@ -1,5 +1,4 @@
-﻿using Boa.Constrictor.Logging;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 

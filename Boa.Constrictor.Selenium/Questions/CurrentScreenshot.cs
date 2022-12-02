@@ -1,5 +1,4 @@
-﻿using Boa.Constrictor.Logging;
-using Boa.Constrictor.Screenplay;
+﻿using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Utilities;
 using OpenQA.Selenium;
 using System;

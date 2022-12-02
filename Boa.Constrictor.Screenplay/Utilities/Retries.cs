@@ -1,4 +1,4 @@
-﻿using Boa.Constrictor.Logging;
+﻿using Boa.Constrictor.Screenplay;
 using System;
 using System.Threading;
 
