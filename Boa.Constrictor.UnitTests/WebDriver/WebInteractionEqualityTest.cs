@@ -1,11 +1,11 @@
 ﻿using Boa.Constrictor.Screenplay;
-using Boa.Constrictor.WebDriver;
+using Boa.Constrictor.Selenium;
 using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Text.RegularExpressions;
-using static Boa.Constrictor.WebDriver.WebLocator;
+using static Boa.Constrictor.Selenium.WebLocator;
 
 namespace Boa.Constrictor.UnitTests.WebDriver
 {

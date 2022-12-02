@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// The concrete implementation of IWebLocator.

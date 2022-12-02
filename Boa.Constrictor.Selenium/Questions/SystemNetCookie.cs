@@ -1,7 +1,7 @@
 ﻿using Boa.Constrictor.Screenplay;
 using System;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Gets the desired cookie from the WebDriver as a System.Net.Cookie.

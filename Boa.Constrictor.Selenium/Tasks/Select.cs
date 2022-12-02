@@ -4,7 +4,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Selects an option by value, text, or index in a select element.

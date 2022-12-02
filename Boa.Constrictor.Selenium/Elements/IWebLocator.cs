@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// An interface for locating Web elements on a page.

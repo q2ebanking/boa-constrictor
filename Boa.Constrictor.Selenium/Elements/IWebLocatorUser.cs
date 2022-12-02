@@ -1,4 +1,4 @@
-﻿namespace Boa.Constrictor.WebDriver
+﻿namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Adds an IWebLocator property to a class.

@@ -1,7 +1,7 @@
 ﻿using Boa.Constrictor.Screenplay;
 using OpenQA.Selenium;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Checks an element if not already selected

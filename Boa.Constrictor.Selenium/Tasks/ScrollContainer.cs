@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Scrolls a container to a specific top and/or left point using JavaScript.

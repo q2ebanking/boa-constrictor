@@ -1,4 +1,4 @@
-﻿using Boa.Constrictor.WebDriver;
+﻿using Boa.Constrictor.Selenium;
 using FluentAssertions;
 using NUnit.Framework;
 using System.Collections.Generic;

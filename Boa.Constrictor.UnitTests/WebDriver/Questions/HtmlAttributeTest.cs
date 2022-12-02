@@ -1,5 +1,5 @@
 ﻿using Boa.Constrictor.Screenplay;
-using Boa.Constrictor.WebDriver;
+using Boa.Constrictor.Selenium;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;

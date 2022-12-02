@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Adds a cookie to the browser through the WebDriver instance.

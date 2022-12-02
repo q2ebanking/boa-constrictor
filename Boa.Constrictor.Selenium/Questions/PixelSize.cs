@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using System.Drawing;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Gets the size of the web element.

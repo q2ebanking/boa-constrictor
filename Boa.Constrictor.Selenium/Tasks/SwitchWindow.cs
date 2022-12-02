@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using System;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Switches the browser window in focus.

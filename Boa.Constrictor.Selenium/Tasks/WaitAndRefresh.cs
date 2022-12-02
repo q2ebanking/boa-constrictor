@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Waits for an element to appear and refreshes the browser if it doesn't appear within the refresh timeout.

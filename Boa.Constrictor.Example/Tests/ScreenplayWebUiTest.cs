@@ -1,6 +1,6 @@
 ﻿using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
-using Boa.Constrictor.WebDriver;
+using Boa.Constrictor.Selenium;
 using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;

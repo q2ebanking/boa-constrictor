@@ -1,7 +1,7 @@
 ﻿using Boa.Constrictor.Screenplay;
 using OpenQA.Selenium;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Gets the total number of elements found on the page by the locator.

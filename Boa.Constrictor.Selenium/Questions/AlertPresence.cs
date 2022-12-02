@@ -1,7 +1,7 @@
 ﻿using Boa.Constrictor.Screenplay;
 using OpenQA.Selenium;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Returns the presence of an alert in the browser.

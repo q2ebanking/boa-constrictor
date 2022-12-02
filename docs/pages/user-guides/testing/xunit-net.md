@@ -47,7 +47,7 @@ Below is a class stub for the example test class named `DuckDuckGoTest`:
 ```csharp
 using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
-using Boa.Constrictor.WebDriver;
+using Boa.Constrictor.Selenium;
 using OpenQA.Selenium.Chrome;
 using Xunit;
 
@@ -137,7 +137,7 @@ The complete code for `DuckDuckGoTest` is below:
 ```csharp
 using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
-using Boa.Constrictor.WebDriver;
+using Boa.Constrictor.Selenium;
 using OpenQA.Selenium.Chrome;
 using Xunit;
 

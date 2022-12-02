@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using System;
 
-namespace Boa.Constrictor.WebDriver
+namespace Boa.Constrictor.Selenium
 {
     /// <summary>
     /// Abstract class that makes it easier to write Tasks that use the BrowseTheWeb Ability.
