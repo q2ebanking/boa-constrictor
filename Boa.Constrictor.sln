@@ -52,6 +52,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boa.Constrictor.Selenium", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boa.Constrictor.RestSharp", "Boa.Constrictor.RestSharp\Boa.Constrictor.RestSharp.csproj", "{C1FC00F0-C2B6-4B0F-B64B-A4C777131408}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boa.Constrictor.Screenplay", "Boa.Constrictor.Screenplay\Boa.Constrictor.Screenplay.csproj", "{A6C7DD7A-A99A-4C55-B7E5-1B03EAEE7C7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +80,10 @@ Global
 		{C1FC00F0-C2B6-4B0F-B64B-A4C777131408}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1FC00F0-C2B6-4B0F-B64B-A4C777131408}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1FC00F0-C2B6-4B0F-B64B-A4C777131408}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6C7DD7A-A99A-4C55-B7E5-1B03EAEE7C7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6C7DD7A-A99A-4C55-B7E5-1B03EAEE7C7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6C7DD7A-A99A-4C55-B7E5-1B03EAEE7C7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6C7DD7A-A99A-4C55-B7E5-1B03EAEE7C7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
