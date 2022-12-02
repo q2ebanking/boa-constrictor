@@ -10,4 +10,9 @@
     <ProjectReference Include="..\Boa.Constrictor\Boa.Constrictor.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Selenium.Support" Version="4.6.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.6.0" />
+  </ItemGroup>
+
 </Project>

@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Boa.Constrictor\Boa.Constrictor.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="RestSharp" Version="106.12.0" />
+  </ItemGroup>
+
 </Project>
