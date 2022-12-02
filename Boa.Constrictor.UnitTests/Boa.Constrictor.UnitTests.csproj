@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Boa.Constrictor.Selenium\Boa.Constrictor.Selenium.csproj" />
     <ProjectReference Include="..\Boa.Constrictor\Boa.Constrictor.csproj" />
   </ItemGroup>
 
