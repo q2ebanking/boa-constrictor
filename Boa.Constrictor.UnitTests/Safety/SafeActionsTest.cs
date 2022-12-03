@@ -53,8 +53,8 @@ namespace Boa.Constrictor.UnitTests.Safety
 
         #region Failure Message Constants
 
-        public const string Message_OneFailure = "(1) Expected * to be 0, but found 2.";
-        public const string Message_ManyFailures = "(1) Expected * to be 0, but found 1.; (2) Expected * to be 0, but found 2.";
+        public const string Message_OneFailure = "(1) Expected value to be 0, but found 2 (difference of 2).";
+        public const string Message_ManyFailures = "(1) Expected value to be 0, but found 1 (difference of 1).; (2) Expected value to be 0, but found 2 (difference of 2).";
 
         #endregion
 
