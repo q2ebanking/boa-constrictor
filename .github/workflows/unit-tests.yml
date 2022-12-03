@@ -9,23 +9,30 @@ on:
 
 jobs:
   test:
-    name: Test
+    name: Run all unit tests
     runs-on: windows-latest
     steps:
 
       - name: Check out repository
         uses: actions/checkout@v3
 
+      - name: Build the solution
+        run: dotnet build
+
       - name: Run Screenplay unit tests
+        if: always()
         run: dotnet test Boa.Constrictor.Screenplay.UnitTests/Boa.Constrictor.Screenplay.UnitTests.csproj --logger "trx;LogFileName=ScreenplayResults.trx"
 
       - name: Run Selenium unit tests
+        if: always()
         run: dotnet test Boa.Constrictor.Selenium.UnitTests/Boa.Constrictor.Selenium.UnitTests.csproj --logger "trx;LogFileName=SeleniumResults.trx"
 
       - name: Run RestSharp unit tests
+        if: always()
         run: dotnet test Boa.Constrictor.RestSharp.UnitTests/Boa.Constrictor.RestSharp.UnitTests.csproj --logger "trx;LogFileName=RestSharpResults.trx"
 
       - name: Archive Screenplay unit test results
+        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: Screenplay unit test results
@@ -33,6 +40,7 @@ jobs:
           retention-days: 30
 
       - name: Archive Selenium unit test results
+        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: Selenium unit test results
@@ -40,6 +48,7 @@ jobs:
           retention-days: 30
 
       - name: Archive RestSharp unit test results
+        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: RestSharp unit test results
