@@ -17,7 +17,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## Changed
+## [3.0.1] - 2022-12-03
+
+### Changed
 
 - Split unit tests into three new projects:
   - `Boa.Constrictor.Screenplay.UnitTests`
@@ -26,10 +28,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated unit test dependency package versions
 - Updated GitHub Action to run all unit tests in the new projects
 
+### Fixed
+
+- Updated Boa Constrictor package dependencies to NOT refer to an alpha release
+
 
 ## [3.0.0] - 2022-12-02
 
-## Added
+### Added
 
 - Split the `Boa.Constrictor` project into three new projects:
   - `Boa.Constrictor.Screenplay` for the "core" pattern
@@ -44,7 +50,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - NuGet packages (Configuration=Release) will use NuGet packages
   - The `Example` and `UnitTests` projects always use project references
 
-## Changed
+### Changed
 
 - Renamed the following namespaces:
   - `Boa.Constrictor.WebDriver` -> `Boa.Constrictor.Selenium`
