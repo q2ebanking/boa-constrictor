@@ -20,6 +20,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (none)
 
 
+## [3.0.0] - 2022-12-02
+
+## Added
+
+- Split the `Boa.Constrictor` project into three new projects:
+  - `Boa.Constrictor.Screenplay` for the "core" pattern
+  - `Boa.Constrictor.Selenium` for Selenium WebDriver interactions
+  - `Boa.Constrictor.RestSharp` for RestSharp interactions
+- Published new NuGet packages for the three new projects
+  - That way, you can choose which interaction libraries to use
+  - The original `Boa.Constrictor` package will be empty but hold dependencies to these three for backwards compatibility
+  - Updated GitHub Actions for publishing them
+- Set dependencies based on configuration
+  - Local development (Configuration=Debug) will use project references
+  - NuGet packages (Configuration=Release) will use NuGet packages
+  - The `Example` and `UnitTests` projects always use project references
+
+## Changed
+
+- Renamed the following namespaces:
+  - `Boa.Constrictor.WebDriver` -> `Boa.Constrictor.Selenium`
+  - `Boa.Constrictor.Dumping` -> `Boa.Constrictor.Screenplay`
+  - `Boa.Constrictor.Logging` -> `Boa.Constrictor.Screenplay`
+  - `Boa.Constrictor.Safety` -> `Boa.Constrictor.Screenplay`
+  - `Boa.Constrictor.Utilities` -> `Boa.Constrictor.Screenplay`
+  - *Warning:* this is a backwards-incompatible change, but a straightforward one to handle
+
+
 ## [2.0.2] - 2022-11-29
 
 ### Added
