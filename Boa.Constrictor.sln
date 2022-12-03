@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project Files", "Project Fi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Boa.Constrictor", "Boa.Constrictor\Boa.Constrictor.csproj", "{3CF25C90-599F-452C-8F86-C0FD59DCB791}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Boa.Constrictor.UnitTests", "Boa.Constrictor.UnitTests\Boa.Constrictor.UnitTests.csproj", "{505A8CD1-94B4-4C26-98EF-631BA7DF639B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Boa.Constrictor.Example", "Boa.Constrictor.Example\Boa.Constrictor.Example.csproj", "{2EDE1932-D1D3-45DD-80C6-6E08A3F96942}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3CF25C90-599F-452C-8F86-C0FD59DCB791} = {3CF25C90-599F-452C-8F86-C0FD59DCB791}
@@ -70,10 +68,6 @@ Global
 		{3CF25C90-599F-452C-8F86-C0FD59DCB791}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CF25C90-599F-452C-8F86-C0FD59DCB791}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CF25C90-599F-452C-8F86-C0FD59DCB791}.Release|Any CPU.Build.0 = Release|Any CPU
-		{505A8CD1-94B4-4C26-98EF-631BA7DF639B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{505A8CD1-94B4-4C26-98EF-631BA7DF639B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{505A8CD1-94B4-4C26-98EF-631BA7DF639B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{505A8CD1-94B4-4C26-98EF-631BA7DF639B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2EDE1932-D1D3-45DD-80C6-6E08A3F96942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2EDE1932-D1D3-45DD-80C6-6E08A3F96942}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EDE1932-D1D3-45DD-80C6-6E08A3F96942}.Release|Any CPU.ActiveCfg = Release|Any CPU
