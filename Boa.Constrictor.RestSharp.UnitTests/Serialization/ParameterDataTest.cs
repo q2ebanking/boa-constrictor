@@ -4,7 +4,7 @@ using NUnit.Framework;
 using RestSharp;
 using System.Collections.Generic;
 
-namespace Boa.Constrictor.UnitTests.RestSharp
+namespace Boa.Constrictor.RestSharp.UnitTests
 {
     #pragma warning disable 0618
 

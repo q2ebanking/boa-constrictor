@@ -3,7 +3,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using System;
 
-namespace Boa.Constrictor.UnitTests.RestSharp
+namespace Boa.Constrictor.RestSharp.UnitTests
 {
     [TestFixture]
     public class DurationDataTest

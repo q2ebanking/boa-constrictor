@@ -6,7 +6,7 @@ using RestSharp;
 using System;
 using System.Collections.Generic;
 
-namespace Boa.Constrictor.UnitTests.RestSharp
+namespace Boa.Constrictor.RestSharp.UnitTests
 {
     [TestFixture]
     public class RequestDataTest
