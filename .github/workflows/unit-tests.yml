@@ -9,7 +9,7 @@ on:
 
 jobs:
   test:
-    name: Run all unit tests
+    name: Test
     runs-on: windows-latest
     steps:
 
