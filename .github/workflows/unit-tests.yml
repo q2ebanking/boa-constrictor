@@ -16,12 +16,41 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: Run unit tests
-        run: dotnet test Boa.Constrictor.UnitTests/Boa.Constrictor.UnitTests.csproj --logger "trx;LogFileName=UnitTestResults.trx"
+      - name: Build the solution
+        run: dotnet build
 
-      - name: Archive unit test results
+      - name: Run Screenplay unit tests
+        if: always()
+        run: dotnet test Boa.Constrictor.Screenplay.UnitTests/Boa.Constrictor.Screenplay.UnitTests.csproj --logger "trx;LogFileName=ScreenplayResults.trx"
+
+      - name: Run Selenium unit tests
+        if: always()
+        run: dotnet test Boa.Constrictor.Selenium.UnitTests/Boa.Constrictor.Selenium.UnitTests.csproj --logger "trx;LogFileName=SeleniumResults.trx"
+
+      - name: Run RestSharp unit tests
+        if: always()
+        run: dotnet test Boa.Constrictor.RestSharp.UnitTests/Boa.Constrictor.RestSharp.UnitTests.csproj --logger "trx;LogFileName=RestSharpResults.trx"
+
+      - name: Archive Screenplay unit test results
+        if: always()
         uses: actions/upload-artifact@v3
         with:
-          name: unit-test-results
-          path: Boa.Constrictor.UnitTests/TestResults/UnitTestResults.trx
+          name: Screenplay unit test results
+          path: Boa.Constrictor.Screenplay.UnitTests/TestResults/ScreenplayResults.trx
+          retention-days: 30
+
+      - name: Archive Selenium unit test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: Selenium unit test results
+          path: Boa.Constrictor.Selenium.UnitTests/TestResults/SeleniumResults.trx
+          retention-days: 30
+
+      - name: Archive RestSharp unit test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: RestSharp unit test results
+          path: Boa.Constrictor.RestSharp.UnitTests/TestResults/RestSharpResults.trx
           retention-days: 30

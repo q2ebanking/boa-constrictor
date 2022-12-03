@@ -17,7 +17,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(none)
+## Changed
+
+- Split unit tests into three new projects:
+  - `Boa.Constrictor.Screenplay.UnitTests`
+  - `Boa.Constrictor.Selenium.UnitTests`
+  - `Boa.Constrictor.RestSharp.UnitTests`
+- Updated unit test dependency package versions
+- Updated GitHub Action to run all unit tests in the new projects
 
 
 ## [3.0.0] - 2022-12-02
