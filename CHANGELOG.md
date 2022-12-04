@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Updated doc site dependencies to resolve security warnings
+(none)
 
 
 ## [3.0.2-alpha2] - 2022-12-04
@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Rewrote `nuget-push.yml` to use `dotnet` commands directly instead of `rohith/publish-nuget`
+- Updated doc site dependencies to resolve security warnings
 
 
 ## [3.0.2-alpha1] - 2022-12-04

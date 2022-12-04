@@ -27,8 +27,11 @@ jobs:
 
       # Screenplay
 
+      - name: Build Boa.Constrictor.Screenplay project
+        run: dotnet build --configuration Release Boa.Constrictor.Screenplay/Boa.Constrictor.Screenplay.csproj
+
       - name: Pack Boa.Constrictor.Screenplay project
-        run: dotnet pack --configuration Release Boa.Constrictor.Screenplay/Boa.Constrictor.Screenplay.csproj --output Screenplay
+        run: dotnet pack --configuration Release Boa.Constrictor.Screenplay/Boa.Constrictor.Screenplay.csproj --no-build --output Screenplay
 
       - name: Push Boa.Constrictor.Screenplay package
         run: dotnet nuget push Screenplay/**/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
@@ -40,14 +43,20 @@ jobs:
         run: Start-Sleep -s 480
         shell: powershell
 
+      - name: Build Boa.Constrictor.Selenium project
+        run: dotnet build --configuration Release Boa.Constrictor.Selenium/Boa.Constrictor.Selenium.csproj
+
       - name: Pack Boa.Constrictor.Selenium project
-        run: dotnet pack --configuration Release Boa.Constrictor.Selenium/Boa.Constrictor.Selenium.csproj --output Selenium
+        run: dotnet pack --configuration Release Boa.Constrictor.Selenium/Boa.Constrictor.Selenium.csproj --no-build --output Selenium
 
       - name: Push Boa.Constrictor.Selenium package
         run: dotnet nuget push Selenium/**/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
 
+      - name: Build Boa.Constrictor.RestSharp project
+        run: dotnet build --configuration Release Boa.Constrictor.RestSharp/Boa.Constrictor.RestSharp.csproj
+
       - name: Pack Boa.Constrictor.RestSharp project
-        run: dotnet pack --configuration Release Boa.Constrictor.RestSharp/Boa.Constrictor.RestSharp.csproj --output RestSharp
+        run: dotnet pack --configuration Release Boa.Constrictor.RestSharp/Boa.Constrictor.RestSharp.csproj --no-build --output RestSharp
 
       - name: Push Boa.Constrictor.RestSharp package
         run: dotnet nuget push RestSharp/**/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
@@ -59,8 +68,11 @@ jobs:
         run: Start-Sleep -s 480
         shell: powershell
 
+      - name: Build Boa.Constrictor project
+        run: dotnet build --configuration Release Boa.Constrictor/Boa.Constrictor.csproj
+
       - name: Pack Boa.Constrictor project
-        run: dotnet pack --configuration Release Boa.Constrictor/Boa.Constrictor.csproj --output Classic
+        run: dotnet pack --configuration Release Boa.Constrictor/Boa.Constrictor.csproj --no-build --output Classic
 
       - name: Push Boa.Constrictor package
         run: dotnet nuget push Classic/**/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
