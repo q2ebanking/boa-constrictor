@@ -12,6 +12,14 @@ jobs:
   publish:
     name: Publish
     runs-on: windows-latest
+
+    env:
+      NUGET_SOURCE: https://api.nuget.org/v3/index.json
+      CSPROJ_SCREENPLAY: Boa.Constrictor.Screenplay/Boa.Constrictor.Screenplay.csproj
+      CSPROJ_SELENIUM: Boa.Constrictor.Selenium/Boa.Constrictor.Selenium.csproj
+      CSPROJ_RESTSHARP: Boa.Constrictor.RestSharp/Boa.Constrictor.RestSharp.csproj
+      CSPROJ_CLASSIC: Boa.Constrictor/Boa.Constrictor.csproj
+
     steps:
 
       # Prepare the environment
@@ -28,13 +36,13 @@ jobs:
       # Screenplay
 
       - name: Build Boa.Constrictor.Screenplay project
-        run: dotnet build --configuration Release Boa.Constrictor.Screenplay/Boa.Constrictor.Screenplay.csproj
+        run: dotnet build --configuration Release $CSPROJ_SCREENPLAY
 
       - name: Pack Boa.Constrictor.Screenplay project
-        run: dotnet pack --configuration Release Boa.Constrictor.Screenplay/Boa.Constrictor.Screenplay.csproj --no-build --output Screenplay
+        run: dotnet pack --configuration Release $CSPROJ_SCREENPLAY --no-build --output Screenplay
 
       - name: Push Boa.Constrictor.Screenplay package
-        run: dotnet nuget push Screenplay/**/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push Screenplay/**/*.nupkg --source $NUGET_SOURCE --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
 
 
       # Selenium and RestSharp
@@ -44,22 +52,22 @@ jobs:
         shell: powershell
 
       - name: Build Boa.Constrictor.Selenium project
-        run: dotnet build --configuration Release Boa.Constrictor.Selenium/Boa.Constrictor.Selenium.csproj
+        run: dotnet build --configuration Release $CSPROJ_SELENIUM
 
       - name: Pack Boa.Constrictor.Selenium project
-        run: dotnet pack --configuration Release Boa.Constrictor.Selenium/Boa.Constrictor.Selenium.csproj --no-build --output Selenium
+        run: dotnet pack --configuration Release $CSPROJ_SELENIUM --no-build --output Selenium
 
       - name: Push Boa.Constrictor.Selenium package
-        run: dotnet nuget push Selenium/**/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push Selenium/**/*.nupkg --source $NUGET_SOURCE --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
 
       - name: Build Boa.Constrictor.RestSharp project
-        run: dotnet build --configuration Release Boa.Constrictor.RestSharp/Boa.Constrictor.RestSharp.csproj
+        run: dotnet build --configuration Release $CSPROJ_RESTSHARP
 
       - name: Pack Boa.Constrictor.RestSharp project
-        run: dotnet pack --configuration Release Boa.Constrictor.RestSharp/Boa.Constrictor.RestSharp.csproj --no-build --output RestSharp
+        run: dotnet pack --configuration Release $CSPROJ_RESTSHARP --no-build --output RestSharp
 
       - name: Push Boa.Constrictor.RestSharp package
-        run: dotnet nuget push RestSharp/**/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push RestSharp/**/*.nupkg --source $NUGET_SOURCE --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
 
 
       # Classic
@@ -69,10 +77,10 @@ jobs:
         shell: powershell
 
       - name: Build Boa.Constrictor project
-        run: dotnet build --configuration Release Boa.Constrictor/Boa.Constrictor.csproj
+        run: dotnet build --configuration Release $CSPROJ_CLASSIC
 
       - name: Pack Boa.Constrictor project
-        run: dotnet pack --configuration Release Boa.Constrictor/Boa.Constrictor.csproj --no-build --output Classic
+        run: dotnet pack --configuration Release $CSPROJ_CLASSIC --no-build --output Classic
 
       - name: Push Boa.Constrictor package
-        run: dotnet nuget push Classic/**/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        run: dotnet nuget push Classic/**/*.nupkg --source $NUGET_SOURCE --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
