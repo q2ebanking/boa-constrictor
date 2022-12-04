@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net5.0;net7.0;netstandard2.0</TargetFrameworks>
-    <Version>3.0.2-alpha1</Version>
+    <Version>3.0.2-alpha2</Version>
     <Authors>Pandy Knight and the PrecisionLender SETs</Authors>
     <Company>Q2</Company>
     <Title>Boa Constrictor</Title>
@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)' == 'Release'">
-    <PackageReference Include="Boa.Constrictor.Screenplay" Version="3.0.2-alpha1" />
+    <PackageReference Include="Boa.Constrictor.Screenplay" Version="3.0.2-alpha2" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)' == 'Debug'">
