@@ -1,6 +1,6 @@
 # Builds and publishes the Boa Constrictor packages to NuGet.org whenever versions change.
 # The NuGet key is currently Andy Knight's NuGet account.
-# There are 10-minute sleeps because NuGet needs time to index new packages before they are made available.
+# There are 8-minute sleeps because NuGet needs time to index new packages before they are made available.
 
 name: Publish NuGet packages
 
@@ -36,8 +36,8 @@ jobs:
 
       # Selenium and RestSharp
 
-      - name: Wait 10 minutes for NuGet indexing
-        run: Start-Sleep -s 600
+      - name: Wait 8 minutes for NuGet indexing
+        run: Start-Sleep -s 480
         shell: powershell
 
       - name: Pack Boa.Constrictor.Selenium project
@@ -55,8 +55,8 @@ jobs:
 
       # Classic
 
-      - name: Wait 10 minutes for NuGet indexing
-        run: Start-Sleep -s 600
+      - name: Wait 8 minutes for NuGet indexing
+        run: Start-Sleep -s 480
         shell: powershell
 
       - name: Pack Boa.Constrictor project
