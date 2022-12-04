@@ -17,6 +17,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+(none)
+
+
+## [3.0.2-alpha1] - 2022-12-04
+
+### Fixed
+
+- Added sleeps between NuGet package publishing steps
+
+
 ## [3.0.1] - 2022-12-03
 
 ### Changed
