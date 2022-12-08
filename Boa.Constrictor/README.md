@@ -46,7 +46,7 @@ We are maintaining the original `Boa.Constrictor` package for backwards compatib
 
 * Visit the [GitHub Pages doc site](https://q2ebanking.github.io/boa-constrictor/) to learn how to use it.
 * Take the [official tutorial](https://q2ebanking.github.io/boa-constrictor/tutorial/overview/) to get your hands dirty with the code.
-* See the latest changes in the [project changelog](CHANGELOG.md).
+* See the latest changes in the [project changelog](../CHANGELOG.md).
 * Review the [contributing guide](https://q2ebanking.github.io/boa-constrictor/contributing/contributing-code/) and the [code of conduct](https://q2ebanking.github.io/boa-constrictor/contributing/code-of-conduct/) for contributing to the project.
 * Join our [Discord server](https://discord.gg/pP3dXzYQ82)
 to collaborate with the community.
