@@ -28,7 +28,7 @@ The Screenplay Pattern can be summarized in one line:
 ## What is this package?
 
 `Boa.Constrictor.RestSharp` is the interaction library for [RestSharp](https://restsharp.dev/).
-It was the second Boa Constrictor interation library implemented as part of the project.
+It was the second Boa Constrictor interaction library implemented as part of the project.
 
 
 ## How do I get started?

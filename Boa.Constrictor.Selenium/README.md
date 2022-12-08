@@ -28,7 +28,7 @@ The Screenplay Pattern can be summarized in one line:
 ## What is this package?
 
 `Boa.Constrictor.Selenium` is the interaction library for [Selenium WebDriver](https://www.selenium.dev/).
-It was the first Boa Constrictor interation library implemented as part of the project.
+It was the first Boa Constrictor interaction library implemented as part of the project.
 
 
 ## How do I get started?
