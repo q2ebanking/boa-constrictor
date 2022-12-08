@@ -17,22 +17,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(none) 
+(none)
 
 
-## [3.0.2-alpha2] - 2022-12-04
+## [3.0.2] - 2022-12-07
 
 ### Changed
 
 - Rewrote `nuget-push.yml` to use `dotnet` commands directly instead of `rohith/publish-nuget`
 - Updated doc site dependencies to resolve security warnings
-
-
-## [3.0.2-alpha1] - 2022-12-04
-
-### Fixed
-
-- Added sleeps between NuGet package publishing steps
+- Wrote separate README files for each package
 
 
 ## [3.0.1] - 2022-12-03

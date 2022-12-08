@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net5.0;net7.0;netstandard2.0</TargetFrameworks>
-    <Version>3.0.2-alpha2</Version>
+    <Version>3.0.2</Version>
     <Authors>Pandy Knight and the PrecisionLender SETs</Authors>
     <Company>Q2</Company>
     <Title>Boa Constrictor</Title>
@@ -23,7 +23,7 @@
   <ItemGroup>
     <None Include="../logos/symbol/no-margin/png/logo-symbol-black-120x148.png" Pack="true" PackagePath="$(PackageIcon)" />
     <None Include="../LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)" />
-    <None Include="../README.md" Pack="true" PackagePath="$(PackageReadmeFile)" />
+    <None Include="README.md" Pack="true" PackagePath="$(PackageReadmeFile)" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)' == 'Release'">
-    <PackageReference Include="Boa.Constrictor.Screenplay" Version="3.0.2-alpha2" />
+    <PackageReference Include="Boa.Constrictor.Screenplay" Version="3.0.2" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)' == 'Debug'">
