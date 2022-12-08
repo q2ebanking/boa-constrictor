@@ -14,11 +14,16 @@
 [![Hacktoberfest](https://img.shields.io/github/hacktoberfest/2021/q2ebanking/boa-constrictor)](https://github.com/q2ebanking/boa-constrictor/issues)
 
 
+## What is Boa Constrictor?
+
 **Boa Constrictor** is the .NET Screenplay Pattern.
 It helps you make *better interactions* for *better automation*!
 
 The Screenplay Pattern can be summarized in one line:
 *Actors* use *Abilities* to perform *Interactions*.
+
+
+## What are the different packages?
 
 Boa Constrictor has multiple NuGet packages:
 
@@ -34,7 +39,8 @@ Boa Constrictor has multiple NuGet packages:
 If you want to use both Selenium WebDriver and RestSharp, use the "classic" `Boa.Constrictor` package.
 Otherwise, use the package for the specific interaction libraries you need.
 
-To get started with Boa Constrictor:
+
+## How do I get started?
 
 * Visit the [GitHub Pages doc site](https://q2ebanking.github.io/boa-constrictor/) to learn how to use it.
 * Take the [official tutorial](https://q2ebanking.github.io/boa-constrictor/tutorial/overview/) to get your hands dirty with the code.
