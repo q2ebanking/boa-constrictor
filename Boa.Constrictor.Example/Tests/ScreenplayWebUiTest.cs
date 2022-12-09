@@ -13,8 +13,13 @@ namespace Boa.Constrictor.Example
         [SetUp]
         public void InitializeScreenplay()
         {
+            // Adding headless mode for CI
+            // Comment this code out to go "headed" - to see the browser
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("headless");
+
             Actor = new Actor(name: "Andy", logger: new ConsoleLogger());
-            Actor.Can(BrowseTheWeb.With(new ChromeDriver()));
+            Actor.Can(BrowseTheWeb.With(new ChromeDriver(options)));
         }
 
         [TearDown]
