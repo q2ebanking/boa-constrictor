@@ -146,6 +146,20 @@ Let's unpack what this line does:
 You could use a different browser type here, and you could also specify WebDriver options.
 {: .notice--info}
 
+<div class="notice--info" markdown="1">
+
+**Headless Mode:**
+You could use headless Chrome by setting options like this:
+{: style="font-size:1em" }
+
+```csharp
+ChromeOptions options = new ChromeOptions();
+options.AddArgument("headless");
+ChromeDriver driver = new ChromeDriver(options);
+```
+{: style="font-size:1em" }
+</div>
+
 Abilities must implement the `IAbility` interface:
 
 ```csharp
@@ -701,8 +715,12 @@ namespace Boa.Constrictor.Example
         [SetUp]
         public void InitializeScreenplay()
         {
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("headless");   // Remove this line to "see" the browser run
+            ChromeDriver driver = new ChromeDriver(options);
+
             Actor = new Actor(name: "Andy", logger: new ConsoleLogger());
-            Actor.Can(BrowseTheWeb.With(new ChromeDriver()));
+            Actor.Can(BrowseTheWeb.With(driver));
         }
 
         [TearDown]
