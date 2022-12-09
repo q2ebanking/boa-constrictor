@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
+    <Version>3.0.3-alpha1</Version>
+    <Authors>Pandy Knight and the PrecisionLender SETs</Authors>
+    <Company>Q2</Company>
+    <Title>Boa.Constrictor.Example</Title>
+    <Product>Boa.Constrictor.Example</Product>
+    <Description>Boa Constrictor is the .NET Screenplay Pattern! This is the example project for the Boa Constrictor tutorial.</Description>
+    <Copyright>Copyright © 2020-2022 Q2 Holdings Inc.</Copyright>
+    <RepositoryUrl>https://github.com/q2ebanking/boa-constrictor</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -15,7 +24,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Boa.Constrictor.RestSharp\Boa.Constrictor.RestSharp.csproj" />
-    <ProjectReference Include="..\Boa.Constrictor.Screenplay\Boa.Constrictor.Screenplay.csproj" />
     <ProjectReference Include="..\Boa.Constrictor.Selenium\Boa.Constrictor.Selenium.csproj" />
   </ItemGroup>
 

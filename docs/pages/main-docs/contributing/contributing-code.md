@@ -117,7 +117,9 @@ Include concise, helpful messages in each commit.
 [Squashing commits](https://medium.com/@slamflipstrom/a-beginners-guide-to-squashing-commits-with-git-rebase-8185cf6e62ec)
 is recommended but not required.
 
-Along with your code changes, update the `[Unreleased]` section of `CHANGELOG.md` with a concise description of your changes.
+Along with your code changes, update the `[Unreleased]` section
+of the appropriate project's [`CHANGELOG.md`](CHANGELOG.md)
+with a concise description of your changes.
 Follow the format of [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 Put your description under the appropriate type heading:
 `Added`, `Changed`, `Deprecated`, `Fixed`, `Removed`, or `Security`.
