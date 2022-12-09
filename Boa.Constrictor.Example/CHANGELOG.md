@@ -17,12 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Versioning is performed purely for tracking changes.
 
 
-## [Unreleased]
-
-(none)
-
-
 ## [3.0.3-alpha1] - 2022-12-08
+
+### Added
+
+- Enabled headless Chrome in the example Web UI test
+- Created a GitHub Action to run the example tests for pull requests into `main`
 
 ### Changed
 
