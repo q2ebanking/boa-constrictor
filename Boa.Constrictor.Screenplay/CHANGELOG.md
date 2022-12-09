@@ -78,3 +78,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `Boa.Constrictor.Safety` -> `Boa.Constrictor.Screenplay`
   - `Boa.Constrictor.Utilities` -> `Boa.Constrictor.Screenplay`
   - *Warning:* this is a backwards-incompatible change, but a straightforward one to handle
+
+
+## [Older Releases]
+
+Please see [Boa.Constrictor/CHANGELOG.md](../Boa.Constrictor/CHANGELOG.md) for project history before version 3.x.

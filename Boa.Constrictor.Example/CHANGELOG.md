@@ -27,3 +27,8 @@ Versioning is performed purely for tracking changes.
 ### Changed
 
 - Created separate changelog files for each project (except unit tests).
+
+
+## [Older Releases]
+
+Please see [Boa.Constrictor/CHANGELOG.md](../Boa.Constrictor/CHANGELOG.md) for project history before version 3.x.
