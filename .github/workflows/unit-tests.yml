@@ -6,6 +6,7 @@ name: Run all unit tests
 on:
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   test:
@@ -21,15 +22,15 @@ jobs:
 
       - name: Run Screenplay unit tests
         if: always()
-        run: dotnet test Boa.Constrictor.Screenplay.UnitTests/Boa.Constrictor.Screenplay.UnitTests.csproj --logger "trx;LogFileName=ScreenplayResults.trx"
+        run: dotnet test Boa.Constrictor.Screenplay.UnitTests --logger "trx;LogFileName=ScreenplayResults.trx"
 
       - name: Run Selenium unit tests
         if: always()
-        run: dotnet test Boa.Constrictor.Selenium.UnitTests/Boa.Constrictor.Selenium.UnitTests.csproj --logger "trx;LogFileName=SeleniumResults.trx"
+        run: dotnet test Boa.Constrictor.Selenium.UnitTests --logger "trx;LogFileName=SeleniumResults.trx"
 
       - name: Run RestSharp unit tests
         if: always()
-        run: dotnet test Boa.Constrictor.RestSharp.UnitTests/Boa.Constrictor.RestSharp.UnitTests.csproj --logger "trx;LogFileName=RestSharpResults.trx"
+        run: dotnet test Boa.Constrictor.RestSharp.UnitTests --logger "trx;LogFileName=RestSharpResults.trx"
 
       - name: Archive Screenplay unit test results
         if: always()
