@@ -13,8 +13,12 @@ namespace Boa.Constrictor.Example
         [SetUp]
         public void InitializeScreenplay()
         {
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("headless");   // Remove this line to "see" the browser run
+            ChromeDriver driver = new ChromeDriver(options);
+
             Actor = new Actor(name: "Andy", logger: new ConsoleLogger());
-            Actor.Can(BrowseTheWeb.With(new ChromeDriver()));
+            Actor.Can(BrowseTheWeb.With(driver));
         }
 
         [TearDown]

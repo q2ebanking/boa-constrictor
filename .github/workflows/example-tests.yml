@@ -1,0 +1,31 @@
+# Runs the example tests in the Boa.Constrictor.Example project.
+
+name: Run all example tests
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test
+    runs-on: windows-latest
+    steps:
+
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Build the solution
+        run: dotnet build
+
+      - name: Run example tests
+        run: dotnet test Boa.Constrictor.Example --logger "trx;LogFileName=ExampleResults.trx"
+
+      - name: Archive example test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: Example test results
+          path: Boa.Constrictor.Example/TestResults/ExampleResults.trx
+          retention-days: 30
+          
