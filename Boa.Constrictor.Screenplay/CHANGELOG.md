@@ -17,7 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(none)
+### Added
+
+- Wrote new `AnswerCacheTest` unit tests for different types and different question objects
+
+### Changed
+
+- Converted `AnswerCache` to use a `Hashtable` instead of a pointlessly generic `IDictionary`
 
 
 ## [3.0.3-alpha1] - 2022-12-08

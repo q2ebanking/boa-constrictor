@@ -8,6 +8,19 @@ namespace Boa.Constrictor.Screenplay.UnitTests
     [TestFixture]
     public class AnswerCacheTest
     {
+        #region Private Questions
+
+        private class SomeQuestion : ICacheableQuestion<int>
+        {
+            public override bool Equals(object obj) => obj.GetType().Equals(GetType());
+            public override int GetHashCode() => 9999;
+            public override string ToString() => GetType().Name;
+
+            public int RequestAs(IActor actor) => 1;
+        }
+
+        #endregion
+
         #region Variables
 
         private IActor Actor { get; set; }
@@ -46,6 +59,36 @@ namespace Boa.Constrictor.Screenplay.UnitTests
 
             Cache.Get(MockQuestionA.Object, Actor).Should().Be(1);
             MockQuestionA.Verify(q => q.RequestAs(It.IsAny<IActor>()), Times.Once());
+        }
+
+        [Test]
+        public void GetCachedDifferentTypes()
+        {
+            var MockQuestionString = new Mock<ICacheableQuestion<string>>();
+            MockQuestionString.Setup(x => x.RequestAs(It.IsAny<IActor>())).Returns("hello");
+            MockQuestionString.Setup(x => x.GetHashCode()).Returns(3);
+
+            Cache.Get(MockQuestionA.Object, Actor);
+            Cache.Get(MockQuestionString.Object, Actor);
+
+            Cache.Get(MockQuestionA.Object, Actor).Should().Be(1);
+            MockQuestionA.Verify(q => q.RequestAs(It.IsAny<IActor>()), Times.Once());
+
+            Cache.Get(MockQuestionString.Object, Actor).Should().Be("hello");
+            MockQuestionA.Verify(q => q.RequestAs(It.IsAny<IActor>()), Times.Once());
+        }
+
+        [Test]
+        public void GetCachedSameQuestionDifferentObject()
+        {
+            var MockActor = new Mock<IActor>();
+            MockActor.Setup(x => x.AsksFor(It.IsAny<ICacheableQuestion<int>>())).Returns(1);
+
+            Cache.Get(new SomeQuestion(), MockActor.Object);
+            Cache.Get(new SomeQuestion(), MockActor.Object);
+            Cache.Get(new SomeQuestion(), MockActor.Object);
+
+            MockActor.Verify(x => x.AsksFor(It.IsAny<ICacheableQuestion<int>>()), Times.Once());
         }
 
         [Test]
