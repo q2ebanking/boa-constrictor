@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
 
 namespace Boa.Constrictor.Screenplay
 {
@@ -21,7 +21,7 @@ namespace Boa.Constrictor.Screenplay
         /// The answer cache.
         /// Maps Question objects to answer objects.
         /// </summary>
-        protected IDictionary<IInteraction, object> Cache { get; set; }
+        protected Hashtable Cache { get; set; }
 
         #endregion
 
@@ -33,7 +33,7 @@ namespace Boa.Constrictor.Screenplay
         /// </summary>
         public AnswerCache()
         {
-            Cache = new Dictionary<IInteraction, object>();
+            Cache = new Hashtable();
         }
 
         #endregion
