@@ -6,8 +6,6 @@
 name: Run CodeQL static analysis
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 

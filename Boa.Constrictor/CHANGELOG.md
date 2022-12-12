@@ -17,7 +17,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(none)
+### Removed
+
+- Removed `push` trigger for `codeql-analysis.yml` GitHub Action
 
 
 ## [3.0.3-alpha1] - 2022-12-08
