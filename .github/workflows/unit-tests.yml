@@ -32,6 +32,10 @@ jobs:
         if: always()
         run: dotnet test Boa.Constrictor.RestSharp.UnitTests --logger "trx;LogFileName=RestSharpResults.trx"
 
+      - name: Run xUnit unit tests
+        if: always()
+        run: dotnet test Boa.Constrictor.Xunit.UnitTests --logger "trx;LogFileName=XunitResults.trx"    
+
       - name: Archive Screenplay unit test results
         if: always()
         uses: actions/upload-artifact@v3
@@ -54,4 +58,12 @@ jobs:
         with:
           name: RestSharp unit test results
           path: Boa.Constrictor.RestSharp.UnitTests/TestResults/RestSharpResults.trx
+          retention-days: 30
+
+      - name: Archive Xunit unit test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: Xunit unit test results
+          path: Boa.Constrictor.Xunit.UnitTests/TestResults/XunitResults.trx
           retention-days: 30
