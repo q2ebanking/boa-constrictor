@@ -19,7 +19,7 @@ jobs:
       CSPROJ_SCREENPLAY: Boa.Constrictor.Screenplay/Boa.Constrictor.Screenplay.csproj
       CSPROJ_SELENIUM: Boa.Constrictor.Selenium/Boa.Constrictor.Selenium.csproj
       CSPROJ_RESTSHARP: Boa.Constrictor.RestSharp/Boa.Constrictor.RestSharp.csproj
-      CSPROJ_XUNIT: Boa.Constrictor.RestSharp/Boa.Constrictor.Xunit.csproj
+      CSPROJ_XUNIT: Boa.Constrictor.Xunit/Boa.Constrictor.Xunit.csproj
       CSPROJ_CLASSIC: Boa.Constrictor/Boa.Constrictor.csproj
 
     steps:

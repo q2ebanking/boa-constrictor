@@ -16,3 +16,4 @@ Its format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - Added project `Boa.Constrictor.Xunit.UnitTests`
 - Added XunitLogger to support the use of `ITestOutputHelper`
 - Added `XunitLoggerTests`
+- Updated `nuget-push.yml` to publish the `Boa.Constrictor.Xunit` package
