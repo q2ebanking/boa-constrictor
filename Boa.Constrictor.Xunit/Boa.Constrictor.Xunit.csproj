@@ -3,7 +3,7 @@
 <PropertyGroup>
     <TargetFrameworks>net5.0;net7.0;netstandard2.0</TargetFrameworks>
     <Version>3.0.3</Version>
-    <Authors>Keith Tremorin, Pandy Knight and the PrecisionLender SETs</Authors>
+    <Authors>Keith Tremorin, Pandy Knight, and the PrecisionLender SETs</Authors>
     <Company>Q2</Company>
     <Title>Boa.Constrictor.Xunit</Title>
     <Product>Boa.Constrictor.Xunit</Product>
