@@ -19,6 +19,7 @@ jobs:
       CSPROJ_SCREENPLAY: Boa.Constrictor.Screenplay/Boa.Constrictor.Screenplay.csproj
       CSPROJ_SELENIUM: Boa.Constrictor.Selenium/Boa.Constrictor.Selenium.csproj
       CSPROJ_RESTSHARP: Boa.Constrictor.RestSharp/Boa.Constrictor.RestSharp.csproj
+      CSPROJ_XUNIT: Boa.Constrictor.RestSharp/Boa.Constrictor.Xunit.csproj
       CSPROJ_CLASSIC: Boa.Constrictor/Boa.Constrictor.csproj
 
     steps:
@@ -46,7 +47,7 @@ jobs:
         run: dotnet nuget push Screenplay/**/*.nupkg --source ${{env.NUGET_SOURCE}} --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
 
 
-      # Selenium and RestSharp
+      # Selenium, RestSharp and Xunit
 
       - name: Wait 8 minutes for NuGet indexing
         run: Start-Sleep -s 480
@@ -69,6 +70,15 @@ jobs:
 
       - name: Push Boa.Constrictor.RestSharp package
         run: dotnet nuget push RestSharp/**/*.nupkg --source ${{env.NUGET_SOURCE}} --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+
+      - name: Build Boa.Constrictor.Xunit project
+        run: dotnet build ${{env.CSPROJ_XUNIT}} --configuration Release
+
+      - name: Pack Boa.Constrictor.Xunit project
+        run: dotnet pack ${{env.CSPROJ_XUNIT}} --configuration Release --no-build --output Xunit
+
+      - name: Push Boa.Constrictor.Xunit package
+        run: dotnet nuget push Xunit/**/*.nupkg --source ${{env.NUGET_SOURCE}} --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
 
 
       # Classic

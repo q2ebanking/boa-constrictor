@@ -16,3 +16,4 @@ Please update the appropriate one for any changes you make:
 * [Boa.Constrictor.RestSharp](Boa.Constrictor.RestSharp/CHANGELOG.md)
 * [Boa.Constrictor.Screenplay](Boa.Constrictor.Screenplay/CHANGELOG.md)
 * [Boa.Constrictor.Selenium](Boa.Constrictor.Selenium/CHANGELOG.md)
+* [Boa.Constrictor.Xunit](Boa.Constrictor.Xunit/CHANGELOG.md)

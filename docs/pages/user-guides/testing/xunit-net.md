@@ -47,6 +47,7 @@ Below is a class stub for the example test class named `DuckDuckGoTest`:
 ```csharp
 using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Selenium;
+using Boa.Constrictor.Xunit;
 using OpenQA.Selenium.Chrome;
 using Xunit;
 
@@ -68,13 +69,16 @@ xUnit.net test classes do not have "set up" methods like
 Instead, test case setup is done in test class constructors.
 Each test should have its own Actor with its own set of Abilities to preserve test case independence.
 
+xUnit also does not capture console output. Instead, it offers [ITestOutputHelper](https://xunit.net/docs/capturing-output#output-in-tests). 
+In order to configure an actor to use this mechanism you may use `XunitLogger`
+
 Below is the `DuckDuckGoTest` constructor that 
 constructs an Actor and gives it the Ability to browse the web with ChromeDriver:
 
 ```csharp
-    public DuckDuckGoTest()
+    public DuckDuckGoTest(ITestOutputHelper output)
     {
-      Actor = new Actor(name: "Andy", logger: new ConsoleLogger());
+      Actor = new Actor(name: "Andy", logger: new XunitLogger(output));
       Actor.Can(BrowseTheWeb.With(new ChromeDriver()));
     }
 ```
@@ -145,9 +149,9 @@ namespace Boa.Constrictor.Example
   {
     private IActor Actor { get; set; }
 
-    public DuckDuckGoTest()
+    public DuckDuckGoTest(ITestOutputHelper output)
     {
-      Actor = new Actor(name: "Andy", logger: new ConsoleLogger());
+      Actor = new Actor(name: "Andy", logger: new XunitLogger(output));
       Actor.Can(BrowseTheWeb.With(new ChromeDriver()));
     }
 

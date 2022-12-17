@@ -1,4 +1,5 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -46,17 +47,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pull Request Templates", "P
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub Files", "GitHub Files", "{93076CA0-CFD9-4B35-9EEA-AC77ABF88F83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boa.Constrictor.Selenium", "Boa.Constrictor.Selenium\Boa.Constrictor.Selenium.csproj", "{CB6F58FD-6DEC-4E02-8479-714685B31C0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Boa.Constrictor.Selenium", "Boa.Constrictor.Selenium\Boa.Constrictor.Selenium.csproj", "{CB6F58FD-6DEC-4E02-8479-714685B31C0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boa.Constrictor.RestSharp", "Boa.Constrictor.RestSharp\Boa.Constrictor.RestSharp.csproj", "{C1FC00F0-C2B6-4B0F-B64B-A4C777131408}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Boa.Constrictor.RestSharp", "Boa.Constrictor.RestSharp\Boa.Constrictor.RestSharp.csproj", "{C1FC00F0-C2B6-4B0F-B64B-A4C777131408}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boa.Constrictor.Screenplay", "Boa.Constrictor.Screenplay\Boa.Constrictor.Screenplay.csproj", "{A6C7DD7A-A99A-4C55-B7E5-1B03EAEE7C7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Boa.Constrictor.Screenplay", "Boa.Constrictor.Screenplay\Boa.Constrictor.Screenplay.csproj", "{A6C7DD7A-A99A-4C55-B7E5-1B03EAEE7C7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boa.Constrictor.Screenplay.UnitTests", "Boa.Constrictor.Screenplay.UnitTests\Boa.Constrictor.Screenplay.UnitTests.csproj", "{B82F9FCF-543A-44C3-951A-5C034A6E8D9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Boa.Constrictor.Screenplay.UnitTests", "Boa.Constrictor.Screenplay.UnitTests\Boa.Constrictor.Screenplay.UnitTests.csproj", "{B82F9FCF-543A-44C3-951A-5C034A6E8D9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boa.Constrictor.Selenium.UnitTests", "Boa.Constrictor.Selenium.UnitTests\Boa.Constrictor.Selenium.UnitTests.csproj", "{0529FEB8-A626-49EA-BAB6-6386D085CD94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Boa.Constrictor.Selenium.UnitTests", "Boa.Constrictor.Selenium.UnitTests\Boa.Constrictor.Selenium.UnitTests.csproj", "{0529FEB8-A626-49EA-BAB6-6386D085CD94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boa.Constrictor.RestSharp.UnitTests", "Boa.Constrictor.RestSharp.UnitTests\Boa.Constrictor.RestSharp.UnitTests.csproj", "{E583A867-4AA1-418F-B9C4-AA6D0883885D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Boa.Constrictor.RestSharp.UnitTests", "Boa.Constrictor.RestSharp.UnitTests\Boa.Constrictor.RestSharp.UnitTests.csproj", "{E583A867-4AA1-418F-B9C4-AA6D0883885D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Boa.Constrictor.Xunit", "Boa.Constrictor.Xunit\Boa.Constrictor.Xunit.csproj", "{A1ED7B2D-4F37-4AFE-A7C8-39E6223FD5DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boa.Constrictor.Xunit.UnitTests", "Boa.Constrictor.Xunit.UnitTests\Boa.Constrictor.Xunit.UnitTests.csproj", "{A49F6E9F-EBFC-4391-83A2-66646F9C2895}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -96,6 +101,14 @@ Global
 		{E583A867-4AA1-418F-B9C4-AA6D0883885D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E583A867-4AA1-418F-B9C4-AA6D0883885D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E583A867-4AA1-418F-B9C4-AA6D0883885D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1ED7B2D-4F37-4AFE-A7C8-39E6223FD5DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1ED7B2D-4F37-4AFE-A7C8-39E6223FD5DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1ED7B2D-4F37-4AFE-A7C8-39E6223FD5DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1ED7B2D-4F37-4AFE-A7C8-39E6223FD5DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A49F6E9F-EBFC-4391-83A2-66646F9C2895}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A49F6E9F-EBFC-4391-83A2-66646F9C2895}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A49F6E9F-EBFC-4391-83A2-66646F9C2895}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A49F6E9F-EBFC-4391-83A2-66646F9C2895}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
