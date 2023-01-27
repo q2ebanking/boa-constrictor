@@ -87,7 +87,7 @@ namespace Boa.Constrictor.Selenium
             if (Locator != null)
             {
                 actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
-                var e = driver.FindElement(Locator.Query);
+                var e = Locator.FindElement(driver);
 
                 IList<object> tempList = Args.ToList();
                 tempList.Insert(0, e);

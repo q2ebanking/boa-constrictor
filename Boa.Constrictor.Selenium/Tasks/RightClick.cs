@@ -42,7 +42,7 @@ namespace Boa.Constrictor.Selenium
         public override void PerformAs(IActor actor, IWebDriver driver)
         {
             actor.WaitsUntil(Appearance.Of(Locator), IsEqualTo.True());
-            new Actions(driver).MoveToElement(driver.FindElement(Locator.Query)).ContextClick().Perform();
+            new Actions(driver).MoveToElement(Locator.FindElement(driver)).ContextClick().Perform();
         }
 
         /// <summary>

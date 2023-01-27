@@ -22,7 +22,7 @@ namespace Boa.Constrictor.Selenium
         public static IEnumerable<string> GetValues(IActor actor, IWebDriver driver, IWebLocator locator, Func<IWebElement, string> getValue)
         {
             actor.WaitsUntil(Existence.Of(locator), IsEqualTo.True());
-            var elements = driver.FindElements(locator.Query);
+            var elements = locator.FindElements(driver);
             var strings = from e in elements select getValue(e);
 
             // ToList() will avoid lazy evaluation

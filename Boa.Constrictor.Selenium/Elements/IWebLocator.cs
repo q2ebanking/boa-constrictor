@@ -15,11 +15,6 @@ namespace Boa.Constrictor.Selenium
         /// </summary>
         string Description { get; }
 
-        /// <summary>
-        /// Query for the Web element.
-        /// </summary>
-        By Query { get; }
-
         #endregion
 
         #region Methods

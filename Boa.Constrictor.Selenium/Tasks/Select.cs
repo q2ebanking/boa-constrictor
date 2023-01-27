@@ -104,7 +104,7 @@ namespace Boa.Constrictor.Selenium
         {
             actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
 
-            var select = new SelectElement(driver.FindElement(Locator.Query));
+            var select = new SelectElement(Locator.FindElement(driver));
 
             if (Index != null)
                 select.SelectByIndex((int)Index);

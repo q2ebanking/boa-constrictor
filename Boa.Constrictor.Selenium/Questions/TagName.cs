@@ -41,7 +41,7 @@ namespace Boa.Constrictor.Selenium
         public override string RequestAs(IActor actor, IWebDriver driver)
         {
             actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
-            return driver.FindElement(Locator.Query).TagName;
+            return Locator.FindElement(driver).TagName;
         }
 
         /// <summary>

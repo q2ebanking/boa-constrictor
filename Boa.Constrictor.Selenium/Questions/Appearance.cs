@@ -52,7 +52,7 @@ namespace Boa.Constrictor.Selenium
 
             try
             {
-                appearance = driver.FindElement(Locator.Query).Displayed;
+                appearance = Locator.FindElement(driver).Displayed;
             }
             catch (NoSuchElementException)
             {
