@@ -17,7 +17,7 @@ namespace Boa.Constrictor.Selenium
         /// </summary>
         /// <param name="locator">The locator.</param>
         /// <param name="useDefaultContent">If true use DefaultContent instead of the locator.</param>
-        private SwitchFrame(WebLocator locator, bool useDefaultContent)
+        private SwitchFrame(IWebLocator locator, bool useDefaultContent)
         {
             Locator = locator;
             UseDefaultContent = useDefaultContent;
@@ -46,7 +46,7 @@ namespace Boa.Constrictor.Selenium
         /// </summary>
         /// <param name="locator">The locator.</param>
         /// <returns></returns>
-        public static SwitchFrame To(WebLocator locator) => new SwitchFrame(locator, false);
+        public static SwitchFrame To(IWebLocator locator) => new SwitchFrame(locator, false);
 
         /// <summary>
         /// Constructs the Task object for DefaultContent.
