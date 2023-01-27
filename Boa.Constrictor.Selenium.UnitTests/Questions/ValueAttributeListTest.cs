@@ -1,11 +1,10 @@
-﻿using Boa.Constrictor.Screenplay;
-using Boa.Constrictor.Selenium;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Boa.Constrictor.Screenplay;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Boa.Constrictor.Selenium.UnitTests
 {
