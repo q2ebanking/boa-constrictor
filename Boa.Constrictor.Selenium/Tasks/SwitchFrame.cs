@@ -65,11 +65,9 @@ namespace Boa.Constrictor.Selenium
         /// <param name="driver">The WebDriver.</param>
         public override void PerformAs(IActor actor, IWebDriver driver)
         {
-            if (UseDefaultContent)
-            {
-                driver.SwitchTo().DefaultContent();
-            }
-            else
+            driver.SwitchTo().DefaultContent();
+
+            if (!UseDefaultContent)
             {
                 driver.SwitchTo().Frame(Locator.FindElement(driver));
             }
