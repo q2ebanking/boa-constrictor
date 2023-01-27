@@ -20,6 +20,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (none)
 
 
+## [3.1.0-alpha1] - 2023-01-27
+
+### Added
+
+- Added `SwitchFrame` and `PerformInFrame` Tasks.
+
+### Changed
+
+- Changed the internal strategy for finding elements with locators.
+- Removed the `Query` property from `IWebLocator`.
+- Added the `FindElement(s)` methods to `IWebLocator`.
+
+
 ## [3.0.3] - 2022-12-13
 
 ### Changed
