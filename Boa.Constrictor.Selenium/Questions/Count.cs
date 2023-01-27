@@ -41,7 +41,7 @@ namespace Boa.Constrictor.Selenium
         /// <param name="driver">The WebDriver.</param>
         /// <returns></returns>
         public override int RequestAs(IActor actor, IWebDriver driver) =>
-            driver.FindElements(Locator.Query).Count;
+            Locator.FindElements(driver).Count;
 
         /// <summary>
         /// Returns a description of the Question.

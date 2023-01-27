@@ -44,7 +44,7 @@ namespace Boa.Constrictor.Selenium
         #region Methods
 
         /// <summary>
-        /// Navigates the browser to the target URL.
+        /// Switches to the target window handle.
         /// </summary>
         /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="driver">The WebDriver.</param>

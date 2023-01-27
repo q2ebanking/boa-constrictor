@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System.Collections.ObjectModel;
+using OpenQA.Selenium;
 
 namespace Boa.Constrictor.Selenium
 {
@@ -14,10 +15,21 @@ namespace Boa.Constrictor.Selenium
         /// </summary>
         string Description { get; }
 
+        #endregion
+
+        #region Methods
+
         /// <summary>
-        /// Query for the Web element.
+        /// Locates the Web element.
         /// </summary>
-        By Query { get; }
+        /// <param name="driver">The WebDriver.</param>
+        IWebElement FindElement(IWebDriver driver);
+
+        /// <summary>
+        /// Locates the Web elements.
+        /// </summary>
+        /// <param name="driver">The WebDriver.</param>
+        ReadOnlyCollection<IWebElement> FindElements(IWebDriver driver);
 
         #endregion
     }

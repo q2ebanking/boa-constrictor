@@ -1,5 +1,7 @@
-﻿using Boa.Constrictor.Selenium;
+﻿using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
+using Moq;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
@@ -46,6 +48,39 @@ namespace Boa.Constrictor.Selenium.UnitTests
             var a = new WebLocator("hello", By.Id("moto"));
             var b = new WebLocator("hello", By.CssSelector("moto"));
             a.Equals(b).Should().BeFalse();
+        }
+
+        [Test]
+        public void FindElement()
+        {
+            var elementMock = new Mock<IWebElement>();
+            elementMock.Setup(x => x.GetAttribute(It.IsAny<string>())).Returns("a");
+
+            var driverMock = new Mock<IWebDriver>();
+            driverMock.Setup(x => x.FindElement(It.IsAny<By>())).Returns(elementMock.Object);
+
+            var locator = new WebLocator("hello", By.Id("moto"));
+            var element = locator.FindElement(driverMock.Object);
+
+            element.Should().NotBeNull();
+            element.GetAttribute("id").Should().Be("a");
+        }
+
+        [Test]
+        public void FindElements()
+        {
+            var elementMock = new Mock<IWebElement>();
+            elementMock.Setup(x => x.GetAttribute(It.IsAny<string>())).Returns("a");
+
+            var driverMock = new Mock<IWebDriver>();
+            driverMock.Setup(x => x.FindElements(It.IsAny<By>())).Returns(new List<IWebElement> { elementMock.Object }.AsReadOnly());
+
+            var locator = new WebLocator("hello", By.Id("moto"));
+            var elements = locator.FindElements(driverMock.Object);
+
+            elements.Should().NotBeNull();
+            elements.Should().HaveCount(1);
+            elements.First().GetAttribute("id").Should().Be("a");
         }
 
         [Test]

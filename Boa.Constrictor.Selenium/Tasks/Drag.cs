@@ -55,7 +55,7 @@ namespace Boa.Constrictor.Selenium
         {
             actor.WaitsUntil(Appearance.Of(Locator), IsEqualTo.True());
             actor.WaitsUntil(Appearance.Of(Target), IsEqualTo.True());
-            new Actions(driver).DragAndDrop(driver.FindElement(Locator.Query), driver.FindElement(Target.Query)).Perform();
+            new Actions(driver).DragAndDrop(Locator.FindElement(driver), Target.FindElement(driver)).Perform();
         }
 
         /// <summary>

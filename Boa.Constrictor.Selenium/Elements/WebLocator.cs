@@ -1,6 +1,7 @@
-﻿using OpenQA.Selenium;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using OpenQA.Selenium;
 
 namespace Boa.Constrictor.Selenium
 {
@@ -86,6 +87,20 @@ namespace Boa.Constrictor.Selenium
             obj is WebLocator locator &&
             Description == locator.Description &&
             EqualityComparer<By>.Default.Equals(Query, locator.Query);
+
+        /// <summary>
+        /// Locates the Web element.
+        /// </summary>
+        /// <param name="driver">The WebDriver.</param>
+        public IWebElement FindElement(IWebDriver driver) => 
+            driver.FindElement(Query);
+
+        /// <summary>
+        /// Locates the Web elements.
+        /// </summary>
+        /// <param name="driver">The WebDriver.</param>
+        public ReadOnlyCollection<IWebElement> FindElements(IWebDriver driver) => 
+            driver.FindElements(Query);
 
         /// <summary>
         /// Gets a unique hash code for the locator.

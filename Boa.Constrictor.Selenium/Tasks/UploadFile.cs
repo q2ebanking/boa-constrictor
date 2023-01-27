@@ -58,7 +58,7 @@ namespace Boa.Constrictor.Selenium
         public override void PerformAs(IActor actor, IWebDriver driver)
         {
             actor.AttemptsTo(Wait.Until(Existence.Of(Locator), IsEqualTo.True()));
-            var element = driver.FindElement(Locator.Query);
+            var element = Locator.FindElement(driver);
             element.SendKeys(FilePath);
         }
 

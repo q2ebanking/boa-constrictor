@@ -155,7 +155,7 @@ namespace Boa.Constrictor.Selenium
             actor.WaitsUntil(Appearance.Of(Locator), IsEqualTo.True());
 
             // Get the element
-            IWebElement element = driver.FindElement(Locator.Query);
+            IWebElement element = Locator.FindElement(driver);
 
             // Clear the element if appropriate
             if (Clear)

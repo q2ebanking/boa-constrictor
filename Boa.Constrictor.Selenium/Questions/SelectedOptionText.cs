@@ -42,7 +42,7 @@ namespace Boa.Constrictor.Selenium
         public override string RequestAs(IActor actor, IWebDriver driver)
         {
             actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
-            return new SelectElement(driver.FindElement(Locator.Query)).SelectedOption.Text;
+            return new SelectElement(Locator.FindElement(driver)).SelectedOption.Text;
         }
 
         /// <summary>

@@ -42,7 +42,7 @@ namespace Boa.Constrictor.Selenium
         public override Size RequestAs(IActor actor, IWebDriver driver)
         {
             actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
-            return driver.FindElement(Locator.Query).Size;
+            return Locator.FindElement(driver).Size;
         }
 
         /// <summary>

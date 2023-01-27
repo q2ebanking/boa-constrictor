@@ -42,7 +42,7 @@ namespace Boa.Constrictor.Selenium
         public override Point RequestAs(IActor actor, IWebDriver driver)
         {
             actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
-            return driver.FindElement(Locator.Query).Location;
+            return Locator.FindElement(driver).Location;
         }
 
         /// <summary>
