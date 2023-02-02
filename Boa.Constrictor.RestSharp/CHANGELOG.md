@@ -17,7 +17,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(none)
+### Changed
+- Updated RestSharp to 108.3
+	- All instances of the following interfaces have been replaced with concrete classes
+		- `IRestClient` -> `RestClient`
+		- `IRestRequest` -> `RestRequest`
+		- `IRestResponse` -> `RestResponse`
+	- See the [Migration Guide](https://restsharp.dev/v107/#brief-migration-guide) for more details
+- Changed `RequestDumper` serialization to support RestSharp 108.3
+- Fixed unit tests. Replaced the use of Moq with MockHttp where necessary as recommended [here](https://restsharp.dev/v107/#mocking)
 
 
 ## [3.0.3] - 2022-12-13
