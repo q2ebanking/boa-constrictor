@@ -1,12 +1,14 @@
-﻿using Boa.Constrictor.RestSharp;
+﻿using System.Collections.Generic;
+
 using FluentAssertions;
+
 using NUnit.Framework;
+
 using RestSharp;
-using System.Collections.Generic;
 
 namespace Boa.Constrictor.RestSharp.UnitTests
 {
-    #pragma warning disable 0618
+#pragma warning disable 0618
 
     [TestFixture]
     public class ParameterDataTest
@@ -16,8 +18,8 @@ namespace Boa.Constrictor.RestSharp.UnitTests
         {
             var parameters = new List<Parameter>()
             {
-                new Parameter("p1", "hello", ParameterType.HttpHeader),
-                new Parameter("p2", "goodbye", ParameterType.Cookie),
+                new HeaderParameter("p1", "hello"),
+                new GetOrPostParameter("p2", "goodbye"),
             };
 
             var list = ParameterData.GetParameterDataList(parameters);
@@ -27,7 +29,7 @@ namespace Boa.Constrictor.RestSharp.UnitTests
             list[0].Type.Should().Be(ParameterType.HttpHeader.ToString());
             list[1].Name.Should().Be("p2");
             list[1].Value.Should().Be("goodbye");
-            list[1].Type.Should().Be(ParameterType.Cookie.ToString());
+            list[1].Type.Should().Be(ParameterType.GetOrPost.ToString());
         }
 
         [Test]
@@ -37,6 +39,5 @@ namespace Boa.Constrictor.RestSharp.UnitTests
         }
     }
 
-    #pragma warning restore 0618
-
+#pragma warning restore 0618
 }
