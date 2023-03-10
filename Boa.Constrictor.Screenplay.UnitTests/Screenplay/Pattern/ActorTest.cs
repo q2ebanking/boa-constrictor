@@ -1,5 +1,4 @@
-﻿using Boa.Constrictor.Screenplay;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using System.Threading.Tasks;
@@ -91,6 +90,36 @@ namespace Boa.Constrictor.Screenplay.UnitTests
         }
 
         [Test]
+        public void ActorNameLoggedForAnswer()
+        {
+            string responseMessage = string.Empty;
+            bool hasAskedQuestion = false;
+
+            Mock<ILogger> MockLogger = new Mock<ILogger>();
+
+            MockLogger.Setup(x => x.Info(It.IsAny<string>()))
+                .Callback<string>(message =>
+                {
+                    if (hasAskedQuestion)
+                    {
+                        responseMessage = message;
+                    }
+                    else
+                    {
+                        hasAskedQuestion = true;
+                    }
+                });
+
+            Mock<IQuestion<bool>> MockQuestion = new Mock<IQuestion<bool>>();
+            MockQuestion.Setup(x => x.ToString()).Returns("'OkButton' Enabled");
+
+            Actor joe = new Actor("Joe", MockLogger.Object);
+            joe.AsksFor(MockQuestion.Object);
+
+            responseMessage.Should().StartWith("Screenplay Actor 'Joe' observed that the");
+        }
+
+        [Test]
         public async Task AsksForAsync()
         {
             var MockQuestion = new Mock<IQuestionAsync<bool>>();
@@ -99,7 +128,6 @@ namespace Boa.Constrictor.Screenplay.UnitTests
             answer.Should().BeTrue();
         }
 
-        [Test]
         public void AskingFor()
         {
             var MockQuestion = new Mock<IQuestion<bool>>();
