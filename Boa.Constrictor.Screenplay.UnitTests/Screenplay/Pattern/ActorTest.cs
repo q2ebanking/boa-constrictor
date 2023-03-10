@@ -92,10 +92,10 @@ namespace Boa.Constrictor.Screenplay.UnitTests
         [Test]
         public void ActorNameLoggedForAnswer()
         {
-            string responseMessage = string.Empty;
-            bool hasAskedQuestion = false;
+            var responseMessage = string.Empty;
+            var hasAskedQuestion = false;
 
-            Mock<ILogger> MockLogger = new Mock<ILogger>();
+            var MockLogger = new Mock<ILogger>();
 
             MockLogger.Setup(x => x.Info(It.IsAny<string>()))
                 .Callback<string>(message =>
@@ -110,11 +110,42 @@ namespace Boa.Constrictor.Screenplay.UnitTests
                     }
                 });
 
-            Mock<IQuestion<bool>> MockQuestion = new Mock<IQuestion<bool>>();
-            MockQuestion.Setup(x => x.ToString()).Returns("'OkButton' Enabled");
+            var MockQuestion = new Mock<IQuestion<bool>>();
+            MockQuestion.Setup(x => x.ToString()).Returns("appearance of 'OkButton'");
 
-            Actor joe = new Actor("Joe", MockLogger.Object);
+            var joe = new Actor("Joe", MockLogger.Object);
             joe.AsksFor(MockQuestion.Object);
+
+            responseMessage.Should().StartWith("Screenplay Actor 'Joe' observed that the");
+        }
+
+        [Test]
+        public async Task ActorNameLoggedForAnswerAsync()
+        {
+            var responseMessage = string.Empty;
+            var hasAskedQuestion = false;
+
+            var MockLogger = new Mock<ILogger>();
+
+            MockLogger.Setup(x => x.Info(It.IsAny<string>()))
+                .Callback<string>(message =>
+                {
+                    if (hasAskedQuestion)
+                    {
+                        responseMessage = message;
+                    }
+                    else
+                    {
+                        hasAskedQuestion = true;
+                    }
+                });
+
+            var MockQuestion = new Mock<IQuestionAsync<bool>>();
+            MockQuestion.Setup(x => x.RequestAsAsync(It.IsAny<IActor>())).ReturnsAsync(true);
+            MockQuestion.Setup(x => x.ToString()).Returns("appearance of 'OkButton'");
+
+            var joe = new Actor("Joe", MockLogger.Object);
+            _ = await joe.AsksForAsync(MockQuestion.Object);
 
             responseMessage.Should().StartWith("Screenplay Actor 'Joe' observed that the");
         }
