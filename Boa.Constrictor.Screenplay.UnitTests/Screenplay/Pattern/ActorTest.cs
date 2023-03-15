@@ -92,22 +92,14 @@ namespace Boa.Constrictor.Screenplay.UnitTests
         [Test]
         public void ActorNameLoggedForAnswer()
         {
-            var responseMessage = string.Empty;
-            var hasAskedQuestion = false;
+            var logMessage = string.Empty;
 
             var MockLogger = new Mock<ILogger>();
 
             MockLogger.Setup(x => x.Info(It.IsAny<string>()))
                 .Callback<string>(message =>
                 {
-                    if (hasAskedQuestion)
-                    {
-                        responseMessage = message;
-                    }
-                    else
-                    {
-                        hasAskedQuestion = true;
-                    }
+                    logMessage = message;
                 });
 
             var MockQuestion = new Mock<IQuestion<bool>>();
@@ -116,28 +108,20 @@ namespace Boa.Constrictor.Screenplay.UnitTests
             var joe = new Actor("Joe", MockLogger.Object);
             joe.AsksFor(MockQuestion.Object);
 
-            responseMessage.Should().StartWith("Screenplay Actor 'Joe' observed that the");
+            logMessage.Should().StartWith("Screenplay Actor 'Joe' observed that the");
         }
 
         [Test]
         public async Task ActorNameLoggedForAnswerAsync()
         {
-            var responseMessage = string.Empty;
-            var hasAskedQuestion = false;
+            var logMessage = string.Empty;
 
             var MockLogger = new Mock<ILogger>();
 
             MockLogger.Setup(x => x.Info(It.IsAny<string>()))
                 .Callback<string>(message =>
                 {
-                    if (hasAskedQuestion)
-                    {
-                        responseMessage = message;
-                    }
-                    else
-                    {
-                        hasAskedQuestion = true;
-                    }
+                    logMessage = message;
                 });
 
             var MockQuestion = new Mock<IQuestionAsync<bool>>();
@@ -147,7 +131,7 @@ namespace Boa.Constrictor.Screenplay.UnitTests
             var joe = new Actor("Joe", MockLogger.Object);
             _ = await joe.AsksForAsync(MockQuestion.Object);
 
-            responseMessage.Should().StartWith("Screenplay Actor 'Joe' observed that the");
+            logMessage.Should().StartWith("Screenplay Actor 'Joe' observed that the");
         }
 
         [Test]
@@ -170,11 +154,11 @@ namespace Boa.Constrictor.Screenplay.UnitTests
                     postTaskMessage = message;
                 });
 
-            Mock<ITask> MockTask = new Mock<ITask>();
-            MockTask.Setup(x => x.ToString()).Returns("'OkButton' Enabled");
+            Mock<ITask> MockQuestion = new Mock<ITask>();
+            MockQuestion.Setup(x => x.ToString()).Returns("'OkButton' Enabled");
 
             Actor joe = new Actor("Joe", MockLogger.Object);
-            joe.AttemptsTo(MockTask.Object);
+            joe.AttemptsTo(MockQuestion.Object);
 
             preTaskMessage.Should().StartWith("Screenplay Actor 'Joe' attempts to");
             postTaskMessage.Should().StartWith("Screenplay Actor 'Joe' successfully did");
