@@ -151,6 +151,66 @@ namespace Boa.Constrictor.Screenplay.UnitTests
         }
 
         [Test]
+        public void TaskHasCorrectLogSeverity()
+        {
+            string preTaskMessage = string.Empty;
+            string postTaskMessage = string.Empty;
+
+            Mock<ILogger> MockLogger = new Mock<ILogger>();
+
+            MockLogger.Setup(x => x.Trace(It.IsAny<string>()))
+                .Callback<string>(message =>
+                {
+                    preTaskMessage = message;
+                });
+
+            MockLogger.Setup(x => x.Info(It.IsAny<string>()))
+                .Callback<string>(message =>
+                {
+                    postTaskMessage = message;
+                });
+
+            Mock<ITask> MockTask = new Mock<ITask>();
+            MockTask.Setup(x => x.ToString()).Returns("'OkButton' Enabled");
+
+            Actor joe = new Actor("Joe", MockLogger.Object);
+            joe.AttemptsTo(MockTask.Object);
+
+            preTaskMessage.Should().StartWith("Screenplay Actor 'Joe' attempts to");
+            postTaskMessage.Should().StartWith("Screenplay Actor 'Joe' successfully did");
+        }
+
+        [Test]
+        public void QuestionHasCorrectLogSeverity()
+        {
+            string preQuestionMessage = string.Empty;
+            string postQuestionMessage = string.Empty;
+
+            Mock<ILogger> MockLogger = new Mock<ILogger>();
+
+            MockLogger.Setup(x => x.Trace(It.IsAny<string>()))
+                .Callback<string>(message =>
+                {
+                    preQuestionMessage = message;
+                });
+
+            MockLogger.Setup(x => x.Info(It.IsAny<string>()))
+                .Callback<string>(message =>
+                {
+                    postQuestionMessage = message;
+                });
+
+            Mock<IQuestion<bool>> MockQuestion = new Mock<IQuestion<bool>>();
+            MockQuestion.Setup(x => x.ToString()).Returns("'OkButton' Enabled");
+
+            Actor joe = new Actor("Joe", MockLogger.Object);
+            joe.AsksFor(MockQuestion.Object);
+
+            preQuestionMessage.Should().StartWith("Screenplay Actor 'Joe' asks for");
+            postQuestionMessage.Should().StartWith("Screenplay Actor 'Joe' observed that");
+        }
+
+        [Test]
         public async Task AsksForAsync()
         {
             var MockQuestion = new Mock<IQuestionAsync<bool>>();
