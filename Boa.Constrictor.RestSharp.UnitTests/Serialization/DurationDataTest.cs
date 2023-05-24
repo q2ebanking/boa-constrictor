@@ -1,7 +1,8 @@
-﻿using Boa.Constrictor.RestSharp;
+﻿using System;
+
 using FluentAssertions;
+
 using NUnit.Framework;
-using System;
 
 namespace Boa.Constrictor.RestSharp.UnitTests
 {

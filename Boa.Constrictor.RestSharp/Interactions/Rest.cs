@@ -14,7 +14,7 @@ namespace Boa.Constrictor.RestSharp
         /// <param name="request">The REST request to call.</param>
         /// <param name="fileExtension">The extension for the file to download.</param>
         /// <returns></returns>
-        public static RestApiDownload<CallRestApi> Download(IRestRequest request, string fileExtension = null) =>
+        public static RestApiDownload<CallRestApi> Download(RestRequest request, string fileExtension = null) =>
             new RestApiDownload<CallRestApi>(request, fileExtension);
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <param name="request">The REST request to call.</param>
         /// <returns></returns>
-        public static RestApiCall<CallRestApi> Request(IRestRequest request) =>
+        public static RestApiCall<CallRestApi> Request(RestRequest request) =>
             new RestApiCall<CallRestApi>(request);
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Boa.Constrictor.RestSharp
         /// <param name="request">The REST request to call.</param>
         /// <typeparam name="TData">The response data type for deserialization.</typeparam>
         /// <returns></returns>
-        public static RestApiCall<CallRestApi, TData> Request<TData>(IRestRequest request) =>
+        public static RestApiCall<CallRestApi, TData> Request<TData>(RestRequest request) =>
             new RestApiCall<CallRestApi, TData>(request);
     }
 
@@ -50,7 +50,7 @@ namespace Boa.Constrictor.RestSharp
         /// <param name="request">The REST request to call.</param>
         /// <param name="fileExtension">The extension for the file to download.</param>
         /// <returns></returns>
-        public static RestApiDownload<TAbility> Download(IRestRequest request, string fileExtension = null) =>
+        public static RestApiDownload<TAbility> Download(RestRequest request, string fileExtension = null) =>
             new RestApiDownload<TAbility>(request, fileExtension);
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <param name="request">The REST request to call.</param>
         /// <returns></returns>
-        public static RestApiCall<TAbility> Request(IRestRequest request) =>
+        public static RestApiCall<TAbility> Request(RestRequest request) =>
             new RestApiCall<TAbility>(request);
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Boa.Constrictor.RestSharp
         /// <param name="request">The REST request to call.</param>
         /// <typeparam name="TData">The response data type for deserialization.</typeparam>
         /// <returns></returns>
-        public static RestApiCall<TAbility, TData> Request<TData>(IRestRequest request) =>
+        public static RestApiCall<TAbility, TData> Request<TData>(RestRequest request) =>
             new RestApiCall<TAbility, TData>(request);
     }
 }

@@ -28,7 +28,7 @@ namespace Boa.Constrictor.RestSharp
         /// (Use static builder methods for public construction.)
         /// </summary>
         /// <param name="client">The RestSharp client.</param>
-        protected CallRestApi(IRestClient client) : base(client) { }
+        protected CallRestApi(RestClient client) : base(client) { }
 
         /// <summary>
         /// Protected constructor.
@@ -53,7 +53,7 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <param name="client">The RestSharp client.</param>
         /// <returns></returns>
-        public static CallRestApi Using(IRestClient client) => new CallRestApi(client);
+        public static CallRestApi Using(RestClient client) => new CallRestApi(client);
 
         /// <summary>
         /// Sets the Ability to dump requests/responses to the given path.

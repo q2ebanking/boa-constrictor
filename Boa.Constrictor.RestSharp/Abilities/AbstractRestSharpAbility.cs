@@ -28,14 +28,14 @@ namespace Boa.Constrictor.RestSharp
         /// (Use static methods in a subclass for public construction.)
         /// </summary>
         /// <param name="client">The RestSharp client.</param>
-        protected AbstractRestSharpAbility(IRestClient client)
+        protected AbstractRestSharpAbility(RestClient client)
         {
             Client = client;
             RequestDumper = null;
             DownloadDumper = null;
 
-            if (Client.CookieContainer == null)
-                Client.CookieContainer = new CookieContainer();
+            if (Client.Options.CookieContainer == null)
+                Client.Options.CookieContainer = new CookieContainer();
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// The RestSharp client.
         /// </summary>
-        public IRestClient Client { get; protected set; }
+        public RestClient Client { get; protected set; }
 
         /// <summary>
         /// The dumper for downloaded files.
@@ -70,13 +70,13 @@ namespace Boa.Constrictor.RestSharp
         /// The last request object dumped.
         /// Warning: it might be null.
         /// </summary>
-        public IRestRequest LastRequest => RequestDumper.LastRequest;
+        public RestRequest LastRequest => RequestDumper.LastRequest;
 
         /// <summary>
         /// The last response object dumped.
         /// Warning: it might be null.
         /// </summary>
-        public IRestResponse LastResponse => RequestDumper.LastResponse;
+        public RestResponse LastResponse => RequestDumper.LastResponse;
 
         #endregion
 
@@ -106,13 +106,13 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <param name="name">The cookie name.</param>
         /// <returns></returns>
-        public Cookie GetCookie(string name) => Client.CookieContainer.GetCookies(Client.BaseUrl)[name];
+        public Cookie GetCookie(string name) => Client.CookieContainer.GetCookies(Client.Options.BaseUrl)[name];
 
         /// <summary>
         /// Returns a description of this Ability.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"call REST API at: {Client.BaseUrl}";
+        public override string ToString() => $"call REST API at: {Client.Options.BaseUrl}";
 
         #endregion
     }

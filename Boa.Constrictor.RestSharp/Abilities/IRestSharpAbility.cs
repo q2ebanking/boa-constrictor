@@ -21,7 +21,7 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// The RestSharp client.
         /// </summary>
-        IRestClient Client { get; }
+        RestClient Client { get; }
 
         /// <summary>
         /// The dumper for downloaded files.
@@ -37,13 +37,13 @@ namespace Boa.Constrictor.RestSharp
         /// The last request object dumped.
         /// Warning: it might be null.
         /// </summary>
-        IRestRequest LastRequest { get; }
+        RestRequest LastRequest { get; }
 
         /// <summary>
         /// The last response object dumped.
         /// Warning: it might be null.
         /// </summary>
-        IRestResponse LastResponse { get; }
+        RestResponse LastResponse { get; }
 
         #endregion
 

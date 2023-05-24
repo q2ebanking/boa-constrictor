@@ -1,11 +1,16 @@
-﻿using Boa.Constrictor.RestSharp;
-using FluentAssertions;
-using Moq;
-using NUnit.Framework;
-using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Net.Http;
+
+using FluentAssertions;
+
+using NUnit.Framework;
+
+using RestSharp;
+
+using RichardSzalay.MockHttp;
 
 namespace Boa.Constrictor.RestSharp.UnitTests
 {
@@ -21,20 +26,19 @@ namespace Boa.Constrictor.RestSharp.UnitTests
         private string ErrorMessage;
         private string Content;
 
-        #pragma warning disable 0618
+#pragma warning disable 0618
 
-        private List<Parameter> Parameters;
+        private ParametersCollection Parameters;
 
-        #pragma warning restore 0618
+#pragma warning restore 0618
 
-        private Cookie Cookie;
-        private CookieContainer Container;
+        private Cookie Cookie = new Cookie("name", "value");
 
-        private Mock<IRestClient> ClientMock;
-        private Mock<IRestRequest> RequestMock;
-        private Mock<IRestResponse> ResponseMock;
+        private RestClient Client;
+        private RestRequest Request;
+        private RestResponse Response;
 
-        #endregion
+        #endregion Variables
 
         #region Setup and Teardown
 
@@ -43,50 +47,46 @@ namespace Boa.Constrictor.RestSharp.UnitTests
         {
             ClientUri = new Uri("https://www.pl.com");
             Resource = "/path/to/thing";
-            RequestMethod = Method.GET;
+            RequestMethod = Method.Get;
             StatusCode = HttpStatusCode.Accepted;
             ErrorMessage = "error";
             Content = "got some cool stuff";
 
-            #pragma warning disable 0618
-
-            Parameters = new List<Parameter>()
+            var responseHeaders = new List<KeyValuePair<string, string>>()
             {
-                new Parameter("a", "a", ParameterType.HttpHeader),
-                new Parameter("b", "b", ParameterType.Cookie),
+                new KeyValuePair<string, string>("a", "a"),
+                new KeyValuePair<string, string>("b", "b")
             };
+            var mockHttp = new MockHttpMessageHandler();
+            mockHttp.When($"{ClientUri.OriginalString}/*")
+                .Respond(StatusCode, responseHeaders, new StringContent(Content));
 
-            #pragma warning restore 0618
+            Client = new RestClient(
+                new RestClientOptions
+                {
+                    ConfigureMessageHandler = _ => mockHttp,
+                    BaseUrl = ClientUri
+                }
+            );
 
-            Cookie = new Cookie("name", "value");
-            Container = new CookieContainer();
+            Request = new RestRequest(Resource, RequestMethod);
+            Request.AddParameter("a", "a");
+            Request.AddParameter("b", "b");
 
-            ClientMock = new Mock<IRestClient>();
-            ClientMock.Setup(x => x.BaseUrl).Returns(ClientUri);
-            ClientMock.Setup(x => x.BuildUri(It.IsAny<IRestRequest>())).Returns(ClientUri);
-            ClientMock.Setup(x => x.CookieContainer).Returns(Container);
+            Parameters = Request.Parameters;
 
-            RequestMock = new Mock<IRestRequest>();
-            RequestMock.Setup(x => x.Method).Returns(RequestMethod);
-            RequestMock.Setup(x => x.Resource).Returns(Resource);
-            RequestMock.Setup(x => x.Parameters).Returns(Parameters);
-
-            ResponseMock = new Mock<IRestResponse>();
-            ResponseMock.Setup(x => x.ResponseUri).Returns(ClientUri);
-            ResponseMock.Setup(x => x.StatusCode).Returns(StatusCode);
-            ResponseMock.Setup(x => x.Content).Returns(Content);
-            ResponseMock.Setup(x => x.Headers).Returns(Parameters);
-            ResponseMock.Setup(x => x.ErrorMessage).Returns(ErrorMessage);
+            Response = Client.Get(Request);
+            Response.ErrorMessage = "error";
         }
 
-        #endregion
+        #endregion Setup and Teardown
 
         #region Tests
 
         [Test]
         public void InitAllNull()
         {
-            var data = new FullRestData(ClientMock.Object);
+            var data = new FullRestData(Client);
 
             data.Duration.StartTime.Should().BeNull();
             data.Duration.EndTime.Should().BeNull();
@@ -99,8 +99,9 @@ namespace Boa.Constrictor.RestSharp.UnitTests
         [Test]
         public void InitCookiesOnly()
         {
-            Container.Add(ClientUri, Cookie);
-            var data = new FullRestData(ClientMock.Object);
+            Client.CookieContainer.Add(ClientUri, Cookie);
+
+            var data = new FullRestData(Client);
 
             data.Duration.StartTime.Should().BeNull();
             data.Duration.EndTime.Should().BeNull();
@@ -116,7 +117,7 @@ namespace Boa.Constrictor.RestSharp.UnitTests
         public void InitStartTimeOnly()
         {
             DateTime start = DateTime.UtcNow;
-            var data = new FullRestData(ClientMock.Object, start: start);
+            var data = new FullRestData(Client, start: start);
 
             data.Duration.StartTime.Should().Be(start);
             data.Duration.EndTime.Should().BeNull();
@@ -130,7 +131,7 @@ namespace Boa.Constrictor.RestSharp.UnitTests
         public void InitEndTimeOnly()
         {
             DateTime end = DateTime.UtcNow;
-            var data = new FullRestData(ClientMock.Object, end: end);
+            var data = new FullRestData(Client, end: end);
 
             data.Duration.StartTime.Should().BeNull();
             data.Duration.EndTime.Should().Be(end);
@@ -145,7 +146,7 @@ namespace Boa.Constrictor.RestSharp.UnitTests
         {
             DateTime start = DateTime.UtcNow;
             DateTime end = start.AddSeconds(1);
-            var data = new FullRestData(ClientMock.Object, start: start, end: end);
+            var data = new FullRestData(Client, start: start, end: end);
 
             data.Duration.StartTime.Should().Be(start);
             data.Duration.EndTime.Should().Be(end);
@@ -158,9 +159,9 @@ namespace Boa.Constrictor.RestSharp.UnitTests
         [Test]
         public void InitRequestOnly()
         {
-            Container.Add(ClientUri, Cookie);
+            Client.CookieContainer.Add(ClientUri, Cookie);
             DateTime start = DateTime.UtcNow;
-            var data = new FullRestData(ClientMock.Object, RequestMock.Object, start: start);
+            var data = new FullRestData(Client, Request, start: start);
 
             data.Duration.StartTime.Should().Be(start);
             data.Duration.EndTime.Should().BeNull();
@@ -170,8 +171,8 @@ namespace Boa.Constrictor.RestSharp.UnitTests
             data.Request.Method.Should().Be(RequestMethod.ToString());
             data.Request.Resource.Should().Be(Resource);
             data.Request.Parameters.Count.Should().Be(Parameters.Count);
-            data.Request.Parameters[0].Name.Should().Be(Parameters[0].Name);
-            data.Request.Parameters[1].Name.Should().Be(Parameters[1].Name);
+            data.Request.Parameters[0].Name.Should().Be(Parameters.ElementAt(0).Name);
+            data.Request.Parameters[1].Name.Should().Be(Parameters.ElementAt(1).Name);
             data.Request.Body.Should().BeNull();
 
             data.Response.Should().BeNull();
@@ -184,10 +185,10 @@ namespace Boa.Constrictor.RestSharp.UnitTests
         [Test]
         public void InitRequestAndResponse()
         {
-            Container.Add(ClientUri, Cookie);
+            Client.CookieContainer.Add(ClientUri, Cookie);
             DateTime start = DateTime.UtcNow;
             DateTime end = start.AddSeconds(1);
-            var data = new FullRestData(ClientMock.Object, RequestMock.Object, ResponseMock.Object, start, end);
+            var data = new FullRestData(Client, Request, Response, start, end);
 
             data.Duration.StartTime.Should().Be(start);
             data.Duration.EndTime.Should().Be(end);
@@ -197,24 +198,24 @@ namespace Boa.Constrictor.RestSharp.UnitTests
             data.Request.Method.Should().Be(RequestMethod.ToString());
             data.Request.Resource.Should().Be(Resource);
             data.Request.Parameters.Count.Should().Be(Parameters.Count);
-            data.Request.Parameters[0].Name.Should().Be(Parameters[0].Name);
-            data.Request.Parameters[1].Name.Should().Be(Parameters[1].Name);
+            data.Request.Parameters[0].Name.Should().Be(Parameters.ElementAt(0).Name);
+            data.Request.Parameters[1].Name.Should().Be(Parameters.ElementAt(1).Name);
             data.Request.Body.Should().BeNull();
 
             data.Response.Should().NotBeNull();
-            data.Response.Uri.Should().Be(ClientUri);
+            data.Response.Uri.Should().Be(Response.ResponseUri);
             data.Response.StatusCode.Should().Be(StatusCode);
             data.Response.ErrorMessage.Should().Be(ErrorMessage);
             data.Response.Content.Should().Be(Content);
             data.Response.Headers.Count.Should().Be(Parameters.Count);
-            data.Response.Headers[0].Name.Should().Be(Parameters[0].Name);
-            data.Response.Headers[1].Name.Should().Be(Parameters[1].Name);
+            data.Response.Headers[0].Name.Should().Be(Parameters.ElementAt(0).Name);
+            data.Response.Headers[1].Name.Should().Be(Parameters.ElementAt(1).Name);
 
             data.Cookies.Count.Should().Be(1);
             data.Cookies[0].Name.Should().Be(Cookie.Name);
             data.Cookies[0].Value.Should().Be(Cookie.Value);
         }
 
-        #endregion
+        #endregion Tests
     }
 }
