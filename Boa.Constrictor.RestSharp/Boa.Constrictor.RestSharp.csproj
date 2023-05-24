@@ -8,7 +8,7 @@
     <Title>Boa.Constrictor.RestSharp</Title>
     <Product>Boa.Constrictor.RestSharp</Product>
     <Description>Boa Constrictor is the .NET Screenplay Pattern! This package is the RestSharp interaction library.</Description>
-    <Copyright>Copyright © 2020-202 Q2 Holdings Inc.</Copyright>
+    <Copyright>Copyright © 2020-2023 Q2 Holdings Inc.</Copyright>
     <RepositoryUrl>https://github.com/q2ebanking/boa-constrictor</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
