@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)' == 'Release'">
-    <PackageReference Include="Boa.Constrictor.Screenplay" Version="3.0.3" />
+    <PackageReference Include="Boa.Constrictor.Screenplay" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)' == 'Debug'">

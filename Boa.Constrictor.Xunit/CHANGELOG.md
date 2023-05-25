@@ -8,6 +8,14 @@ Its format is based on Keep a Changelog, and this project adheres to Semantic Ve
 
 (none)
 
+
+## [3.1.0] - 2023-05-24
+
+### Changed
+
+- Updated `Boa.Constrictor.Screenplay` version to `3.1.0`
+
+
 ## [3.0.3] - 2022-12-16
 
 ### Added

@@ -18,8 +18,15 @@ Versioning is performed purely for tracking changes.
 
 ## [Unreleased]
 
+(none)
+
+
+## [3.0.4] - 2022-12-13
+
 ### Changed
+
 - DogRequests now uses `RestRequest` to support RestSharp updates
+
 
 ## [3.0.3] - 2022-12-13
 
