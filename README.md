@@ -35,6 +35,13 @@ Boa Constrictor has multiple NuGet packages:
 [![NugetDownloads](https://img.shields.io/nuget/dt/Boa.Constrictor.Selenium)](https://www.nuget.org/stats/packages/Boa.Constrictor.Selenium?groupby=Version)
 * [![NugetPackage](https://img.shields.io/nuget/v/Boa.Constrictor.RestSharp?label=Boa.Constrictor.RestSharp)](https://www.nuget.org/packages/Boa.Constrictor.RestSharp/)
 [![NugetDownloads](https://img.shields.io/nuget/dt/Boa.Constrictor.RestSharp)](https://www.nuget.org/stats/packages/Boa.Constrictor.RestSharp?groupby=Version)
+* [![NugetPackage](https://img.shields.io/nuget/v/Boa.Constrictor.Xunit?label=Boa.Constrictor.Xunit)](https://www.nuget.org/packages/Boa.Constrictor.Xunit/)
+[![NugetDownloads](https://img.shields.io/nuget/dt/Boa.Constrictor.Xunit)](https://www.nuget.org/stats/packages/Boa.Constrictor.Xunit?groupby=Version)
+
+Boa Constrictor also has a [SpecFlow](https://specflow.org/) Action:
+
+* [![NugetPackage](https://img.shields.io/nuget/v/SpecFlow.Actions.BoaConstrictor?label=SpecFlow.Actions.BoaConstrictor)](https://www.nuget.org/packages/SpecFlow.Actions.BoaConstrictor/)
+[![NugetDownloads](https://img.shields.io/nuget/dt/SpecFlow.Actions.BoaConstrictor)](https://www.nuget.org/stats/packages/SpecFlow.Actions.BoaConstrictor?groupby=Version)
 
 If you want to use both Selenium WebDriver and RestSharp, use the "classic" `Boa.Constrictor` package.
 Otherwise, use the package for the specific interaction libraries you need.
