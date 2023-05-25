@@ -63,14 +63,15 @@ namespace Boa.Constrictor.Screenplay
         /// </summary>
         /// <typeparam name="TAnswer">The answer type.</typeparam>
         /// <param name="question">The Question to ask.</param>
-        /// <param name="enterPhrase">The phrase to print before calling.</param>
-        /// <param name="exitPhrase">The phrase to print after calling.</param>
+        /// <param name="observationPhrase">The phrase to log when a response is received.</param>
+        /// <param name="enterPhrase">The phrase to log before calling.</param>
+        /// <param name="exitPhrase">The phrase to log after calling.</param>
         /// <returns></returns>
-        private TAnswer CallQuestion<TAnswer>(IQuestion<TAnswer> question, string enterPhrase, string exitPhrase)
+        private TAnswer CallQuestion<TAnswer>(IQuestion<TAnswer> question, string observationPhrase, string enterPhrase, string exitPhrase)
         {
             Logger.Info($"{this} {enterPhrase} {question}");
             TAnswer answer = question.RequestAs(this);
-            Logger.Info($"{question} {exitPhrase} {answer}");
+            Logger.Info($"{this} {observationPhrase} {question} {exitPhrase} {answer}");
             return answer;
         }
 
@@ -79,14 +80,15 @@ namespace Boa.Constrictor.Screenplay
         /// </summary>
         /// <typeparam name="TAnswer">The answer type.</typeparam>
         /// <param name="question">The Question to ask.</param>
-        /// <param name="enterPhrase">The phrase to print before calling.</param>
-        /// <param name="exitPhrase">The phrase to print after calling.</param>
+        /// <param name="observationPhrase">The phrase to log when a response is received.</param>
+        /// <param name="enterPhrase">The phrase to log before calling.</param>
+        /// <param name="exitPhrase">The phrase to log after calling.</param>
         /// <returns></returns>
-        private async Task<TAnswer> CallQuestionAsync<TAnswer>(IQuestionAsync<TAnswer> question, string enterPhrase, string exitPhrase)
+        private async Task<TAnswer> CallQuestionAsync<TAnswer>(IQuestionAsync<TAnswer> question, string observationPhrase, string enterPhrase, string exitPhrase)
         {
             Logger.Info($"{this} {enterPhrase} {question}");
             TAnswer answer = await question.RequestAsAsync(this);
-            Logger.Info($"{question} {exitPhrase} {answer}");
+            Logger.Info($"{this} {observationPhrase} {question} {exitPhrase} {answer}");
             return answer;
         }
 
@@ -129,7 +131,7 @@ namespace Boa.Constrictor.Screenplay
         /// <returns></returns>
         public TAnswer AsksFor<TAnswer>(IQuestion<TAnswer> question)
         {
-            return CallQuestion(question, "asks for", "was");
+            return CallQuestion(question, "observed that the", "asks for", "was");
         }
 
         /// <summary>
@@ -141,7 +143,7 @@ namespace Boa.Constrictor.Screenplay
         /// <returns></returns>
         public async Task<TAnswer> AsksForAsync<TAnswer>(IQuestionAsync<TAnswer> question)
         {
-            return await CallQuestionAsync(question, "asks for", "was");
+            return await CallQuestionAsync(question, "observed that the", "asks for", "was");
         }
 
         /// <summary>
@@ -153,7 +155,7 @@ namespace Boa.Constrictor.Screenplay
         /// <returns></returns>
         public TAnswer AskingFor<TAnswer>(IQuestion<TAnswer> question)
         {
-            return CallQuestion(question, "asking for", "was");
+            return CallQuestion(question, "observed that the", "asking for", "was");
         }
 
         /// <summary>
@@ -165,7 +167,7 @@ namespace Boa.Constrictor.Screenplay
         /// <returns></returns>
         public async Task<TAnswer> AskingForAsync<TAnswer>(IQuestionAsync<TAnswer> question)
         {
-            return await CallQuestionAsync(question, "asking for", "was");
+            return await CallQuestionAsync(question, "observed that the", "asking for", "was");
         }
 
         /// <summary>
@@ -207,7 +209,7 @@ namespace Boa.Constrictor.Screenplay
         /// <param name="question">The Question to ask.</param>
         public TAnswer Calls<TAnswer>(IQuestion<TAnswer> question)
         {
-            return CallQuestion(question, "calls", "returned:");
+            return CallQuestion(question, "observed that the", "calls", "returned:");
         }
 
         /// <summary>
@@ -218,7 +220,7 @@ namespace Boa.Constrictor.Screenplay
         /// <param name="question">The Question to ask.</param>
         public async Task<TAnswer> CallsAsync<TAnswer>(IQuestionAsync<TAnswer> question)
         {
-            return await CallQuestionAsync(question, "calls", "returned:");
+            return await CallQuestionAsync(question, "observed that the", "calls", "returned:");
         }
 
         /// <summary>
