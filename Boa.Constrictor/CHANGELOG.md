@@ -17,6 +17,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+(none)
+
+## [3.1.0]
+
+### Changed
+
+- Updated `Boa.Constrictor.RestSharp` to 3.1.0
+
 ### Removed
 
 - Removed branch trigger from `example-tests.yml`
@@ -26,7 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Created separate changelog files for each project (except unit tests).
+- Created separate changelog files for each project (except unit tests)
 
 ### Removed
 

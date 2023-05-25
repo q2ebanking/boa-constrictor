@@ -17,8 +17,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+(none)
+
+
+## [3.1.0] - 2023-05-24
+
 ### Changed
-- Updated RestSharp to 108.3
+
+- Updated RestSharp to 108.0.3
 	- All instances of the following interfaces have been replaced with concrete classes
 		- `IRestClient` -> `RestClient`
 		- `IRestRequest` -> `RestRequest`
