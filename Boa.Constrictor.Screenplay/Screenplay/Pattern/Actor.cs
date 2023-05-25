@@ -69,7 +69,7 @@ namespace Boa.Constrictor.Screenplay
         /// <returns></returns>
         private TAnswer CallQuestion<TAnswer>(IQuestion<TAnswer> question, string observationPhrase, string enterPhrase, string exitPhrase)
         {
-            Logger.Info($"{this} {enterPhrase} {question}");
+            Logger.Trace($"{this} {enterPhrase} {question}");
             TAnswer answer = question.RequestAs(this);
             Logger.Info($"{this} {observationPhrase} {question} {exitPhrase} {answer}");
             return answer;
@@ -86,7 +86,7 @@ namespace Boa.Constrictor.Screenplay
         /// <returns></returns>
         private async Task<TAnswer> CallQuestionAsync<TAnswer>(IQuestionAsync<TAnswer> question, string observationPhrase, string enterPhrase, string exitPhrase)
         {
-            Logger.Info($"{this} {enterPhrase} {question}");
+            Logger.Trace($"{this} {enterPhrase} {question}");
             TAnswer answer = await question.RequestAsAsync(this);
             Logger.Info($"{this} {observationPhrase} {question} {exitPhrase} {answer}");
             return answer;
@@ -100,7 +100,7 @@ namespace Boa.Constrictor.Screenplay
         /// <param name="exitPhrase">The phrase to print after calling.</param>
         public void CallTask(ITask task, string enterPhrase, string exitPhrase)
         {
-            Logger.Info($"{this} {enterPhrase} {task}");
+            Logger.Trace($"{this} {enterPhrase} {task}");
             task.PerformAs(this);
             Logger.Info($"{this} {exitPhrase} {task}");
         }
@@ -113,7 +113,7 @@ namespace Boa.Constrictor.Screenplay
         /// <param name="exitPhrase">The phrase to print after calling.</param>
         public async Task CallTaskAsync(ITaskAsync task, string enterPhrase, string exitPhrase)
         {
-            Logger.Info($"{this} {enterPhrase} {task}");
+            Logger.Trace($"{this} {enterPhrase} {task}");
             await task.PerformAsAsync(this);
             Logger.Info($"{this} {exitPhrase} {task}");
         }

@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Log entry now includes the following prefix when an `Interaction` answer is received:
    - `{ActorName} observed that the`
+- Pre-_interaction_ messages (e.g.`attempts to` and `asks for`) are now logged as `Trace` to facilitate log file filtering.
 
 
 ## [3.0.3] - 2022-12-13
