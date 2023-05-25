@@ -124,12 +124,11 @@ The response has two parts:
 | `message` | A hyperlink to a random picture of a dog. This link should be different every time the request is called. |
 | `status` | A string indicating the success-or-failure status of fetching the image link. |
 
-RestSharp uses the [`IRestRequest` interface](https://restsharp.dev/api/restsharp.html#interface-irestrequest)
+RestSharp uses the [`RestRequest` object](https://restsharp.dev/usage.html#create-a-request)
 for creating requests that the client executes.
-`IRestRequest` supports all types of
-[request fields](https://restsharp.dev/usage/parameters.html):
-headers, parameters, bodies, etc.
-Boa Constrictor does *not* add anything on top - it uses `IRestRequest` directly for interactions.
+`RestRequest` supports all types of request fields
+[headers](https://restsharp.dev/usage.html#http-header), [parameters](https://restsharp.dev/usage.html#get-or-post), [bodies](https://restsharp.dev/usage.html#request-body), etc.
+Boa Constrictor does *not* add anything on top - it uses `RestRequest` directly for interactions.
 
 Requests can be long.
 Many tests may need to call the same requests, too.
@@ -147,19 +146,19 @@ namespace Boa.Constrictor.Example
 {
     public static class DogRequests
     {
-        public static IRestRequest GetRandomDog() =>
-            new RestRequest("api/breeds/image/random", Method.GET);
+        public static RestRequest GetRandomDog() =>
+            new RestRequest("api/breeds/image/random", Method.Get);
     }
 }
 ```
 
-`DogRequests` is a class that contains builder methods for `IRestRequest` objects.
+`DogRequests` is a class that contains builder methods for `RestRequest` objects.
 Like page classes with locators, it is *static* so that it does not maintain any state of its own.
 It only provides builders.
 
 The `GetRandomDog` method constructs a new RestSharp request.
 The request's method is `GET`, and its resource path is `api/breeds/image/random`.
-You can use `IRestRequest`'s fluent syntax to add other fields, like headers and parameters.
+You can use `RestRequest`'s fluent syntax to add other fields, like headers and parameters.
 Builder methods like this should have descriptive names and declarative bodies.
 They may also take in arguments to customize parts of the request, such as IDs or request parameter values.
 
@@ -192,13 +191,13 @@ Let's break it down:
 
 | Code | Purpose |
 | ---- | ------- |
-| `response` | The `IRestResponse` object returned by the REST API call. |
+| `response` | The `RestResponse` object returned by the REST API call. |
 | `Actor.Calls(...)` | Calls any type of interaction. Alias for `Actor.AsksFor(...)` or `Actor.AttemptsTo(...)`. |
-| `Rest.Request(...)` | The Question that calls the given request. Under the hood, it uses the Ability's `IRestClient` object to execute the given `IRestRequest` object. |
-| `request` | The `IRestRequest` object for calling the Dog API endpoint. |
+| `Rest.Request(...)` | The Question that calls the given request. Under the hood, it uses the Ability's `RestClient` object to execute the given `RestRequest` object. |
+| `request` | The `RestRequest` object for calling the Dog API endpoint. |
 
 The `Rest` class shown in the code is actually [syntactic Screenplay sugar](https://en.wikipedia.org/wiki/Syntactic_sugar).
-Boa Constrictor's REST requests are actually `RestApiCall` Questions that return `IRestResponse` answers.
+Boa Constrictor's REST requests are actually `RestApiCall` Questions that return `RestResponse` answers.
 The two lines below are equivalent:
 
 ```csharp
@@ -216,11 +215,11 @@ The example above serves only to show how REST requests follow the Screenplay Pa
 Use `Rest.Request(...)` to call REST API interactions.
 {: .notice--danger}
 
-All REST requests return RestSharp `IRestResponse` objects.
+All REST requests return RestSharp `RestResponse` objects.
 Just like for requests, Boa Constrictor does *not* add anything to RestSharp's responses.
 It simply passes response objects through the interaction.
-Check the [RestSharp docs for `IRestResponse`](https://restsharp.dev/api/RestSharp.html#interface-irestresponse)
-to see all response values.
+Check the [RestSharp docs for `RestResponse`](https://restsharp.dev/intro.html#response)
+to for more info.
 
 The simplest way to verify if the call was successful is to check the response code.
 The recommended assertion library to use with Boa Constrictor is
@@ -263,11 +262,11 @@ Checking a response's status code is a valuable assertion,
 but checking a response's content is arguably more important.
 Most response bodies are formatted using JSON or XML.
 For convenience,
-RestSharp can automatically [deserialize](https://restsharp.dev/usage/serialization.html) responses.
+RestSharp can automatically [deserialize](https://restsharp.dev/serialization.html) responses.
 Deserialized objects make it possible to check fields in response bodies,
 such as the `message` and `status` strings from the Dog API responses.
 
-To deserialize the content of an `IRestResponse` object,
+To deserialize the content of an `RestResponse` object,
 RestSharp needs a class with properties or instance variables that match the structure of the response body.
 Create a new directory named `Responses` under the `Boa.Constrictor.Example` project.
 Then, create a new file named `DogResponses.cs` in this folder with the following code:
@@ -315,7 +314,7 @@ Compare this call to the one from the previous test, `TestDogApiStatusCode`.
 The only difference is the `DogResponse` type generic tacked onto `Rest.Request<DogResponse>(...)`.
 Adding the type generic makes the interaction automatically deserialize the response body into the given type.
 Boa Constrictor simply passes it through to RestSharp.
-The response object will by typed as `IRestResponse<DogResponse>`,
+The response object will by typed as `RestResponse<DogResponse>`,
 and it will have a special member named `Data` that is the `DogResponse` object parsed from the response's body.
 
 Finally, add assertions to the test:
@@ -331,11 +330,11 @@ However, the second and third assertions check values in `response.Data`.
 The status should indicate success, and the message should contain a URL to a random image.
 
 **Custom Serializers:**
-RestSharp lets you provide [custom serializers](https://restsharp.dev/usage/serialization.html)
+RestSharp lets you provide [custom serializers](https://restsharp.dev/serialization.html)
 for request and response bodies.
 You can use serializers provided by RestSharp,
-such as one for [Json.Net](https://restsharp.dev/usage/serialization.html#newtonsoftjson-aka-json-net),
-or you can [implement your own](https://restsharp.dev/usage/serialization.html#custom).
+such as one for [Json.Net](https://restsharp.dev/serialization.html#newtonsoftjson-aka-json-net),
+or you can [implement your own](https://restsharp.dev/serialization.html#custom).
 Simply add custom serializers directly to the RestSharp client object before adding the `CallRestApi` Ability to the Actor.
 {: .notice--info}
 
@@ -435,13 +434,13 @@ We need to enable the Actor to use *multiple* clients.
 
 **Overriding Base URLs:**
 RestSharp allows request objects to override the client's base URL.
-You could use an `IRestClient` client with the `https://dog.ceo/` base URL to execute an `IRestRequest` request
+You could use an `RestClient` client with the `https://dog.ceo/` base URL to execute a `RestRequest` request
 whose resource is the absolute url `https://images.dog.ceo/breeds/schipperke/n02104365_9489.jpg`.
 However, this is not good practice because it can make automation code confusing to understand.
 {: .notice--warning}
 
 The best way to enable Actors to call REST APIs with multiple base URLs is to create a custom Ability for each.
-Each Ability can have its own `IRestClient` object.
+Each Ability can have its own `RestClient` object.
 Then, interactions can choose the Ability to use via type generics.
 
 Start by creating a new directory named `Abilities` in the `Boa.Constrictor.Example` project.
@@ -490,7 +489,7 @@ namespace Boa.Constrictor.Example
 ```
 
 Both of these new classes are custom Abilities.
-They extend `AbstractRestSharpAbility`, which provides helpful properties like a `IRestClient` object.
+They extend `AbstractRestSharpAbility`, which provides helpful properties like a `RestClient` object.
 They also declare base URLs as constants for convenience.
 Their builder methods use the base URLs to construct `RestClient` objects that get passed through to the base class's constructor.
 
@@ -514,7 +513,7 @@ The `CallRestApi` Ability from the [basic tests](#2-adding-rest-api-abilities)
 is a "default" or "generic" RestSharp Ability,
 whereas the `CallDogApi` and `CallDogImagesApi` are "custom" Abilities.
 
-The Actor could directly access the `IRestClient` objects through the Abilities like this:
+The Actor could directly access the `RestClient` objects through the Abilities like this:
 
 ```csharp
 var dogClient = Actor.Using<CallDogApi>().Client;
@@ -536,11 +535,11 @@ Let's unpack this line:
 
 | Code | Purpose |
 | ---- | ------- |
-| `response` | The `IRestResponse` object returned by the REST API call. |
+| `response` | The `RestResponse` object returned by the REST API call. |
 | `Actor.Calls` | Calls any type of interaction. |
 | `Rest<CallDogApi>` | The builder class for REST API interactions. Uses a type generic to specify the RestSharp Ability (e.g. `<CallDogApi>`) to use when executing the given request. |
 | `Request<DogResponse>` | The builder method that creates a Question to call a RestSharp request and deserialize the response as a `DogResponse` object. |
-| `DogRequests.GetRandomDog()` | The builder method that creates an `IRestRequest` object for calling the Dog API endpoint. |
+| `DogRequests.GetRandomDog()` | The builder method that creates an `RestRequest` object for calling the Dog API endpoint. |
 
 The only difference between this call and the call from the
 [basic test in Step 5](#5-deserializing-response-bodies)

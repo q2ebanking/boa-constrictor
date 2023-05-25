@@ -30,7 +30,7 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <param name="request">The REST request to call.</param>
         /// <param name="fileExtension">The extension for the file to download.</param>
-        internal RestApiDownload(IRestRequest request, string fileExtension = null) :
+        internal RestApiDownload(RestRequest request, string fileExtension = null) :
             base(request) => FileExtension = fileExtension;
 
         #endregion
@@ -42,7 +42,7 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <param name="client">The RestSharp client.</param>
         /// <returns></returns>
-        protected override IRestResponse Execute(IRestClient client) => client.Execute(Request);
+        protected override RestResponse Execute(RestClient client) => client.Execute(Request);
 
         /// <summary>
         /// Calls the REST request and returns the downloaded file data as a byte array.

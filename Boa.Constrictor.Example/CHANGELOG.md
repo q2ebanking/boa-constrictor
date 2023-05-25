@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 *Note:* This project does not have a NuGet package.
 Versioning is performed purely for tracking changes.
 
+## [Unreleased]
+
+### Changed
+- DogRequests now uses `RestRequest` to support RestSharp updates
 
 ## [3.0.3] - 2022-12-13
 

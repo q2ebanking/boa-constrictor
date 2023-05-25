@@ -45,9 +45,9 @@ namespace Boa.Constrictor.RestSharp
         /// <param name="start">Request's start time.</param>
         /// <param name="end">Request's end time.</param>
         public FullRestData(
-            IRestClient client,
-            IRestRequest request = null,
-            IRestResponse response = null,
+            RestClient client,
+            RestRequest request = null,
+            RestResponse response = null,
             DateTime? start = null,
             DateTime? end = null)
         {
@@ -66,14 +66,14 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <param name="client">RestSharp client.</param>
         /// <returns></returns>
-        private IList<Cookie> GetCookieData(IRestClient client)
+        private IList<Cookie> GetCookieData(RestClient client)
         {
             // Linq cannot be used because CookieCollection does not use generic typing.
             // Thus, we suffer with the foreach loop below.
 
             IList<Cookie> cookies = new List<Cookie>();
 
-            foreach (var c in client.CookieContainer.GetCookies(client.BaseUrl))
+            foreach (var c in client.CookieContainer.GetCookies(client.Options.BaseUrl))
                 cookies.Add((Cookie)c);
 
             return cookies;

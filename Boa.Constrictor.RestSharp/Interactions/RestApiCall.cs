@@ -10,7 +10,7 @@ namespace Boa.Constrictor.RestSharp
     /// Automatically dumps requests and responses if the Ability has a dumper.
     /// </summary>
     /// <typeparam name="TAbility">The RestSharp Ability type.</typeparam>
-    public class RestApiCall<TAbility> : AbstractRestQuestion<TAbility, IRestResponse>
+    public class RestApiCall<TAbility> : AbstractRestQuestion<TAbility, RestResponse>
         where TAbility : IRestSharpAbility
     {
         #region Constructors
@@ -20,7 +20,7 @@ namespace Boa.Constrictor.RestSharp
         /// (Use the Rest class to construct the Question.)
         /// </summary>
         /// <param name="request">The REST request to call.</param>
-        internal RestApiCall(IRestRequest request) : base(request) { }
+        internal RestApiCall(RestRequest request) : base(request) { }
 
         #endregion
 
@@ -31,14 +31,14 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <param name="client">The RestSharp client.</param>
         /// <returns></returns>
-        protected override IRestResponse Execute(IRestClient client) => client.Execute(Request);
+        protected override RestResponse Execute(RestClient client) => client.Execute(Request);
 
         /// <summary>
         /// Calls the REST request and returns the response.
         /// </summary>
         /// <param name="actor">The Screenplay Actor.</param>
         /// <returns></returns>
-        public override IRestResponse RequestAs(IActor actor) => CallRequest(actor);
+        public override RestResponse RequestAs(IActor actor) => CallRequest(actor);
 
 
 
@@ -118,7 +118,7 @@ namespace Boa.Constrictor.RestSharp
     /// </summary>
     /// <typeparam name="TAbility">The RestSharp Ability type.</typeparam>
     /// <typeparam name="TData">The data deserialization object type.</typeparam>
-    public class RestApiCall<TAbility, TData> : AbstractRestQuestion<TAbility, IRestResponse<TData>>
+    public class RestApiCall<TAbility, TData> : AbstractRestQuestion<TAbility, RestResponse<TData>>
         where TAbility : IRestSharpAbility
     {
         #region Constructors
@@ -128,7 +128,7 @@ namespace Boa.Constrictor.RestSharp
         /// (Use the Rest class to construct the Question.)
         /// </summary>
         /// <param name="request">The REST request to call.</param>
-        internal RestApiCall(IRestRequest request) : base(request) { }
+        internal RestApiCall(RestRequest request) : base(request) { }
 
         #endregion
 
@@ -139,14 +139,14 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <param name="client">The RestSharp client.</param>
         /// <returns></returns>
-        protected override IRestResponse Execute(IRestClient client) => client.Execute<TData>(Request);
+        protected override RestResponse Execute(RestClient client) => client.Execute<TData>(Request);
 
         /// <summary>
         /// Calls the REST request and returns the response with deserialized data.
         /// </summary>
         /// <param name="actor">The Screenplay Actor.</param>
         /// <returns></returns>
-        public override IRestResponse<TData> RequestAs(IActor actor) => (IRestResponse<TData>)CallRequest(actor);
+        public override RestResponse<TData> RequestAs(IActor actor) => (RestResponse<TData>)CallRequest(actor);
 
         #endregion
     }

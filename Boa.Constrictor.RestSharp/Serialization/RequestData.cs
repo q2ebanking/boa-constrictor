@@ -1,6 +1,7 @@
 ﻿using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Boa.Constrictor.RestSharp
 {
@@ -34,7 +35,7 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// Request body.
         /// </summary>
-        public RequestBody Body { get; set; }
+        public Parameter Body { get; set; }
 
         #endregion
 
@@ -44,13 +45,13 @@ namespace Boa.Constrictor.RestSharp
         /// Constructor.
         /// </summary>
         /// <param name="request">Request object.</param>
-        public RequestData(IRestRequest request)
+        public RequestData(RestRequest request)
         {
             Method = request.Method.ToString();
             Uri = null;
             Resource = request.Resource;
             Parameters = ParameterData.GetParameterDataList(request.Parameters);
-            Body = request.Body;
+            Body = request.Parameters.FirstOrDefault(p => p.Type == ParameterType.RequestBody);
         }
 
         /// <summary>
@@ -58,13 +59,13 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <param name="client">RestSharp client.</param>
         /// <param name="request">Request object.</param>
-        public RequestData(IRestRequest request, IRestClient client)
+        public RequestData(RestRequest request, RestClient client)
         {
             Method = request.Method.ToString();
             Uri = client.BuildUri(request);
             Resource = request.Resource;
             Parameters = ParameterData.GetParameterDataList(request.Parameters);
-            Body = request.Body;
+            Body = request.Parameters.FirstOrDefault(p => p.Type == ParameterType.RequestBody);
         }
 
         #endregion

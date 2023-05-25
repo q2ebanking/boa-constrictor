@@ -1,10 +1,11 @@
-﻿using Boa.Constrictor.RestSharp;
-using FluentAssertions;
-using Moq;
-using NUnit.Framework;
-using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
+
+using FluentAssertions;
+
+using NUnit.Framework;
+
+using RestSharp;
 
 namespace Boa.Constrictor.RestSharp.UnitTests
 {
@@ -16,17 +17,15 @@ namespace Boa.Constrictor.RestSharp.UnitTests
         {
             var clientUri = new Uri("https://www.pl.com");
             var resource = "/path/to/thing";
-            var requestMethod = Method.GET;
+            var requestMethod = Method.Get;
 
-            var clientMock = new Mock<IRestClient>();
-            clientMock.Setup(x => x.BaseUrl).Returns(clientUri);
-            clientMock.Setup(x => x.BuildUri(It.IsAny<IRestRequest>())).Returns(clientUri);
+            var client = new RestClient(clientUri);
 
             var request = new RestRequest(resource, requestMethod);
 
-            var data = new RequestData(request, clientMock.Object);
+            var data = new RequestData(request, client);
             data.Method.Should().Be(requestMethod.ToString());
-            data.Uri.Should().Be(clientUri.ToString());
+            data.Uri.Should().Be(clientUri.OriginalString + resource);
             data.Resource.Should().Be(resource);
             data.Parameters.Should().BeEmpty();
             data.Body.Should().BeNull();
@@ -37,42 +36,34 @@ namespace Boa.Constrictor.RestSharp.UnitTests
         {
             var clientUri = new Uri("https://www.pl.com");
             var resource = "/path/to/thing";
-            var requestMethod = Method.GET;
-
-            #pragma warning disable 0618
+            var requestMethod = Method.Get;
+            var body = "This is a body";
 
             var parameters = new List<Parameter>()
             {
-                new Parameter("p1", "hello", ParameterType.HttpHeader),
-                new Parameter("p2", "goodbye", ParameterType.Cookie),
+                new HeaderParameter("p1", "hello"),
+                new GetOrPostParameter("p2", "goodbye"),
             };
 
-            var body = new RequestBody("json", "body", "value");
-            
-            #pragma warning restore 0618
+            var client = new RestClient(clientUri);
+            var request = new RestRequest(resource, requestMethod);
+            request.AddParameter(parameters[0]);
+            request.AddParameter(parameters[1]);
+            request.AddBody(body);
 
-            var clientMock = new Mock<IRestClient>();
-            clientMock.Setup(x => x.BaseUrl).Returns(clientUri);
-            clientMock.Setup(x => x.BuildUri(It.IsAny<IRestRequest>())).Returns(clientUri);
-
-            var requestMock = new Mock<IRestRequest>();
-            requestMock.Setup(x => x.Method).Returns(requestMethod);
-            requestMock.Setup(x => x.Resource).Returns(resource);
-            requestMock.Setup(x => x.Parameters).Returns(parameters);
-            requestMock.Setup(x => x.Body).Returns(body);
-
-            var data = new RequestData(requestMock.Object, clientMock.Object);
+            var data = new RequestData(request, client);
             data.Method.Should().Be(requestMethod.ToString());
-            data.Uri.Should().Be(clientUri.ToString());
+            data.Uri.Should().Be($"{clientUri.OriginalString}{resource}?{parameters[1].Name}={parameters[1].Value}");
             data.Resource.Should().Be(resource);
-            data.Parameters.Count.Should().Be(2);
+            data.Parameters.Count.Should().Be(3);
             data.Parameters[0].Name.Should().Be("p1");
             data.Parameters[0].Value.Should().Be("hello");
             data.Parameters[0].Type.Should().Be(ParameterType.HttpHeader.ToString());
             data.Parameters[1].Name.Should().Be("p2");
             data.Parameters[1].Value.Should().Be("goodbye");
-            data.Parameters[1].Type.Should().Be(ParameterType.Cookie.ToString());
-            data.Body.Should().Be(body);
+            data.Parameters[1].Type.Should().Be(ParameterType.GetOrPost.ToString());
+            data.Body.Should().NotBeNull();
+            data.Body.Value.Should().Be(body);
         }
     }
 }

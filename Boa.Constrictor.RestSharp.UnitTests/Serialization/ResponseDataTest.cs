@@ -1,11 +1,15 @@
-﻿using Boa.Constrictor.RestSharp;
-using FluentAssertions;
-using Moq;
-using NUnit.Framework;
-using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
+
+using FluentAssertions;
+
+using NUnit.Framework;
+
+using RestSharp;
+
+using RichardSzalay.MockHttp;
 
 namespace Boa.Constrictor.RestSharp.UnitTests
 {
@@ -16,29 +20,35 @@ namespace Boa.Constrictor.RestSharp.UnitTests
         public void Init()
         {
             var clientUri = new Uri("https://www.pl.com");
+            var resource = "/path/to/thing";
             var statusCode = HttpStatusCode.Accepted;
             var errorMessage = "error";
             var content = "got some cool stuff";
 
-            #pragma warning disable 0618
-
-            var parameters = new List<Parameter>()
+            var responseHeaders = new List<KeyValuePair<string, string>>()
             {
-                new Parameter("p1", "hello", ParameterType.HttpHeader),
-                new Parameter("p2", "goodbye", ParameterType.Cookie),
+                new KeyValuePair<string, string>("p1", "hello"),
+                new KeyValuePair<string, string>("p2", "goodbye")
             };
 
-            #pragma warning restore 0618
+            var mockHttp = new MockHttpMessageHandler();
+            mockHttp.When($"{clientUri.OriginalString}/*")
+                .Respond(statusCode, responseHeaders, new StringContent(content));
 
-            var responseMock = new Mock<IRestResponse>();
-            responseMock.Setup(x => x.ResponseUri).Returns(clientUri);
-            responseMock.Setup(x => x.StatusCode).Returns(statusCode);
-            responseMock.Setup(x => x.Content).Returns(content);
-            responseMock.Setup(x => x.Headers).Returns(parameters);
-            responseMock.Setup(x => x.ErrorMessage).Returns(errorMessage);
+            var client = new RestClient(
+                new RestClientOptions
+                {
+                    ConfigureMessageHandler = _ => mockHttp,
+                    BaseUrl = clientUri
+                }
+            );
 
-            var data = new ResponseData(responseMock.Object);
-            data.Uri.Should().Be(clientUri);
+            var request = new RestRequest(resource);
+            var response = client.Get(request);
+            response.ErrorMessage = errorMessage;
+
+            var data = new ResponseData(response);
+            data.Uri.Should().Be(clientUri.OriginalString + resource);
             data.StatusCode.Should().Be(statusCode);
             data.ErrorMessage.Should().Be(errorMessage);
             data.Content.Should().Be(content);
@@ -48,7 +58,7 @@ namespace Boa.Constrictor.RestSharp.UnitTests
             data.Headers[0].Type.Should().Be(ParameterType.HttpHeader.ToString());
             data.Headers[1].Name.Should().Be("p2");
             data.Headers[1].Value.Should().Be("goodbye");
-            data.Headers[1].Type.Should().Be(ParameterType.Cookie.ToString());
+            data.Headers[1].Type.Should().Be(ParameterType.HttpHeader.ToString());
         }
     }
 }

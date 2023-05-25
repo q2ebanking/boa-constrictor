@@ -4,7 +4,7 @@ namespace Boa.Constrictor.Example
 {
     public static class DogRequests
     {
-        public static IRestRequest GetRandomDog() =>
-            new RestRequest("api/breeds/image/random", Method.GET);
+        public static RestRequest GetRandomDog() =>
+            new RestRequest("api/breeds/image/random", Method.Get);
     }
 }
