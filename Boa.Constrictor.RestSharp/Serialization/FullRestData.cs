@@ -73,7 +73,9 @@ namespace Boa.Constrictor.RestSharp
 
             IList<Cookie> cookies = new List<Cookie>();
 
-            foreach (var c in client.CookieContainer.GetCookies(client.Options.BaseUrl))
+            if (client.Options.CookieContainer == null) return cookies;
+
+            foreach (var c in client.Options.CookieContainer.GetCookies(client.Options.BaseUrl))
                 cookies.Add((Cookie)c);
 
             return cookies;

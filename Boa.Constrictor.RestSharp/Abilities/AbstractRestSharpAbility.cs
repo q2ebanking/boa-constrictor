@@ -33,9 +33,6 @@ namespace Boa.Constrictor.RestSharp
             Client = client;
             RequestDumper = null;
             DownloadDumper = null;
-
-            if (Client.Options.CookieContainer == null)
-                Client.Options.CookieContainer = new CookieContainer();
         }
 
         /// <summary>
@@ -86,7 +83,15 @@ namespace Boa.Constrictor.RestSharp
         /// Adds a cookie to the RestSharp client.
         /// </summary>
         /// <param name="cookie">The cookie to add to the RestSharp client.</param>
-        public void AddCookie(Cookie cookie) => Client.CookieContainer.Add(cookie);
+        public void AddCookie(Cookie cookie)
+        {
+            if (Client.Options.CookieContainer == null)
+            {
+                throw new RestApiException("Client CookieContainer is not initialized");
+            }
+
+            Client.Options.CookieContainer.Add(cookie);
+        }
 
         /// <summary>
         /// Checks if downloads can be dumped.
@@ -106,7 +111,15 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <param name="name">The cookie name.</param>
         /// <returns></returns>
-        public Cookie GetCookie(string name) => Client.CookieContainer.GetCookies(Client.Options.BaseUrl)[name];
+        public Cookie GetCookie(string name)
+        {
+            if (Client.Options.CookieContainer == null)
+            {
+                throw new RestApiException("Client CookieContainer is not initialized");
+            }
+
+            return Client.Options.CookieContainer.GetCookies(Client.Options.BaseUrl)[name];
+        }
 
         /// <summary>
         /// Returns a description of this Ability.
