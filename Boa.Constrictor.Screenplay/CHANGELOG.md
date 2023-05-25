@@ -17,7 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(none)
+### Added
+
+### Changed
+
+- Log entry now includes the following prefix when an `Interaction` answer is received:
+   - `{ActorName} observed that the`
+- Pre-_interaction_ messages (e.g.`attempts to` and `asks for`) are now logged as `Trace` to facilitate log file filtering.
 
 
 ## [3.0.3] - 2022-12-13
@@ -30,7 +36,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Created separate changelog files for each project (except unit tests).
 - Converted `AnswerCache` to use a `Hashtable` instead of a pointlessly generic `IDictionary`
-
 
 ## [3.0.2] - 2022-12-07
 
