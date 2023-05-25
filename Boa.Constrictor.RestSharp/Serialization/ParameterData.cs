@@ -33,11 +33,11 @@ namespace Boa.Constrictor.RestSharp
         #pragma warning disable 0618
 
         /// <summary>
-        /// Converts a list of parameters to a serializable object.
+        /// Converts a collection of parameters to a serializable object.
         /// </summary>
-        /// <param name="parameters">The list of parameters.</param>
+        /// <param name="parameters">The collection of parameters.</param>
         /// <returns></returns>
-        public static IList<ParameterData> GetParameterDataList(IList<Parameter> parameters) =>
+        public static IList<ParameterData> GetParameterDataList(IReadOnlyCollection<Parameter> parameters) =>
             parameters.Select(p => new ParameterData
             {
                 Name = p.Name,
@@ -45,7 +45,7 @@ namespace Boa.Constrictor.RestSharp
                 Type = p.Type.ToString()
             }).ToList();
 
-        #pragma warning restore 0618
+#pragma warning restore 0618
 
         #endregion
     }

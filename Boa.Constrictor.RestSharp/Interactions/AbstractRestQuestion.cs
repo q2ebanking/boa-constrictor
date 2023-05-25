@@ -18,7 +18,7 @@ namespace Boa.Constrictor.RestSharp
         /// <summary>
         /// The REST request to call.
         /// </summary>
-        public IRestRequest Request { get; private set; }
+        public RestRequest Request { get; private set; }
 
         #endregion
 
@@ -28,7 +28,7 @@ namespace Boa.Constrictor.RestSharp
         /// Protected constructor.
         /// </summary>
         /// <param name="request">The REST request to call.</param>
-        protected AbstractRestQuestion(IRestRequest request) => Request = request;
+        protected AbstractRestQuestion(RestRequest request) => Request = request;
 
         #endregion
 
@@ -39,7 +39,7 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <param name="client">The RestSharp client.</param>
         /// <returns></returns>
-        protected abstract IRestResponse Execute(IRestClient client);
+        protected abstract RestResponse Execute(RestClient client);
 
         /// <summary>
         /// Calls the Question.
@@ -106,11 +106,11 @@ namespace Boa.Constrictor.RestSharp
         /// </summary>
         /// <param name="actor">The Screenplay Actor.</param>
         /// <returns></returns>
-        protected IRestResponse CallRequest(IActor actor)
+        protected RestResponse CallRequest(IActor actor)
         {
             // Prepare variables
             var ability = actor.Using<TAbility>();
-            IRestResponse response = null;
+            RestResponse response = null;
             DateTime? start = null;
             DateTime? end = null;
 

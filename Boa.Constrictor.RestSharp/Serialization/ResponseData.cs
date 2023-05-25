@@ -45,7 +45,7 @@ namespace Boa.Constrictor.RestSharp
         /// Constructor.
         /// </summary>
         /// <param name="response">Response object.</param>
-        public ResponseData(IRestResponse response)
+        public ResponseData(RestResponse response)
         {
             Uri = response.ResponseUri;
             StatusCode = response.StatusCode;

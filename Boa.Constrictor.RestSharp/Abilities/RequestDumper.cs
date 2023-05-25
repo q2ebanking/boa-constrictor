@@ -15,13 +15,13 @@ namespace Boa.Constrictor.RestSharp
         /// The last request object dumped.
         /// Warning: it might be null.
         /// </summary>
-        public IRestRequest LastRequest { get; private set; } = null;
+        public RestRequest LastRequest { get; private set; } = null;
 
         /// <summary>
         /// The last response object dumped.
         /// Warning: it might be null.
         /// </summary>
-        public IRestResponse LastResponse { get; private set; } = null;
+        public RestResponse LastResponse { get; private set; } = null;
 
         #endregion
 
@@ -51,9 +51,9 @@ namespace Boa.Constrictor.RestSharp
         /// <param name="end">Request's end time.</param>
         /// <returns></returns>
         public string Dump(
-            IRestClient client,
-            IRestRequest request = null,
-            IRestResponse response = null,
+            RestClient client,
+            RestRequest request = null,
+            RestResponse response = null,
             DateTime? start = null,
             DateTime? end = null)
         {
