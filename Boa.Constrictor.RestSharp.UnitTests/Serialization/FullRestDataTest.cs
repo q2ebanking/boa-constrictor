@@ -65,7 +65,8 @@ namespace Boa.Constrictor.RestSharp.UnitTests
                 new RestClientOptions
                 {
                     ConfigureMessageHandler = _ => mockHttp,
-                    BaseUrl = ClientUri
+                    BaseUrl = ClientUri,
+                    CookieContainer = new CookieContainer()
                 }
             );
 
@@ -99,7 +100,7 @@ namespace Boa.Constrictor.RestSharp.UnitTests
         [Test]
         public void InitCookiesOnly()
         {
-            Client.CookieContainer.Add(ClientUri, Cookie);
+            Client.Options.CookieContainer.Add(ClientUri, Cookie);
 
             var data = new FullRestData(Client);
 
@@ -159,7 +160,7 @@ namespace Boa.Constrictor.RestSharp.UnitTests
         [Test]
         public void InitRequestOnly()
         {
-            Client.CookieContainer.Add(ClientUri, Cookie);
+            Client.Options.CookieContainer.Add(ClientUri, Cookie);
             DateTime start = DateTime.UtcNow;
             var data = new FullRestData(Client, Request, start: start);
 
@@ -185,7 +186,7 @@ namespace Boa.Constrictor.RestSharp.UnitTests
         [Test]
         public void InitRequestAndResponse()
         {
-            Client.CookieContainer.Add(ClientUri, Cookie);
+            Client.Options.CookieContainer.Add(ClientUri, Cookie);
             DateTime start = DateTime.UtcNow;
             DateTime end = start.AddSeconds(1);
             var data = new FullRestData(Client, Request, Response, start, end);
