@@ -69,6 +69,7 @@ namespace Boa.Constrictor.Selenium
 
             if (!UseDefaultContent)
             {
+                actor.WaitsUntil(Existence.Of(Locator), IsEqualTo.True());
                 driver.SwitchTo().Frame(Locator.FindElement(driver));
             }
         }
