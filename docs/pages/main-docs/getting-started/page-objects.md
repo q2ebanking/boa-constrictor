@@ -15,7 +15,7 @@ It reveals pain points at each step to show why the Screenplay Pattern is ultima
 
 ## Phase 1: Raw WebDriver Calls
 
-Let's say you want to automate a test that performs a [DuckDuckGo](https://duckduckgo.com/) web search.
+Let's say you want to automate a test that searches for an article on [Wikipedia](https://en.wikipedia.org/wiki/Main_Page).
 You could simply write raw [Selenium WebDriver](https://www.selenium.dev/documentation/en/webdriver/) code like this:
 
 ```csharp
@@ -23,15 +23,15 @@ You could simply write raw [Selenium WebDriver](https://www.selenium.dev/documen
 IWebDriver driver = new ChromeDriver();
 
 // Open the search engine
-driver.Navigate().GoToUrl("https://duckduckgo.com/");
+driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Main_Page");
 
 // Search for a phrase
-driver.FindElement(By.Id("search_form_input_homepage")).SendKeys("panda");
-driver.FindElement(By.Id("search_button_homepage")).Click();
+driver.FindElement(By.Name("search")).SendKeys("Giant panda");
+driver.FindElement(By.XPath("//button[text()='Search']")).Click();
 
 // Verify results appear
 driver.Title.ToLower().Should().Contain("panda");
-driver.FindElements(By.CssSelector("a.result__a")).Should().BeGreaterThan(0);
+driver.FindElement(By.CssSelector("[id='firstHeading'] span")).Text.Should().Be("Giant panda");
 
 // Quit the WebDriver
 driver.Quit();
@@ -65,16 +65,16 @@ IWebDriver driver = new ChromeDriver();
 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
 
 // Open the search engine
-driver.Navigate().GoToUrl("https://duckduckgo.com/");
+driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Main_Page");
 
 // Search for a phrase
-wait.Until(d => d.FindElements(By.Id("search_form_input_homepage")).Count > 0);
-driver.FindElement(By.Id("search_form_input_homepage")).SendKeys("panda");
-driver.FindElement(By.Id("search_button_homepage")).Click();
+wait.Until(d => d.FindElements(By.Name("search")).Count > 0);
+driver.FindElement(By.Name("search")).SendKeys("Giant panda");
+driver.FindElement(By.XPath("//button[text()='Search']")).Click();
 
 // Verify results appear
 wait.Until(d => d.Title.ToLower().Contains("panda"));
-wait.Until(d => d.FindElements(By.CssSelector("a.result__a"))).Count > 0);
+wait.Until(d => d.FindElements(By.CssSelector("[id='firstHeading'] span")).Text == "Giant Panda");
 
 // Quit the WebDriver
 driver.Quit();
@@ -82,7 +82,7 @@ driver.Quit();
 
 These waits are necessary to make the code correct, but they cause new problems.
 First, they cause duplicate code because Web element locators are used multiple times.
-Notice how the locator `By.Id("search_form_input_homepage")` is written twice.
+Notice how the locator `By.Name("search")` is written twice.
 Second, raw calls with explicit waits make code more cryptic and less intuitive.
 It is difficult to understand what this code does at a glance.
 
@@ -94,15 +94,15 @@ In the Page Object Model (or "Page Object Pattern"), each page is modeled as a c
 So, a page object for the search page could look like this:
 
 ```csharp
-public class SearchPage
+public class MainPage
 {
-    public const string Url = "https://duckduckgo.com/";
-    public static By SearchInput => By.Id("search_form_input_homepage");
-    public static By SearchButton => By.Id("search_button_homepage");
+    public const string Url = "https://en.wikipedia.org/wiki/Main_Page";
+    public static By SearchInput => By.Name("search");
+    public static By SearchButton => By.XPath("//button[text()='Search']");
 
     public IWebDriver Driver { get; private set; }
 
-    public SearchPage(IWebDriver driver) => Driver = driver;
+    public MainPage(IWebDriver driver) => Driver = driver;
 
     public void Load() => driver.Navigate().GoToUrl(Url);
 
@@ -117,25 +117,25 @@ public class SearchPage
 ```
 
 This page object class has a decent structure and a mild separation of concerns.
-The `SearchPage` class has locators (`SearchInput` and `SearchButton`) and interaction methods (`Load` and `Search`).
+The `MainPage` class has locators (`SearchInput` and `SearchButton`) and interaction methods (`Load` and `Search`).
 The `Search` method uses an explicit wait before attempting to interact with elements.
 It also uses the locator properties so that locator queries are not duplicated.
 Locators and interaction methods have meaningful names.
 Page objects require a few more lines of code that raw calls at first, but their parts can be called easily.
 
-The original test steps can be rewritten using this new `SearchPage` class, as well as a hypothetical `ResultPage` class.
+The original test steps can be rewritten using this new `MainPage` class, as well as a hypothetical `ArticlePage` class.
 This new code looks much cleaner:
 
 ```csharp
 IWebDriver driver = new ChromeDriver();
 
-SearchPage searchPage = new SearchPage(driver);
-searchPage.Load();
-searchPage.Search("panda");
+MainPage mainPage = new MainPage(driver);
+mainPage.Load();
+mainPage.Search("Giant panda");
 
-ResultPage resultPage = new ResultPage(driver);
-resultPage.WaitForTitle("panda");
-resultPage.WaitForResultLinks();
+ArticlePage articlePage = new ArticlePage(driver);
+articlePage.WaitForTitle("panda");
+articlePage.WaitForArticleTitle();
 
 driver.Quit();
 ```
@@ -184,7 +184,7 @@ public abstract class BasePage
     public IWebDriver Driver { get; private set; }
     public WebDriverWait Wait { get; private set; }
 
-    public SearchPage(IWebDriver driver)
+    public BasePage(IWebDriver driver)
     {
         Driver = driver;
         Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
@@ -272,53 +272,53 @@ The test could be rewritten using Boa Constrictor's Screenplay calls like this:
 ```csharp
 IActor actor = new Actor(logger: new ConsoleLogger());
 actor.Can(BrowseTheWeb.With(new ChromeDriver()));
-actor.AttemptsTo(Navigate.ToUrl(SearchPage.Url));
+actor.AttemptsTo(Navigate.ToUrl(MainPage.Url));
 string title = actor.AsksFor(Title.OfPage());
-actor.AttemptsTo(SearchDuckDuckGo.For("panda"));
-actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
+actor.AttemptsTo(SearchWikipedia.For("Giant panda"));
+actor.WaitsUntil(Text.Of(ArticlePage.Title), IsEqualTo.Value("Giant panda"));
 ```
 
 The page classes would provide locators:
 
 ```csharp
-public static class SearchPage
+public static class MainPage
 {
-  public const string Url = "https://www.duckduckgo.com/";
-
-  public static IWebLocator SearchInput => L(
-    "DuckDuckGo Search Input", 
-    By.Id("search_form_input_homepage"));
+  public const string Url = "https://en.wikipedia.org/wiki/Main_Page";
 
   public static IWebLocator SearchButton => L(
-    "DuckDuckGo Search Button",
-    By.Id("search_button_homepage"));
+    "Wikipedia Search Button",
+    By.XPath("//button[text()='Search']"));
+
+  public static IWebLocator SearchInput => L(
+    "Wikipedia Search Input",
+    By.Name("search"));
 }
 
-public static class ResultPage
+public static class ArticlePage
 {
-  public static IWebLocator ResultLinks => L(
-    "DuckDuckGo Result Page Links",
-    By.ClassName("result__a"));
+  public static IWebLocator Title => L(
+    "Title Span",
+    By.CssSelector("[id='firstHeading'] span"));
 }
 ```
 
-Performing the DuckDuckGo search could use a custom interaction like this:
+Performing the Wikipedia search could use a custom interaction like this:
 
 ```csharp
-public class SearchDuckDuckGo : ITask
+public class SearchWikipedia : ITask
 {
   public string Phrase { get; }
 
-  private SearchDuckDuckGo(string phrase) =>
+  private SearchWikipedia(string phrase) =>
     Phrase = phrase;
 
-  public static SearchDuckDuckGo For(string phrase) =>
-    new SearchDuckDuckGo(phrase);
+  public static SearchWikipedia For(string phrase) =>
+    new SearchWikipedia(phrase);
 
   public void PerformAs(IActor actor)
   {
-    actor.AttemptsTo(SendKeys.To(SearchPage.SearchInput, Phrase));
-    actor.AttemptsTo(Click.On(SearchPage.SearchButton));
+    actor.AttemptsTo(SendKeys.To(MainPage.SearchInput, Phrase));
+    actor.AttemptsTo(Click.On(MainPage.SearchButton));
   }
 }
 ```

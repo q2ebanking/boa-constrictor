@@ -18,7 +18,7 @@ This tutorial has two parts:
 3. [Part 3 - REST API Testing]({{ "/tutorial/part-3-rest-api-testing/" | relative_url }})
 
 In the tutorial, you will build a small test project using [NUnit](https://nunit.org/).
-Inside, you will create a simple Web UI test case that performs a search using [DuckDuckGo](https://duckduckgo.com/).
+Inside, you will create a simple Web UI test case that searches for a [Wikipedia](https://en.wikipedia.org/wiki/Main_Page) article.
 You will use Boa Constrictor to handle all interactions.
 At the end of the tutorial, you will have a complete test project that you can extend with new tests or use as a reference for future projects.
 
@@ -51,7 +51,7 @@ You should add the code from each tutorial step to your project as you progress.
 That way, you can practice writing Boa Constrictor calls, and you can test the code at each step.
 
 The `Boa.Constrictor.Example` project in this repository contains the tutorial's completed example code.
-It targets .NET 5.
+It targets .NET 7.
 You can refer to this project if you get stuck during the tutorial.
 You can also run the tests in this project to see how Boa Constrictor should work.
 

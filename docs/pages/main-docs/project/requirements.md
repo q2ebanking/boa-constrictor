@@ -13,6 +13,7 @@ Boa Constrictor is a .NET project written in C#.
 The `Boa.Constrictor` project targets the following frameworks:
 
 * .NET 5.0
+* .NET 7.0
 * .NET Standard 2.0
 
 These targets make Boa Constrictor compatible with both .NET Framework and .NET Core projects.
