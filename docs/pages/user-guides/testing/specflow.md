@@ -19,7 +19,7 @@ With Boa Constrictor, SpecFlow's step definitions become very concise, readable,
 This user guide shows how to integrate Boa Constrictor with SpecFlow.
 The test case in the example code below will follow the same steps
 as the test case from the [tutorial]({{ "/tutorial/overview/" | relative_url }}):
-a Web UI test for DuckDuckGo searches.
+a Web UI test for Wikipedia searches.
 
 
 ## SpecFlow Test Projects
@@ -55,15 +55,15 @@ and saved in `.feature` files.
 Gherkin's plain language Given-When-Then steps enable anyone to read the tests,
 whether or not they know programming.
 
-Below is a feature file for testing a DuckDuckGo search:
+Below is a feature file for testing a Wikipedia search:
 
 ```gherkin
-Feature: DuckDuckGo web search
+Feature: Wikipedia web search
 
-  Scenario: Search for a phrase using DuckDuckGo
-    Given the DuckDuckGo home page is displayed
-    When the user searches for the phrase "panda"
-    Then the results page shows result links for the phrase
+  Scenario: Search Wikipedia for an article
+    Given the Wikipedia main page is displayed
+    When the user searches for the phrase "Giant panda"
+    Then Wikipedia shows the desired article
 ```
 
 
@@ -85,7 +85,7 @@ add Abilities to the Actor,
 and inject the Actor into SpecFlow's `ScenarioContext.ScenarioContainer` object.
 The scenario context injection will enable other binding classes to access the Actor object.
 
-Below is a binding class named `DuckDuckGoHooks`
+Below is a binding class named `WikipediaHooks`
 with a before-scenario hook to create and inject the Actor.
 The hook is set with `(Order = 1)` to make sure it runs before any other before-scenario hooks:
 
@@ -98,7 +98,7 @@ using TechTalk.SpecFlow;
 namespace Boa.Constrictor.Example
 {
   [Binding]
-  public sealed class DuckDuckGoHooks : Steps
+  public sealed class WikipediaHooks : Steps
   {
     private IActor Actor { get; set; }
 
@@ -125,11 +125,11 @@ and a regular expression to match the step text.
 With Boa Constrictor, each step definition should be only a few lines of Screenplay interactions, like
 `Actor.AttemptsTo(...)`, `Actor.AsksFor(...)`, and `Actor.WaitsUntil(...)`.
 
-Below is a binding class named `DuckDuckGoSteps`
-with step definitions for the three Gherkin steps from the DuckDuckGo search test.
+Below is a binding class named `WikipediaSteps`
+with step definitions for the three Gherkin steps from the Wikipedia search test.
 The constructor receives the Actor object via dependency injection from SpecFlow through scenario context.
 Each step definition then uses the Actor to call Interactions.
-The specific pages (`SearchPage` and `ResultPage`) and custom interactions (`SearchDuckDuckGo`)
+The specific pages (`MainPage` and `ArticlePage`) and custom interactions (`SearchWikipedia`)
 come from the [`Boa.Constrictor.Example`](https://github.com/q2ebanking/boa-constrictor/tree/main/Boa.Constrictor.Example) project.
 
 ```csharp
@@ -140,36 +140,36 @@ using TechTalk.SpecFlow;
 namespace Boa.Constrictor.Example
 {
   [Binding]
-  public sealed class DuckDuckGoSteps : Steps
+  public sealed class WikipediaSteps : Steps
   {
     private IActor Actor { get; set; }
 
-    // The `InitializeScreenplay` hook from `DuckDuckGoHooks`
+    // The `InitializeScreenplay` hook from `WikipediaHooks`
     // injects the Actor object into scenario context.
     // SpecFlow can resolve that dependency
     // in other binding classes using constructor arguments.
 
-    public DuckDuckGoSteps(IActor actor)
+    public WikipediaSteps(IActor actor)
     {
       Actor = actor;
     }
 
-    [Given(@"the DuckDuckGo home page is displayed")]
-    public void GivenTheDuckDuckGoHomePageIsDisplayed()
+    [Given(@"the Wikipedia main page is displayed")]
+    public void GivenTheWikipediaMainPageIsDisplayed()
     {
-      Actor.AttemptsTo(Navigate.ToUrl(SearchPage.Url));
+      Actor.AttemptsTo(Navigate.ToUrl(MainPage.Url));
     }
 
     [When(@"the user searches for the phrase ""(.*)""")]
     public void WhenTheUserSearchesForThePhrase(string phrase)
     {
-      Actor.AttemptsTo(SearchDuckDuckGo.For(phrase));
+      Actor.AttemptsTo(SearchWikipedia.For(phrase));
     }
 
-    [Then(@"the results page shows result links for the phrase")]
-    public void ThenTheResultsPageShowsResultLinksForThePhrase()
+    [Then(@"Wikipedia shows the desired article")]
+    public void ThenWikipediaShowsTheDesiredArticle()
     {
-      Actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
+      Actor.WaitsUntil(Text.Of(ArticlePage.Title), IsEqualTo.Value("Giant panda"));
     }
   }
 }
@@ -185,7 +185,7 @@ After-scenario hooks must be located in binding classes and bear the `[AfterScen
 Like before-scenario hooks, they may or may not have an explicit order.
 
 Below is an after-scenario hook that quits the browser.
-It should be located in the `DuckDuckGoHooks` binding class:
+It should be located in the `WikipediaHooks` binding class:
 
 ```csharp
     [AfterScenario]

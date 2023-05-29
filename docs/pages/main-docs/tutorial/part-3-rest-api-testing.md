@@ -1081,11 +1081,11 @@ Boa.Constrictor.Example
 │
 ├── Interactions
 │   ├── RandomDogImage.cs
-│   └── SearchDuckDuckGo.cs
+│   └── SearchWikipedia.cs
 │
 ├── Pages
-│   ├── ResultPage.cs
-│   └── SearchPage.cs
+│   ├── ArticlePage.cs
+│   └── MainPage.cs
 │
 ├── Requests
 │   └── DogRequests.cs

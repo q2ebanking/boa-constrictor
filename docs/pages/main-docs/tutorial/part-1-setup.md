@@ -43,14 +43,12 @@ like [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/),
 or [Microsoft Edge](https://www.microsoft.com/en-us/edge).
 To use other browsers, install the appropriate WebDriver executable,
 and substitute the desired WebDriver constructor in the example code in place of `ChromeDriver`.
-However, avoid using [Microsoft Internet Explorer 11](https://en.wikipedia.org/wiki/Internet_Explorer_11):
-it is slow and may not work the same as other browsers.
 {: .notice--info}
 
 
 ## 3. Creating the Project
 
-Open Visual Studio 2019 and select **Create a new project**:
+Open Visual Studio and select **Create a new project**:
 
 ![Create New Project]({{ "/assets/images/vs-create-new-project.png" | relative_url }})
 
@@ -66,11 +64,9 @@ It can also be used for automation without a test framework.
 {: .notice--info}
 
 **Note:**
-You may create either a [.NET Framework or .NET Core](https://dzone.com/articles/net-framework-vs-net-core) project
-because Boa Constrictor supports both target frameworks.
-However, it is recommended to create a [.NET Core](https://docs.microsoft.com/en-us/dotnet/core/introduction) project
-or even a [.NET 5](https://devblogs.microsoft.com/dotnet/introducing-net-5/) project.
-The `Boa.Constrictor.Example` reference project in the repository targets .NET 5.
+Boa Constrictor libraries target [.NET Standard 2.0](https://learn.microsoft.com/en-us/dotnet/standard/net-standard),
+which means they can support any kind of .NET project (.NET 5+, .NET Framework, or .NET Core).
+The `Boa.Constrictor.Example` reference project in the repository targets .NET 7.
 {: .notice--info}
 
 Name the project "Boa.Constrictor.Example",

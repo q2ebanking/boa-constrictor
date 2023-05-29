@@ -14,7 +14,8 @@ namespace Boa.Constrictor.Example
         public void InitializeScreenplay()
         {
             ChromeOptions options = new ChromeOptions();
-            options.AddArgument("headless");   // Remove this line to "see" the browser run
+            options.AddArgument("headless");                  // Remove this line to "see" the browser run
+            options.AddArgument("window-size=1920,1080");     // Use this option with headless mode
             ChromeDriver driver = new ChromeDriver(options);
 
             Actor = new Actor(name: "Andy", logger: new ConsoleLogger());
@@ -28,12 +29,12 @@ namespace Boa.Constrictor.Example
         }
 
         [Test]
-        public void TestDuckDuckGoWebSearch()
+        public void TestWikipediaSearch()
         {
-            Actor.AttemptsTo(Navigate.ToUrl(SearchPage.Url));
-            Actor.AskingFor(ValueAttribute.Of(SearchPage.SearchInput)).Should().BeEmpty();
-            Actor.AttemptsTo(SearchDuckDuckGo.For("panda"));
-            Actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
+            Actor.AttemptsTo(Navigate.ToUrl(MainPage.Url));
+            Actor.AskingFor(ValueAttribute.Of(MainPage.SearchInput)).Should().BeEmpty();
+            Actor.AttemptsTo(SearchWikipedia.For("Giant panda"));
+            Actor.WaitsUntil(Text.Of(ArticlePage.Title), IsEqualTo.Value("Giant panda"));
         }
     }
 }

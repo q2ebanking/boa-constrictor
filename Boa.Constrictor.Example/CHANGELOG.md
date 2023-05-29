@@ -21,6 +21,13 @@ Versioning is performed purely for tracking changes.
 (none)
 
 
+## [3.1.0] - 2023-05-28
+
+### Changed
+
+- Replaced DuckDuckGo search test with Wikipedia search test since DuckDuckGo changes their home page
+
+
 ## [3.0.4] - 2022-12-13
 
 ### Changed

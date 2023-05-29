@@ -16,7 +16,7 @@ Boa Constrictor's fluent-like syntax makes xUnit.net test classes easy to read a
 This user guide shows how to integrate Boa Constrictor with xUnit.net.
 The test case in the example code below will follow the same steps
 as the test case from the [tutorial]({{ "/tutorial/overview/" | relative_url }}):
-a Web UI test for DuckDuckGo searches.
+a Web UI test for Wikipedia searches.
 
 
 ## xUnit.net Test Projects
@@ -42,7 +42,7 @@ You may need to add other NuGet packages like
 xUnit.net test classes should have all the appropriate `using` statements for the namespaces they need.
 They should also have an instance variable for the Screenplay Actor object.
 
-Below is a class stub for the example test class named `DuckDuckGoTest`:
+Below is a class stub for the example test class named `WikipediaTest`:
 
 ```csharp
 using Boa.Constrictor.Screenplay;
@@ -53,7 +53,7 @@ using Xunit;
 
 namespace Boa.Constrictor.Example
 {
-  public class DuckDuckGoTest
+  public class WikipediaTest
   {
     private IActor Actor { get; set; }
 
@@ -72,11 +72,11 @@ Each test should have its own Actor with its own set of Abilities to preserve te
 xUnit also does not capture console output. Instead, it offers [ITestOutputHelper](https://xunit.net/docs/capturing-output#output-in-tests). 
 In order to configure an actor to use this mechanism you may use `XunitLogger`
 
-Below is the `DuckDuckGoTest` constructor that 
+Below is the `WikipediaTest` constructor that 
 constructs an Actor and gives it the Ability to browse the web with ChromeDriver:
 
 ```csharp
-    public DuckDuckGoTest(ITestOutputHelper output)
+    public WikipediaTest(ITestOutputHelper output)
     {
       Actor = new Actor(name: "Andy", logger: new XunitLogger(output));
       Actor.Can(BrowseTheWeb.With(new ChromeDriver()));
@@ -90,18 +90,18 @@ In xUnit.net test classes, methods with the `[Fact]` or `[Theory]` attributes ar
 With Boa Constrictor, most test cases should be a series of Screenplay interactions, like
 `Actor.AttemptsTo(...)`, `Actor.AsksFor(...)`, and `Actor.WaitsUntil(...)`.
 
-Below is a test case method for the example `DuckDuckGoTest` class.
-The specific pages (`SearchPage` and `ResultPage`) and custom interactions (`SearchDuckDuckGo`)
+Below is a test case method for the example `WikipediaTest` class.
+The specific pages (`MainPage` and `ArticlePage`) and custom interactions (`SearchWikipedia`)
 come from the [`Boa.Constrictor.Example`](https://github.com/q2ebanking/boa-constrictor/tree/main/Boa.Constrictor.Example) project:
 
 ```csharp
     [Fact]
-    public void TestDuckDuckGoSearch()
+    public void TestWikipediaSearch()
     {
-      Actor.AttemptsTo(Navigate.ToUrl(SearchPage.Url));
-      Assert.Equal("", Actor.AskingFor(ValueAttribute.Of(SearchPage.SearchInput)));
-      Actor.AttemptsTo(SearchDuckDuckGo.For("panda"));
-      Actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
+      Actor.AttemptsTo(Navigate.ToUrl(MainPage.Url));
+      Assert.Equal("", Actor.AskingFor(ValueAttribute.Of(MainPage.SearchInput)));
+      Actor.AttemptsTo(SearchWikipedia.For("Giant panda"));
+      Actor.WaitsUntil(Text.Of(ArticlePage.Title), IsEqualTo.Value("Giant panda"));
     }
 ```
 
@@ -109,7 +109,7 @@ xUnit.net provides an `Assert` class for built-in assertions, which is used in t
 You can use [FluentAssertions](https://www.nuget.org/packages/FluentAssertions/) instead for more readable Screenplay calls:
 
 ```csharp
-      Actor.AskingFor(ValueAttribute.Of(SearchPage.SearchInput)).Should().BeEmpty();
+      Actor.AskingFor(ValueAttribute.Of(MainPage.SearchInput)).Should().BeEmpty();
 ```
 
 
@@ -119,7 +119,7 @@ Cleanup procedures are not required for all types of tests, but they are require
 xUnit.net test classes must implement the `System.IDisposable` interface to handle test case cleanup:
 
 ```csharp
-  public class DuckDuckGoTest : System.IDisposable
+  public class WikipediaTest : System.IDisposable
 ```
 
 The `Dispose` method performs cleanup operations after each test.
@@ -135,7 +135,7 @@ The code below safely quits the browser for Web UI test cleanup:
 
 ## A Complete xUnit.net Test Class
 
-The complete code for `DuckDuckGoTest` is below:
+The complete code for `WikipediaTest` is below:
 
 ```csharp
 using Boa.Constrictor.Screenplay;
@@ -145,11 +145,11 @@ using Xunit;
 
 namespace Boa.Constrictor.Example
 {
-  public class DuckDuckGoTest : System.IDisposable
+  public class WikipediaTest : System.IDisposable
   {
     private IActor Actor { get; set; }
 
-    public DuckDuckGoTest(ITestOutputHelper output)
+    public WikipediaTest(ITestOutputHelper output)
     {
       Actor = new Actor(name: "Andy", logger: new XunitLogger(output));
       Actor.Can(BrowseTheWeb.With(new ChromeDriver()));
@@ -161,12 +161,12 @@ namespace Boa.Constrictor.Example
     }
 
     [Fact]
-    public void TestDuckDuckGoSearch()
+    public void TestWikipediaSearch()
     {
-      Actor.AttemptsTo(Navigate.ToUrl(SearchPage.Url));
-      Assert.Equal("", Actor.AskingFor(ValueAttribute.Of(SearchPage.SearchInput)));
-      Actor.AttemptsTo(SearchDuckDuckGo.For("panda"));
-      Actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
+      Actor.AttemptsTo(Navigate.ToUrl(MainPage.Url));
+      Assert.Equal("", Actor.AskingFor(ValueAttribute.Of(MainPage.SearchInput)));
+      Actor.AttemptsTo(SearchWikipedia.For("Giant panda"));
+      Actor.WaitsUntil(Text.Of(ArticlePage.Title), IsEqualTo.Value("Giant panda"));
     }
   }
 }

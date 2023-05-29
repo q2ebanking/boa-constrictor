@@ -40,10 +40,10 @@ The Screenplay Pattern uses a fluent-like syntax to make test code very readable
 ```csharp
 IActor actor = new Actor(logger: new ConsoleLogger());
 actor.Can(BrowseTheWeb.With(new ChromeDriver()));
-actor.AttemptsTo(Navigate.ToUrl(SearchPage.Url));
+actor.AttemptsTo(Navigate.ToUrl(MainPage.Url));
 string title = actor.AsksFor(Title.OfPage());
-actor.AttemptsTo(SearchDuckDuckGo.For("panda"));
-actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
+actor.AttemptsTo(SearchWikipedia.For("Giant panda"));
+actor.WaitsUntil(Text.Of(ArticlePage.Title), IsEqualTo.Value("Giant panda"));
 ```
 
 This block of code is easy to understand, even for those who haven't used Screenplay or Boa Constrictor before.
@@ -52,7 +52,7 @@ Re-read these lines in plain language:
 1. The actor can browse the web with a new ChromeDriver.
 2. The actor attempts to navigate to the search page URL.
 3. The actor asks for the title of the page.
-4. The actor attempts to search DuckDuckGo for "panda".
+4. The actor attempts to search Wikipedia for "Giant panda".
 5. The actor waits until the result page links appear.
 
 The Screenplay Pattern is a great design pattern for automating interactions.
