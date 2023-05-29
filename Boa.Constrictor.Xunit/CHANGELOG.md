@@ -9,6 +9,14 @@ Its format is based on Keep a Changelog, and this project adheres to Semantic Ve
 (none)
 
 
+## [4.0.0] - 2023-05-29
+
+### Changed
+
+- Removed targets for `net5.0` and `net7.0`
+- Now targets only `netstandard2.0`
+
+
 ## [3.1.0] - 2023-05-24
 
 ### Changed
