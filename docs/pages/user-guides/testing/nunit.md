@@ -89,12 +89,12 @@ Below is a test case method for the example `ScreenplayWebUiTest` class:
 
 ```csharp
     [Test]
-    public void TestDuckDuckGoWebSearch()
+    public void TestWikipediaSearch()
     {
-      Actor.AttemptsTo(Navigate.ToUrl(SearchPage.Url));
-      Actor.AskingFor(ValueAttribute.Of(SearchPage.SearchInput)).Should().BeEmpty();
-      Actor.AttemptsTo(SearchDuckDuckGo.For("panda"));
-      Actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
+        Actor.AttemptsTo(Navigate.ToUrl(MainPage.Url));
+        Actor.AskingFor(ValueAttribute.Of(MainPage.SearchInput)).Should().BeEmpty();
+        Actor.AttemptsTo(SearchWikipedia.For("Giant panda"));
+        Actor.WaitsUntil(Text.Of(ArticlePage.Title), IsEqualTo.Value("Giant panda"));
     }
 ```
 
@@ -129,32 +129,32 @@ using OpenQA.Selenium.Chrome;
 
 namespace Boa.Constrictor.Example
 {
-  public class ScreenplayWebUiTest
-  {
-    private IActor Actor { get; set; }
-
-    [SetUp]
-    public void InitializeScreenplay()
+    public class ScreenplayWebUiTest
     {
-      Actor = new Actor(name: "Andy", logger: new ConsoleLogger());
-      Actor.Can(BrowseTheWeb.With(new ChromeDriver()));
-    }
+        private IActor Actor;
 
-    [TearDown]
-    public void QuitBrowser()
-    {
-      Actor.AttemptsTo(QuitWebDriver.ForBrowser());
-    }
+        [SetUp]
+        public void InitializeScreenplay()
+        {
+            Actor = new Actor(name: "Andy", logger: new ConsoleLogger());
+            Actor.Can(BrowseTheWeb.With(new ChromeDriver()));
+        }
 
-    [Test]
-    public void TestDuckDuckGoWebSearch()
-    {
-      Actor.AttemptsTo(Navigate.ToUrl(SearchPage.Url));
-      Actor.AskingFor(ValueAttribute.Of(SearchPage.SearchInput)).Should().BeEmpty();
-      Actor.AttemptsTo(SearchDuckDuckGo.For("panda"));
-      Actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
+        [TearDown]
+        public void QuitBrowser()
+        {
+            Actor.AttemptsTo(QuitWebDriver.ForBrowser());
+        }
+
+        [Test]
+        public void TestWikipediaSearch()
+        {
+            Actor.AttemptsTo(Navigate.ToUrl(MainPage.Url));
+            Actor.AskingFor(ValueAttribute.Of(MainPage.SearchInput)).Should().BeEmpty();
+            Actor.AttemptsTo(SearchWikipedia.For("Giant panda"));
+            Actor.WaitsUntil(Text.Of(ArticlePage.Title), IsEqualTo.Value("Giant panda"));
+        }
     }
-  }
 }
 ```
 

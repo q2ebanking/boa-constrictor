@@ -6,13 +6,13 @@ toc: true
 ---
 
 In this part of the tutorial, you will use Boa Constrictor to automate a Web UI test
-to perform a [DuckDuckGo](https://duckduckgo.com/) search.
+to search [Wikipedia](https://en.wikipedia.org/wiki/Main_Page) for an article.
 The test case steps will be simple:
 
-1. Load the DuckDuckGo home page
+1. Load the Wikipedia main page
 2. Verify the search field is empty
 3. Enter a search phrase
-4. Verify result links are returned
+4. Verify the desired article is displayed
 
 **WebDriver:**
 Boa Constrictor's Web UI interactions use [Selenium WebDriver](https://www.selenium.dev/).
@@ -57,7 +57,7 @@ namespace Boa.Constrictor.Example
     public class ScreenplayWebUiTest
     {
         [Test]
-        public void TestDuckDuckGoWebSearch()
+        public void TestWikipediaSearch()
         {
 
         }
@@ -86,7 +86,7 @@ To create an actor, add the following import statements to `ScreenplayWebUiTest`
 using Boa.Constrictor.Screenplay;
 ```
 
-Then, add the following constructor call to its `TestDuckDuckGoWebSearch` method:
+Then, add the following constructor call to its `TestWikipediaSearch` method:
 
 ```csharp
 IActor actor = new Actor(name: "Andy", logger: new ConsoleLogger());
@@ -155,6 +155,7 @@ You could use headless Chrome by setting options like this:
 ```csharp
 ChromeOptions options = new ChromeOptions();
 options.AddArgument("headless");
+options.AddArgument("window-size=1920,1080");
 ChromeDriver driver = new ChromeDriver(options);
 ```
 {: style="font-size:1em" }
@@ -218,11 +219,11 @@ Interactions like clicks and scrapes work the same regardless of the target elem
 [Page Object Model](https://www.selenium.dev/documentation/en/guidelines_and_recommendations/page_object_models/),
 in which page object classes place locators together with interaction methods.)
 
-The DuckDuckGo search test interacts with two pages:
+The Wikipedia search test interacts with two pages:
 the "search" page (or the "home" page) and the "result" page.
 Each page should have its own class.
 
-Create a file named `SearchPage.cs` and add the following code:
+Create a file named `MainPage.cs` and add the following code:
 
 ```csharp
 using Boa.Constrictor.Selenium;
@@ -231,18 +232,18 @@ using static Boa.Constrictor.Selenium.WebLocator;
 
 namespace Boa.Constrictor.Example
 {
-    public static class SearchPage
+    public static class MainPage
     {
-        public const string Url = "https://www.duckduckgo.com/";
+        public const string Url = "https://en.wikipedia.org/wiki/Main_Page";
 
         public static IWebLocator SearchInput => L(
-          "DuckDuckGo Search Input",
-          By.Id("search_form_input_homepage"));
+          "Wikipedia Search Input",
+          By.Name("search"));
     }
 }
 ```
 
-The `SearchPage` class has two members.
+The `MainPage` class has two members.
 The first member is a URL string named `Url`.
 Sometimes, it is convenient to hard-code URLs for pages.
 
@@ -266,7 +267,7 @@ A locator has two properties:
 | *Query* | Finds the element on the page. Boa Constrictor uses Selenium WebDriver's `By` queries. Learn more about locator queries by reading [Web Element Locators for Test Automation](https://automationpanda.com/2019/01/15/web-element-locators-for-test-automation/). |
 
 For convenience, locators can be constructed using the `Boa.Constrictor.Selenium.WebLocator.L` static builder method.
-Since `SearchPage` uses a static import for this method, it can use the short `L` method call.
+Since `MainPage` uses a static import for this method, it can use the short `L` method call.
 
 Furthermore, notice that `SearchInput` uses the `=>` operator instead of the `=` operator for defining the locator.
 The `=>` operator makes `SearchInput` a read-only property: its value *cannot* be changed.
@@ -276,7 +277,7 @@ Boa Constrictor Interactions uses locators to interact with elements on a Web pa
 Interactions always fetch "fresh" element objects using locators instead of caching element objects.
 Fresh fetches avoid stale element exceptions.
 
-In addition to `SearchPage.cs`, create a file named `ResultPage.cs` with the following code:
+In addition to `MainPage.cs`, create a file named `ArticlePage.cs` with the following code:
 
 ```csharp
 using Boa.Constrictor.Selenium;
@@ -285,13 +286,13 @@ using static Boa.Constrictor.Selenium.WebLocator;
 
 namespace Boa.Constrictor.Example
 {
-    public static class ResultPage
+    public static class ArticlePage
     {
     }
 }
 ```
 
-Leave `ResultPage` empty for now.
+Leave `ArticlePage` empty for now.
 You will add locators to both classes later in this tutorial.
 
 
@@ -303,24 +304,24 @@ A *Task* performs actions without returning a value.
 Examples of Tasks include clicking an element, refreshing the browser, and loading a page.
 These interactions all "do" something rather than "get" something.
 
-The test case's first step should load the DuckDuckGo search page.
+The test case's first step should load the Wikipedia main page.
 Boa Constrictor provides a Task named `Navigate` under the `Boa.Constrictor.Selenium` namespace for loading a Web page using a target URL.
 
-Add this line to `TestDuckDuckGoWebSearch`:
+Add this line to `TestWikipediaSearch`:
 
 ```csharp
-actor.AttemptsTo(Navigate.ToUrl(SearchPage.Url));
+actor.AttemptsTo(Navigate.ToUrl(MainPage.Url));
 ```
 
 Read this line in plain English:
-"The actor attempts to navigate to the URL for the search page."
+"The actor attempts to navigate to the URL for the main page."
 Again, Boa Constrictor's fluent-like syntax is very readable.
-Clearly, this line will load the DuckDuckGo search page.
+Clearly, this line will load the Wikipedia search page.
 Let's unpack it:
 
 | Code | Purpose |
 | ---- | ------- |
-| `SearchPage.Url` | The target URL. It is a member of the `SearchPage` model class so that it can be used by any Interaction. |
+| `MainPage.Url` | The target URL. It is a member of the `MainPage` model class so that it can be used by any Interaction. |
 | `Navigate.ToUrl(...)` | Constructs a Task object using the given URL string. The `Navigate` class provides the logic for performing the page load. |
 | `actor.AttemptsTo(...)` | Calls the given Task. The call is an "attempt" because the Task may or may not ultimately be successful. |
 
@@ -389,7 +390,7 @@ The Actor can call *any* Tasks as long as it has the appropriate Abilities.
 Actor code does not need to be modified to call more types of Tasks.
 
 Build and run the test again.
-This time, the browser should load the DuckDuckGo search page.
+This time, the browser should load the Wikipedia main page.
 Close the browser once the test stops.
 
 
@@ -403,10 +404,10 @@ Each of these interactions return some sort of value.
 The test case's second step verifies that the search field is empty.
 The `ValueAttribute` Question gets the "value" of the text currently inside an input field.
 (Note: this is different from regular element text, which uses the `Text` Question.)
-To use `ValueAttribute`, add the following line to `TestDuckDuckGoWebSearch`:
+To use `ValueAttribute`, add the following line to `TestWikipediaSearch`:
 
 ```csharp
-string text = actor.AsksFor(ValueAttribute.Of(SearchPage.SearchInput));
+string text = actor.AsksFor(ValueAttribute.Of(MainPage.SearchInput));
 ```
 
 Read this line in plain English:
@@ -415,7 +416,7 @@ Let's break it down:
 
 | Code | Purpose |
 | ---- | ------- |
-| `SearchPage.SearchInput` | The locator for the search input field. You previously added this locator to the `SearchPage` class. |
+| `MainPage.SearchInput` | The locator for the search input field. You previously added this locator to the `MainPage` class. |
 | `ValueAttribute.Of(...)` | Constructs a Question using the given locator. It returns the "value" attribute of the locator's target element. |
 | `actor.AsksFor(...)` | Calls the given Question. The Actor "asks for" the answer to the Question. |
 
@@ -489,21 +490,21 @@ using FluentAssertions;
 Then, update the Question call like this:
 
 ```csharp
-string text = actor.AsksFor(ValueAttribute.Of(SearchPage.SearchInput));
+string text = actor.AsksFor(ValueAttribute.Of(MainPage.SearchInput));
 text.Should().BeEmpty();
 ```
 
 You can also shorten this call to one line:
 
 ```csharp
-actor.AskingFor(ValueAttribute.Of(SearchPage.SearchInput)).Should().BeEmpty();
+actor.AskingFor(ValueAttribute.Of(MainPage.SearchInput)).Should().BeEmpty();
 ```
 
 The `AskingFor` method is simply an alias for `AsksFor`.
 It improves readability when using Fluent Assertions.
 
 Build and run the test again.
-It should open the browser, load DuckDuckGo, and pass just like before.
+It should open the browser, load Wikipedia, and pass just like before.
 If you want to make sure the assertion is really working, you can temporarily change it to `Should().NotBeEmpty()` and watch the test fail.
 
 
@@ -512,19 +513,19 @@ If you want to make sure the assertion is really working, you can temporarily ch
 The test case's next step is to enter a search phrase.
 Doing this requires two interactions: typing the phrase into the search input and clicking the search button.
 
-Add a new locator for the search button to `SearchPage`:
+Add a new locator for the search button to `MainPage`:
 
 ```csharp
 public static IWebLocator SearchButton => L(
-    "DuckDuckGo Search Button",
-    By.Id("search_button_homepage"));
+    "Wikipedia Search Button",
+    By.XPath("//button[text()='Search']"));
 ```
 
-Then, add the following lines to `TestDuckDuckGoWebSearch`:
+Then, add the following lines to `TestWikipediaSearch`:
 
 ```csharp
-actor.AttemptsTo(SendKeys.To(SearchPage.SearchInput, "panda"));
-actor.AttemptsTo(Click.On(SearchPage.SearchButton));
+actor.AttemptsTo(SendKeys.To(MainPage.SearchInput, "Giand panda"));
+actor.AttemptsTo(Click.On(MainPage.SearchButton));
 ```
 
 `SendKeys` and `Click` are two more Tasks provided by Boa Constrictor.
@@ -533,7 +534,7 @@ However, these two Interactions truly represent one larger interaction: entering
 The Screenplay Pattern makes it possible to easily *compose* multiple Interactions together into one new Interaction.
 Composition improves readability and reusability.
 
-Create a new file named `SearchDuckDuckGo.cs` and add the following code:
+Create a new file named `SearchWikipedia.cs` and add the following code:
 
 ```csharp
 using Boa.Constrictor.Screenplay;
@@ -541,44 +542,44 @@ using Boa.Constrictor.Selenium;
 
 namespace Boa.Constrictor.Example
 {
-    public class SearchDuckDuckGo : ITask
+    public class SearchWikipedia : ITask
     {
         public string Phrase { get; }
 
-        private SearchDuckDuckGo(string phrase) =>
+        private SearchWikipedia(string phrase) =>
           Phrase = phrase;
 
-        public static SearchDuckDuckGo For(string phrase) =>
-          new SearchDuckDuckGo(phrase);
+        public static SearchWikipedia For(string phrase) =>
+          new SearchWikipedia(phrase);
 
         public void PerformAs(IActor actor)
         {
-            actor.AttemptsTo(SendKeys.To(SearchPage.SearchInput, Phrase));
-            actor.AttemptsTo(Click.On(SearchPage.SearchButton));
+            actor.AttemptsTo(SendKeys.To(MainPage.SearchInput, Phrase));
+            actor.AttemptsTo(Click.On(MainPage.SearchButton));
         }
     }
 }
 ```
 
-`SearchDuckDuckGo` is a new Task that takes in a search phrase
-and internally calls `SendKeys` and `Click` to enter the phrase on the DuckDuckGo search page.
+`SearchWikipedia` is a new Task that takes in a search phrase
+and internally calls `SendKeys` and `Click` to enter the phrase on the Wikipedia main page.
 
-Replace the old calls in `TestDuckDuckGoWebSearch` with this new Task:
+Replace the old calls in `TestWikipediaSearch` with this new Task:
 
 ```csharp
-actor.AttemptsTo(SearchDuckDuckGo.For("panda"));
+actor.AttemptsTo(SearchWikipedia.For("Giant panda"));
 ```
 
 Read this line in plain English:
-"The actor attempts to search DuckDuckGo for 'panda'."
+"The actor attempts to search Wikipedia for 'Giant panda'."
 This call is much more intuitively understandable than the previous calls.
 It conveys *intention*: the purpose of the step is not to send arbitrary keystrokes and clicks
-but rather to perform a DuckDuckGo search.
+but rather to perform a Wikipedia search.
 
-Custom Interactions like `SearchDuckDuckGo` add a little more code at first,
+Custom Interactions like `SearchWikipedia` add a little more code at first,
 but they can ultimately avoid lots of repetitive code.
 You should make custom Interactions for common operations shared by multiple tests.
-For example, `SearchDuckDuckGo` would be very useful for additional search tests.
+For example, `SearchWikipedia` would be very useful for additional search tests.
 
 Build and run the test again.
 This time, you should see the search happen.
@@ -586,39 +587,39 @@ This time, you should see the search happen.
 
 ## 8. Waiting for Questions to Yield Answers
 
-The last test case step should verify that result links appear after entering a search phrase.
+The last test case step should verify that the desired article appears entering a search phrase.
 Unfortunately, this step has a *race condition*:
-the result page takes a few seconds to display result links.
-Automation must wait for those links to appear.
+the article takes a few seconds to load.
+Automation must wait for the page to appear.
 Checking too early will make the test case fail.
 
 Boa Constrictor makes waiting easy.
-Add the following locator to the `ResultPage` class:
+Add the following locator to the `ArticlePage` class:
 
 ```csharp
-public static IWebLocator ResultLinks => L(
-    "DuckDuckGo Result Page Links",
-    By.ClassName("result__a"));
+public static IWebLocator Title => L(
+    "Title Span",
+    By.CssSelector("[id='firstHeading'] span"));
 ```
 
-This locator will find all result links on the result page.
+This locator will find the title heading on the article page.
 
-Then, add the following line to `TestDuckDuckGoWebSearch`:
+Then, add the following line to `TestWikipediaSearch`:
 
 ```csharp
-actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
+Actor.WaitsUntil(Text.Of(ArticlePage.Title), IsEqualTo.Value("Giant panda"));
 ```
 
 Read this line in plain English:
-"The actor waits until the appearance of result page result links is equal to true."
-In simpler terms, "Wait until the result links appear."
+"The actor waits until the text of the article page title is equal to the value 'Giant panda'."
+In simpler terms, "Wait until the article title is 'Giant panda'."
 Let's break it down:
 
 | Code | Purpose |
 | ---- | ------- |
-| `ResultPage.ResultLinks` | The locator for the result link elements. |
-| `Appearance.Of(...)` | A Question that returns true if the target elements are currently displayed on the page. |
-| `IsEqualTo.True()` | A *Condition* for checking if the return value of a Question is true. |
+| `ArticlePage.Title` | The locator for the article's title. |
+| `Text.Of(...)` | A Question that returns the text value of the target element. |
+| `IsEqualTo.Value(...)` | A *Condition* for checking if the return value of a Question equals a given value. |
 | `Actor.WaitsUntil(...)` | An extension method that halts execution until the given Question's answer meets the given Condition. In this case, the appearance of the result links must become true. |
 
 `WaitsUntil` is an `IActor` extension method that internally calls waiting interactions.
@@ -626,10 +627,10 @@ The following calls are essentially the same:
 
 ```csharp
 // The full, "traditional" way to wait
-actor.AttemptsTo(Wait.Until(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True()));
+actor.AttemptsTo(Wait.Until(Text.Of(ArticlePage.Title), IsEqualTo.Value("Giant panda")));
 
 // The more concise way to wait
-actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
+Actor.WaitsUntil(Text.Of(ArticlePage.Title), IsEqualTo.Value("Giant panda"));
 ```
 
 There are two waiting interactions under the `Boa.Constrictor.Screenplay` namespace:
@@ -679,7 +680,7 @@ Before ending the test case, the browser must be quit safely.
 Otherwise, the browser and its associated WebDriver executable will keep running,
 hogging system resources and possibly causing other problems.
 
-Add the following call to the bottom of `TestDuckDuckGoWebSearch`:
+Add the following call to the bottom of `TestWikipediaSearch`:
 
 ```csharp
 actor.AttemptsTo(QuitWebDriver.ForBrowser());
@@ -716,7 +717,8 @@ namespace Boa.Constrictor.Example
         public void InitializeScreenplay()
         {
             ChromeOptions options = new ChromeOptions();
-            options.AddArgument("headless");   // Remove this line to "see" the browser run
+            options.AddArgument("headless");                  // Remove this line to "see" the browser run
+            options.AddArgument("window-size=1920,1080");     // Use this option with headless mode
             ChromeDriver driver = new ChromeDriver(options);
 
             Actor = new Actor(name: "Andy", logger: new ConsoleLogger());
@@ -730,12 +732,12 @@ namespace Boa.Constrictor.Example
         }
 
         [Test]
-        public void TestDuckDuckGoWebSearch()
+        public void TestWikipediaSearch()
         {
-            Actor.AttemptsTo(Navigate.ToUrl(SearchPage.Url));
-            Actor.AskingFor(ValueAttribute.Of(SearchPage.SearchInput)).Should().BeEmpty();
-            Actor.AttemptsTo(SearchDuckDuckGo.For("panda"));
-            Actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
+            Actor.AttemptsTo(Navigate.ToUrl(MainPage.Url));
+            Actor.AskingFor(ValueAttribute.Of(MainPage.SearchInput)).Should().BeEmpty();
+            Actor.AttemptsTo(SearchWikipedia.For("Giant panda"));
+            Actor.WaitsUntil(Text.Of(ArticlePage.Title), IsEqualTo.Value("Giant panda"));
         }
     }
 }
@@ -752,11 +754,11 @@ Create new folders and move source files like this:
 Boa.Constrictor.Example
 │
 ├── Interactions
-│   └── SearchDuckDuckGo.cs
+│   └── SearchWikipedia.cs
 │
 ├── Pages
-│   ├── ResultPage.cs
-│   └── SearchPage.cs
+│   ├── ArticlePage.cs
+│   └── MainPage.cs
 │
 └── Tests
     └── ScreenplayWebUiTest.cs

@@ -29,7 +29,7 @@ To start using it:
 
 ## Example Code
 
-Here's how to automate a [DuckDuckGo](https://www.duckduckgo.com/) search in Chrome using Boa Constrictor.
+Here's how to automate a [Wikipedia](https://en.wikipedia.org/wiki/Main_Page) search in Chrome using Boa Constrictor.
 
 Write Screenplay calls:
 
@@ -45,16 +45,16 @@ IActor actor = new Actor(logger: new ConsoleLogger());
 actor.Can(BrowseTheWeb.With(new ChromeDriver()));
 
 // Load a page
-actor.AttemptsTo(Navigate.ToUrl(SearchPage.Url));
+actor.AttemptsTo(Navigate.ToUrl(MainPage.Url));
 
 // Get the page's title
 string title = actor.AsksFor(Title.OfPage());
 
 // Search for something
-actor.AttemptsTo(SearchDuckDuckGo.For("panda"));
+actor.AttemptsTo(SearchWikipedia.For("Giant panda"));
 
 // Wait for results
-actor.WaitsUntil(Appearance.Of(ResultPage.ResultLinks), IsEqualTo.True());
+Actor.WaitsUntil(Text.Of(ArticlePage.Title), IsEqualTo.Value("Giant panda"));
 ```
 
 With locator classes:
@@ -64,48 +64,47 @@ using Boa.Constrictor.Selenium;
 using OpenQA.Selenium;
 using static Boa.Constrictor.Selenium.WebLocator;
 
-public static class SearchPage
+public static class MainPage
 {
-  public const string Url = "https://www.duckduckgo.com/";
-
-  public static IWebLocator SearchInput => L(
-    "DuckDuckGo Search Input", 
-    By.Id("search_form_input_homepage"));
+  public const string Url = "https://en.wikipedia.org/wiki/Main_Page";
 
   public static IWebLocator SearchButton => L(
-    "DuckDuckGo Search Button",
-    By.Id("search_button_homepage"));
+    "Wikipedia Search Button",
+    By.XPath("//button[text()='Search']"));
+
+  public static IWebLocator SearchInput => L(
+    "Wikipedia Search Input",
+    By.Name("search"));
 }
 
-public static class ResultPage
+public static class ArticlePage
 {
-  public static IWebLocator ResultLinks => L(
-    "DuckDuckGo Result Page Links",
-    By.ClassName("result__a"));
+  public static IWebLocator Title => L(
+    "Title Span",
+    By.CssSelector("[id='firstHeading'] span"));
 }
 ```
 
-And a custom `SearchDuckDuckGo` task:
+And a custom `SearchWikipedia` Task:
 
 ```csharp
 using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Selenium;
 
-public class SearchDuckDuckGo : ITask
+public class SearchWikipedia : ITask
 {
   public string Phrase { get; }
 
-  private SearchDuckDuckGo(string phrase) =>
+  private SearchWikipedia(string phrase) =>
     Phrase = phrase;
 
-  public static SearchDuckDuckGo For(string phrase) =>
-    new SearchDuckDuckGo(phrase);
+  public static SearchWikipedia For(string phrase) =>
+    new SearchWikipedia(phrase);
 
   public void PerformAs(IActor actor)
   {
-    actor.AttemptsTo(SendKeys.To(SearchPage.SearchInput, Phrase));
-    actor.AttemptsTo(Click.On(SearchPage.SearchButton));
+    actor.AttemptsTo(SendKeys.To(MainPage.SearchInput, Phrase));
+    actor.AttemptsTo(Click.On(MainPage.SearchButton));
   }
 }
 ```
-
