@@ -24,9 +24,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added `SwitchFrame` and `PerformInFrame` Tasks
-- Added automatic waiting to `SwitchFrame`
-- Warning: we are investigating some flaky behavior with these new Tasks
+- Added `SwitchFrame` Task with automatic waiting
+- Addd commented code for a potential `PerformInFrame` Task
+  - This one is currently exhibiting flaky errors
+  - We must investigate further before releasing it officially
 
 ### Changed
 
