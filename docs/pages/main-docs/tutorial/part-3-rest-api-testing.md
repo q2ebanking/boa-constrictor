@@ -1006,7 +1006,7 @@ However, you should consider using a better output path when running tests in a 
 Rerun the tests, and make sure they all pass.
 Then, check the assembly directory for the dumped files.
 (The assembly file is most likely located at
-`boa-constrictor\Boa.Constrictor.Example\bin\Debug\net5.0`.)
+`boa-constrictor\Boa.Constrictor.Example\bin\Debug\net7.0`.)
 It should contain the following directories:
 
 ```

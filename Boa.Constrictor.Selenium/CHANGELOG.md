@@ -20,31 +20,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (none)
 
 
-## [3.1.0-alpha3] - 2023-05-25
-
-### Changed
-
-- Added automatic waiting to `SwitchFrame`
-
-
-## [3.1.0-alpha2] - 2023-05-24
-
-### Changed
-
-- Updated `Boa.Constrictor.Screenplay` version to `3.1.0`
-
-
-## [3.1.0-alpha1] - 2023-01-27
+## [4.0.0] - 2023-05-29
 
 ### Added
 
-- Added `SwitchFrame` and `PerformInFrame` Tasks
+- Added `SwitchFrame` Task with automatic waiting
+- Addd commented code for a potential `PerformInFrame` Task
+  - This one is currently exhibiting flaky errors
+  - We must investigate further before releasing it officially
 
 ### Changed
 
 - Changed the internal strategy for finding elements with locators
 - Removed the `Query` property from `IWebLocator`
 - Added the `FindElement(s)` methods to `IWebLocator`
+- Removed targets for `net5.0` and `net7.0`
+- Now targets only `netstandard2.0`
 
 
 ## [3.0.3] - 2022-12-13
