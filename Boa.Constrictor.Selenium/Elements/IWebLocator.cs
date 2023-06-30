@@ -19,6 +19,7 @@ namespace Boa.Constrictor.Selenium
 
         #region Methods
 
+        //TODO: Remove once no longer needed
         /// <summary>
         /// Locates the Web element.
         /// </summary>

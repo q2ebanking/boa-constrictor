@@ -41,8 +41,8 @@ namespace Boa.Constrictor.Example
 
         public static IWebLocator ShadowHostDiv => L(
           "ShadowHostDiv",
-          By.Id("shadow_host"));        
-        
+          By.Id("shadow_host"));
+
         public static WebLocator ShadowContentDiv => L(
           "ShadowHostDiv",
           By.ClassName("info"));
@@ -113,7 +113,6 @@ namespace Boa.Constrictor.Example
 
         //    nestedShadowHostContentDivText.Should().Be("nested text");
         //}
-
 
     }
 }

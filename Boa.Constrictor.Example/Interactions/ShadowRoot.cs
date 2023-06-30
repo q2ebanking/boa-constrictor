@@ -12,35 +12,36 @@ namespace Boa.Constrictor.Selenium
     {
         #region Constructors
 
-    /// <summary>
-    /// Private constructor.
-    /// (Use static methods for public construction.)
-    /// </summary>
-    /// <param name="locator">The target Web element's locator.</param>
-    private ShadowRoot(IWebLocator shadowRootLocator, WebLocator shadowContentLocator) : base(shadowContentLocator){
-        
-        ShadowRootLocator = shadowRootLocator;
-        ShadowContentLocator = shadowContentLocator;
-    } 
+        /// <summary>
+        /// Private constructor.
+        /// (Use static methods for public construction.)
+        /// </summary>
+        /// <param name="locator">The target Web element's locator.</param>
+        private ShadowRoot(IWebLocator shadowRootLocator, WebLocator shadowContentLocator) : base(shadowContentLocator)
+        {
 
-    #endregion
+            ShadowRootLocator = shadowRootLocator;
+            ShadowContentLocator = shadowContentLocator;
+        }
 
-    #region Props
+        #endregion
 
-    public IWebLocator ShadowRootLocator;
-    public WebLocator ShadowContentLocator;
-    
-    #endregion
+        #region Props
 
-    #region Builder Methods
+        public IWebLocator ShadowRootLocator;
+        public WebLocator ShadowContentLocator;
 
-    /// <summary>
-    /// Constructs the Question.
-    /// </summary>
-    /// <param name="locator">The target Web element's locator.</param>
-    /// <returns></returns>
-    public static ShadowRoot TextForShadowContentElement(IWebLocator shadowRootLocator, WebLocator shadowContentLocator) =>
-            new ShadowRoot(shadowRootLocator, shadowContentLocator);
+        #endregion
+
+        #region Builder Methods
+
+        /// <summary>
+        /// Constructs the Question.
+        /// </summary>
+        /// <param name="locator">The target Web element's locator.</param>
+        /// <returns></returns>
+        public static ShadowRoot TextForShadowContentElement(IWebLocator shadowRootLocator, WebLocator shadowContentLocator) =>
+                new ShadowRoot(shadowRootLocator, shadowContentLocator);
 
         #endregion
 
