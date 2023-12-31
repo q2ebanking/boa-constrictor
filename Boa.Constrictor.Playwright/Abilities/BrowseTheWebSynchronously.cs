@@ -45,13 +45,8 @@ public class BrowseTheWebSynchronously : IAbility
     /// Use a synchronous Chromium (i.e. Chrome, Edge, Opera, etc.) browser.
     /// </summary>
     /// <returns>An instance of <see cref="BrowseTheWebSynchronously"/> configured to use Chromium</returns>
-    public static async Task<BrowseTheWebSynchronously> UsingChromium()
+    public static async Task<BrowseTheWebSynchronously> UsingChromium(BrowserTypeLaunchOptions options = null)
     {
-        var options = new BrowserTypeLaunchOptions()
-        {
-            Headless = false
-        };
-
         var playwright = await Microsoft.Playwright.Playwright.CreateAsync();
         var browser = await playwright.Chromium.LaunchAsync(options);
         return new BrowseTheWebSynchronously(playwright, browser);
@@ -61,20 +56,20 @@ public class BrowseTheWebSynchronously : IAbility
     /// Use a synchronous Firefox browser
     /// </summary>
     /// <returns>An instance of <see cref="BrowseTheWebSynchronously"/> configured to use firefox</returns>
-    public static async Task<BrowseTheWebSynchronously> UsingFirefox()
+    public static async Task<BrowseTheWebSynchronously> UsingFirefox(BrowserTypeLaunchOptions options = null)
     {
         var playwright = await Microsoft.Playwright.Playwright.CreateAsync();
-        var browser = await playwright.Firefox.LaunchAsync();
+        var browser = await playwright.Firefox.LaunchAsync(options);
         return new BrowseTheWebSynchronously(playwright, browser);
     }
     /// <summary>
     /// Use a synchronous WebKit (i.e. Safari, etc.) browser.
     /// </summary>
     /// <returns>An instance of <see cref="BrowseTheWebSynchronously"/> configured to use Webkit</returns>
-    public static async Task<BrowseTheWebSynchronously> UsingWebkit()
+    public static async Task<BrowseTheWebSynchronously> UsingWebkit(BrowserTypeLaunchOptions options = null)
     {
         var playwright = await Microsoft.Playwright.Playwright.CreateAsync();
-        var browser = await playwright.Chromium.LaunchAsync();
+        var browser = await playwright.Chromium.LaunchAsync(options);
         return new BrowseTheWebSynchronously(playwright, browser);
     }
 

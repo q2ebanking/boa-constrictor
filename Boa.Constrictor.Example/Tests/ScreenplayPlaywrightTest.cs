@@ -6,6 +6,7 @@ using Boa.Constrictor.Playwright.Questions;
 using Boa.Constrictor.Playwright.Tasks;
 using Boa.Constrictor.Screenplay;
 using FluentAssertions;
+using Microsoft.Playwright;
 using NUnit.Framework;
 
 public class ScreenplayPlaywrightTest
@@ -15,8 +16,12 @@ public class ScreenplayPlaywrightTest
     [SetUp]
     public async Task Setup()
     {
+        var options = new BrowserTypeLaunchOptions()
+        {
+            Headless = false
+        };
         Actor = new Actor(name: "Keith", logger: new ConsoleLogger());
-        Actor.Can(await BrowseTheWebSynchronously.UsingChromium());
+        Actor.Can(await BrowseTheWebSynchronously.UsingChromium(options));
     }
 
     [Test]
