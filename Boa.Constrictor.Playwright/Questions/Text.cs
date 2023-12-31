@@ -1,27 +1,63 @@
 namespace Boa.Constrictor.Playwright.Questions
 {
     using System.Threading.Tasks;
-    using Boa.Constrictor.Playwright.Abilities;
+    using Boa.Constrictor.Playwright.Extensions;
     using Boa.Constrictor.Screenplay;
+    using Microsoft.Playwright;
 
-    public class Text : IQuestionAsync<string>
+    /// <summary>
+    /// Gets the inner text of a web element.
+    /// </summary>
+    public class Text : AbstractPageQuestion<string>
     {
-        private readonly string locator;
+        private readonly string Locator;
+
+        #region Constructors
 
         private Text(string locator)
         {
-            this.locator = locator;
+            this.Locator = locator;
         }
 
+        #endregion
+
+        #region Builder Methods
+
+        /// <summary>
+        /// Constructs the Question.
+        /// </summary>
+        /// <param name="locator">The target web element's selector.</param>
+        /// <returns></returns>
         public static Text Of(string locator)
         {
             return new Text(locator);
         }
 
-        public async Task<string> RequestAsAsync(IActor actor)
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Gets the InnerText of an element.
+        /// </summary>
+        /// <param name="actor">The Screenplay actor.</param>
+        /// <param name="page">The current page.</param>
+        /// <returns></returns>
+        public override async Task<string> RequestAsAsync(IActor actor, IPage page)
         {
-            var page = await actor.Using<BrowseTheWebSynchronously>().CurrentPageAsync();
-            return await page.Locator(this.locator).InnerTextAsync();
+            return await page.Locator(this.Locator).InnerTextAsync();
         }
+
+        /// <summary>
+        /// Returns a description of the Question.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return $"text of {Locator}";
+        }
+
+        #endregion
+
     }
 }

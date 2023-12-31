@@ -69,7 +69,7 @@ public class BrowseTheWebSynchronously : IAbility
     public static async Task<BrowseTheWebSynchronously> UsingWebkit(BrowserTypeLaunchOptions options = null)
     {
         var playwright = await Microsoft.Playwright.Playwright.CreateAsync();
-        var browser = await playwright.Chromium.LaunchAsync(options);
+        var browser = await playwright.Webkit.LaunchAsync(options);
         return new BrowseTheWebSynchronously(playwright, browser);
     }
 
