@@ -32,6 +32,10 @@ public class ScreenplayPlaywrightTest
         valueAttribute.Should().BeNullOrEmpty();
 
         await Actor.AttemptsToAsync(Fill.ValueTo("[name='search']", "Giant panda"));
+        await Actor.AttemptsToAsync(Click.On("//button[text()='Search']"));
+
+        var heading = await Actor.AsksForAsync(Text.Of("[id='firstHeading'] span"));
+        heading.Should().Be("Giant panda");
 
         // Todo: add support to wait for async questions
         // Actor.WaitsUntil(Text.Of("[id='firstHeading'] span"), IsEqualTo.Value("Giant panda"));
