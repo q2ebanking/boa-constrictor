@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0</TargetFrameworks>
+        <Version>4.0.0</Version>
+        <Authors>Keith Tremorin, Pandy Knight, and the PrecisionLender SETs</Authors>
+        <Company>Q2</Company>
+        <Title>Boa.Constrictor.Playwright</Title>
+        <Product>Boa.Constrictor.Playwright</Product>
+        <Description>Boa Constrictor is the .NET Screenplay Pattern! This package is the Playwright support library.</Description>
+        <Copyright>Copyright © 2020-2023 Q2 Holdings Inc.</Copyright>
+        <RepositoryUrl>https://github.com/q2ebanking/boa-constrictor</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <DebugType>embedded</DebugType>
+        <PackageIcon>icon.png</PackageIcon>
+        <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageReleaseNotes>Please read https://github.com/q2ebanking/boa-constrictor/blob/main/Boa.Constrictor.Playwright/CHANGELOG.md for full release notes.</PackageReleaseNotes>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="../logos/symbol/no-margin/png/logo-symbol-black-120x148.png" Pack="true" PackagePath="$(PackageIcon)" />
+        <None Include="../LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)" />
+        <None Include="README.md" Pack="true" PackagePath="$(PackageReadmeFile)" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(Configuration)' == 'Release'">
+        <PackageReference Include="Boa.Constrictor.Screenplay" Version="4.0.0" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+        <ProjectReference Include="..\Boa.Constrictor.Screenplay\Boa.Constrictor.Screenplay.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Playwright" Version="1.40.0" />
+    </ItemGroup>
+
+</Project>

@@ -18,7 +18,9 @@ Versioning is performed purely for tracking changes.
 
 ## [Unreleased]
 
-(none)
+### Added
+
+- Created Playwright tests
 
 
 ## [4.0.0] - 2023-05-29
