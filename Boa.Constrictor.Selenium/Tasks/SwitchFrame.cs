@@ -16,10 +16,12 @@ namespace Boa.Constrictor.Selenium
         /// (Use static builder methods to construct.)
         /// </summary>
         /// <param name="locator">The locator.</param>
+        /// <param name="startFromDefaultContent">If true switch to DefaultContent before switching to the locator.</param>
         /// <param name="useDefaultContent">If true use DefaultContent instead of the locator.</param>
-        private SwitchFrame(IWebLocator locator, bool useDefaultContent)
+        private SwitchFrame(IWebLocator locator, bool useDefaultContent, bool startFromDefaultContent = true)
         {
             Locator = locator;
+            StartFromDefaultContent = startFromDefaultContent;
             UseDefaultContent = useDefaultContent;
         }
 
@@ -31,6 +33,11 @@ namespace Boa.Constrictor.Selenium
         /// The target Web element's locator.
         /// </summary>
         public IWebLocator Locator { get; }
+
+        /// <summary>
+        /// Switch to DefaultContent first before switching to a frame.
+        /// </summary>
+        public bool StartFromDefaultContent { get; }
 
         /// <summary>
         /// The DefaultContent is used.
@@ -54,6 +61,13 @@ namespace Boa.Constrictor.Selenium
         /// <returns></returns>
         public static SwitchFrame ToDefaultContent() => new SwitchFrame(null, true);
 
+        /// <summary>
+        /// Constructs the Task object for the given locator without starting from DefaultContent.
+        /// </summary>
+        /// <param name="locator">The locator.</param>
+        /// <returns></returns>
+        public static SwitchFrame WithoutUsingDefaultContentTo(IWebLocator locator) => new SwitchFrame(locator, false, false);
+
         #endregion
 
         #region Methods
@@ -65,7 +79,8 @@ namespace Boa.Constrictor.Selenium
         /// <param name="driver">The WebDriver.</param>
         public override void PerformAs(IActor actor, IWebDriver driver)
         {
-            driver.SwitchTo().DefaultContent();
+            if (StartFromDefaultContent)
+                driver.SwitchTo().DefaultContent();
 
             if (!UseDefaultContent)
             {
@@ -81,6 +96,7 @@ namespace Boa.Constrictor.Selenium
         public override bool Equals(object obj) =>
             obj is SwitchFrame frame &&
             Locator.Equals(frame.Locator) &&
+            StartFromDefaultContent == frame.StartFromDefaultContent &&
             UseDefaultContent == frame.UseDefaultContent;
 
         /// <summary>
@@ -88,14 +104,14 @@ namespace Boa.Constrictor.Selenium
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode() =>
-            HashCode.Combine(GetType(), Locator, UseDefaultContent);
+            HashCode.Combine(GetType(), Locator, StartFromDefaultContent, UseDefaultContent);
 
         /// <summary>
         /// Returns a description of the Task.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => 
-            UseDefaultContent 
+        public override string ToString() =>
+            UseDefaultContent
                 ? "switch frame to DefaultContent"
                 : $"switch frame to '{Locator.Description}'";
 
