@@ -1,6 +1,6 @@
-﻿using System;
-using Boa.Constrictor.Screenplay;
+﻿using Boa.Constrictor.Screenplay;
 using OpenQA.Selenium;
+using System;
 
 namespace Boa.Constrictor.Selenium
 {

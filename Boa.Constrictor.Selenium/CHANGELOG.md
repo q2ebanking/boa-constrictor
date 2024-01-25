@@ -24,6 +24,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added `SwitchFrames` property to control switching to Default Content first
+- Added `SwitchIntoNestedFrames` Task
+
 
 ## [4.0.0] - 2023-05-29
 
