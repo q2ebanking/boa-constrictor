@@ -17,7 +17,12 @@ namespace Boa.Constrictor.Selenium
         /// (Use the public builder methods.)
         /// </summary>
         /// <param name="locators">The frame locator list.</param>
-        private SwitchIntoNestedFrames(List<IWebLocator> locators) => Locators = locators;
+        /// <param name="startFromDefaultContent">If true switch to DefaultContent before switching to the locator.</param>
+        private SwitchIntoNestedFrames(List<IWebLocator> locators, bool startFromDefaultContent = true)
+        {
+            Locators = locators;
+            StartFromDefaultContent = startFromDefaultContent;
+        }
 
         #endregion
 
@@ -29,6 +34,11 @@ namespace Boa.Constrictor.Selenium
         /// </summary>
         public List<IWebLocator> Locators { get; }
 
+        /// <summary>
+        /// Switch to DefaultContent first before switching to a frame.
+        /// </summary>
+        public bool StartFromDefaultContent { get; }
+
         #endregion
 
         #region Builder Methods
@@ -37,7 +47,15 @@ namespace Boa.Constrictor.Selenium
         /// Constructs the Task.
         /// </summary>
         /// <param name="locators">The frame locator list.</param>
-        public static SwitchIntoNestedFrames To(List<IWebLocator> locators) => new SwitchIntoNestedFrames(locators);
+        public static SwitchIntoNestedFrames To(List<IWebLocator> locators) =>
+            new SwitchIntoNestedFrames(locators);
+
+        /// <summary>
+        /// Constructs the Task.
+        /// </summary>
+        /// <param name="locators">The frame locator list.</param>
+        public static SwitchIntoNestedFrames WithoutUsingDefaultContentTo(List<IWebLocator> locators) =>
+            new SwitchIntoNestedFrames(locators, false);
 
         #endregion
 
@@ -49,7 +67,8 @@ namespace Boa.Constrictor.Selenium
         /// <param name="actor">The Screenplay Actor.</param>
         public void PerformAs(IActor actor)
         {
-            actor.AttemptsTo(SwitchFrame.ToDefaultContent());
+            if (StartFromDefaultContent)
+                actor.AttemptsTo(SwitchFrame.ToDefaultContent());
 
             foreach (IWebLocator locator in Locators)
                 actor.AttemptsTo(SwitchFrame.WithoutUsingDefaultContentTo(locator));
