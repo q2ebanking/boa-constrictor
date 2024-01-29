@@ -20,11 +20,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 (none)
 
 
-## [4.1.0] - 2024-01-26
+## [4.1.0] - 2024-01-29
 
 ### Added
-- Added `SwitchFrames` property to control switching to Default Content first
-- Added `SwitchIntoNestedFrames` Task
+- Added `SwitchFrames` property to control switching to DefaultContent first
+- Added functionality to switch into nested frames in `SwitchFrames`
+
+### Changed
+- `SwitchFrames` `Locator` property is now a list
 
 
 ## [4.0.0] - 2023-05-29
