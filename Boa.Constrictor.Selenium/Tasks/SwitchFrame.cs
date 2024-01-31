@@ -111,7 +111,7 @@ namespace Boa.Constrictor.Selenium
         /// <param name="obj">The other object.</param>
         public override bool Equals(object obj) =>
             obj is SwitchFrame frame &&
-            Locators.Equals(frame.Locators) &&
+            Locators.SequenceEqual(frame.Locators) &&
             StartFromCurrentLocation == frame.StartFromCurrentLocation &&
             UseDefaultContent == frame.UseDefaultContent;
 
