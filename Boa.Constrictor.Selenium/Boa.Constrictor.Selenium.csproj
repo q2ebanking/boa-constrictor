@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <Version>4.0.0</Version>
+    <Version>4.1.0</Version>
     <Authors>Pandy Knight and the PrecisionLender SETs</Authors>
     <Company>Q2</Company>
     <Title>Boa.Constrictor.Selenium</Title>
     <Product>Boa.Constrictor.Selenium</Product>
     <Description>Boa Constrictor is the .NET Screenplay Pattern! This package is the Selenium WebDriver interaction library.</Description>
-    <Copyright>Copyright © 2020-2023 Q2 Holdings Inc.</Copyright>
+    <Copyright>Copyright © 2020-2024 Q2 Holdings Inc.</Copyright>
     <RepositoryUrl>https://github.com/q2ebanking/boa-constrictor</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
