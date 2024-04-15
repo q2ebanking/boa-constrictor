@@ -70,7 +70,7 @@ Instead, test case setup is done in test class constructors.
 Each test should have its own Actor with its own set of Abilities to preserve test case independence.
 
 xUnit also does not capture console output. Instead, it offers [ITestOutputHelper](https://xunit.net/docs/capturing-output#output-in-tests). 
-In order to configure an actor to use this mechanism you may use `XunitLogger`
+In order to configure an actor to use this mechanism you may use `TestOutputLogger`
 
 Below is the `WikipediaTest` constructor that 
 constructs an Actor and gives it the Ability to browse the web with ChromeDriver:
@@ -78,7 +78,7 @@ constructs an Actor and gives it the Ability to browse the web with ChromeDriver
 ```csharp
     public WikipediaTest(ITestOutputHelper output)
     {
-      Actor = new Actor(name: "Andy", logger: new XunitLogger(output));
+      Actor = new Actor(name: "Andy", logger: new TestOutputLogger(output));
       Actor.Can(BrowseTheWeb.With(new ChromeDriver()));
     }
 ```
@@ -151,7 +151,7 @@ namespace Boa.Constrictor.Example
 
     public WikipediaTest(ITestOutputHelper output)
     {
-      Actor = new Actor(name: "Andy", logger: new XunitLogger(output));
+      Actor = new Actor(name: "Andy", logger: new TestOutputLogger(output));
       Actor.Can(BrowseTheWeb.With(new ChromeDriver()));
     }
 
@@ -171,3 +171,64 @@ namespace Boa.Constrictor.Example
   }
 }
 ```
+
+## Shared Context
+xUnit offers a [number of ways](https://xunit.net/docs/shared-context) to share Setup and Cleanup code
+
+For example, a [Class Fixture](https://xunit.net/docs/shared-context#class-fixture) could be used to perform a 
+setup that occurs only once for
+all the tests in a class (Similar to NUnits `[OneTimeSetup]`` method). Instead, one time setup 
+is done in the class fixture constructor. It's not advised to have a public Actor in a shared context.
+Each test should have its own Actor with its own set of Abilities to preserve test case independence.
+However, you could use a private Actor to perform any screenplay task you wish in your one-time setup.
+
+xUnit does not capture console output, or make use of its `ITestOutputHelper` in any of it's extensibility objects. 
+Instead, it offers [IMessageSink](https://xunit.net/docs/capturing-output#output-in-extensions). In order to configure
+an actor to use this mechanism you may use `MessageSinkLogger`
+
+Below is an example of a possible Test Fixture usage. It connects and initializes some database data. 
+xUnit injects `IMessageSink` which can be used to initialize `MessageSinkLogger`. The connection is a public property
+so that it can be shared to the test case
+```csharp
+public class DatabaseFixture : IDisposable
+{
+    public DatabaseFixture(IMessageSink messageSink)
+    {
+        Connection = new SqlConnection("MyConnectionString");
+        var actor = new Actor("Fixture Actor", new MessageSinkLogger(messageSink));
+        actor.Can(ConnectToDatabase.Using(Connection));
+        // ... initialize data in the test database ...
+    }
+
+    public void Dispose()
+    {
+        // ... clean up test data from the database ...
+    }
+
+    public SqlConnection Connection{ get; private set; }
+}
+```
+In the test case, it implements the IClassFixture interface which allows the fixture to be injected into the constructor.
+From here we can extract the database connection, and initialize our actor as we would for any other test.
+```csharp
+public class DatabaseTest : IClassFixture<DatabaseFixture>
+{
+    public Actor DatabaseAdmin { get; set; }
+
+    public DatabaseTest(DatabaseFixture databaseFixture, ITestOutputHelper outputHelper)
+    {
+        DatabaseAdmin = new Actor("Admin", new TestOutputLogger(outputHelper));
+        DatabaseAdmin.Can(ConnectToDatabase.Using(databaseFixture.Connection));
+    }
+
+    [Fact]
+    public void CanDeleteWidget()
+    {
+        /* Use DatabaseAdmin to get access to database connection */
+    }
+}
+```
+`IMessageSink` does not write to the test output. Instead, it writes to the test runner diagnostics.
+This is a limitation of xUnit and cannot be controlled by Boa.Constrictor. Make sure you have the [diagnosticMessages flag](https://xunit.net/docs/configuration-files#diagnosticMessages)
+enabled. Where you find this info will depend on your IDE. In Visual Studio, it's available in the output window.
+{: .notice--warning}
