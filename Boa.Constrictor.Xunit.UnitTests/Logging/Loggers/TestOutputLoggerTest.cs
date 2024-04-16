@@ -7,7 +7,7 @@ using Xunit.Sdk;
 
 namespace Boa.Constrictor.Xunit.UnitTests
 {
-    public class XunitLoggerTest
+    public class TestOutputLoggerTest
     {
         #region Variables
 
@@ -15,17 +15,17 @@ namespace Boa.Constrictor.Xunit.UnitTests
 
         public TestOutputHelper OutputHelper;
 
-        public XunitLogger Logger;
+        public TestOutputLogger Logger;
 
         #endregion
 
         #region SetUp
 
-        public XunitLoggerTest() 
+        public TestOutputLoggerTest()
         {
             // Using a concrete TestOutputHelper allows us to access the output
             OutputHelper = new TestOutputHelper();
-            Logger = new XunitLogger(OutputHelper);
+            Logger = new TestOutputLogger(OutputHelper);
 
             InitializeOutputHelper();
         }
@@ -80,7 +80,7 @@ namespace Boa.Constrictor.Xunit.UnitTests
             const string path = "path/to/screen.png";
 
             Logger.LogArtifact(type, path);
-            
+
             OutputHelper.Output.Trim().Should().MatchRegex(TimePattern).And.EndWith($"[INFO] {type}: {path}");
         }
 

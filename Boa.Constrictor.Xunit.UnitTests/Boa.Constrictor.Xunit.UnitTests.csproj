@@ -24,5 +24,11 @@
     <ItemGroup>
     <ProjectReference Include="..\Boa.Constrictor.Xunit\Boa.Constrictor.Xunit.csproj" />
   </ItemGroup>
+  
+    <ItemGroup>
+      <None Update="xunit.runner.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
 
 </Project>

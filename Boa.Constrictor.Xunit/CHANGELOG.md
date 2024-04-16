@@ -5,8 +5,17 @@ This file documents all notable changes to the Boa.Constrictor.Xunit project and
 Its format is based on Keep a Changelog, and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
-
 (none)
+
+## [4.1.0] - 2024-04-15
+### Added
+
+- Added `MessageSinkLogger` for logging in xUnit extensibility classes
+  - See [the docs](https://q2ebanking.github.io/boa-constrictor/user-guides/testing-with-xunit-net/#shared-context) for more info
+
+### Changed
+
+- Renamed `XunitLogger` to `TestOutputLogger`
 
 
 ## [4.0.0] - 2023-05-29

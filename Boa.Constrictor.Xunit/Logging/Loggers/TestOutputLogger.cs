@@ -4,9 +4,9 @@ using Xunit.Abstractions;
 namespace Boa.Constrictor.Xunit
 {
     /// <summary>
-    /// Prints messages to xUnit's ITestOutputHelper   
+    /// Prints messages to xUnit's ITestOutputHelper
     /// </summary>
-    public class XunitLogger : AbstractLogger
+    public class TestOutputLogger : AbstractLogger
     {
         #region Constructors
 
@@ -15,7 +15,7 @@ namespace Boa.Constrictor.Xunit
         /// </summary>
         /// <param name="testOutputHelper">The xUnit logger object</param>
         /// <param name="lowestSeverity">The lowest severity message to log.</param>
-        public XunitLogger(ITestOutputHelper testOutputHelper, LogSeverity lowestSeverity = LogSeverity.Trace) : base(lowestSeverity)
+        public TestOutputLogger(ITestOutputHelper testOutputHelper, LogSeverity lowestSeverity = LogSeverity.Trace) : base(lowestSeverity)
         {
             TestOutputHelper = testOutputHelper;
         }
