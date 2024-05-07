@@ -33,7 +33,7 @@ public class ScreenplayPlaywrightTest
         await Actor.AttemptsToAsync(Fill.ValueTo(PlaywrightMainPage.SearchInput, "Giant panda"));
         await Actor.AttemptsToAsync(Click.On(PlaywrightMainPage.SearchButton));
 
-        await Actor.Expect(PlaywrightMainPage.Title).ToHaveTextAsync("Giant panda");
+        await Actor.Expects(PlaywrightMainPage.Title).ToHaveTextAsync("Giant panda");
         // var heading = await Actor.AsksForAsync(Text.Of(PlaywrightMainPage.Title));
         // heading.Should().Be("Giant panda");
 
