@@ -1,7 +1,6 @@
-namespace Boa.Constrictor.Playwright.Questions
+namespace Boa.Constrictor.Playwright
 {
     using System.Threading.Tasks;
-    using Boa.Constrictor.Playwright.Extensions;
     using Boa.Constrictor.Screenplay;
     using Microsoft.Playwright;
 
@@ -10,15 +9,15 @@ namespace Boa.Constrictor.Playwright.Questions
     /// </summary>
     public class Attribute : AbstractPageQuestion<string>
     {
-        private readonly string Selector;
+        private readonly IPlaywrightLocator Locator;
         private readonly string Name;
-        private readonly PageGetAttributeOptions Options;
+        private readonly LocatorGetAttributeOptions Options;
 
         #region Constructor
 
-        private Attribute(string selector, string name, PageGetAttributeOptions options)
+        private Attribute(IPlaywrightLocator locator, string name, LocatorGetAttributeOptions options)
         {
-            Selector = selector;
+            Locator = locator;
             Name = name;
             Options = options;
         }
@@ -30,13 +29,13 @@ namespace Boa.Constrictor.Playwright.Questions
         /// <summary>
         /// Constructs the Question.
         /// </summary>
-        /// <param name="selector">The target Web element's selector</param>
+        /// <param name="locator">The target locator.</param>
         /// <param name="name">The name of the target attribute</param>
         /// <param name="options">Playwright options for retrieving attribute values.</param>
         /// <returns></returns>
-        public static Attribute Of(string selector, string name, PageGetAttributeOptions options = null)
+        public static Attribute Of(IPlaywrightLocator locator, string name, LocatorGetAttributeOptions options = null)
         {
-            return new Attribute(selector, name, options);
+            return new Attribute(locator, name, options);
         }
 
         #endregion
@@ -51,14 +50,15 @@ namespace Boa.Constrictor.Playwright.Questions
         /// <returns></returns>
         public override async Task<string> RequestAsAsync(IActor actor, IPage page)
         {
-            return await page.GetAttributeAsync(Selector, Name, Options);
+            var locator = this.Locator.FindIn(page);
+            return await locator.GetAttributeAsync(Name, Options);
         }
 
         /// <summary>
         /// Returns a description of the Question.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"{Name} attribute on {Selector}";
+        public override string ToString() => $"{Name} attribute on {Locator}";
 
         #endregion
     }

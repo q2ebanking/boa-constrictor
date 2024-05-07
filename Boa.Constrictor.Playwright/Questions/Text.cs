@@ -1,7 +1,6 @@
-namespace Boa.Constrictor.Playwright.Questions
+namespace Boa.Constrictor.Playwright
 {
     using System.Threading.Tasks;
-    using Boa.Constrictor.Playwright.Extensions;
     using Boa.Constrictor.Screenplay;
     using Microsoft.Playwright;
 
@@ -10,11 +9,11 @@ namespace Boa.Constrictor.Playwright.Questions
     /// </summary>
     public class Text : AbstractPageQuestion<string>
     {
-        private readonly string Locator;
+        private readonly IPlaywrightLocator Locator;
 
         #region Constructors
 
-        private Text(string locator)
+        private Text(IPlaywrightLocator locator)
         {
             this.Locator = locator;
         }
@@ -28,7 +27,7 @@ namespace Boa.Constrictor.Playwright.Questions
         /// </summary>
         /// <param name="locator">The target web element's selector.</param>
         /// <returns></returns>
-        public static Text Of(string locator)
+        public static Text Of(IPlaywrightLocator locator)
         {
             return new Text(locator);
         }
@@ -45,7 +44,8 @@ namespace Boa.Constrictor.Playwright.Questions
         /// <returns></returns>
         public override async Task<string> RequestAsAsync(IActor actor, IPage page)
         {
-            return await page.Locator(this.Locator).InnerTextAsync();
+            var element = this.Locator.FindIn(page);
+            return await element.InnerTextAsync();
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Boa.Constrictor.Playwright.Questions
         /// <returns></returns>
         public override string ToString()
         {
-            return $"text of {Locator}";
+            return $"text of {Locator.Description}";
         }
 
         #endregion

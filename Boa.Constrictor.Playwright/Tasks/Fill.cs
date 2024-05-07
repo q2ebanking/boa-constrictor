@@ -1,37 +1,38 @@
-namespace Boa.Constrictor.Playwright.Tasks
+namespace Boa.Constrictor.Playwright
 {
     using System.Threading.Tasks;
-    using Boa.Constrictor.Playwright.Abilities;
-    using Boa.Constrictor.Playwright.Extensions;
     using Boa.Constrictor.Screenplay;
     using Microsoft.Playwright;
 
     /// <summary>
     /// Inputs text in an element
     /// </summary>
-    public class Fill : AbstractPageTask
+    public class Fill : AbstractLocatorTask
     {
         private readonly string Value;
-        private readonly string Selector;
+        private readonly LocatorFillOptions Options;
 
         #region Constructors
 
-        private Fill(string selector, string value)
+        private Fill(IPlaywrightLocator locator, string value, LocatorFillOptions options)
+            :base(locator)
         {
-            this.Selector = selector;
-            this.Value = value;
+            Value = value;
+            Options = options;
         }
 
         #endregion
 
         #region Builder Methods
+
         /// <summary>
         /// Constructs the Task object.
         /// </summary>
-        /// <param name="selector">The target Web element's selector.</param>
+        /// <param name="locator">The target locator.</param>
         /// <param name="value">The value to be filled(e.g., text).</param>
+        /// <param name="options">Call options.</param>
         /// <returns></returns>
-        public static Fill ValueTo(string selector, string value) => new Fill(selector, value);
+        public static Fill ValueTo(IPlaywrightLocator locator, string value, LocatorFillOptions options = null) => new Fill(locator, value, options);
 
         #endregion
 
@@ -41,10 +42,10 @@ namespace Boa.Constrictor.Playwright.Tasks
         /// Inputs text in an element
         /// </summary>
         /// <param name="actor">The Screenplay Actor.</param>
-        /// <param name="page">The current Playwright page.</param>
-        public override async Task PerformAsAsync(IActor actor, IPage page)
+        /// <param name="locator">The target locator.</param>
+        public override async Task PerformAsAsync(IActor actor, ILocator locator)
         {
-            await page.Locator(this.Selector).FillAsync(this.Value);
+            await locator.FillAsync(this.Value, Options);
         }
 
         /// <summary>
@@ -53,7 +54,7 @@ namespace Boa.Constrictor.Playwright.Tasks
         /// <returns></returns>
         public override string ToString()
         {
-            return $"fill the text {Value} into {Selector}";
+            return $"fill the text {Value} into {Locator.Description}";
         }
 
         #endregion

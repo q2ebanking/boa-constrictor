@@ -90,7 +90,7 @@ public class BrowseTheWebSynchronously : IAbility
     /// <returns></returns>
     public override string ToString()
     {
-        return $"browse the web with playwright using {Browser}";
+        return $"browse the web with playwright using {Browser.BrowserType.Name}";
     }
 
     private async Task<IBrowserContext> GetBrowserContextAsync()

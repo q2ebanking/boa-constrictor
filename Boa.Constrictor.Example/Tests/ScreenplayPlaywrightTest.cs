@@ -1,9 +1,8 @@
 namespace Boa.Constrictor.Example;
 
 using System.Threading.Tasks;
+using Boa.Constrictor.Playwright;
 using Boa.Constrictor.Playwright.Abilities;
-using Boa.Constrictor.Playwright.Questions;
-using Boa.Constrictor.Playwright.Tasks;
 using Boa.Constrictor.Screenplay;
 using FluentAssertions;
 using Microsoft.Playwright;
@@ -20,22 +19,24 @@ public class ScreenplayPlaywrightTest
         {
             Headless = false
         };
-        Actor = new Actor(name: "Keith", logger: new ConsoleLogger());
+        Actor = new Actor("Pantz", new ConsoleLogger());
         Actor.Can(await BrowseTheWebSynchronously.UsingChromium(options));
     }
 
     [Test]
     public async Task TestWikipediaSearch()
     {
-        await Actor.AttemptsToAsync(OpenNewPage.ToUrl(MainPage.Url));
-        var valueAttribute = await Actor.AskingForAsync(Attribute.Of("[name='search']", "value"));
+        await Actor.AttemptsToAsync(OpenNewPage.ToUrl(PlaywrightMainPage.Url));
+        var valueAttribute = await Actor.AskingForAsync(Attribute.Of(PlaywrightMainPage.SearchInput, "value"));
         valueAttribute.Should().BeNullOrEmpty();
 
-        await Actor.AttemptsToAsync(Fill.ValueTo("[name='search']", "Giant panda"));
-        await Actor.AttemptsToAsync(Click.On("//button[text()='Search']"));
+        await Actor.AttemptsToAsync(Fill.ValueTo(PlaywrightMainPage.SearchInput, "Giant panda"));
+        await Actor.AttemptsToAsync(Click.On(PlaywrightMainPage.SearchButton));
 
-        var heading = await Actor.AsksForAsync(Text.Of("[id='firstHeading'] span"));
-        heading.Should().Be("Giant panda");
+        await Actor.Expect(PlaywrightMainPage.Title).ToHaveTextAsync("Giant panda");
+        // var heading = await Actor.AsksForAsync(Text.Of(PlaywrightMainPage.Title));
+        // heading.Should().Be("Giant panda");
+
 
         // Todo: add support to wait for async questions
         // Actor.WaitsUntil(Text.Of("[id='firstHeading'] span"), IsEqualTo.Value("Giant panda"));

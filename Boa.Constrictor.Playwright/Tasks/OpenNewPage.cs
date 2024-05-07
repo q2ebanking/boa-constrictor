@@ -1,4 +1,4 @@
-namespace Boa.Constrictor.Playwright.Tasks
+namespace Boa.Constrictor.Playwright
 {
     using System.Threading.Tasks;
     using Boa.Constrictor.Playwright.Abilities;

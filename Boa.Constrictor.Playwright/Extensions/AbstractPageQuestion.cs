@@ -1,4 +1,4 @@
-namespace Boa.Constrictor.Playwright.Extensions
+namespace Boa.Constrictor.Playwright
 {
     using System;
     using System.Threading.Tasks;
@@ -39,7 +39,7 @@ namespace Boa.Constrictor.Playwright.Extensions
         /// </summary>
         /// <param name="obj">The other object.</param>
         /// <returns></returns>
-        public override bool Equals(object obj) => obj.GetType().Equals(GetType());
+        public override bool Equals(object obj) => obj?.GetType() == GetType();
 
         /// <summary>
         /// Gets a unique hash code for this interaction.
