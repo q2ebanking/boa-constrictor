@@ -7,7 +7,7 @@ Its format is based on Keep a Changelog, and this project adheres to Semantic Ve
 ## [Unreleased]
 ### Added
 
-- Added `CloseWebDriver` to `Boa.Constrictor.Screenplay` to enable closing the active tab window or tab
+- Added `CloseWebDriver` to `Boa.Constrictor.Screenplay` to enable closing the active window or tab
 
 ## [4.1.0] - 2024-04-15
 ### Added
