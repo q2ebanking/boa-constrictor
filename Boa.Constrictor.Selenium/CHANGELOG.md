@@ -17,6 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+(none)
+
+
+## [4.2.0] - 2024-06-11
+
 ### Added
 
 - Added `CloseWebDriver` to `Boa.Constrictor.Screenplay` to enable closing the active window or tab
@@ -25,10 +30,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [4.1.0] - 2024-01-29
 
 ### Added
+
 - Added `SwitchFrames` property to control switching to DefaultContent first
 - Added functionality to switch into nested frames in `SwitchFrames`
 
 ### Changed
+
 - `SwitchFrames` `Locator` property is now a list
 
 
