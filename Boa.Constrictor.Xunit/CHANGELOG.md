@@ -5,11 +5,11 @@ This file documents all notable changes to the Boa.Constrictor.Xunit project and
 Its format is based on Keep a Changelog, and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
-### Added
 
-- Added `CloseWebDriver` to `Boa.Constrictor.Screenplay` to enable closing the active window or tab
+(none)
 
 ## [4.1.0] - 2024-04-15
+
 ### Added
 
 - Added `MessageSinkLogger` for logging in xUnit extensibility classes
