@@ -21,6 +21,7 @@ Its format is based on Keep a Changelog, and this project adheres to Semantic Ve
   - `SelectOption`
   - `Go`
   - `Hover`
+  - `Clear`
 - Added `OpenNewPage` task to initialize page and navigate to the specified url
 - Added `Text` and `Attribute` questions
 - Added an `Expects` extension method to `IActor` to make it easier to use playwrights built in `ILocatorAssertions`
