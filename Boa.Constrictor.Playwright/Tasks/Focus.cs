@@ -5,11 +5,11 @@ namespace Boa.Constrictor.Playwright
     using Microsoft.Playwright;
 
     /// <summary>
-    /// Clear the input field.
+    /// Focus on a web element.
     /// </summary>
-    public class Clear : AbstractLocatorTask
+    public class Focus : AbstractLocatorTask
     {
-        private readonly LocatorClearOptions Options;
+        private readonly LocatorFocusOptions Options;
 
         #region Constructors
 
@@ -18,7 +18,7 @@ namespace Boa.Constrictor.Playwright
         /// </summary>
         /// <param name="locator">The target locator.</param>
         /// <param name="options">Call options.</param>
-        private Clear(IPlaywrightLocator locator, LocatorClearOptions options)
+        private Focus(IPlaywrightLocator locator, LocatorFocusOptions options)
             :base(locator)
         {
             Options = options;
@@ -34,27 +34,27 @@ namespace Boa.Constrictor.Playwright
         /// <param name="locator">The target locator.</param>
         /// <param name="options">Call options.</param>
         /// <returns></returns>
-        public static Clear On(IPlaywrightLocator locator, LocatorClearOptions options = null) => new Clear(locator, options);
+        public static Focus On(IPlaywrightLocator locator, LocatorFocusOptions options = null) => new Focus(locator, options);
 
         #endregion
 
         #region Methods
 
         /// <summary>
-        /// Clear the input field.
+        /// Focus on the web element.
         /// </summary>
         /// <param name="actor">The Screenplay Actor.</param>
         /// <param name="locator">The target locator.</param>
         public override async Task PerformAsAsync(IActor actor, ILocator locator)
         {
-            await locator.ClearAsync(Options);
+            await locator.FocusAsync(Options);
         }
 
         /// <summary>
         /// Returns a description of the Task.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"clear text in {Locator.Description}";
+        public override string ToString() => $"click on {Locator.Description}";
 
         #endregion
     }
