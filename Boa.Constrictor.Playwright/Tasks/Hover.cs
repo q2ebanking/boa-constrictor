@@ -34,7 +34,7 @@ namespace Boa.Constrictor.Playwright
         /// <param name="locator">The target locator.</param>
         /// <param name="options">Call options.</param>
         /// <returns></returns>
-        public static Hover On(IPlaywrightLocator locator, LocatorHoverOptions options = null) => new Hover(locator, options);
+        public static Hover Over(IPlaywrightLocator locator, LocatorHoverOptions options = null) => new Hover(locator, options);
 
         #endregion
 

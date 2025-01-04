@@ -38,7 +38,7 @@ namespace Boa.Constrictor.Playwright
         /// <param name="key">Name of the key to press or a character to generate.</param>
         /// <param name="options">Call options.</param>
         /// <returns></returns>
-        public static Press On(IPlaywrightLocator locator, string key, LocatorPressOptions options = null) => new Press(locator, key, options);
+        public static Press KeyOn(IPlaywrightLocator locator, string key, LocatorPressOptions options = null) => new Press(locator, key, options);
 
         #endregion
 
