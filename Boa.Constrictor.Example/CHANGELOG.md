@@ -22,6 +22,10 @@ Versioning is performed purely for tracking changes.
 
 - Created Playwright tests
 
+### Changed
+
+- Restructured project to separate examples by technology
+
 
 ## [4.0.0] - 2023-05-29
 

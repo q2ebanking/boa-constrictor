@@ -23,5 +23,17 @@ namespace Boa.Constrictor.Playwright
             var element = locator.FindIn(page);
             return Assertions.Expect(element);
         }
+        
+        /// <summary>
+        /// Exposes playwrights IPageAssertions
+        /// Calls Assertions.Expect()
+        /// </summary>
+        /// <param name="actor">The actor.</param>
+        /// <returns></returns>
+        public static IPageAssertions ExpectsPage(this IActor actor)
+        {
+            var page = actor.Using<BrowseTheWebSynchronously>().CurrentPage;
+            return Assertions.Expect(page);
+        }
     }
 }

@@ -1,8 +1,8 @@
 namespace Boa.Constrictor.Playwright
 {
     using System.Threading.Tasks;
-    using Boa.Constrictor.Playwright.Abilities;
-    using Boa.Constrictor.Screenplay;
+    using Abilities;
+    using Screenplay;
     using Microsoft.Playwright;
 
     /// <summary>
