@@ -1,8 +1,6 @@
 namespace Boa.Constrictor.Playwright
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Microsoft.Playwright;
 
     /// <summary>
@@ -33,7 +31,7 @@ namespace Boa.Constrictor.Playwright
 
 
         /// <summary>
-        /// Convenient builder method for construction WebLocatorAsync objects without too much text.
+        /// Convenient builder method for construction PlaywrightLocator objects without too much text.
         /// </summary>
         /// <param name="description">Plain-language description of the Locator (used for logging).</param>
         /// <param name="selectorFunc">A function to find a locator on a page.</param>
@@ -44,7 +42,7 @@ namespace Boa.Constrictor.Playwright
         }
 
         /// <summary>
-        /// Convenient builder method for construction WebLocatorAsync objects without too much text.
+        /// Convenient builder method for construction PlaywrightLocator objects without too much text.
         /// </summary>
         /// <param name="description">Plain-language description of the Locator (used for logging).</param>
         /// <param name="selector">selector used to resolve DOM elements</param>

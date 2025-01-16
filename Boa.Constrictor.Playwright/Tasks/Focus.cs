@@ -54,7 +54,7 @@ namespace Boa.Constrictor.Playwright
         /// Returns a description of the Task.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"click on {Locator.Description}";
+        public override string ToString() => $"focus on {Locator.Description}";
 
         #endregion
     }

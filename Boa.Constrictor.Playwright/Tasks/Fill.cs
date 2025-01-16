@@ -54,7 +54,7 @@ namespace Boa.Constrictor.Playwright
         /// <returns></returns>
         public override string ToString()
         {
-            return $"fill the text {Value} into {Locator.Description}";
+            return $"fill the text '{Value}' into {Locator.Description}";
         }
 
         #endregion

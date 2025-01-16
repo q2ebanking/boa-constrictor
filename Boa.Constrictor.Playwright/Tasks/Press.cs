@@ -35,7 +35,7 @@ namespace Boa.Constrictor.Playwright
         /// Constructs the Task object.
         /// </summary>
         /// <param name="locator">The target locator.</param>
-        /// <param name="key">Name of the key to press or a character to generate.</param>
+        /// <param name="key">Name of the key to press or a character to generate, such as 'ArrowLeft' or 'a'</param>
         /// <param name="options">Call options.</param>
         /// <returns></returns>
         public static Press KeyOn(IPlaywrightLocator locator, string key, LocatorPressOptions options = null) => new Press(locator, key, options);
@@ -58,7 +58,7 @@ namespace Boa.Constrictor.Playwright
         /// Returns a description of the Task.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"click on {Locator.Description}";
+        public override string ToString() => $"press the {Key} key on {Locator.Description}";
 
         #endregion
     }

@@ -91,6 +91,21 @@ namespace Boa.Constrictor.Playwright
             await locator.SelectOptionAsync(OptionToSelect, LocatorOptions);
         }
 
+        /// <summary>
+        /// Returns a description of the Task.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return OptionToSelect.Label != null ? 
+                $"select option by label: {OptionToSelect.Label}" :
+                OptionToSelect.Value != null ? 
+                    $"select option by value: {OptionToSelect.Value}" :
+                    OptionToSelect.Index.HasValue ? 
+                        $"select option by index: {OptionToSelect.Index}" :
+                        null;
+        }
+
         #endregion
     }
 }
