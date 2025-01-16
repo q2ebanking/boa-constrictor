@@ -53,8 +53,8 @@ public class ScreenplayPlaywrightTest
     {
         await Actor.AttemptsToAsync(OpenNewPage.ToUrl(LoginPage.Url));
 
-        await Actor.AttemptsToAsync(Fill.ValueTo(LoginPage.UsernameInput, "tomsmith"));
-        await Actor.AttemptsToAsync(Fill.ValueTo(LoginPage.PasswordInput, "SuperSecretPassword!"));
+        await Actor.AttemptsToAsync(Fill.ValueIn(LoginPage.UsernameInput, "tomsmith"));
+        await Actor.AttemptsToAsync(Fill.ValueIn(LoginPage.PasswordInput, "SuperSecretPassword!"));
         await Actor.AttemptsToAsync(Click.On(LoginPage.LoginButton));
 
         await Actor.ExpectsPage().ToHaveURLAsync(new Regex(".*/secure"));

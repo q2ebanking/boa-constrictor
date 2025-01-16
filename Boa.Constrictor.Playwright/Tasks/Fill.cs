@@ -32,7 +32,7 @@ namespace Boa.Constrictor.Playwright
         /// <param name="value">The value to be filled(e.g., text).</param>
         /// <param name="options">Call options.</param>
         /// <returns></returns>
-        public static Fill ValueTo(IPlaywrightLocator locator, string value, LocatorFillOptions options = null) => new Fill(locator, value, options);
+        public static Fill ValueIn(IPlaywrightLocator locator, string value, LocatorFillOptions options = null) => new Fill(locator, value, options);
 
         #endregion
 
