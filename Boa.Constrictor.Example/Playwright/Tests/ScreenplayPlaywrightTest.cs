@@ -17,12 +17,8 @@ public class ScreenplayPlaywrightTest
     [SetUp]
     public async Task Setup()
     {
-        var options = new BrowserTypeLaunchOptions()
-        {
-            Headless = false
-        };
         Actor = new Actor("ThePantz", new ConsoleLogger());
-        Actor.Can(await BrowseTheWebSynchronously.UsingChromium(options));
+        Actor.Can(await BrowseTheWebSynchronously.UsingChromium());
     }
 
     [Test]
