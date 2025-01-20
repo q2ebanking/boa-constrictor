@@ -65,6 +65,16 @@ namespace Boa.Constrictor.Playwright
             await locator.PressSequentiallyAsync(Text, Options);
         }
 
+
+        /// <summary>
+        /// Returns a description of the Task.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return $"press '{Text}' sequentially on {Locator.Description}";
+        }
+
         #endregion
     }
 }

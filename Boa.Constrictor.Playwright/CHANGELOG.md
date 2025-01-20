@@ -25,6 +25,7 @@ Its format is based on Keep a Changelog, and this project adheres to Semantic Ve
   - `Clear`
   - `Focus`
   - `Press`
+  - `PressSequentially`
 - Added `Text` and `Attribute` questions
 - Added an `Expects` extension method to `IActor` to make it easier to use playwrights built in `ILocatorAssertions`
   - e.g. `await MyActor.Expects(WikiPage.Title).ToHaveTextAsync("Giant panda");`
