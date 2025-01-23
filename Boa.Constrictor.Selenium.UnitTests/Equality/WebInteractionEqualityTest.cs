@@ -1,5 +1,4 @@
 ﻿using Boa.Constrictor.Screenplay;
-using Boa.Constrictor.Selenium;
 using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -34,8 +33,8 @@ namespace Boa.Constrictor.Selenium.UnitTests
             new object[] { CssValueList.For(LocatorA, "property"), CssValueList.For(LocatorA1, "property") },
             new object[] { CurrentScreenshot.SavedTo("/path/to/screenshot"), CurrentScreenshot.SavedTo("/path/to/screenshot") },
             new object[] { CurrentScreenshot.SavedTo("/path/to/screenshot", "file"), CurrentScreenshot.SavedTo("/path/to/screenshot", "file") },
-            new object[] { CurrentScreenshot.SavedTo("/path/to/screenshot", "file").UsingFormat(ScreenshotImageFormat.Png), CurrentScreenshot.SavedTo("/path/to/screenshot", "file").UsingFormat(ScreenshotImageFormat.Png) },
-            new object[] { CurrentScreenshot.SavedTo("/path/to/screenshot").UsingFormat(ScreenshotImageFormat.Png), CurrentScreenshot.SavedTo("/path/to/screenshot").UsingFormat(ScreenshotImageFormat.Png) },
+            new object[] { CurrentScreenshot.SavedTo("/path/to/screenshot", "file").UsingFormat(".png"), CurrentScreenshot.SavedTo("/path/to/screenshot", "file").UsingFormat(".png") },
+            new object[] { CurrentScreenshot.SavedTo("/path/to/screenshot").UsingFormat(".png"), CurrentScreenshot.SavedTo("/path/to/screenshot").UsingFormat(".png") },
             new object[] { CurrentUrl.FromBrowser(), CurrentUrl.FromBrowser() },
             new object[] { DomProperty.Of(LocatorA, "property"), DomProperty.Of(LocatorA1, "property") },
             new object[] { EnabledState.Of(LocatorA), EnabledState.Of(LocatorA1) },
@@ -127,7 +126,7 @@ namespace Boa.Constrictor.Selenium.UnitTests
             new object[] { CurrentScreenshot.SavedTo("/path/to/screenshot"), CurrentScreenshot.SavedTo("/path/to/screenshot2") },
             new object[] { CurrentScreenshot.SavedTo("/path/to/screenshot", "file"), CurrentScreenshot.SavedTo("/path/to/screenshot") },
             new object[] { CurrentScreenshot.SavedTo("/path/to/screenshot", "file"), CurrentScreenshot.SavedTo("/path/to/screenshot", "file2") },
-            new object[] { CurrentScreenshot.SavedTo("/path/to/screenshot").UsingFormat(ScreenshotImageFormat.Png), CurrentScreenshot.SavedTo("/path/to/screenshot").UsingFormat(ScreenshotImageFormat.Jpeg) },
+            new object[] { CurrentScreenshot.SavedTo("/path/to/screenshot").UsingFormat(".png"), CurrentScreenshot.SavedTo("/path/to/screenshot").UsingFormat(".jpeg") },
             new object[] { CurrentUrl.FromBrowser(), Title.OfPage() },
             new object[] { DomProperty.Of(LocatorA, "property"), Title.OfPage() },
             new object[] { DomProperty.Of(LocatorA, "property"), DomProperty.Of(LocatorB, "property") },
