@@ -17,7 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(none)
+### Changed
+
+- Updated `Selenium.Support` and `Selenium.Webdriver` to Version 4.28.0
+- Replaced `ScreenshotImageFormat` with `string` to append to screenshot file formatting path
+- Updated corresponding unit tests to correct for necessary changes
 
 
 ## [4.2.0] - 2024-06-11
