@@ -47,12 +47,12 @@ namespace Boa.Constrictor.Playwright
 
         /// <summary>
         /// Performs the Task.
-        /// Internally calls PerformAs with the locator found on the CurrentPage from the BrowseTheWebSynchronously Ability.
+        /// Internally calls PerformAs with the locator found on the CurrentPage from the BrowseTheWebWithPlaywright Ability.
         /// </summary>
         /// <param name="actor">The Screenplay Actor.</param>
         public virtual async Task PerformAsAsync(IActor actor)
         {
-            var page = await actor.Using<BrowseTheWebSynchronously>().CurrentPageAsync();
+            var page = await actor.Using<BrowseTheWebWithPlaywright>().CurrentPageAsync();
             await PerformAsAsync(actor, Locator.FindIn(page));
         }
 

@@ -19,7 +19,7 @@ namespace Boa.Constrictor.Playwright
         /// <returns></returns>
         public static ILocatorAssertions Expects(this IActor actor, IPlaywrightLocator locator)
         {
-            var page = actor.Using<BrowseTheWebSynchronously>().CurrentPage;
+            var page = actor.Using<BrowseTheWebWithPlaywright>().CurrentPage;
             var element = locator.FindIn(page);
             return Assertions.Expect(element);
         }
@@ -32,7 +32,7 @@ namespace Boa.Constrictor.Playwright
         /// <returns></returns>
         public static IPageAssertions ExpectsPage(this IActor actor)
         {
-            var page = actor.Using<BrowseTheWebSynchronously>().CurrentPage;
+            var page = actor.Using<BrowseTheWebWithPlaywright>().CurrentPage;
             return Assertions.Expect(page);
         }
     }

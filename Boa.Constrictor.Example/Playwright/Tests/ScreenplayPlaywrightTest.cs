@@ -18,7 +18,7 @@ public class ScreenplayPlaywrightTest
     public async Task Setup()
     {
         Actor = new Actor("ThePantz", new ConsoleLogger());
-        Actor.Can(await BrowseTheWebSynchronously.UsingChromium());
+        Actor.Can(await BrowseTheWebWithPlaywright.UsingChromium());
     }
 
     [Test]

@@ -42,7 +42,7 @@ namespace Boa.Constrictor.Playwright
         /// <param name="actor">The Screenplay Actor.</param>
         public async Task PerformAsAsync(IActor actor)
         {
-            var browseTheWeb = actor.Using<BrowseTheWebSynchronously>();
+            var browseTheWeb = actor.Using<BrowseTheWebWithPlaywright>();
             var page = await browseTheWeb.Browser.NewPageAsync();
             await page.GotoAsync(Url);
             browseTheWeb.CurrentPage = page;

@@ -8,7 +8,7 @@ namespace Boa.Constrictor.Playwright.Abilities
     /// <summary>
 /// Enables the Actor to use a Web browser via Playwright
 /// </summary>
-public class BrowseTheWebSynchronously : IAbility
+public class BrowseTheWebWithPlaywright : IAbility
 {
     private IBrowserContext currentContext;
 
@@ -18,7 +18,7 @@ public class BrowseTheWebSynchronously : IAbility
     /// </summary>
     /// <param name="playwright">The Playwright instance</param>
     /// <param name="browser">The Playwright browser instance</param>
-    private BrowseTheWebSynchronously(IPlaywright playwright, IBrowser browser)
+    private BrowseTheWebWithPlaywright(IPlaywright playwright, IBrowser browser)
     {
         Playwright = playwright;
         Browser = browser;
@@ -35,42 +35,42 @@ public class BrowseTheWebSynchronously : IAbility
     /// </summary>
     /// <param name="playwright">The Playwright instance</param>
     /// <param name="browser">The Playwright browser instance.</param>
-    /// <returns>An instance of <see cref="BrowseTheWebSynchronously"/></returns>
-    public static BrowseTheWebSynchronously Using(IPlaywright playwright, IBrowser browser)
+    /// <returns>An instance of <see cref="BrowseTheWebWithPlaywright"/></returns>
+    public static BrowseTheWebWithPlaywright Using(IPlaywright playwright, IBrowser browser)
     {
-        return new BrowseTheWebSynchronously(playwright, browser);
+        return new BrowseTheWebWithPlaywright(playwright, browser);
     }
 
     /// <summary>
     /// Use a synchronous Chromium (i.e. Chrome, Edge, Opera, etc.) browser.
     /// </summary>
-    /// <returns>An instance of <see cref="BrowseTheWebSynchronously"/> configured to use Chromium</returns>
-    public static async Task<BrowseTheWebSynchronously> UsingChromium(BrowserTypeLaunchOptions options = null)
+    /// <returns>An instance of <see cref="BrowseTheWebWithPlaywright"/> configured to use Chromium</returns>
+    public static async Task<BrowseTheWebWithPlaywright> UsingChromium(BrowserTypeLaunchOptions options = null)
     {
         var playwright = await Microsoft.Playwright.Playwright.CreateAsync();
         var browser = await playwright.Chromium.LaunchAsync(options);
-        return new BrowseTheWebSynchronously(playwright, browser);
+        return new BrowseTheWebWithPlaywright(playwright, browser);
     }
 
     /// <summary>
     /// Use a synchronous Firefox browser
     /// </summary>
-    /// <returns>An instance of <see cref="BrowseTheWebSynchronously"/> configured to use firefox</returns>
-    public static async Task<BrowseTheWebSynchronously> UsingFirefox(BrowserTypeLaunchOptions options = null)
+    /// <returns>An instance of <see cref="BrowseTheWebWithPlaywright"/> configured to use firefox</returns>
+    public static async Task<BrowseTheWebWithPlaywright> UsingFirefox(BrowserTypeLaunchOptions options = null)
     {
         var playwright = await Microsoft.Playwright.Playwright.CreateAsync();
         var browser = await playwright.Firefox.LaunchAsync(options);
-        return new BrowseTheWebSynchronously(playwright, browser);
+        return new BrowseTheWebWithPlaywright(playwright, browser);
     }
     /// <summary>
     /// Use a synchronous WebKit (i.e. Safari, etc.) browser.
     /// </summary>
-    /// <returns>An instance of <see cref="BrowseTheWebSynchronously"/> configured to use Webkit</returns>
-    public static async Task<BrowseTheWebSynchronously> UsingWebkit(BrowserTypeLaunchOptions options = null)
+    /// <returns>An instance of <see cref="BrowseTheWebWithPlaywright"/> configured to use Webkit</returns>
+    public static async Task<BrowseTheWebWithPlaywright> UsingWebkit(BrowserTypeLaunchOptions options = null)
     {
         var playwright = await Microsoft.Playwright.Playwright.CreateAsync();
         var browser = await playwright.Webkit.LaunchAsync(options);
-        return new BrowseTheWebSynchronously(playwright, browser);
+        return new BrowseTheWebWithPlaywright(playwright, browser);
     }
 
     public async Task<IPage> CurrentPageAsync()

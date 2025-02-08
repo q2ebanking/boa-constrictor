@@ -7,7 +7,7 @@ namespace Boa.Constrictor.Playwright
     using Microsoft.Playwright;
 
     /// <summary>
-    /// Abstract class that makes it easier to write Questions that use the BrowseTheWebSynchronously Ability.
+    /// Abstract class that makes it easier to write Questions that use the BrowseTheWebWithPlaywright Ability.
     /// </summary>
     /// <typeparam name="TAnswer">The answer type.</typeparam>
     public abstract class AbstractPageQuestion<TAnswer> : IQuestionAsync<TAnswer>
@@ -18,7 +18,7 @@ namespace Boa.Constrictor.Playwright
         /// Asks the Question and returns the answer.
         /// </summary>
         /// <param name="actor">The Screenplay Actor.</param>
-        /// <param name="page">The CurrentPage from the BrowseTheWebSynchronously Ability.</param>
+        /// <param name="page">The CurrentPage from the BrowseTheWebWithPlaywright Ability.</param>
         /// <returns></returns>
         public abstract Task<TAnswer> RequestAsAsync(IActor actor, IPage page);
 
@@ -32,7 +32,7 @@ namespace Boa.Constrictor.Playwright
         /// </summary>
         /// <param name="actor">The Screenplay Actor.</param>
         /// <returns></returns>
-        public virtual async Task<TAnswer> RequestAsAsync(IActor actor) => await RequestAsAsync(actor, await actor.Using<BrowseTheWebSynchronously>().CurrentPageAsync());
+        public virtual async Task<TAnswer> RequestAsAsync(IActor actor) => await RequestAsAsync(actor, await actor.Using<BrowseTheWebWithPlaywright>().CurrentPageAsync());
 
         /// <summary>
         /// Checks if this interaction is equal to another interaction.
