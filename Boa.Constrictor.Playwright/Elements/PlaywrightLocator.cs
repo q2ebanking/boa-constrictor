@@ -46,10 +46,11 @@ namespace Boa.Constrictor.Playwright
         /// </summary>
         /// <param name="description">Plain-language description of the Locator (used for logging).</param>
         /// <param name="selector">selector used to resolve DOM elements</param>
+        /// <param name="options">Call options</param>
         /// <returns></returns>
-        public static PlaywrightLocator L(string description, string selector)
+        public static PlaywrightLocator L(string description, string selector, PageLocatorOptions options = null)
         {
-            return new PlaywrightLocator(description, page => page.Locator(selector));
+            return new PlaywrightLocator(description, page => page.Locator(selector, options));
         }
 
         /// <summary>
