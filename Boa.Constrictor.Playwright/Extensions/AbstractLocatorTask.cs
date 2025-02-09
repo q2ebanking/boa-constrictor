@@ -38,7 +38,7 @@ namespace Boa.Constrictor.Playwright
         /// Performs the Task.
         /// </summary>
         /// <param name="actor">The Screenplay Actor.</param>
-        /// <param name="locator">The WebDriver from the BrowseTheWeb Ability.</param>
+        /// <param name="locator">The locator to perform the task on.</param>
         public abstract Task PerformAsAsync(IActor actor, ILocator locator);
 
         #endregion

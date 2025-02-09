@@ -7,17 +7,16 @@ namespace Boa.Constrictor.Playwright
     /// <summary>
     /// Gets an elements attribute value.
     /// </summary>
-    public class Attribute : AbstractPageQuestion<string>
+    public class Attribute : AbstractLocatorQuestion<string>
     {
-        private readonly IPlaywrightLocator Locator;
         private readonly string Name;
         private readonly LocatorGetAttributeOptions Options;
 
         #region Constructor
 
         private Attribute(IPlaywrightLocator locator, string name, LocatorGetAttributeOptions options)
+        : base(locator)
         {
-            Locator = locator;
             Name = name;
             Options = options;
         }
@@ -46,11 +45,10 @@ namespace Boa.Constrictor.Playwright
         /// Gets an elements attribute value
         /// </summary>
         /// <param name="actor">The Screenplay Actor.</param>
-        /// <param name="page">The current page.</param>
+        /// <param name="locator">The locator to evaluate.</param>
         /// <returns></returns>
-        public override async Task<string> RequestAsAsync(IActor actor, IPage page)
+        public override async Task<string> RequestAsAsync(IActor actor, ILocator locator)
         {
-            var locator = this.Locator.FindIn(page);
             return await locator.GetAttributeAsync(Name, Options);
         }
 

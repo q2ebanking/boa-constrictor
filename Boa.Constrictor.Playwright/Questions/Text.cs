@@ -7,15 +7,14 @@ namespace Boa.Constrictor.Playwright
     /// <summary>
     /// Gets the inner text of a web element.
     /// </summary>
-    public class Text : AbstractPageQuestion<string>
+    public class Text : AbstractLocatorQuestion<string>
     {
-        private readonly IPlaywrightLocator Locator;
 
         #region Constructors
 
         private Text(IPlaywrightLocator locator)
+        :base(locator)
         {
-            this.Locator = locator;
         }
 
         #endregion
@@ -40,12 +39,11 @@ namespace Boa.Constrictor.Playwright
         /// Gets the InnerText of an element.
         /// </summary>
         /// <param name="actor">The Screenplay actor.</param>
-        /// <param name="page">The current page.</param>
+        /// <param name="locator">The current page.</param>
         /// <returns></returns>
-        public override async Task<string> RequestAsAsync(IActor actor, IPage page)
+        public override async Task<string> RequestAsAsync(IActor actor, ILocator locator)
         {
-            var element = this.Locator.FindIn(page);
-            return await element.InnerTextAsync();
+            return await locator.InnerTextAsync();
         }
 
         /// <summary>
