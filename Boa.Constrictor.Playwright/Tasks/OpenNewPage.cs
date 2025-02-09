@@ -1,7 +1,6 @@
 namespace Boa.Constrictor.Playwright
 {
     using System.Threading.Tasks;
-    using Boa.Constrictor.Playwright.Abilities;
     using Boa.Constrictor.Screenplay;
 
     /// <summary>
@@ -9,14 +8,18 @@ namespace Boa.Constrictor.Playwright
     /// </summary>
     public class OpenNewPage : ITaskAsync
     {
-        private readonly string Url;
-
-        #region Constructors
+        #region Constructor
 
         private OpenNewPage(string url)
         {
             this.Url = url;
         }
+
+        #endregion
+
+        #region Properties
+
+        private string Url { get; }
 
         #endregion
 
@@ -43,7 +46,8 @@ namespace Boa.Constrictor.Playwright
         public async Task PerformAsAsync(IActor actor)
         {
             var browseTheWeb = actor.Using<BrowseTheWebWithPlaywright>();
-            var page = await browseTheWeb.Browser.NewPageAsync();
+            var context = await browseTheWeb.GetBrowserContextAsync();
+            var page = await context.NewPageAsync();
             await page.GotoAsync(Url);
             browseTheWeb.CurrentPage = page;
             browseTheWeb.Pages.Add(page);
@@ -56,6 +60,5 @@ namespace Boa.Constrictor.Playwright
         public override string ToString() => $"open a new page to {Url}";
 
         #endregion
-
     }
 }

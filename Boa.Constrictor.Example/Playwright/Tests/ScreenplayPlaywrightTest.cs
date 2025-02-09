@@ -1,13 +1,11 @@
 using System.Text.RegularExpressions;
+using Microsoft.Playwright;
 
 namespace Boa.Constrictor.Example;
 
 using System.Threading.Tasks;
 using Boa.Constrictor.Playwright;
-using Boa.Constrictor.Playwright.Abilities;
 using Boa.Constrictor.Screenplay;
-using FluentAssertions;
-using Microsoft.Playwright;
 using NUnit.Framework;
 
 public class ScreenplayPlaywrightTest
@@ -19,6 +17,12 @@ public class ScreenplayPlaywrightTest
     {
         Actor = new Actor("ThePantz", new ConsoleLogger());
         Actor.Can(await BrowseTheWebWithPlaywright.UsingChromium());
+    }
+
+    [TearDown]
+    public async Task TearDown()
+    {
+        await Actor.AttemptsToAsync(CloseBrowser.Instance());
     }
 
     [Test]
