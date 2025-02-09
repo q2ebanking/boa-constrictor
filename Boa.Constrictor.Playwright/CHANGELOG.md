@@ -1,4 +1,4 @@
-﻿# Changelog
+# Changelog
 
 This file documents all notable changes to the Boa.Constrictor.Xunit project and its unit tests for each NuGet package release.
 
@@ -27,6 +27,7 @@ Its format is based on Keep a Changelog, and this project adheres to Semantic Ve
   - `Clear`
   - `Focus`
   - `Press`
+  - `PressSequentially`
 - Added the following questions:
   - `Text`
   - `Attribute`
