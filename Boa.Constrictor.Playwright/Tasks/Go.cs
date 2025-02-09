@@ -9,9 +9,6 @@ namespace Boa.Constrictor.Playwright
     /// </summary>
     public class Go : AbstractPageTask
     {
-        private readonly string Url;
-        private readonly PageGotoOptions PageGotoOptions;
-
         #region Constructors
 
         private Go(string url, PageGotoOptions pageGotoOptions)
@@ -20,6 +17,13 @@ namespace Boa.Constrictor.Playwright
             PageGotoOptions = pageGotoOptions;
         }
 
+        #endregion
+        
+        #region Properties
+        
+        private string Url { get; }
+        private PageGotoOptions PageGotoOptions { get; }
+        
         #endregion
 
         #region Builder Methods

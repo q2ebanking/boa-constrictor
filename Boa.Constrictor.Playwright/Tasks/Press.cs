@@ -9,9 +9,6 @@ namespace Boa.Constrictor.Playwright
     /// </summary>
     public class Press : AbstractLocatorTask
     {
-        private string Key { get; }
-        private readonly LocatorPressOptions Options;
-
         #region Constructors
 
         /// <summary>
@@ -26,6 +23,13 @@ namespace Boa.Constrictor.Playwright
             Key = key;
             Options = options;
         }
+
+        #endregion
+        
+        #region Properties
+
+        private string Key { get; }
+        private LocatorPressOptions Options { get; }
 
         #endregion
 

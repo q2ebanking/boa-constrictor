@@ -9,7 +9,7 @@ namespace Boa.Constrictor.Playwright
     /// </summary>
     public class DblClick : AbstractLocatorTask
     {
-        private readonly LocatorDblClickOptions Options;
+        
 
         #region Constructors
 
@@ -24,6 +24,12 @@ namespace Boa.Constrictor.Playwright
             Options = options;
         }
 
+        #endregion
+        
+        #region Properties
+        
+        private LocatorDblClickOptions Options { get; }
+        
         #endregion
 
         #region Builder Methods

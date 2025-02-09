@@ -9,9 +9,6 @@ namespace Boa.Constrictor.Playwright
     /// </summary>
     public class Attribute : AbstractLocatorQuestion<string>
     {
-        private readonly string Name;
-        private readonly LocatorGetAttributeOptions Options;
-
         #region Constructor
 
         private Attribute(IPlaywrightLocator locator, string name, LocatorGetAttributeOptions options)
@@ -20,6 +17,13 @@ namespace Boa.Constrictor.Playwright
             Name = name;
             Options = options;
         }
+
+        #endregion
+
+        #region Properties
+
+        private string Name { get; }
+        private LocatorGetAttributeOptions Options { get; }
 
         #endregion
 

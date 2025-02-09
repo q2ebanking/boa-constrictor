@@ -1,6 +1,4 @@
-using System.Threading;
 using System.Threading.Tasks;
-using Boa.Constrictor.Playwright.Abilities;
 using Boa.Constrictor.Screenplay;
 using Microsoft.Playwright;
 
@@ -53,7 +51,7 @@ namespace Boa.Constrictor.Playwright
         /// <returns></returns>
         public virtual async Task<TAnswer> RequestAsAsync(IActor actor)
         {
-            var currentPage = await actor.Using<BrowseTheWebWithPlaywright>().CurrentPageAsync();
+            var currentPage = await actor.Using<BrowseTheWebWithPlaywright>().GetCurrentPageAsync();
             return await RequestAsAsync(actor, Locator.FindIn(currentPage));
         }
         

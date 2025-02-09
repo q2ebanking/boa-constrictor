@@ -1,6 +1,7 @@
+using System.Threading.Tasks;
+
 namespace Boa.Constrictor.Playwright
 {
-    using Boa.Constrictor.Playwright.Abilities;
     using Boa.Constrictor.Screenplay;
     using Microsoft.Playwright;
 
@@ -8,7 +9,7 @@ namespace Boa.Constrictor.Playwright
     /// Provides IActor extension methods to simplify assertions using playwright.
     ///
     /// </summary>
-    public static class LocatorAssertionExtensions
+    public static class AssertionExtensions
     {
         /// <summary>
         /// Exposes playwrights ILocatorAssertions

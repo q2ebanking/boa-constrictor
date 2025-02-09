@@ -9,8 +9,6 @@ namespace Boa.Constrictor.Playwright
     /// </summary>
     public class Focus : AbstractLocatorTask
     {
-        private readonly LocatorFocusOptions Options;
-
         #region Constructors
 
         /// <summary>
@@ -23,6 +21,12 @@ namespace Boa.Constrictor.Playwright
         {
             Options = options;
         }
+
+        #endregion
+
+        #region Properties
+
+        private LocatorFocusOptions Options { get; }
 
         #endregion
 

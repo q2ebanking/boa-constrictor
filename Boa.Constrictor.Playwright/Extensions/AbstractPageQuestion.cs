@@ -2,7 +2,6 @@ namespace Boa.Constrictor.Playwright
 {
     using System;
     using System.Threading.Tasks;
-    using Boa.Constrictor.Playwright.Abilities;
     using Boa.Constrictor.Screenplay;
     using Microsoft.Playwright;
 
@@ -32,7 +31,7 @@ namespace Boa.Constrictor.Playwright
         /// </summary>
         /// <param name="actor">The Screenplay Actor.</param>
         /// <returns></returns>
-        public virtual async Task<TAnswer> RequestAsAsync(IActor actor) => await RequestAsAsync(actor, await actor.Using<BrowseTheWebWithPlaywright>().CurrentPageAsync());
+        public virtual async Task<TAnswer> RequestAsAsync(IActor actor) => await RequestAsAsync(actor, await actor.Using<BrowseTheWebWithPlaywright>().GetCurrentPageAsync());
 
         /// <summary>
         /// Checks if this interaction is equal to another interaction.

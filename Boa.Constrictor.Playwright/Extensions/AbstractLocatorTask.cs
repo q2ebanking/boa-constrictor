@@ -1,7 +1,6 @@
 namespace Boa.Constrictor.Playwright
 {
     using System.Threading.Tasks;
-    using Abilities;
     using Screenplay;
     using Microsoft.Playwright;
 
@@ -52,7 +51,7 @@ namespace Boa.Constrictor.Playwright
         /// <param name="actor">The Screenplay Actor.</param>
         public virtual async Task PerformAsAsync(IActor actor)
         {
-            var page = await actor.Using<BrowseTheWebWithPlaywright>().CurrentPageAsync();
+            var page = await actor.Using<BrowseTheWebWithPlaywright>().GetCurrentPageAsync();
             await PerformAsAsync(actor, Locator.FindIn(page));
         }
 

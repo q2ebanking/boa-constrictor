@@ -9,9 +9,6 @@ namespace Boa.Constrictor.Playwright
     /// </summary>
     public class SetChecked : AbstractLocatorTask
     {
-        private readonly bool CheckedState;
-        private readonly LocatorSetCheckedOptions Options;
-
         #region Constructors
 
         /// <summary>
@@ -25,6 +22,13 @@ namespace Boa.Constrictor.Playwright
             CheckedState = checkedState;
             Options = options;
         }
+
+        #endregion
+
+        #region Properties
+
+        private bool CheckedState { get; }
+        private LocatorSetCheckedOptions Options { get; }
 
         #endregion
 

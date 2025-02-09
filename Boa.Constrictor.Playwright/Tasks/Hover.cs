@@ -9,8 +9,6 @@ namespace Boa.Constrictor.Playwright
     /// </summary>
     public class Hover : AbstractLocatorTask
     {
-        private readonly LocatorHoverOptions Options;
-
         #region Constructors
 
         /// <summary>
@@ -24,6 +22,12 @@ namespace Boa.Constrictor.Playwright
             Options = options;
         }
 
+        #endregion
+        
+        #region Properties
+        
+        private LocatorHoverOptions Options { get; }
+        
         #endregion
 
         #region Builder Methods

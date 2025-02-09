@@ -9,7 +9,6 @@ namespace Boa.Constrictor.Playwright
     /// </summary>
     public class Text : AbstractLocatorQuestion<string>
     {
-
         #region Constructors
 
         private Text(IPlaywrightLocator locator)
@@ -56,6 +55,5 @@ namespace Boa.Constrictor.Playwright
         }
 
         #endregion
-
     }
 }

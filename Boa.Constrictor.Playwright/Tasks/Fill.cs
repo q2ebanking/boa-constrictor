@@ -9,9 +9,6 @@ namespace Boa.Constrictor.Playwright
     /// </summary>
     public class Fill : AbstractLocatorTask
     {
-        private readonly string Value;
-        private readonly LocatorFillOptions Options;
-
         #region Constructors
 
         private Fill(IPlaywrightLocator locator, string value, LocatorFillOptions options)
@@ -20,6 +17,13 @@ namespace Boa.Constrictor.Playwright
             Value = value;
             Options = options;
         }
+
+        #endregion
+
+        #region Properties
+
+        private string Value { get; }
+        private LocatorFillOptions Options { get; }
 
         #endregion
 
