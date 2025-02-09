@@ -76,10 +76,9 @@ namespace Boa.Constrictor.Playwright
         /// <returns></returns>
         public override string ToString()
         {
-            return $"Set checked state to {CheckedState} on {Locator.Description}";
+            return $"set checked state to {CheckedState} on {Locator.Description}";
         }
 
         #endregion
-
     }
 }

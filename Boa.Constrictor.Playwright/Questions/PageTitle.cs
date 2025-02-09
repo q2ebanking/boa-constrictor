@@ -7,7 +7,7 @@ namespace Boa.Constrictor.Playwright
     /// <summary>
     /// Gets the tile of the current page
     /// </summary>
-    public class Title : AbstractPageQuestion<string>
+    public class PageTitle : AbstractPageQuestion<string>
     {
         #region Builder Methods
         
@@ -15,7 +15,7 @@ namespace Boa.Constrictor.Playwright
         /// Constructs the Question.
         /// </summary>
         /// <returns></returns>
-        public static Title OfPage() => new Title();
+        public static PageTitle OfPage() => new PageTitle();
         
         #endregion
         

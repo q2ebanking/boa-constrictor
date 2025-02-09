@@ -7,11 +7,11 @@ namespace Boa.Constrictor.Playwright
     /// <summary>
     /// Gets the inner text of a web element.
     /// </summary>
-    public class Text : AbstractLocatorQuestion<string>
+    public class InnerText : AbstractLocatorQuestion<string>
     {
         #region Constructors
 
-        private Text(IPlaywrightLocator locator)
+        private InnerText(IPlaywrightLocator locator)
         :base(locator)
         {
         }
@@ -25,9 +25,9 @@ namespace Boa.Constrictor.Playwright
         /// </summary>
         /// <param name="locator">The target web element's selector.</param>
         /// <returns></returns>
-        public static Text Of(IPlaywrightLocator locator)
+        public static InnerText Of(IPlaywrightLocator locator)
         {
-            return new Text(locator);
+            return new InnerText(locator);
         }
 
         #endregion

@@ -29,9 +29,9 @@ Its format is based on Keep a Changelog, and this project adheres to Semantic Ve
   - `CloseBrowser`
   - `CloseBrowserContext`
 - Added the following questions:
-  - `Text`
+  - `InnerText`
   - `Attribute`
-  - `Title`
+  - `PageTitle`
   - `Visibility`
   - `Enabled`
 - Added an `Expects` extension method to `IActor` to make it easier to use playwrights built in `ILocatorAssertions`
