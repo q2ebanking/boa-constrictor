@@ -15,7 +15,7 @@ jobs:
     steps:
 
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build the solution
         run: dotnet build
@@ -38,7 +38,7 @@ jobs:
 
       - name: Archive Screenplay unit test results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Screenplay unit test results
           path: Boa.Constrictor.Screenplay.UnitTests/TestResults/ScreenplayResults.trx
@@ -46,7 +46,7 @@ jobs:
 
       - name: Archive Selenium unit test results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Selenium unit test results
           path: Boa.Constrictor.Selenium.UnitTests/TestResults/SeleniumResults.trx
@@ -54,7 +54,7 @@ jobs:
 
       - name: Archive RestSharp unit test results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: RestSharp unit test results
           path: Boa.Constrictor.RestSharp.UnitTests/TestResults/RestSharpResults.trx
@@ -62,7 +62,7 @@ jobs:
 
       - name: Archive Xunit unit test results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Xunit unit test results
           path: Boa.Constrictor.Xunit.UnitTests/TestResults/XunitResults.trx
