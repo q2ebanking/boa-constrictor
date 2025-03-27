@@ -35,7 +35,11 @@ jobs:
       - name: Run xUnit unit tests
         if: always()
         run: dotnet test Boa.Constrictor.Xunit.UnitTests --logger "trx;LogFileName=XunitResults.trx"    
-
+        
+      - name: Run Playwright unit tests
+        if: always()
+        run: dotnet test Boa.Constrictor.Playwright.UnitTests --logger "trx;LogFileName=PlaywrightResults.trx"
+      
       - name: Archive Screenplay unit test results
         if: always()
         uses: actions/upload-artifact@v4
@@ -66,4 +70,12 @@ jobs:
         with:
           name: Xunit unit test results
           path: Boa.Constrictor.Xunit.UnitTests/TestResults/XunitResults.trx
+          retention-days: 30
+          
+      - name: Archive Playwright unit test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: Playwright unit test results
+          path: Boa.Constrictor.Playwright.UnitTests/TestResults/PlaywrightResults.trx
           retention-days: 30

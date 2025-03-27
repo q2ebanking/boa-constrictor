@@ -18,6 +18,7 @@ jobs:
       NUGET_SOURCE: https://api.nuget.org/v3/index.json
       CSPROJ_SCREENPLAY: Boa.Constrictor.Screenplay/Boa.Constrictor.Screenplay.csproj
       CSPROJ_SELENIUM: Boa.Constrictor.Selenium/Boa.Constrictor.Selenium.csproj
+      CSPROJ_PLAYWRIGHT: Boa.Constrictor.Playwright/Boa.Constrictor.Playwright.csproj
       CSPROJ_RESTSHARP: Boa.Constrictor.RestSharp/Boa.Constrictor.RestSharp.csproj
       CSPROJ_XUNIT: Boa.Constrictor.Xunit/Boa.Constrictor.Xunit.csproj
       CSPROJ_CLASSIC: Boa.Constrictor/Boa.Constrictor.csproj
@@ -47,7 +48,7 @@ jobs:
         run: dotnet nuget push Screenplay/**/*.nupkg --source ${{env.NUGET_SOURCE}} --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
 
 
-      # Selenium, RestSharp and Xunit
+      # Selenium, Playwright, RestSharp and Xunit
 
       - name: Wait 8 minutes for NuGet indexing
         run: Start-Sleep -s 480
@@ -79,6 +80,15 @@ jobs:
 
       - name: Push Boa.Constrictor.Xunit package
         run: dotnet nuget push Xunit/**/*.nupkg --source ${{env.NUGET_SOURCE}} --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+        
+      - name: Build Boa.Constrictor.Playwright project
+        run: dotnet build ${{env.CSPROJ_PLAYWRIGHT}} --configuration Release
+
+      - name: Pack Boa.Constrictor.Playwright project
+        run: dotnet pack ${{env.CSPROJ_PLAYWRIGHT}} --configuration Release --no-build --output Playwright
+
+      - name: Push Boa.Constrictor.Playwright package
+        run: dotnet nuget push Playwright/**/*.nupkg --source ${{env.NUGET_SOURCE}} --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
 
 
       # Classic
