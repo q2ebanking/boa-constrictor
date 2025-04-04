@@ -74,7 +74,7 @@ jobs:
           
       - name: Archive Playwright unit test results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Playwright unit test results
           path: Boa.Constrictor.Playwright.UnitTests/TestResults/PlaywrightResults.trx
