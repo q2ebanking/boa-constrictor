@@ -15,10 +15,10 @@ public class InnerTextTest : BasePlaywrightLocatorQuestionTest
         Locator
             .Setup(x => x.InnerTextAsync(It.IsAny<LocatorInnerTextOptions>()))
             .Returns(Task.FromResult("Hello"));
-        
+
         // Act
         var innerText = await Actor.AsksForAsync(InnerText.Of(PlaywrightLocator.Object));
-        
+
         // Assert
         innerText.Should().Be("Hello");
     }

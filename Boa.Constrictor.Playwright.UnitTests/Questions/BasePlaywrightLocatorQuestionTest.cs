@@ -7,13 +7,13 @@ namespace Boa.Constrictor.Playwright.UnitTests.Questions;
 public class BasePlaywrightLocatorQuestionTest : BasePlaywrightQuestionTest
 {
     #region Test Variables
-    
+
     public Mock<IPlaywrightLocator> PlaywrightLocator { get; set; }
-    
+
     public Mock<ILocator> Locator { get; set; }
-    
+
     #endregion
-    
+
     #region Setup
 
     [SetUp]

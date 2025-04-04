@@ -14,10 +14,10 @@ public class PageTitleTest : BasePlaywrightQuestionTest
     {
         // Arrange
         Page.Setup(x => x.TitleAsync()).Returns(Task.FromResult("abc123"));
-        
+
         // Act
         var title = await Actor.AsksForAsync(PageTitle.OfPage());
-        
+
         // Assert
         title.Should().Be("abc123");
     }

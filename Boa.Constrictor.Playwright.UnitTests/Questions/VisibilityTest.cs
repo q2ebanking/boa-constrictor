@@ -15,10 +15,10 @@ public class VisibilityTest : BasePlaywrightLocatorQuestionTest
         Locator
             .Setup(x => x.IsVisibleAsync(It.IsAny<LocatorIsVisibleOptions>()))
             .Returns(Task.FromResult(true));
-        
+
         // Act
         var visibility = await Actor.AsksForAsync(Visibility.Of(PlaywrightLocator.Object));
-        
+
         // Assert
         visibility.Should().BeTrue();
     }

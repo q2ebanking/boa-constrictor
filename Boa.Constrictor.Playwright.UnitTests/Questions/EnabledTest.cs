@@ -15,10 +15,10 @@ public class EnabledTest : BasePlaywrightLocatorQuestionTest
         Locator
             .Setup(x => x.IsEnabledAsync(It.IsAny<LocatorIsEnabledOptions>()))
             .Returns(Task.FromResult(false));
-        
+
         // Act
         var enabled = await Actor.AsksForAsync(Enabled.Of(PlaywrightLocator.Object));
-        
+
         // Assert
         enabled.Should().BeFalse();
     }
