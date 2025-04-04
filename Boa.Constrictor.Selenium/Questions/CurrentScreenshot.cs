@@ -15,7 +15,7 @@ namespace Boa.Constrictor.Selenium
         /// <summary>
         /// The default screenshot image format.
         /// </summary>
-        public const ScreenshotImageFormat DefaultImageFormat = ScreenshotImageFormat.Png;
+        public const string DefaultImageFormat = ".png";
 
         #endregion
 
@@ -48,7 +48,7 @@ namespace Boa.Constrictor.Selenium
         /// <summary>
         /// Image file format.
         /// </summary>
-        private ScreenshotImageFormat Format { get; set; }
+        private string Format { get; set; }
 
         /// <summary>
         /// The path to the output directory where screenshot image files will be saved.
@@ -73,7 +73,7 @@ namespace Boa.Constrictor.Selenium
         /// </summary>
         /// <param name="format">Image file format.</param>
         /// <returns></returns>
-        public CurrentScreenshot UsingFormat(ScreenshotImageFormat format)
+        public CurrentScreenshot UsingFormat(string format)
         {
             Format = format;
             return this;
@@ -119,7 +119,7 @@ namespace Boa.Constrictor.Selenium
 
             // Capture and save the screenshot.
             string path = Path.Combine(OutputDir, $"{fileName}.{Format.ToString().ToLower()}");
-            (driver as ITakesScreenshot).GetScreenshot().SaveAsFile(path, Format);
+            (driver as ITakesScreenshot).GetScreenshot().SaveAsFile(path);
             actor.Logger.LogArtifact(ArtifactTypes.Screenshots, path);
 
             // Return the path to the screenshot image file.

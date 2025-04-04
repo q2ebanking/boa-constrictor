@@ -76,7 +76,7 @@ namespace Boa.Constrictor.Selenium.UnitTests
         [Test]
         public void TestSaveFileWithJpegFormat()
         {
-            var image = Actor.AsksFor(CurrentScreenshot.SavedTo(Dir, "webpage").UsingFormat(ScreenshotImageFormat.Jpeg));
+            var image = Actor.AsksFor(CurrentScreenshot.SavedTo(Dir, "webpage").UsingFormat(".jpeg"));
             ImagesToDelete.Add(image);
             image.Should().Match(Dir + Path.DirectorySeparatorChar + "webpage*.jpeg");
             Logger.Messages.Should().ContainMatch($"*Screenshots: {Dir}{Path.DirectorySeparatorChar}webpage*.jpeg");
@@ -86,7 +86,7 @@ namespace Boa.Constrictor.Selenium.UnitTests
         [Test]
         public void TestSaveFileWithBmpFormatNoName()
         {
-            var image = Actor.AsksFor(CurrentScreenshot.SavedTo(Dir).UsingFormat(ScreenshotImageFormat.Bmp));
+            var image = Actor.AsksFor(CurrentScreenshot.SavedTo(Dir).UsingFormat(".bmp"));
             ImagesToDelete.Add(image);
             image.Should().Match(Dir + Path.DirectorySeparatorChar + "Screenshot*.bmp");
             Logger.Messages.Should().ContainMatch($"*Screenshots: {Dir}{Path.DirectorySeparatorChar}Screenshot*.bmp");
