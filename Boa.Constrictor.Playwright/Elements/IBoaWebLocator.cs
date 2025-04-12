@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace Boa.Constrictor.Playwright.Elements
+namespace Boa.Constrictor.Playwright
 {
     /// <summary>
     /// Interface for BoaWebLocator utilities.

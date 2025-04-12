@@ -3,7 +3,7 @@ using Microsoft.Playwright;
 using OpenQA.Selenium;
 using System;
 
-namespace Boa.Constrictor.Playwright.Elements
+namespace Boa.Constrictor.Playwright
 {
     /// <summary>
     /// Serves as both the IWebLocator for Selenium code, but also as the IPlaywrightLocator for Playwright code.

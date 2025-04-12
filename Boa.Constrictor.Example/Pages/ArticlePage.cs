@@ -1,4 +1,4 @@
-﻿using Boa.Constrictor.Playwright.Elements;
+﻿using Boa.Constrictor.Playwright;
 using OpenQA.Selenium;
 
 namespace Boa.Constrictor.Example

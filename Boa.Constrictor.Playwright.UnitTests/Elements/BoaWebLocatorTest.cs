@@ -1,4 +1,3 @@
-using Boa.Constrictor.Playwright.Elements;
 using FluentAssertions;
 using Microsoft.Playwright;
 using Moq;
