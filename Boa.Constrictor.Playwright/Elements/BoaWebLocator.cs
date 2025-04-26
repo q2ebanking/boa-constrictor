@@ -56,16 +56,31 @@ namespace Boa.Constrictor.Playwright
         private PlaywrightLocator ConvertToPlaywrightLocator(IPage page, IFrame frame = null)
         {
             string playwrightSelector = ConvertSeleniumByToPlaywrightSelector(Query);
-
+            
+            // Check if a frame was explicitly provided
             if (frame == null)
-                if (page.Frames.Count > 0)
-                    frame = page.Frames[0]; // Default to the first frame if no specific frame is provided
+            {
+                // Get the browser context from the page
+                var browserContext = page.Context;
+                
+                // Try to get the associated ability from our registry
+                var ability = BrowseTheWebWithPlaywright.GetForContext(browserContext);
+                
+                // If we found the ability and it has a current frame, use it
+                if (ability != null && ability.CurrentFrame != null)
+                {
+                    frame = ability.CurrentFrame;
+                }
                 else
-                    throw new ArgumentNullException(nameof(frame), "No frame found and no specific frame provided.");
+                {
+                    // If no frame is found, use the main frame
+                    frame = page.MainFrame;
+                }
+            }
 
             return new PlaywrightLocator(
                 Description,
-                selector => frame != null ? page.Frame(frame.Name).Locator(playwrightSelector) : page.Locator(playwrightSelector)
+                selector => page.Frame(frame.Name).Locator(playwrightSelector)
             );
         }
 

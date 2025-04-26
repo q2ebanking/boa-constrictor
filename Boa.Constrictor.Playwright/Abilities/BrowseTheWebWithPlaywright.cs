@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Boa.Constrictor.Screenplay;
@@ -22,7 +23,10 @@ namespace Boa.Constrictor.Playwright
             Browser = browser;
             Pages = new List<IPage>();
         }
-
+        
+        private static readonly ConcurrentDictionary<IBrowserContext, BrowseTheWebWithPlaywright> _browserContextRegistry = 
+            new ConcurrentDictionary<IBrowserContext, BrowseTheWebWithPlaywright>();
+            
         /// <summary>
         /// The <see cref="IPlaywright"/> instance
         /// </summary>
@@ -42,6 +46,11 @@ namespace Boa.Constrictor.Playwright
         /// The currently active page
         /// </summary>
         public  IPage CurrentPage { get; set; }
+
+        /// <summary>
+        /// The currently active frame
+        /// </summary>
+        public IFrame CurrentFrame { get; set; }
 
         /// <summary>
         /// The browser context
@@ -108,6 +117,65 @@ namespace Boa.Constrictor.Playwright
 
             return CurrentPage;
         }
+
+        /// <summary>
+        /// Gets the current frame. If no frame is set, returns the main frame of the current page.
+        /// </summary>
+        /// <returns>The current frame.</returns>
+        public async Task<IFrame> GetCurrentFrameAsync()
+        {
+            var page = await GetCurrentPageAsync();
+            
+            if (CurrentFrame == null)
+            {
+                CurrentFrame = page.MainFrame;
+            }
+            
+            return CurrentFrame;
+        }
+        
+        /// <summary>
+        /// Sets the current frame to the main frame of the current page.
+        /// </summary>
+        /// <returns>The main frame that was set as current.</returns>
+        public async Task<IFrame> SetCurrentFrameToMainAsync()
+        {
+            var page = await GetCurrentPageAsync();
+            CurrentFrame = page.MainFrame;
+            return CurrentFrame;
+        }
+        
+        /// <summary>
+        /// Sets the current frame by name.
+        /// </summary>
+        /// <param name="name">The name of the frame to set as current.</param>
+        /// <returns>The frame that was set as current, or null if not found.</returns>
+        public async Task<IFrame> SetCurrentFrameByNameAsync(string name)
+        {
+            var page = await GetCurrentPageAsync();
+            var frame = page.Frame(name);
+            if (frame != null)
+            {
+                CurrentFrame = frame;
+            }
+            return frame;
+        }
+        
+        /// <summary>
+        /// Sets the current frame by URL.
+        /// </summary>
+        /// <param name="url">The URL of the frame to set as current.</param>
+        /// <returns>The frame that was set as current, or null if not found.</returns>
+        public async Task<IFrame> SetCurrentFrameByUrlAsync(string url)
+        {
+            var page = await GetCurrentPageAsync();
+            var frame = page.FrameByUrl(url);
+            if (frame != null)
+            {
+                CurrentFrame = frame;
+            }
+            return frame;
+        }
         
         /// <summary>
         /// Gets the current browser context. If no context exists, a new one is created.
@@ -118,9 +186,22 @@ namespace Boa.Constrictor.Playwright
             if (BrowserContext == null)
             {
                 BrowserContext = await Browser.NewContextAsync();
+                // Register this ability with the new context
+                _browserContextRegistry[BrowserContext] = this;
             }
 
             return BrowserContext;
+        }
+        
+        /// <summary>
+        /// Gets the BrowseTheWebWithPlaywright ability associated with a browser context
+        /// </summary>
+        /// <param name="context">The browser context</param>
+        /// <returns>The associated ability, or null if not found</returns>
+        public static BrowseTheWebWithPlaywright GetForContext(IBrowserContext context)
+        {
+            _browserContextRegistry.TryGetValue(context, out var ability);
+            return ability;
         }
 
         /// <summary>
