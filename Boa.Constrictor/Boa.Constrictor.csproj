@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <Version>4.0.0</Version>
+    <Version>4.1.0</Version>
     <Authors>Pandy Knight and the PrecisionLender SETs</Authors>
     <Company>Q2</Company>
     <Title>Boa.Constrictor</Title>
@@ -27,8 +27,8 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)' == 'Release'">
-    <PackageReference Include="Boa.Constrictor.RestSharp" Version="4.0.0" />
-    <PackageReference Include="Boa.Constrictor.Selenium" Version="4.0.0" />
+    <PackageReference Include="Boa.Constrictor.RestSharp" Version="4.1.0" />
+    <PackageReference Include="Boa.Constrictor.Selenium" Version="4.3.0" />
   </ItemGroup>
 
 </Project>

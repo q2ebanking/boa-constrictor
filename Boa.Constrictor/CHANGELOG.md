@@ -17,10 +17,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+(none)
+
+
+## [4.1.0] - 2025-05-03
+
 ### Changed
 
 - Changed target framework for the unit tests and example projects to .NET 8
 - Changed github artifact actions from `v3` to `v4`
+- Bumped versions of constituent packages
 
 
 ## [4.0.0] - 2023-05-29
