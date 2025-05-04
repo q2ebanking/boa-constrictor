@@ -17,6 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+(none)
+
+
+## [4.3.0] - 2025-05-03
+
 ### Changed
 
 - Updated `Selenium.Support` and `Selenium.Webdriver` to Version 4.28.0
