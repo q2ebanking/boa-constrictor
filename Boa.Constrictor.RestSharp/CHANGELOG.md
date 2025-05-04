@@ -17,6 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+(none)
+
+
+## [4.1.0] - 2024-05-03
+
+### Changed
+
 - Updated RestSharp to 112.1.0
 
 

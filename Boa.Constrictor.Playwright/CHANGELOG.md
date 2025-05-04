@@ -6,6 +6,11 @@ Its format is based on Keep a Changelog, and this project adheres to Semantic Ve
 
 ## [Unreleased]
 
+(none)
+
+
+## [4.0.0] - 2025-05-03
+
 ### Added
 
 - Added project `Boa.Constrictor.Playwright` for items that improve [Playwright](https://playwright.dev/dotnet/) support
