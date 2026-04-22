@@ -17,7 +17,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(none)
+### Added
+
+- Added `ShadowLocator` for locating elements inside open shadow roots
 
 
 ## [4.3.0] - 2025-05-03
