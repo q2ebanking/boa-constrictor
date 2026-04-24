@@ -30,7 +30,7 @@ namespace Boa.Constrictor.Selenium
         /// <param name="shadowDescendantBy">Locator for the shadow descendant web element.</param>
         /// <returns>A new ShadowLocator instance.</returns>
         public static ShadowLocator Shadow(string description, By shadowHostBy, By shadowDescendantBy) =>
-            new ShadowLocator(description, shadowHostBy, shadowDescendantBy);
+            S(description, shadowHostBy, shadowDescendantBy);
 
         #endregion
 
