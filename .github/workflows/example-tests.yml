@@ -12,7 +12,7 @@ jobs:
     steps:
 
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Build the solution
         run: dotnet build
@@ -21,9 +21,8 @@ jobs:
         run: dotnet test Boa.Constrictor.Example --logger "trx;LogFileName=ExampleResults.trx"
 
       - name: Archive example test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v7
         with:
           name: Example test results
           path: Boa.Constrictor.Example/TestResults/ExampleResults.trx
           retention-days: 30
-          
